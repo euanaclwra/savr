@@ -1,0 +1,44 @@
+unit uUtils;
+
+interface
+  uses
+    SysUtils, Vcl.Controls, Vcl.Forms, FMX.Edit, Vcl.Graphics, FMX.Objects;
+
+  type
+    TType = (Texto, Inteiro, Moeda, Data);
+    function ValidarDados(AValue:String; AType:TType): Boolean;
+    procedure ExibirMensagemErro(ACampo: TEdit);
+implementation
+
+function ValidarDados(AValue:String; AType:TType): Boolean;
+var
+  IntegerNumber: Integer;
+  DoubleNumber: Double;
+  ValidDate: TDateTime;
+begin
+  Result := False;
+
+  case AType of
+    Texto:
+      Result := Trim(AValue) <> '';
+    Inteiro:
+      Result := TryStrToInt(AValue, IntegerNumber);
+    Moeda:
+      Result := TryStrToFloat(AValue, DoubleNumber) and (DoubleNumber >= 0);
+    Data:
+      Result := TryStrToDate(AValue, ValidDate);
+  end;
+end;
+
+procedure ExibirMensagemErro(ACampo: TEdit);
+var
+   TxtError: TText;
+begin
+   TxtError := TText.Create(ACampo);
+   TxtError.TextSettings.Font.Family := 'Montserrat';
+   TxtError.TextSettings.Font.Size := 10;
+   TxtError.TextSettings.FontColor := $FF952727;
+   TxtError.Text := 'Opa! Digite um valor válido...';
+end;
+
+end.

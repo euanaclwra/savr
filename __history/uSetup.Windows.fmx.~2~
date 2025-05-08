@@ -1,0 +1,67 @@
+inherited frmSetup_Windows: TfrmSetup_Windows
+  DesignerMasterStyle = 0
+  inherited tbcSetup: TTabControl
+    Sizes = (
+      760s
+      478s
+      760s
+      478s
+      760s
+      478s
+      760s
+      478s)
+    inherited itmWelcome: TTabItem
+      ExplicitSize.cx = 8.000000000000000000
+      ExplicitSize.cy = 8.000000000000000000
+      inherited txtHello: TText
+        Opacity = 0.000000000000000000
+        TextSettings.Font.StyleExt = {00060000000000000004000000}
+      end
+      inherited txtWelcome: TText
+        Opacity = 0.000000000000000000
+        TextSettings.Font.StyleExt = {00060000000000000004000000}
+      end
+      inherited imgLogo: TImage
+        MultiResBitmap.Height = 154
+        MultiResBitmap.Width = 672
+        Opacity = 0.000000000000000000
+      end
+    end
+    inherited itmName: TTabItem
+      ExplicitSize.cx = 8.000000000000000000
+      ExplicitSize.cy = 8.000000000000000000
+      inherited txtName: TText
+        TextSettings.Font.StyleExt = {00060000000000000004000000}
+      end
+    end
+    inherited itmSalario: TTabItem
+      ExplicitSize.cx = 8.000000000000000000
+      ExplicitSize.cy = 8.000000000000000000
+      inherited txtWelcomeName: TText
+        TextSettings.Font.StyleExt = {00060000000000000004000000}
+      end
+    end
+    inherited itmDatas: TTabItem
+      ExplicitSize.cx = 8.000000000000000000
+      ExplicitSize.cy = 8.000000000000000000
+      inherited txtLast: TText
+        TextSettings.Font.StyleExt = {00060000000000000004000000}
+      end
+    end
+  end
+  inherited btnProximo: TSpeedButton
+    Opacity = 0.000000000000000000
+    inherited imgProximo: TImage
+      MultiResBitmap.Height = 256
+      MultiResBitmap.Width = 256
+    end
+  end
+  inherited btnVoltar: TSpeedButton
+    StyledSettings = [Family, Style, FontColor]
+    Opacity = 0.000000000000000000
+    inherited imgVoltar: TImage
+      MultiResBitmap.Height = 256
+      MultiResBitmap.Width = 256
+    end
+  end
+end

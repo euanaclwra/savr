@@ -1,0 +1,76 @@
+unit uEditMoeda;
+
+interface
+
+uses
+  System.SysUtils, System.Classes, FMX.Edit, FMX.Types, FMX.Controls;
+
+type
+  TEditMoeda = class(TEdit)
+  private
+    FInChange: Boolean;
+    procedure HandleChange(Sender: TObject);
+    procedure FormatCurrencyText;
+  protected
+    procedure DoEnter; override;
+  public
+    constructor Create(AOwner: TComponent); override;
+  end;
+
+procedure Register;
+
+implementation
+
+{ TEditMoeda }
+
+procedure Register;
+begin
+  RegisterComponents('Savr', [TEditMoeda]);
+end;
+
+constructor TEditMoeda.Create(AOwner: TComponent);
+begin
+  inherited;
+  FilterChar := '0123456789,.';
+  KeyboardType := TVirtualKeyboardType.NumberPad;
+  OnChange := HandleChange;
+end;
+
+procedure TEditMoeda.DoEnter;
+begin
+  inherited;
+  SelectAll;
+end;
+
+procedure TEditMoeda.HandleChange(Sender: TObject);
+begin
+  if not FInChange then
+    FormatCurrencyText;
+end;
+
+procedure TEditMoeda.FormatCurrencyText;
+var
+  TextoLimpo: string;
+  V: Currency;
+begin
+  FInChange := True;
+  try
+    TextoLimpo := Self.Text;
+    TextoLimpo := TextoLimpo.Replace('R$', '', [rfReplaceAll]);
+    TextoLimpo := TextoLimpo.Replace('.', '', [rfReplaceAll]);
+    TextoLimpo := TextoLimpo.Replace(',', '', [rfReplaceAll]);
+    TextoLimpo := Trim(TextoLimpo);
+
+    if TryStrToCurr(TextoLimpo, V) then
+      Self.Text := FormatFloat('"R$" #,##0.00', V / 100)
+    else
+      Self.Text := 'R$ 0,00';
+
+    CaretPosition := Length(Self.Text);
+  finally
+    FInChange := False;
+  end;
+end;
+
+end.
+
