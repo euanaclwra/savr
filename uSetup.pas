@@ -32,7 +32,6 @@ type
     imgVoltar: TImage;
     fxBtnProximo: TFloatAnimation;
     fxBtnVoltar: TFloatAnimation;
-    txtErrorName: TText;
     txtWelcomeName: TText;
     txtDados: TText;
     fxWelcomeName: TFloatAnimation;
@@ -47,8 +46,6 @@ type
     cmbParcelado: TComboBox;
     edtValorSalario: TEditMoeda;
     itmDatas: TTabItem;
-    txtLast: TText;
-    FloatAnimation1: TFloatAnimation;
     spbDiaAdiantamento: TSpinBox;
     lnDiaAdiantamento: TLine;
     txtDiaAdiantamento: TText;
@@ -65,11 +62,16 @@ type
     txDiaPagamentoPadrao: TText;
     ltPagamentoPadrao: TLayout;
     txtErrorSalario: TText;
+    txtLast: TText;
+    fxLast: TFloatAnimation;
+    fxPagamentoParcelado: TFloatAnimation;
+    fxPagamentoPadrao: TFloatAnimation;
     procedure AvancarPagina;
     procedure VoltarPagina;
     function SalvarNomeUsuario: Boolean;
     function SalvarInfoSalario: Boolean;
     procedure ExibirNomeUsuario;
+    procedure ExibirLayoutSalario;
     procedure UpdateNavegacao;
     procedure AtivarAnimacoesProximaPagina(ATabControl: TTabControl; ATabIndex: Integer);
     procedure btnProximoClick(Sender: TObject);
@@ -111,13 +113,32 @@ begin
     end;
     2:
     begin
-      //sd
+      if not ValidarDados(edtValorSalario.Text, Moeda) then
+      begin
+        ExibirMensagemErro(edtValorSalario);
+        Exit;
+      end;
+
+      SalvarInfoSalario;
+      ExibirLayoutSalario;
+    end;
+    3:
+    begin
+      //
     end;
   end;
 
   AvancarPagina;
   AtivarAnimacoesProximaPagina(tbcSetup, ProximaPagina);
   UpdateNavegacao;
+end;
+
+procedure TfrmSetup.ExibirLayoutSalario;
+begin
+  if AppConfig.FlagParcelado then
+  fxPagamentoParcelado.Enabled := True
+  else
+  fxPagamentoPadrao.Enabled := True;
 end;
 
 procedure TfrmSetup.AtivarAnimacoesProximaPagina(ATabControl: TTabControl; ATabIndex: Integer);
@@ -193,18 +214,12 @@ var
 
 begin
   Result := False;
-  ValorSalario := StrToFloat(edtValorSalario.Text);
-
-  if ValorSalario = 0 then
-  begin
-    txtErrorSalario.Opacity := 1;
-    lnValorSalario.Stroke.Color := $FF952727;
-    Exit;
-  end;
+  ValorSalario := CurrencyToFloat(edtValorSalario.Text);
+  FlagParcelado:= StrToBool(cmbParcelado.Text);
 
   DAO := TConfigGeralDAO.Create;
   try
-    if DAO.AlterarConfiguracao('ValorSalario', ValorSalario) then
+    if DAO.AlterarConfiguracao('ValorSalario', ValorSalario) and DAO.AlterarConfiguracao('FlagParcelado', FlagParcelado) then
     begin
       AppConfig := DAO.UpdateInstanciaConfig;
       Result := True

@@ -142,6 +142,7 @@
         <DCCReference Include="uConfigGeralDAO.pas"/>
         <DCCReference Include="uAppGlobals.pas"/>
         <DCCReference Include="uEditMoeda.pas"/>
+        <DCCReference Include="uUtils.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

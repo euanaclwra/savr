@@ -1,11 +1,2 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<BorlandProject>
-	<Transactions>
-    <Transaction>2025/04/18 12:33:26.000.389,=rtl.dcp</Transaction>
-    <Transaction>2025/04/18 12:34:20.000.976,=C:\Users\Ana Clara\Documents\Embarcadero\Studio\Projects\Savr\uEditMoeda.pas</Transaction>
-    <Transaction>2025/04/18 12:34:43.000.457,=fmx.dcp</Transaction>
-    <Transaction>2025/04/18 12:35:25.000.503,C:\Users\Ana Clara\Documents\Embarcadero\Studio\Projects\Savr\Package1.dproj=C:\Users\Ana Clara\Documents\Embarcadero\Studio\Projects\Package1.dproj</Transaction>
-    <Transaction>2025/04/18 12:55:50.000.141,C:\Users\Ana Clara\Documents\Embarcadero\Studio\Projects\Savr\Package1.dproj=C:\Users\Ana Clara\Documents\Embarcadero\Studio\Projects\Savr\pkgSavr.dproj</Transaction>
-    <Transaction>2025/04/18 12:56:20.000.907,C:\Users\Ana Clara\Documents\Embarcadero\Studio\Projects\Savr\pkgSavr.dproj=C:\Users\Ana Clara\Documents\Embarcadero\Studio\Projects\Savr\Package1.dproj</Transaction>
-  </Transactions>
-</BorlandProject>
+<BorlandProject/>

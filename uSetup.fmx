@@ -47,6 +47,7 @@ object frmSetup: TfrmSetup
       ExplicitSize.cy = 8.000000000000000000
       object txtHello: TText
         Align = Center
+        Opacity = 0.000000000000000000
         Margins.Bottom = 70.000000000000000000
         Size.Width = 100.000000000000000000
         Size.Height = 50.000000000000000000
@@ -68,6 +69,7 @@ object frmSetup: TfrmSetup
       end
       object txtWelcome: TText
         Align = Center
+        Opacity = 0.000000000000000000
         Size.Width = 250.000000000000000000
         Size.Height = 50.000000000000000000
         Size.PlatformDefault = False
@@ -864,6 +866,7 @@ object frmSetup: TfrmSetup
             FileName = 'C:\Users\Ana Clara\Documents\logo.png'
           end>
         Align = Center
+        Opacity = 0.000000000000000000
         Margins.Top = 70.000000000000000000
         Size.Width = 250.000000000000000000
         Size.Height = 34.000000000000000000
@@ -926,20 +929,6 @@ object frmSetup: TfrmSetup
         Size.Height = 1.000000000000000000
         Size.PlatformDefault = False
         Stroke.Color = xFF34495E
-      end
-      object txtErrorName: TText
-        Align = Center
-        Locked = True
-        Margins.Top = 50.000000000000000000
-        Margins.Right = 120.000000000000000000
-        Size.Width = 187.000000000000000000
-        Size.Height = 20.000000000000000000
-        Size.PlatformDefault = False
-        Text = 'Opa! Este campo '#233' obrigat'#243'rio...'
-        TextSettings.Font.Family = 'Montserrat'
-        TextSettings.Font.Size = 10.000000000000000000
-        TextSettings.FontColor = xFF952727
-        TextSettings.HorzAlign = Leading
       end
     end
     object itmSalario: TTabItem
@@ -1102,6 +1091,7 @@ object frmSetup: TfrmSetup
         item
         end>
       TextSettings.Trimming = None
+      Locked = True
       IsSelected = False
       Size.Width = 8.000000000000000000
       Size.Height = 8.000000000000000000
@@ -1111,24 +1101,6 @@ object frmSetup: TfrmSetup
       Text = 'itmDatas'
       ExplicitSize.cx = 8.000000000000000000
       ExplicitSize.cy = 8.000000000000000000
-      object txtLast: TText
-        Position.Y = 40.000000000000000000
-        Size.Width = 640.000000000000000000
-        Size.Height = 41.000000000000000000
-        Size.PlatformDefault = False
-        Text = 'Por '#250'ltimo...'
-        TextSettings.Font.Family = 'Montserrat'
-        TextSettings.Font.Size = 22.000000000000000000
-        TextSettings.Font.StyleExt = {00060000000000000004000000}
-        TextSettings.FontColor = xFF63C8C7
-        object FloatAnimation1: TFloatAnimation
-          Delay = 0.699999988079071000
-          Duration = 2.000000000000000000
-          PropertyName = 'Opacity'
-          StartValue = 0.000000000000000000
-          StopValue = 1.000000000000000000
-        end
-      end
       object ltPagamentoParcelado: TLayout
         Align = Client
         Locked = True
@@ -1136,7 +1108,7 @@ object frmSetup: TfrmSetup
         Size.Width = 760.000000000000000000
         Size.Height = 478.000000000000000000
         Size.PlatformDefault = False
-        TabOrder = 1
+        TabOrder = 0
         object edtPctAdiantamento: TEditMoeda
           Touch.InteractiveGestures = [LongTap, DoubleTap]
           TabOrder = 6
@@ -1145,8 +1117,8 @@ object frmSetup: TfrmSetup
           TextSettings.Font.Family = 'Montserrat'
           TextSettings.Font.Size = 11.000000000000000000
           TextSettings.FontColor = xFF34495E
-          Position.X = 270.000000000000000000
-          Position.Y = 226.000000000000000000
+          Position.X = 319.000000000000000000
+          Position.Y = 224.000000000000000000
           Size.Width = 100.000000000000000000
           Size.Height = 31.000000000000000000
           Size.PlatformDefault = False
@@ -1154,7 +1126,7 @@ object frmSetup: TfrmSetup
         end
         object lnDiaAdiantamento: TLine
           LineType = Diagonal
-          Position.X = 270.000000000000000000
+          Position.X = 319.000000000000000000
           Position.Y = 184.000000000000000000
           Size.Width = 100.000000000000000000
           Size.Height = 1.000000000000000000
@@ -1163,8 +1135,8 @@ object frmSetup: TfrmSetup
         end
         object lnDiaPagamento: TLine
           LineType = Diagonal
-          Position.X = 270.000000000000000000
-          Position.Y = 332.000000000000000000
+          Position.X = 323.000000000000000000
+          Position.Y = 333.000000000000000000
           Size.Width = 100.000000000000000000
           Size.Height = 1.000000000000000000
           Size.PlatformDefault = False
@@ -1172,8 +1144,8 @@ object frmSetup: TfrmSetup
         end
         object lnPctAdiantamento: TLine
           LineType = Diagonal
-          Position.X = 270.000000000000000000
-          Position.Y = 256.000000000000000000
+          Position.X = 318.000000000000000000
+          Position.Y = 263.000000000000000000
           Size.Width = 100.000000000000000000
           Size.Height = 1.000000000000000000
           Size.PlatformDefault = False
@@ -1186,7 +1158,7 @@ object frmSetup: TfrmSetup
           Min = 1.000000000000000000
           Max = 31.000000000000000000
           Value = 1.000000000000000000
-          Position.X = 270.000000000000000000
+          Position.X = 318.000000000000000000
           Position.Y = 160.000000000000000000
           TextSettings.Font.Family = 'Montserrat'
           TextSettings.Font.Size = 11.000000000000000000
@@ -1203,8 +1175,8 @@ object frmSetup: TfrmSetup
           Min = 1.000000000000000000
           Max = 31.000000000000000000
           Value = 1.000000000000000000
-          Position.X = 270.000000000000000000
-          Position.Y = 308.000000000000000000
+          Position.X = 322.000000000000000000
+          Position.Y = 309.000000000000000000
           TextSettings.Font.Family = 'Montserrat'
           TextSettings.Font.Size = 11.000000000000000000
           TextSettings.FontColor = xFF34495E
@@ -1214,9 +1186,9 @@ object frmSetup: TfrmSetup
           StyledSettings = [Family, Size, Style]
         end
         object txtDiaAdiantamento: TText
-          Position.X = 223.000000000000000000
-          Position.Y = 137.000000000000000000
-          Size.Width = 195.000000000000000000
+          Position.X = 288.000000000000000000
+          Position.Y = 127.000000000000000000
+          Size.Width = 177.000000000000000000
           Size.Height = 25.000000000000000000
           Size.PlatformDefault = False
           Text = 'Informe o dia do adiantamento:'
@@ -1226,8 +1198,8 @@ object frmSetup: TfrmSetup
           TextSettings.HorzAlign = Leading
         end
         object txtDiaPagamento: TText
-          Position.X = 223.000000000000000000
-          Position.Y = 285.000000000000000000
+          Position.X = 279.000000000000000000
+          Position.Y = 277.000000000000000000
           Size.Width = 195.000000000000000000
           Size.Height = 25.000000000000000000
           Size.PlatformDefault = False
@@ -1238,8 +1210,8 @@ object frmSetup: TfrmSetup
           TextSettings.HorzAlign = Leading
         end
         object txtPct: TText
-          Position.X = 332.000000000000000000
-          Position.Y = 230.000000000000000000
+          Position.X = 381.000000000000000000
+          Position.Y = 237.000000000000000000
           Size.Width = 41.000000000000000000
           Size.Height = 31.000000000000000000
           Size.PlatformDefault = False
@@ -1249,8 +1221,8 @@ object frmSetup: TfrmSetup
           TextSettings.FontColor = xFF34495E
         end
         object txtPctAdiantamento: TText
-          Position.X = 201.000000000000000000
-          Position.Y = 209.000000000000000000
+          Position.X = 253.000000000000000000
+          Position.Y = 202.000000000000000000
           Size.Width = 238.000000000000000000
           Size.Height = 25.000000000000000000
           Size.PlatformDefault = False
@@ -1260,22 +1232,22 @@ object frmSetup: TfrmSetup
           TextSettings.FontColor = xFF34495E
           TextSettings.HorzAlign = Leading
         end
+        object fxPagamentoParcelado: TFloatAnimation
+          Delay = 1.000000000000000000
+          Duration = 2.000000000000000000
+          PropertyName = 'Opacity'
+          StartValue = 0.000000000000000000
+          StopValue = 1.000000000000000000
+        end
       end
       object ltPagamentoPadrao: TLayout
         Align = Client
+        Locked = True
+        Opacity = 0.000000000000000000
         Size.Width = 760.000000000000000000
         Size.Height = 478.000000000000000000
         Size.PlatformDefault = False
-        TabOrder = 2
-        object lnDiaPagamentoPadrao: TLine
-          LineType = Diagonal
-          Position.X = 273.000000000000000000
-          Position.Y = 250.000000000000000000
-          Size.Width = 100.000000000000000000
-          Size.Height = 1.000000000000000000
-          Size.PlatformDefault = False
-          Stroke.Color = xFF63C8C7
-        end
+        TabOrder = 1
         object spbDiaPagamentoPadrao: TSpinBox
           Touch.InteractiveGestures = [LongTap, DoubleTap]
           TabOrder = 1
@@ -1283,8 +1255,8 @@ object frmSetup: TfrmSetup
           Min = 1.000000000000000000
           Max = 31.000000000000000000
           Value = 1.000000000000000000
-          Position.X = 273.000000000000000000
-          Position.Y = 226.000000000000000000
+          Position.X = 310.000000000000000000
+          Position.Y = 230.000000000000000000
           TextSettings.Font.Family = 'Montserrat'
           TextSettings.Font.Size = 11.000000000000000000
           TextSettings.FontColor = xFF34495E
@@ -1294,7 +1266,7 @@ object frmSetup: TfrmSetup
           StyledSettings = [Family, Size, Style]
         end
         object txDiaPagamentoPadrao: TText
-          Position.X = 223.000000000000000000
+          Position.X = 258.000000000000000000
           Position.Y = 197.000000000000000000
           Size.Width = 216.000000000000000000
           Size.Height = 25.000000000000000000
@@ -1304,6 +1276,43 @@ object frmSetup: TfrmSetup
           TextSettings.Font.Size = 11.000000000000000000
           TextSettings.FontColor = xFF34495E
           TextSettings.HorzAlign = Leading
+        end
+        object lnDiaPagamentoPadrao: TLine
+          LineType = Diagonal
+          Position.X = 311.000000000000000000
+          Position.Y = 255.000000000000000000
+          Size.Width = 100.000000000000000000
+          Size.Height = 1.000000000000000000
+          Size.PlatformDefault = False
+          Stroke.Color = xFF63C8C7
+        end
+        object fxPagamentoPadrao: TFloatAnimation
+          Delay = 1.000000000000000000
+          Duration = 2.000000000000000000
+          PropertyName = 'Opacity'
+          StartValue = 0.000000000000000000
+          StopValue = 1.000000000000000000
+        end
+      end
+      object txtLast: TText
+        Align = VertCenter
+        Opacity = 0.000000000000000000
+        Margins.Bottom = 400.000000000000000000
+        Position.Y = 15.000000000000000000
+        Size.Width = 760.000000000000000000
+        Size.Height = 48.000000000000000000
+        Size.PlatformDefault = False
+        Text = 'Por '#250'ltimo...'
+        TextSettings.Font.Family = 'Montserrat'
+        TextSettings.Font.Size = 22.000000000000000000
+        TextSettings.Font.StyleExt = {00060000000000000004000000}
+        TextSettings.FontColor = xFF63C8C7
+        object fxLast: TFloatAnimation
+          Delay = 0.699999988079071000
+          Duration = 2.000000000000000000
+          PropertyName = 'Opacity'
+          StartValue = 0.000000000000000000
+          StopValue = 1.000000000000000000
         end
       end
     end

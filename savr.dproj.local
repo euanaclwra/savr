@@ -1,28 +1,2 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<BorlandProject>
-	<Transactions>
-    <Transaction>2025/04/14 16:00:56.000.493,=C:\Users\Ana Clara\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
-    <Transaction>2025/04/14 16:01:19.000.874,C:\Users\Ana Clara\Documents\Embarcadero\Studio\Projects\Unit1.pas=C:\Users\Ana Clara\Documents\Embarcadero\Studio\Projects\Savr\uMain.pas</Transaction>
-    <Transaction>2025/04/14 16:01:19.000.874,C:\Users\Ana Clara\Documents\Embarcadero\Studio\Projects\Unit1.fmx=C:\Users\Ana Clara\Documents\Embarcadero\Studio\Projects\Savr\uMain.fmx</Transaction>
-    <Transaction>2025/04/14 18:02:34.000.173,C:\Users\Ana Clara\Documents\Embarcadero\Studio\Projects\Project1.dproj=C:\Users\Ana Clara\Documents\Embarcadero\Studio\Projects\Savr\savr.dproj</Transaction>
-    <Transaction>2025/04/14 22:44:54.000.364,=C:\Users\Ana Clara\Documents\Embarcadero\Studio\Projects\Savr\Unit1.pas</Transaction>
-    <Transaction>2025/04/14 22:47:25.000.104,C:\Users\Ana Clara\Documents\Embarcadero\Studio\Projects\Savr\uSetup.pas=C:\Users\Ana Clara\Documents\Embarcadero\Studio\Projects\Savr\Unit1.pas</Transaction>
-    <Transaction>2025/04/14 22:47:25.000.104,C:\Users\Ana Clara\Documents\Embarcadero\Studio\Projects\Savr\uSetup.fmx=C:\Users\Ana Clara\Documents\Embarcadero\Studio\Projects\Savr\Unit1.fmx</Transaction>
-    <Transaction>2025/04/15 11:33:10.000.050,=C:\Users\Ana Clara\Documents\Embarcadero\Studio\Projects\Savr\Unit1.pas</Transaction>
-    <Transaction>2025/04/15 11:34:07.000.939,C:\Users\Ana Clara\Documents\Embarcadero\Studio\Projects\Savr\Unit1.pas=C:\Users\Ana Clara\Documents\Embarcadero\Studio\Projects\Savr\uConfiguracao.pas</Transaction>
-    <Transaction>2025/04/15 11:35:07.000.606,C:\Users\Ana Clara\Documents\Embarcadero\Studio\Projects\Savr\uConfiguracao.pas=C:\Users\Ana Clara\Documents\Embarcadero\Studio\Projects\Savr\uConfigGeral.pas</Transaction>
-    <Transaction>2025/04/15 11:35:53.000.274,=C:\Users\Ana Clara\Documents\Embarcadero\Studio\Projects\Savr\Unit1.pas</Transaction>
-    <Transaction>2025/04/15 11:36:08.000.620,C:\Users\Ana Clara\Documents\Embarcadero\Studio\Projects\Savr\Unit1.pas=C:\Users\Ana Clara\Documents\Embarcadero\Studio\Projects\Savr\uCategoria.pas</Transaction>
-    <Transaction>2025/04/15 11:36:28.000.370,=C:\Users\Ana Clara\Documents\Embarcadero\Studio\Projects\Savr\Unit1.pas</Transaction>
-    <Transaction>2025/04/15 11:36:37.000.006,C:\Users\Ana Clara\Documents\Embarcadero\Studio\Projects\Savr\Unit1.pas=C:\Users\Ana Clara\Documents\Embarcadero\Studio\Projects\Savr\uLancamento.pas</Transaction>
-    <Transaction>2025/04/15 15:06:57.000.882,=C:\Users\Ana Clara\Documents\Embarcadero\Studio\Projects\Savr\Unit1.pas</Transaction>
-    <Transaction>2025/04/15 15:07:06.000.877,C:\Users\Ana Clara\Documents\Embarcadero\Studio\Projects\Savr\Unit1.dfm=C:\Users\Ana Clara\Documents\Embarcadero\Studio\Projects\Savr\uConexao.dfm</Transaction>
-    <Transaction>2025/04/15 15:07:06.000.877,C:\Users\Ana Clara\Documents\Embarcadero\Studio\Projects\Savr\Unit1.pas=C:\Users\Ana Clara\Documents\Embarcadero\Studio\Projects\Savr\uConexao.pas</Transaction>
-    <Transaction>2025/04/16 14:26:58.000.362,=C:\Users\Ana Clara\Documents\Embarcadero\Studio\Projects\Savr\Unit1.pas</Transaction>
-    <Transaction>2025/04/16 14:27:27.000.603,C:\Users\Ana Clara\Documents\Embarcadero\Studio\Projects\Savr\Unit1.pas=C:\Users\Ana Clara\Documents\Embarcadero\Studio\Projects\Savr\uConfigGeralDAO.pas</Transaction>
-    <Transaction>2025/04/16 20:12:03.000.653,=C:\Users\Ana Clara\Documents\Embarcadero\Studio\Projects\Savr\Unit1.pas</Transaction>
-    <Transaction>2025/04/16 20:12:15.000.333,C:\Users\Ana Clara\Documents\Embarcadero\Studio\Projects\Savr\uAppGlobals.pas=C:\Users\Ana Clara\Documents\Embarcadero\Studio\Projects\Savr\Unit1.pas</Transaction>
-    <Transaction>2025/04/18 12:28:34.000.363,=C:\Users\Ana Clara\Documents\Embarcadero\Studio\Projects\Savr\Unit1.pas</Transaction>
-    <Transaction>2025/04/18 12:28:47.000.568,C:\Users\Ana Clara\Documents\Embarcadero\Studio\Projects\Savr\uEditMoeda.pas=C:\Users\Ana Clara\Documents\Embarcadero\Studio\Projects\Savr\Unit1.pas</Transaction>
-  </Transactions>
-</BorlandProject>
+<BorlandProject/>

@@ -11,7 +11,8 @@ uses
   uLancamento in 'uLancamento.pas',
   uConfigGeralDAO in 'uConfigGeralDAO.pas',
   uAppGlobals in 'uAppGlobals.pas',
-  uEditMoeda in 'uEditMoeda.pas';
+  uEditMoeda in 'uEditMoeda.pas',
+  uUtils in 'uUtils.pas';
 
 {$R *.res}
 

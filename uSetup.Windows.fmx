@@ -14,17 +14,14 @@ inherited frmSetup_Windows: TfrmSetup_Windows
       ExplicitSize.cx = 8.000000000000000000
       ExplicitSize.cy = 8.000000000000000000
       inherited txtHello: TText
-        Opacity = 0.000000000000000000
         TextSettings.Font.StyleExt = {00060000000000000004000000}
       end
       inherited txtWelcome: TText
-        Opacity = 0.000000000000000000
         TextSettings.Font.StyleExt = {00060000000000000004000000}
       end
       inherited imgLogo: TImage
         MultiResBitmap.Height = 154
         MultiResBitmap.Width = 672
-        Opacity = 0.000000000000000000
       end
     end
     inherited itmName: TTabItem
@@ -32,9 +29,6 @@ inherited frmSetup_Windows: TfrmSetup_Windows
       ExplicitSize.cy = 8.000000000000000000
       inherited txtName: TText
         TextSettings.Font.StyleExt = {00060000000000000004000000}
-      end
-      inherited txtErrorName: TText
-        Opacity = 0.000000000000000000
       end
     end
     inherited itmSalario: TTabItem

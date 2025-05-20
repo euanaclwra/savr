@@ -8,8 +8,28 @@ interface
   type
     TDataType = (Texto, Inteiro, Moeda, Data);
     function ValidarDados(AValue:String; AType:TDataType): Boolean;
+    function StrToBool(AText:String): Boolean;
+    function CurrencyToFloat(AValue:String): Double;
     procedure ExibirMensagemErro(ACampo: TEdit);
 implementation
+
+function CurrencyToFloat(AValue:String): Double;
+begin
+  var
+    CleanText: string;
+  begin
+    CleanText := StringReplace(AValue, 'R$', '', [rfReplaceAll]);
+    CleanText := StringReplace(CleanText, '.', '', [rfReplaceAll]);
+    CleanText := StringReplace(CleanText, ' ', '', [rfReplaceAll]);
+
+    Result := StrToFloatDef(CleanText, 0);
+  end;
+end;
+
+function StrToBool(AText:String): Boolean;
+begin
+  Result := SameText(Trim(AText), 'Sim');
+end;
 
 function ValidarDados(AValue:String; AType:TDataType): Boolean;
 var
@@ -25,7 +45,7 @@ begin
     Inteiro:
       Result := TryStrToInt(AValue, IntegerNumber);
     Moeda:
-      Result := TryStrToFloat(AValue, DoubleNumber) and (DoubleNumber >= 0);
+      Result := CurrencyToFloat(AValue) > 0;
     Data:
       Result := TryStrToDate(AValue, ValidDate);
   end;
