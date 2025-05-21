@@ -7,7 +7,8 @@ object dmConexao: TdmConexao
       'Database=savr'
       'Password=root'
       'Server=localhost'
-      'User_Name=root')
+      'User_Name=root'
+      'TinyIntFormat=Boolean')
     LoginPrompt = False
     Left = 232
     Top = 224

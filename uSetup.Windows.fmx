@@ -41,6 +41,15 @@ inherited frmSetup_Windows: TfrmSetup_Windows
     inherited itmDatas: TTabItem
       ExplicitSize.cx = 8.000000000000000000
       ExplicitSize.cy = 8.000000000000000000
+      inherited ltPagamentoParcelado: TLayout
+        Opacity = 0.000000000000000000
+      end
+      inherited ltPagamentoPadrao: TLayout
+        Opacity = 0.000000000000000000
+        inherited edtDiaPagamentoPadrao: TEdit
+          Margins.Bottom = 125.000000000000000000
+        end
+      end
       inherited txtLast: TText
         TextSettings.Font.StyleExt = {00060000000000000004000000}
       end

@@ -39,43 +39,41 @@ type
     lnValorSalario: TLine;
     txtValorSalario: TText;
     StyleBook1: TStyleBook;
-    lnParcelado: TLine;
-    txtParcelado: TText;
     ltValorSalario: TLayout;
     fxLtValorSalario: TFloatAnimation;
-    cmbParcelado: TComboBox;
     edtValorSalario: TEditMoeda;
     itmDatas: TTabItem;
-    spbDiaAdiantamento: TSpinBox;
-    lnDiaAdiantamento: TLine;
     txtDiaAdiantamento: TText;
     txtPctAdiantamento: TText;
     edtPctAdiantamento: TEditMoeda;
     lnPctAdiantamento: TLine;
     txtPct: TText;
-    lnDiaPagamento: TLine;
-    spbDiaPagamento: TSpinBox;
     txtDiaPagamento: TText;
     ltPagamentoParcelado: TLayout;
-    lnDiaPagamentoPadrao: TLine;
-    spbDiaPagamentoPadrao: TSpinBox;
     txDiaPagamentoPadrao: TText;
     ltPagamentoPadrao: TLayout;
-    txtErrorSalario: TText;
+    ckbAdiantamento: TCheckBox;
     txtLast: TText;
-    fxLast: TFloatAnimation;
-    fxPagamentoParcelado: TFloatAnimation;
-    fxPagamentoPadrao: TFloatAnimation;
-    procedure AvancarPagina;
-    procedure VoltarPagina;
+    lnDiaAdiantamento: TLine;
+    edtDiaAdiantamento: TEdit;
+    edtDiaPagamento: TEdit;
+    lnDiaPagamento: TLine;
+    edtDiaPagamentoPadrao: TEdit;
+    lnDiaPagamentoPadrao: TLine;
     function SalvarNomeUsuario: Boolean;
     function SalvarInfoSalario: Boolean;
+    function SalvarInfoDatas: Boolean;
+    function GetDiaPagamentoFinal: Integer;
+    function ValidarDadosTab3(out CampoInvalido: TEdit): Boolean;
+    procedure AvancarPagina;
+    procedure VoltarPagina;
     procedure ExibirNomeUsuario;
     procedure ExibirLayoutSalario;
     procedure UpdateNavegacao;
     procedure AtivarAnimacoesProximaPagina(ATabControl: TTabControl; ATabIndex: Integer);
     procedure btnProximoClick(Sender: TObject);
     procedure btnVoltarClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
   public
@@ -95,6 +93,7 @@ procedure TfrmSetup.btnProximoClick(Sender: TObject);
 var
    PaginaAtual: Integer;
    ProximaPagina: Integer;
+   CampoInvalido: TEdit;
 begin
   PaginaAtual := tbcSetup.TabIndex;
   ProximaPagina := tbcSetup.TabIndex + 1;
@@ -124,7 +123,14 @@ begin
     end;
     3:
     begin
-      //
+      if not ValidarDadosTab3(CampoInvalido) then
+      begin
+        ExibirMensagemErro(CampoInvalido);
+        Exit;
+      end;
+
+      SalvarInfoDatas;
+      Exit
     end;
   end;
 
@@ -133,12 +139,52 @@ begin
   UpdateNavegacao;
 end;
 
+function TfrmSetup.ValidarDadosTab3(out CampoInvalido: TEdit): Boolean;
+begin
+  Result := False;
+
+  if AppConfig.FlagParcelado then
+  begin
+    if not ValidarDados(edtDiaAdiantamento.Text, Inteiro) then
+    begin
+      CampoInvalido := edtDiaAdiantamento;
+      Exit
+    end;
+    if not ValidarDados(edtPctAdiantamento.Text, Moeda) then
+    begin
+      CampoInvalido := edtPctAdiantamento;
+      Exit
+    end;
+    if not ValidarDados(edtDiaPagamento.Text, Inteiro) then
+    begin
+      CampoInvalido := edtDiaPagamento;
+      Exit
+    end;
+  end
+  else
+  begin
+    if not ValidarDados(edtDiaPagamentoPadrao.Text, Inteiro) then
+    begin
+      CampoInvalido := edtDiaPagamentoPadrao;
+      Exit
+    end;
+  end;
+
+  Result := True;
+end;
+
 procedure TfrmSetup.ExibirLayoutSalario;
 begin
   if AppConfig.FlagParcelado then
-  fxPagamentoParcelado.Enabled := True
+  begin
+    ltPagamentoParcelado.Visible := True;
+    ltPagamentoPadrao.Visible := False
+  end
   else
-  fxPagamentoPadrao.Enabled := True;
+  begin
+    ltPagamentoPadrao.Visible := True;
+    ltPagamentoParcelado.Visible := False
+  end;
 end;
 
 procedure TfrmSetup.AtivarAnimacoesProximaPagina(ATabControl: TTabControl; ATabIndex: Integer);
@@ -167,6 +213,11 @@ var
 begin
   Nome := AppConfig.NomeUsuario;
   txtWelcomeName.Text := 'Que bom te ter conosco, ' + Nome + '!';
+end;
+
+procedure TfrmSetup.FormCreate(Sender: TObject);
+begin
+  tbcSetup.TabIndex := 0
 end;
 
 procedure TfrmSetup.btnVoltarClick(Sender: TObject);
@@ -215,11 +266,13 @@ var
 begin
   Result := False;
   ValorSalario := CurrencyToFloat(edtValorSalario.Text);
-  FlagParcelado:= StrToBool(cmbParcelado.Text);
+  FlagParcelado := ckbAdiantamento.IsChecked;
 
   DAO := TConfigGeralDAO.Create;
   try
-    if DAO.AlterarConfiguracao('ValorSalario', ValorSalario) and DAO.AlterarConfiguracao('FlagParcelado', FlagParcelado) then
+    if DAO.AlterarConfiguracao('ValorSalario', ValorSalario)
+    and DAO.AlterarConfiguracao('FlagParcelado', BoolToInt(FlagParcelado))
+    then
     begin
       AppConfig := DAO.UpdateInstanciaConfig;
       Result := True
@@ -229,6 +282,44 @@ begin
   finally
     DAO.Free;
   end;
+end;
+
+function TfrmSetup.SalvarInfoDatas: Boolean;
+var
+ DAO: TConfigGeralDAO;
+ DiaAdiantamento: Integer;
+ PercentualAdiantamento: Double;
+ DiaPagamentoFinal: Integer;
+
+begin
+  Result := False;
+  DiaAdiantamento := StrToInt(edtDiaAdiantamento.Text);
+  PercentualAdiantamento := StrToFloat(edtPctAdiantamento.Text);
+  DiaPagamentoFinal := GetDiaPagamentoFinal;
+
+  DAO := TConfigGeralDAO.Create;
+  try
+    if DAO.AlterarConfiguracao('DiaAdiantamento', DiaAdiantamento)
+    and DAO.AlterarConfiguracao('PercentualAdiantamento', PercentualAdiantamento)
+    and DAO.AlterarConfiguracao('DiaPagamentoFinal', DiaPagamentoFinal)
+    then
+    begin
+      AppConfig := DAO.UpdateInstanciaConfig;
+      Result := True
+    end
+    else
+      Exit;
+  finally
+    DAO.Free;
+  end;
+end;
+
+function TfrmSetup.GetDiaPagamentoFinal: Integer;
+begin
+  if AppConfig.FlagParcelado then
+  Result := StrToInt(edtDiaPagamento.Text)
+  else
+  Result := StrToInt(edtDiaPagamentoPadrao.Text)
 end;
 
 procedure TfrmSetup.UpdateNavegacao;

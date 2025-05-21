@@ -6,9 +6,10 @@ interface
     FMX.Objects, FMX.Types;
 
   type
-    TDataType = (Texto, Inteiro, Moeda, Data);
+    TDataType = (Texto, Inteiro, Moeda, Data, DiaMes);
     function ValidarDados(AValue:String; AType:TDataType): Boolean;
-    function StrToBool(AText:String): Boolean;
+    function BoolToInt(AValue:Boolean): Integer;
+    function IntToBool(AValue:Integer): Boolean;
     function CurrencyToFloat(AValue:String): Double;
     procedure ExibirMensagemErro(ACampo: TEdit);
 implementation
@@ -26,9 +27,20 @@ begin
   end;
 end;
 
-function StrToBool(AText:String): Boolean;
+function BoolToInt(AValue:Boolean): Integer;
 begin
-  Result := SameText(Trim(AText), 'Sim');
+  if AValue = True then
+  Result := 1
+  else
+  Result := 0
+end;
+
+function IntToBool(AValue:Integer): Boolean;
+begin
+  if AValue = 1 then
+  Result := True
+  else
+  Result := False
 end;
 
 function ValidarDados(AValue:String; AType:TDataType): Boolean;
@@ -48,6 +60,8 @@ begin
       Result := CurrencyToFloat(AValue) > 0;
     Data:
       Result := TryStrToDate(AValue, ValidDate);
+    DiaMes:
+      Result := TryStrToInt(AValue, IntegerNumber) and (IntegerNumber <= 31);
   end;
 end;
 

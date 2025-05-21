@@ -1,0 +1,67 @@
+unit uConfigGeralDAO;
+
+interface
+
+uses
+  uConfigGeral, uConexao, System.SysUtils, FireDAC.Comp.Client, FireDAC.Stan.Param,
+  FireDAC.DApt;
+
+type
+  TConfigGeralDAO = class
+  public
+    function AlterarConfiguracao(AColuna: String; ANovoValor: Variant): Boolean;
+    function UpdateInstanciaConfig: TConfigGeral;
+  end;
+
+implementation
+
+function TConfigGeralDAO.AlterarConfiguracao(AColuna: String; ANovoValor: Variant): Boolean;
+var
+  Qry: TFDQuery;
+begin
+  Result := False;
+  Qry := TFDQuery.Create(nil);
+
+  try
+    Qry.Connection := dmConexao.FDConnection;
+    Qry.SQL.Text := 'UPDATE configuracao SET ' + AColuna + ' = :Valor WHERE id = 1';
+    Qry.ParamByName('Valor').Value := ANovoValor;
+    Qry.ExecSQL;
+
+    Result := True;
+  finally
+    Qry.Free;
+  end;
+end;
+
+function TConfigGeralDAO.UpdateInstanciaConfig: TConfigGeral;
+var
+   Qry: TFDQuery;
+   Config: TConfigGeral;
+begin
+  Result := nil;
+  Qry := TFDQuery.Create(nil);
+
+  try
+    Qry.Connection := dmConexao.FDConnection;
+    Qry.SQL.Text := 'SELECT * FROM configuracao LIMIT 1';
+    Qry.Open;
+
+    if not Qry.IsEmpty then
+    begin
+      Config := TConfigGeral.Create;
+      Config.ValorSalario := qry.FieldByName('ValorSalario').AsFloat;
+      Config.FlagParcelado := qry.FieldByName('FlagParcelado').AsBoolean;
+      Config.PercentualAdiantamento := qry.FieldByName('PercentualAdiantamento').AsFloat;
+      Config.DiaAdiantamento := qry.FieldByName('DiaAdiantamento').AsInteger;
+      Config.DiaPagamentoFinal := qry.FieldByName('DiaPagamentoFinal').AsInteger;
+      Config.NomeUsuario := qry.FieldByName('NomeUsuario').AsString;
+
+      Result := Config;
+    end;
+  finally
+    Qry.Free;
+  end;
+end;
+
+end.

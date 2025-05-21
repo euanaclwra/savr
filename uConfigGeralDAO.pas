@@ -4,7 +4,7 @@ interface
 
 uses
   uConfigGeral, uConexao, System.SysUtils, FireDAC.Comp.Client, FireDAC.Stan.Param,
-  FireDAC.DApt;
+  FireDAC.DApt, uUtils;
 
 type
   TConfigGeralDAO = class
@@ -50,12 +50,12 @@ begin
     if not Qry.IsEmpty then
     begin
       Config := TConfigGeral.Create;
-      Config.ValorSalario := qry.FieldByName('ValorSalario').AsFloat;
-      Config.FlagParcelado := qry.FieldByName('FlagParcelado').AsBoolean;
-      Config.PercentualAdiantamento := qry.FieldByName('PercentualAdiantamento').AsFloat;
-      Config.DiaAdiantamento := qry.FieldByName('DiaAdiantamento').AsInteger;
-      Config.DiaPagamentoFinal := qry.FieldByName('DiaPagamentoFinal').AsInteger;
-      Config.NomeUsuario := qry.FieldByName('NomeUsuario').AsString;
+      Config.ValorSalario := Qry.FieldByName('ValorSalario').AsFloat;
+      Config.FlagParcelado := Qry.FieldByName('FlagParcelado').AsBoolean;
+      Config.PercentualAdiantamento := Qry.FieldByName('PercentualAdiantamento').AsFloat;
+      Config.DiaAdiantamento := Qry.FieldByName('DiaAdiantamento').AsInteger;
+      Config.DiaPagamentoFinal := Qry.FieldByName('DiaPagamentoFinal').AsInteger;
+      Config.NomeUsuario := Qry.FieldByName('NomeUsuario').AsString;
 
       Result := Config;
     end;
