@@ -64,7 +64,7 @@ type
     function SalvarInfoSalario: Boolean;
     function SalvarInfoDatas: Boolean;
     function GetDiaPagamentoFinal: Integer;
-    function ValidarDadosTab3(out CampoInvalido: TControl): Boolean;
+    function ValidarDadosTab3(out CampoInvalido: TEdit): Boolean;
     procedure AvancarPagina;
     procedure VoltarPagina;
     procedure ExibirNomeUsuario;
@@ -93,7 +93,7 @@ procedure TfrmSetup.btnProximoClick(Sender: TObject);
 var
    PaginaAtual: Integer;
    ProximaPagina: Integer;
-   CampoInvalido: TControl;
+   CampoInvalido: TEdit;
 begin
   PaginaAtual := tbcSetup.TabIndex;
   ProximaPagina := tbcSetup.TabIndex + 1;
@@ -120,16 +120,18 @@ begin
 
       SalvarInfoSalario;
       ExibirLayoutSalario;
+      ltPagamentoParcelado.Visible := True;
     end;
     3:
     begin
       if not ValidarDadosTab3(CampoInvalido) then
       begin
-        //ExibirMensagemErro(CampoInvalido);
+        ExibirMensagemErro(CampoInvalido);
         Exit;
       end;
 
       SalvarInfoDatas;
+      Exit
     end;
   end;
 
@@ -138,7 +140,7 @@ begin
   UpdateNavegacao;
 end;
 
-function TfrmSetup.ValidarDadosTab3(out CampoInvalido: TControl): Boolean;
+function TfrmSetup.ValidarDadosTab3(out CampoInvalido: TEdit): Boolean;
 begin
   Result := False;
 
@@ -176,12 +178,12 @@ procedure TfrmSetup.ExibirLayoutSalario;
 begin
   if AppConfig.FlagParcelado then
   begin
-    ltPagamentoParcelado.Opacity := 1;
+    ltPagamentoParcelado.Visible := True;
     ltPagamentoPadrao.Visible := False
   end
   else
   begin
-    ltPagamentoPadrao.Opacity := 1;
+    ltPagamentoPadrao.Visible := True;
     ltPagamentoParcelado.Visible := False
   end;
 end;

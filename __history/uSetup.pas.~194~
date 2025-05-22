@@ -60,6 +60,7 @@ type
     lnDiaPagamento: TLine;
     edtDiaPagamentoPadrao: TEdit;
     lnDiaPagamentoPadrao: TLine;
+    Edit1: TEdit;
     function SalvarNomeUsuario: Boolean;
     function SalvarInfoSalario: Boolean;
     function SalvarInfoDatas: Boolean;
@@ -119,7 +120,8 @@ begin
       end;
 
       SalvarInfoSalario;
-      ExibirLayoutSalario;
+      //ExibirLayoutSalario;
+      ltPagamentoParcelado.Visible := True;
     end;
     3:
     begin
@@ -130,6 +132,7 @@ begin
       end;
 
       SalvarInfoDatas;
+      Exit
     end;
   end;
 
@@ -176,12 +179,12 @@ procedure TfrmSetup.ExibirLayoutSalario;
 begin
   if AppConfig.FlagParcelado then
   begin
-    ltPagamentoParcelado.Opacity := 1;
+    ltPagamentoParcelado.Visible := True;
     ltPagamentoPadrao.Visible := False
   end
   else
   begin
-    ltPagamentoPadrao.Opacity := 1;
+    ltPagamentoPadrao.Visible := True;
     ltPagamentoParcelado.Visible := False
   end;
 end;

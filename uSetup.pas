@@ -178,7 +178,7 @@ begin
   if AppConfig.FlagParcelado then
   begin
     ltPagamentoParcelado.Visible := True;
-    ltPagamentoPadrao.Visible := False
+    ltPagamentoPadrao.Visible := False;
   end
   else
   begin

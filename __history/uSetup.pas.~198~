@@ -64,7 +64,7 @@ type
     function SalvarInfoSalario: Boolean;
     function SalvarInfoDatas: Boolean;
     function GetDiaPagamentoFinal: Integer;
-    function ValidarDadosTab3(out CampoInvalido: TControl): Boolean;
+    function ValidarDadosTab3(out CampoInvalido: TEdit): Boolean;
     procedure AvancarPagina;
     procedure VoltarPagina;
     procedure ExibirNomeUsuario;
@@ -93,7 +93,7 @@ procedure TfrmSetup.btnProximoClick(Sender: TObject);
 var
    PaginaAtual: Integer;
    ProximaPagina: Integer;
-   CampoInvalido: TControl;
+   CampoInvalido: TEdit;
 begin
   PaginaAtual := tbcSetup.TabIndex;
   ProximaPagina := tbcSetup.TabIndex + 1;
@@ -119,17 +119,18 @@ begin
       end;
 
       SalvarInfoSalario;
-      ExibirLayoutSalario;
+      //ExibirLayoutSalario;
     end;
     3:
     begin
       if not ValidarDadosTab3(CampoInvalido) then
       begin
-        //ExibirMensagemErro(CampoInvalido);
+        ExibirMensagemErro(CampoInvalido);
         Exit;
       end;
 
       SalvarInfoDatas;
+      Exit
     end;
   end;
 
@@ -138,15 +139,15 @@ begin
   UpdateNavegacao;
 end;
 
-function TfrmSetup.ValidarDadosTab3(out CampoInvalido: TControl): Boolean;
+function TfrmSetup.ValidarDadosTab3(out CampoInvalido: TEdit): Boolean;
 begin
   Result := False;
 
   if AppConfig.FlagParcelado then
   begin
-    if not ValidarDados(spbDiaAdiantamento.Text, Inteiro) then
+    if not ValidarDados(edtDiaAdiantamento.Text, Inteiro) then
     begin
-      CampoInvalido := spbDiaAdiantamento;
+      CampoInvalido := edtDiaAdiantamento;
       Exit
     end;
     if not ValidarDados(edtPctAdiantamento.Text, Moeda) then
@@ -154,17 +155,17 @@ begin
       CampoInvalido := edtPctAdiantamento;
       Exit
     end;
-    if not ValidarDados(spbDiaPagamento.Text, Inteiro) then
+    if not ValidarDados(edtDiaPagamento.Text, Inteiro) then
     begin
-      CampoInvalido := spbDiaPagamento;
+      CampoInvalido := edtDiaPagamento;
       Exit
     end;
   end
   else
   begin
-    if not ValidarDados(spbDiaPagamentoPadrao.Text, Inteiro) then
+    if not ValidarDados(edtDiaPagamentoPadrao.Text, Inteiro) then
     begin
-      CampoInvalido := spbDiaPagamentoPadrao;
+      CampoInvalido := edtDiaPagamentoPadrao;
       Exit
     end;
   end;
@@ -176,12 +177,12 @@ procedure TfrmSetup.ExibirLayoutSalario;
 begin
   if AppConfig.FlagParcelado then
   begin
-    ltPagamentoParcelado.Opacity := 1;
+    ltPagamentoParcelado.Visible := True;
     ltPagamentoPadrao.Visible := False
   end
   else
   begin
-    ltPagamentoPadrao.Opacity := 1;
+    ltPagamentoPadrao.Visible := True;
     ltPagamentoParcelado.Visible := False
   end;
 end;
@@ -292,7 +293,7 @@ var
 
 begin
   Result := False;
-  DiaAdiantamento := StrToInt(spbDiaAdiantamento.Text);
+  DiaAdiantamento := StrToInt(edtDiaAdiantamento.Text);
   PercentualAdiantamento := StrToFloat(edtPctAdiantamento.Text);
   DiaPagamentoFinal := GetDiaPagamentoFinal;
 
@@ -316,9 +317,9 @@ end;
 function TfrmSetup.GetDiaPagamentoFinal: Integer;
 begin
   if AppConfig.FlagParcelado then
-  Result := StrToInt(spbDiaPagamento.Text)
+  Result := StrToInt(edtDiaPagamento.Text)
   else
-  Result := StrToInt(spbDiaPagamentoPadrao.Text)
+  Result := StrToInt(edtDiaPagamentoPadrao.Text)
 end;
 
 procedure TfrmSetup.UpdateNavegacao;

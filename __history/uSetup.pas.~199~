@@ -125,11 +125,12 @@ begin
     begin
       if not ValidarDadosTab3(CampoInvalido) then
       begin
-        //ExibirMensagemErro(CampoInvalido);
+        ExibirMensagemErro(CampoInvalido);
         Exit;
       end;
 
       SalvarInfoDatas;
+      Exit
     end;
   end;
 
@@ -176,12 +177,12 @@ procedure TfrmSetup.ExibirLayoutSalario;
 begin
   if AppConfig.FlagParcelado then
   begin
-    ltPagamentoParcelado.Opacity := 1;
+    ltPagamentoParcelado.Visible := True;
     ltPagamentoPadrao.Visible := False
   end
   else
   begin
-    ltPagamentoPadrao.Opacity := 1;
+    ltPagamentoPadrao.Visible := True;
     ltPagamentoParcelado.Visible := False
   end;
 end;

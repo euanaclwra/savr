@@ -119,7 +119,8 @@ begin
       end;
 
       SalvarInfoSalario;
-      ExibirLayoutSalario;
+      //ExibirLayoutSalario;
+      ltPagamentoParcelado.Visible := True;
     end;
     3:
     begin
@@ -130,6 +131,7 @@ begin
       end;
 
       SalvarInfoDatas;
+      Exit
     end;
   end;
 

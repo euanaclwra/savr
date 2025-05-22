@@ -20,7 +20,7 @@ object frmSetup: TfrmSetup
     Size.Width = 760.000000000000000000
     Size.Height = 478.000000000000000000
     Size.PlatformDefault = False
-    TabIndex = 3
+    TabIndex = 2
     TabOrder = 0
     TabPosition = None
     Sizes = (
@@ -937,7 +937,7 @@ object frmSetup: TfrmSetup
         item
         end>
       TextSettings.Trimming = None
-      IsSelected = False
+      IsSelected = True
       Size.Width = 8.000000000000000000
       Size.Height = 8.000000000000000000
       Size.PlatformDefault = False
@@ -990,6 +990,7 @@ object frmSetup: TfrmSetup
       end
       object ltValorSalario: TLayout
         Align = Center
+        Opacity = 0.000000000000000000
         Size.Width = 369.000000000000000000
         Size.Height = 226.000000000000000000
         Size.PlatformDefault = False
@@ -1053,12 +1054,9 @@ object frmSetup: TfrmSetup
       end
     end
     object itmDatas: TTabItem
-      CustomIcon = <
-        item
-        end>
+      CustomIcon = <>
       TextSettings.Trimming = None
-      Locked = True
-      IsSelected = True
+      IsSelected = False
       Size.Width = 8.000000000000000000
       Size.Height = 8.000000000000000000
       Size.PlatformDefault = False
@@ -1067,10 +1065,20 @@ object frmSetup: TfrmSetup
       Text = 'itmDatas'
       ExplicitSize.cx = 8.000000000000000000
       ExplicitSize.cy = 8.000000000000000000
+      object txtLast: TText
+        Align = Center
+        Margins.Bottom = 350.000000000000000000
+        Size.Width = 185.000000000000000000
+        Size.Height = 50.000000000000000000
+        Size.PlatformDefault = False
+        Text = 'Por '#250'ltimo...'
+        TextSettings.Font.Family = 'Montserrat'
+        TextSettings.Font.Size = 22.000000000000000000
+        TextSettings.Font.StyleExt = {00060000000000000004000000}
+        TextSettings.FontColor = xFF63C8C7
+      end
       object ltPagamentoParcelado: TLayout
-        Align = Client
-        Locked = True
-        Opacity = 0.000000000000000000
+        Align = Center
         Size.Width = 760.000000000000000000
         Size.Height = 478.000000000000000000
         Size.PlatformDefault = False
@@ -1078,7 +1086,7 @@ object frmSetup: TfrmSetup
         object edtPctAdiantamento: TEditMoeda
           Touch.InteractiveGestures = [LongTap, DoubleTap]
           Align = Center
-          TabOrder = 4
+          TabOrder = 3
           KeyboardType = NumberPad
           FilterChar = '0123456789,.'
           TextSettings.Font.Family = 'Montserrat'
@@ -1151,7 +1159,7 @@ object frmSetup: TfrmSetup
           Touch.InteractiveGestures = [LongTap, DoubleTap]
           Align = Center
           StyleLookup = 'transparentedit'
-          TabOrder = 5
+          TabOrder = 4
           FilterChar = '0123456789'
           Margins.Bottom = 125.000000000000000000
           Size.Width = 100.000000000000000000
@@ -1171,7 +1179,7 @@ object frmSetup: TfrmSetup
           Touch.InteractiveGestures = [LongTap, DoubleTap]
           Align = Center
           StyleLookup = 'transparentedit'
-          TabOrder = 6
+          TabOrder = 5
           FilterChar = '0123456789'
           Margins.Top = 135.000000000000000000
           Size.Width = 100.000000000000000000
@@ -1189,8 +1197,7 @@ object frmSetup: TfrmSetup
         end
       end
       object ltPagamentoPadrao: TLayout
-        Align = Client
-        Locked = True
+        Align = Center
         Size.Width = 760.000000000000000000
         Size.Height = 478.000000000000000000
         Size.PlatformDefault = False
@@ -1227,18 +1234,6 @@ object frmSetup: TfrmSetup
             Stroke.Color = xFF63C8C7
           end
         end
-      end
-      object txtLast: TText
-        Align = Center
-        Margins.Bottom = 350.000000000000000000
-        Size.Width = 185.000000000000000000
-        Size.Height = 50.000000000000000000
-        Size.PlatformDefault = False
-        Text = 'Por '#250'ltimo...'
-        TextSettings.Font.Family = 'Montserrat'
-        TextSettings.Font.Size = 22.000000000000000000
-        TextSettings.Font.StyleExt = {00060000000000000004000000}
-        TextSettings.FontColor = xFF63C8C7
       end
     end
   end
