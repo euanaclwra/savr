@@ -52,13 +52,13 @@ inherited frmSetup_Surface: TfrmSetup_Surface
       end
     end
     inherited itmDatas: TTabItem
-      CustomIcon = <
-        item
-        end>
       ExplicitSize.cx = 8.000000000000000000
       ExplicitSize.cy = 8.000000000000000000
       inherited txtLast: TText
         TextSettings.Font.StyleExt = {00060000000000000004000000}
+      end
+      inherited ltPagamentoPadrao: TLayout
+        TabOrder = 3
       end
     end
   end

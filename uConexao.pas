@@ -13,10 +13,9 @@ type
   TdmConexao = class(TDataModule)
     FDConnection: TFDConnection;
     FDPhysMySQLDriverLink1: TFDPhysMySQLDriverLink;
-  private
-    procedure Conectar;
   public
     constructor Create(AOwner: TComponent); override;
+    procedure Conectar;
   end;
 
 var
@@ -32,7 +31,6 @@ constructor TDmConexao.Create(AOwner: TComponent);
 begin
   inherited Create(AOwner);
   Conectar;
-  //ShowMessage('Conexão estabelecida!');
 end;
 
 procedure TDmConexao.Conectar;
@@ -42,7 +40,7 @@ begin
      FDConnection.Connected := True;
   except
     on E: Exception do begin
-      raise Exception.Create('Não foi possível conectar ao Banco de Dados:');
+      raise Exception.Create('Não foi possível conectar ao Banco de Dados: ' + E.Message);
     end;
   end;
 end;

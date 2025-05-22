@@ -1,0 +1,41 @@
+program savr;
+
+uses
+  System.StartUpCopy,
+  FMX.Forms,
+  uConexao in 'uConexao.pas' {dmConexao: TDataModule},
+  uSetup in 'uSetup.pas' {frmSetup},
+  uMain in 'uMain.pas' {frmMain},
+  uConfigGeral in 'uConfigGeral.pas',
+  uCategoria in 'uCategoria.pas',
+  uLancamento in 'uLancamento.pas',
+  uConfigGeralDAO in 'uConfigGeralDAO.pas',
+  uAppGlobals in 'uAppGlobals.pas',
+  uEditMoeda in 'uEditMoeda.pas',
+  uUtils in 'uUtils.pas';
+
+{$R *.res}
+
+var
+  DAO: TConfigGeralDAO;
+  AppConfig: TConfigGeral;
+
+begin
+  Application.Initialize;
+
+  dmConexao := TdmConexao.Create(nil);
+  try
+    dmConexao.Conectar; // chama a conexão explicitamente, se quiser testar
+  except
+
+  end;
+
+  AppConfig := TConfigGeralDAO.UpdateInstanciaConfig;
+
+  if AppConfig <> nil then
+    Application.CreateForm(TfrmMain, frmMain)
+  else
+    Application.CreateForm(TfrmSetup, frmSetup);
+
+  Application.Run;
+end.

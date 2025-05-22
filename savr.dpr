@@ -18,8 +18,20 @@ uses
 
 begin
   Application.Initialize;
-  Application.CreateForm(TdmConexao, dmConexao);
-  Application.CreateForm(TfrmSetup, frmSetup);
-  Application.CreateForm(TfrmMain, frmMain);
+
+  dmConexao := TdmConexao.Create(nil);
+  try
+    dmConexao.Conectar;
+  except
+
+  end;
+
+  AppConfig := TConfigGeralDAO.UpdateInstanciaConfig;
+
+  if AppConfig.NomeUsuario <> '' then
+    Application.CreateForm(TfrmMain, frmMain)
+  else
+    Application.CreateForm(TfrmSetup, frmSetup);
+
   Application.Run;
 end.

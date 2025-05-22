@@ -1,0 +1,49 @@
+unit uConexao;
+
+interface
+
+uses
+  System.SysUtils, System.Classes, FireDAC.Stan.Intf, FireDAC.Stan.Option,
+  FireDAC.Stan.Error, FireDAC.UI.Intf, FireDAC.Phys.Intf, FireDAC.Stan.Def,
+  FireDAC.Stan.Pool, FireDAC.Stan.Async, FireDAC.Phys, FireDAC.Phys.MySQL,
+  FireDAC.Phys.MySQLDef, FireDAC.FMXUI.Wait, Data.DB, FireDAC.Comp.Client,
+  Vcl.Dialogs;
+
+type
+  TdmConexao = class(TDataModule)
+    FDConnection: TFDConnection;
+    FDPhysMySQLDriverLink1: TFDPhysMySQLDriverLink;
+  public
+    constructor Create(AOwner: TComponent); override;
+    procedure Conectar;
+  end;
+
+var
+  dmConexao: TdmConexao;
+
+implementation
+
+{%CLASSGROUP 'FMX.Controls.TControl'}
+
+{$R *.dfm}
+
+constructor TDmConexao.Create(AOwner: TComponent);
+begin
+  inherited Create(AOwner);
+  Conectar;
+end;
+
+procedure TDmConexao.Conectar;
+begin
+  try
+     FDConnection.ConnectionName := 'DBSavr';
+     FDConnection.Connected := True;
+     InsereRegistroPadrao;
+  except
+    on E: Exception do begin
+      raise Exception.Create('Não foi possível conectar ao Banco de Dados: ' + E.Message);
+    end;
+  end;
+end;
+
+end.

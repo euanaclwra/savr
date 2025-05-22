@@ -7,7 +7,7 @@ uses
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.Objects,
   FMX.Ani, FMX.TabControl, FMX.Controls.Presentation, FMX.StdCtrls, FMX.Edit,
   uConfigGeralDAO, uAppGlobals, FMX.Styles.Objects, FMX.ComboEdit, FMX.Layouts,
-  FMX.ListBox, uEditMoeda, FMX.EditBox, FMX.SpinBox, uUtils;
+  FMX.ListBox, uEditMoeda, FMX.EditBox, FMX.SpinBox, uUtils, uMain;
 
 type
   TfrmSetup = class(TForm)
@@ -74,6 +74,7 @@ type
     procedure btnProximoClick(Sender: TObject);
     procedure btnVoltarClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure FinalizarSetup;
   private
     { Private declarations }
   public
@@ -98,7 +99,7 @@ begin
   PaginaAtual := tbcSetup.TabIndex;
   ProximaPagina := tbcSetup.TabIndex + 1;
 
-  case PaginaAtual of
+  case PaginaAtual of  // Está legível/claro o suficiente?
     1:
     begin
       if not ValidarDados(edtName.Text, Texto) then
@@ -130,13 +131,20 @@ begin
       end;
 
       SalvarInfoDatas;
-      Exit
+      FinalizarSetup;
     end;
   end;
 
   AvancarPagina;
   AtivarAnimacoesProximaPagina(tbcSetup, ProximaPagina);
   UpdateNavegacao;
+end;
+
+procedure TfrmSetup.FinalizarSetup;
+begin
+  frmMain.Visible := True;
+  frmMain.Show;
+  frmSetup.Close;
 end;
 
 function TfrmSetup.ValidarDadosTab3(out CampoInvalido: TEdit): Boolean;
@@ -216,8 +224,10 @@ begin
 end;
 
 procedure TfrmSetup.FormCreate(Sender: TObject);
+var
+  DAO : TConfigGeralDAO;
 begin
-  tbcSetup.TabIndex := 0
+  tbcSetup.TabIndex := 0;
 end;
 
 procedure TfrmSetup.btnVoltarClick(Sender: TObject);
@@ -244,6 +254,7 @@ begin
   Nome := Trim(edtName.Text);
 
   DAO := TConfigGeralDAO.Create;
+
   try
     if DAO.AlterarConfiguracao('NomeUsuario', Nome) then
     begin
@@ -257,7 +268,7 @@ begin
   end;
 end;
 
-function TfrmSetup.SalvarInfoSalario: Boolean;
+function TfrmSetup.SalvarInfoSalario: Boolean;  // Faz sentido uma função pra salvar os dados de cada tab?
 var
  DAO: TConfigGeralDAO;
  ValorSalario: Double;
