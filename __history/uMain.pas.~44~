@@ -11,9 +11,24 @@ uses
 type
   TfrmMain = class(TForm)
     txtMain: TText;
+    ltMenu: TGridLayout;
+    btnFluxo: TSpeedButton;
+    imgFluxo: TImage;
+    btnLancamento: TSpeedButton;
+    imgLancamento: TImage;
+    btnCategorias: TSpeedButton;
+    imgCategorias: TImage;
+    btnConfig: TSpeedButton;
+    imgConfig: TImage;
+    txtHelp: TText;
+    imgLogo: TImage;
+    fxLancamentoIn: TFloatAnimation;
+    fxLancamentoOut: TFloatAnimation;
     procedure btnSairClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure ExibirNomeUsuario;
+    procedure imgLancamentoMouseEnter(Sender: TObject);
+    procedure imgLancamentoMouseLeave(Sender: TObject);
   private
     { Private declarations }
   public
@@ -34,12 +49,25 @@ end;
 
 procedure TfrmMain.FormCreate(Sender: TObject);
 begin
-  txtMain.Text := AppConfig.NomeUsuario;
+  ExibirNomeUsuario;
+end;
+
+procedure TfrmMain.imgLancamentoMouseEnter(Sender: TObject);
+begin
+  fxLancamentoIn.Enabled := True;
+end;
+
+procedure TfrmMain.imgLancamentoMouseLeave(Sender: TObject);
+begin
+  fxLancamentoOut.Enabled := True;
 end;
 
 procedure TfrmMain.ExibirNomeUsuario;
+var
+  Nome: String;
 begin
-  //
+  Nome := AppConfig.NomeUsuario;
+  txtMain.Text := 'Olá, ' + Nome + '!';
 end;
 
 end.

@@ -21,9 +21,21 @@ type
     btnConfig: TSpeedButton;
     imgConfig: TImage;
     txtHelp: TText;
+    imgLogo: TImage;
+    fxLancamentoIn: TFloatAnimation;
+    fxLancamentoOut: TFloatAnimation;
+    fxFluxoIn: TFloatAnimation;
+    fxFluxoOut: TFloatAnimation;
+    fxConfigIn: TFloatAnimation;
+    fxConfigOut: TFloatAnimation;
     procedure btnSairClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure ExibirNomeUsuario;
+    procedure imgLancamentoMouseEnter(Sender: TObject);
+    procedure imgLancamentoMouseLeave(Sender: TObject);
+    procedure imgFluxoMouseEnter(Sender: TObject);
+    procedure imgFluxoMouseLeave(Sender: TObject);
+    procedure imgConfigMouseEnter(Sender: TObject);
   private
     { Private declarations }
   public
@@ -45,6 +57,36 @@ end;
 procedure TfrmMain.FormCreate(Sender: TObject);
 begin
   ExibirNomeUsuario;
+end;
+
+procedure TfrmMain.imgConfigMouseEnter(Sender: TObject);
+begin
+  fxConfigIn.Enabled := True;
+  fxConfigOut.Enabled := False;
+end;
+
+procedure TfrmMain.imgFluxoMouseEnter(Sender: TObject);
+begin
+  fxFluxoIn.Enabled := True;
+  fxFluxoOut.Enabled := False;
+end;
+
+procedure TfrmMain.imgFluxoMouseLeave(Sender: TObject);
+begin
+  fxFluxoIn.Enabled := False;
+  fxFluxoOut.Enabled := True;
+end;
+
+procedure TfrmMain.imgLancamentoMouseEnter(Sender: TObject);
+begin
+  fxLancamentoIn.Enabled := True;
+  fxLancamentoOut.Enabled := False;
+end;
+
+procedure TfrmMain.imgLancamentoMouseLeave(Sender: TObject);
+begin
+  fxLancamentoIn.Enabled := False;
+  fxLancamentoOut.Enabled := True;
 end;
 
 procedure TfrmMain.ExibirNomeUsuario;

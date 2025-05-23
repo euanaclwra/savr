@@ -35,6 +35,7 @@ object frmMain: TfrmMain
     Size.PlatformDefault = False
     TabOrder = 1
     object btnFluxo: TSpeedButton
+      Cursor = crHandPoint
       Size.Width = 150.000000000000000000
       Size.Height = 150.000000000000000000
       Size.PlatformDefault = False
@@ -337,9 +338,29 @@ object frmMain: TfrmMain
         Size.Width = 150.000000000000000000
         Size.Height = 150.000000000000000000
         Size.PlatformDefault = False
+        OnMouseEnter = imgFluxoMouseEnter
+        OnMouseLeave = imgFluxoMouseLeave
+        object fxFluxoIn: TFloatAnimation
+          Duration = 0.200000002980232200
+          Interpolation = Cubic
+          PropertyName = 'Opacity'
+          StartValue = 1.000000000000000000
+          StartFromCurrent = True
+          StopValue = 0.699999988079071000
+        end
+        object fxFluxoOut: TFloatAnimation
+          AnimationType = Out
+          Duration = 0.200000002980232200
+          Interpolation = Cubic
+          PropertyName = 'Opacity'
+          StartValue = 0.699999988079071000
+          StartFromCurrent = True
+          StopValue = 1.000000000000000000
+        end
       end
     end
     object btnLancamento: TSpeedButton
+      Cursor = crHandPoint
       Margins.Left = 15.000000000000000000
       Margins.Right = -15.000000000000000000
       Position.X = 165.000000000000000000
@@ -618,9 +639,29 @@ object frmMain: TfrmMain
         Size.Width = 150.000000000000000000
         Size.Height = 150.000000000000000000
         Size.PlatformDefault = False
+        OnMouseEnter = imgLancamentoMouseEnter
+        OnMouseLeave = imgLancamentoMouseLeave
+        object fxLancamentoIn: TFloatAnimation
+          Duration = 0.200000002980232200
+          Interpolation = Cubic
+          PropertyName = 'Opacity'
+          StartValue = 1.000000000000000000
+          StartFromCurrent = True
+          StopValue = 0.699999988079071000
+        end
+        object fxLancamentoOut: TFloatAnimation
+          AnimationType = Out
+          Duration = 0.200000002980232200
+          Interpolation = Cubic
+          PropertyName = 'Opacity'
+          StartValue = 0.699999988079071000
+          StartFromCurrent = True
+          StopValue = 1.000000000000000000
+        end
       end
     end
     object btnCategorias: TSpeedButton
+      Cursor = crHandPoint
       Margins.Top = 15.000000000000000000
       Margins.Bottom = -15.000000000000000000
       Position.Y = 165.000000000000000000
@@ -1009,9 +1050,28 @@ object frmMain: TfrmMain
         Size.Width = 150.000000000000000000
         Size.Height = 150.000000000000000000
         Size.PlatformDefault = False
+        OnMouseEnter = imgCategoriasMouseEnter
+        object fxCategoriasIn: TFloatAnimation
+          Duration = 0.200000002980232200
+          Interpolation = Cubic
+          PropertyName = 'Opacity'
+          StartValue = 1.000000000000000000
+          StartFromCurrent = True
+          StopValue = 0.699999988079071000
+        end
+        object fxCategoriasOut: TFloatAnimation
+          AnimationType = Out
+          Duration = 0.200000002980232200
+          Interpolation = Cubic
+          PropertyName = 'Opacity'
+          StartValue = 0.699999988079071000
+          StartFromCurrent = True
+          StopValue = 1.000000000000000000
+        end
       end
     end
     object btnConfig: TSpeedButton
+      Cursor = crHandPoint
       Margins.Left = 15.000000000000000000
       Margins.Top = 15.000000000000000000
       Margins.Right = -15.000000000000000000
@@ -1411,6 +1471,25 @@ object frmMain: TfrmMain
         Size.Width = 150.000000000000000000
         Size.Height = 150.000000000000000000
         Size.PlatformDefault = False
+        OnMouseEnter = imgConfigMouseEnter
+        OnMouseLeave = imgConfigMouseLeave
+        object fxConfigIn: TFloatAnimation
+          Duration = 0.200000002980232200
+          Interpolation = Cubic
+          PropertyName = 'Opacity'
+          StartValue = 1.000000000000000000
+          StartFromCurrent = True
+          StopValue = 0.699999988079071000
+        end
+        object fxConfigOut: TFloatAnimation
+          AnimationType = Out
+          Duration = 0.200000002980232200
+          Interpolation = Cubic
+          PropertyName = 'Opacity'
+          StartValue = 0.699999988079071000
+          StartFromCurrent = True
+          StopValue = 1.000000000000000000
+        end
       end
     end
   end

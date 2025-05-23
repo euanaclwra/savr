@@ -39,8 +39,6 @@ type
     procedure imgFluxoMouseLeave(Sender: TObject);
     procedure imgConfigMouseEnter(Sender: TObject);
     procedure imgConfigMouseLeave(Sender: TObject);
-    procedure imgCategoriasMouseEnter(Sender: TObject);
-    procedure imgCategoriasMouseLeave(Sender: TObject);
   private
     { Private declarations }
   public
@@ -62,18 +60,6 @@ end;
 procedure TfrmMain.FormCreate(Sender: TObject);
 begin
   ExibirNomeUsuario;
-end;
-
-procedure TfrmMain.imgCategoriasMouseEnter(Sender: TObject);
-begin
-  fxCategoriasIn.Enabled := True;
-  fxCategoriasOut.Enabled := False;
-end;
-
-procedure TfrmMain.imgCategoriasMouseLeave(Sender: TObject);
-begin
-  fxCategoriasIn.Enabled := False;
-  fxCategoriasOut.Enabled := True;
 end;
 
 procedure TfrmMain.imgConfigMouseEnter(Sender: TObject);

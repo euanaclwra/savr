@@ -22,9 +22,15 @@ type
     imgConfig: TImage;
     txtHelp: TText;
     imgLogo: TImage;
+    fxLancamentoIn: TFloatAnimation;
+    fxLancamentoOut: TFloatAnimation;
+    fxFluxoIn: TFloatAnimation;
+    fxFluxoOut: TFloatAnimation;
     procedure btnSairClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure ExibirNomeUsuario;
+    procedure imgLancamentoMouseEnter(Sender: TObject);
+    procedure imgLancamentoMouseLeave(Sender: TObject);
   private
     { Private declarations }
   public
@@ -48,12 +54,24 @@ begin
   ExibirNomeUsuario;
 end;
 
+procedure TfrmMain.imgLancamentoMouseEnter(Sender: TObject);
+begin
+  fxLancamentoIn.Enabled := True;
+  fxLancamentoOut.Enabled := False;
+end;
+
+procedure TfrmMain.imgLancamentoMouseLeave(Sender: TObject);
+begin
+  fxLancamentoIn.Enabled := False;
+  fxLancamentoOut.Enabled := True;
+end;
+
 procedure TfrmMain.ExibirNomeUsuario;
 var
   Nome: String;
 begin
   Nome := AppConfig.NomeUsuario;
-  txtMain.Text := 'Ol√°, ' + Nome + '!';
+  txtMain.Text := 'Ol·, ' + Nome + '!';
 end;
 
 end.

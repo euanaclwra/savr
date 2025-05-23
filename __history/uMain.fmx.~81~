@@ -1050,25 +1050,6 @@ object frmMain: TfrmMain
         Size.Width = 150.000000000000000000
         Size.Height = 150.000000000000000000
         Size.PlatformDefault = False
-        OnMouseEnter = imgCategoriasMouseEnter
-        OnMouseLeave = imgCategoriasMouseLeave
-        object fxCategoriasIn: TFloatAnimation
-          Duration = 0.200000002980232200
-          Interpolation = Cubic
-          PropertyName = 'Opacity'
-          StartValue = 1.000000000000000000
-          StartFromCurrent = True
-          StopValue = 0.699999988079071000
-        end
-        object fxCategoriasOut: TFloatAnimation
-          AnimationType = Out
-          Duration = 0.200000002980232200
-          Interpolation = Cubic
-          PropertyName = 'Opacity'
-          StartValue = 0.699999988079071000
-          StartFromCurrent = True
-          StopValue = 1.000000000000000000
-        end
       end
     end
     object btnConfig: TSpeedButton
