@@ -1,0 +1,54 @@
+unit uMain;
+
+interface
+
+uses
+  System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
+  FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.TabControl,
+  FMX.Controls.Presentation, FMX.MultiView, FMX.Objects, FMX.StdCtrls,
+  FMX.Layouts, FMX.Ani, uAppGlobals;
+
+type
+  TfrmMain = class(TForm)
+    txtMain: TText;
+    ltMenu: TGridLayout;
+    btnFluxo: TSpeedButton;
+    imgFluxo: TImage;
+    btnLancamento: TSpeedButton;
+    imgLancamento: TImage;
+    btnCategorias: TSpeedButton;
+    procedure btnSairClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure ExibirNomeUsuario;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmMain: TfrmMain;
+
+implementation
+
+{$R *.fmx}
+
+procedure TfrmMain.btnSairClick(Sender: TObject);
+begin
+  Application.Terminate;
+end;
+
+procedure TfrmMain.FormCreate(Sender: TObject);
+begin
+  ExibirNomeUsuario;
+end;
+
+procedure TfrmMain.ExibirNomeUsuario;
+var
+  Nome: String;
+begin
+  Nome := AppConfig.NomeUsuario;
+  txtMain.Text := 'Olá, ' + Nome + '! Do que precisa hoje?';
+end;
+
+end.

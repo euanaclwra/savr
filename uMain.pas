@@ -6,25 +6,25 @@ uses
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.TabControl,
   FMX.Controls.Presentation, FMX.MultiView, FMX.Objects, FMX.StdCtrls,
-  FMX.Layouts, FMX.Ani;
+  FMX.Layouts, FMX.Ani, uAppGlobals;
 
 type
   TfrmMain = class(TForm)
-    tbcMain: TTabControl;
-    StyleBook1: TStyleBook;
-    itm_home: TTabItem;
-    itm_config: TTabItem;
-    mtvMenu: TMultiView;
+    txtMain: TText;
+    ltMenu: TGridLayout;
+    btnFluxo: TSpeedButton;
+    imgFluxo: TImage;
+    btnLancamento: TSpeedButton;
+    imgLancamento: TImage;
+    btnCategorias: TSpeedButton;
+    imgCategorias: TImage;
     btnConfig: TSpeedButton;
-    btnHome: TSpeedButton;
     imgConfig: TImage;
-    imgHome: TImage;
-    btnSair: TSpeedButton;
-    imgSair: TImage;
-    txtHome: TText;
-    txtConfig: TText;
-    txtSair: TText;
+    txtHelp: TText;
+    imgLogo: TImage;
     procedure btnSairClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure ExibirNomeUsuario;
   private
     { Private declarations }
   public
@@ -41,6 +41,19 @@ implementation
 procedure TfrmMain.btnSairClick(Sender: TObject);
 begin
   Application.Terminate;
+end;
+
+procedure TfrmMain.FormCreate(Sender: TObject);
+begin
+  ExibirNomeUsuario;
+end;
+
+procedure TfrmMain.ExibirNomeUsuario;
+var
+  Nome: String;
+begin
+  Nome := AppConfig.NomeUsuario;
+  txtMain.Text := 'Olá, ' + Nome + '!';
 end;
 
 end.
