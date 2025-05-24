@@ -10,7 +10,6 @@ uses
 
 type
   TfrmMain = class(TForm)
-    txtMain: TText;
     ltMenu: TGridLayout;
     btnFluxo: TSpeedButton;
     imgFluxo: TImage;
@@ -20,7 +19,6 @@ type
     imgCategorias: TImage;
     btnConfig: TSpeedButton;
     imgConfig: TImage;
-    txtHelp: TText;
     imgLogo: TImage;
     fxLancamentoIn: TFloatAnimation;
     fxLancamentoOut: TFloatAnimation;
@@ -30,6 +28,9 @@ type
     fxConfigOut: TFloatAnimation;
     fxCategoriasIn: TFloatAnimation;
     fxCategoriasOut: TFloatAnimation;
+    txtHelp: TText;
+    txtMain: TText;
+    ltTitle: TLayout;
     procedure btnSairClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure ExibirNomeUsuario;
@@ -53,6 +54,8 @@ var
 implementation
 
 {$R *.fmx}
+{$R *.Windows.fmx MSWINDOWS}
+{$R *.Surface.fmx MSWINDOWS}
 
 procedure TfrmMain.btnSairClick(Sender: TObject);
 begin

@@ -2,8 +2,8 @@ object frmMain: TfrmMain
   Left = 0
   Top = 0
   Caption = 'Savr'
-  ClientHeight = 480
-  ClientWidth = 641
+  ClientHeight = 542
+  ClientWidth = 863
   Fill.Kind = Solid
   WindowState = wsMaximized
   FormFactor.Width = 320
@@ -11,29 +11,20 @@ object frmMain: TfrmMain
   FormFactor.Devices = [Desktop]
   OnCreate = FormCreate
   DesignerMasterStyle = 0
-  object txtMain: TText
-    Position.X = 96.000000000000000000
-    Position.Y = 40.000000000000000000
-    Size.Width = 457.000000000000000000
-    Size.Height = 33.000000000000000000
-    Size.PlatformDefault = False
-    Text = 'Ol'#225'!'
-    TextSettings.Font.Family = 'Montserrat'
-    TextSettings.Font.Size = 28.000000000000000000
-    TextSettings.Font.StyleExt = {00060000000000000004000000}
-    TextSettings.FontColor = xFF63C8C7
-    TextSettings.HorzAlign = Leading
-  end
   object ltMenu: TGridLayout
-    Align = Center
+    Anchors = []
     ItemHeight = 150.000000000000000000
     ItemWidth = 150.000000000000000000
     Orientation = Horizontal
-    Margins.Top = 80.000000000000000000
+    Margins.Top = 50.000000000000000000
+    Position.X = 391.000000000000000000
+    Position.Y = 126.000000000000000000
+    Scale.X = 1.200000047683716000
+    Scale.Y = 1.200000047683716000
     Size.Width = 315.000000000000000000
-    Size.Height = 315.000000000000000000
+    Size.Height = 317.000000000000000000
     Size.PlatformDefault = False
-    TabOrder = 1
+    TabOrder = 0
     object btnFluxo: TSpeedButton
       Cursor = crHandPoint
       Size.Width = 150.000000000000000000
@@ -1494,17 +1485,6 @@ object frmMain: TfrmMain
       end
     end
   end
-  object txtHelp: TText
-    Position.X = 96.000000000000000000
-    Position.Y = 73.000000000000000000
-    Size.Width = 233.000000000000000000
-    Size.Height = 41.000000000000000000
-    Size.PlatformDefault = False
-    Text = 'Do que precisa hoje?'
-    TextSettings.Font.Family = 'Montserrat'
-    TextSettings.Font.Size = 22.000000000000000000
-    TextSettings.FontColor = xFF34495E
-  end
   object imgLogo: TImage
     MultiResBitmap.Height = 153
     MultiResBitmap.Width = 181
@@ -1741,10 +1721,49 @@ object frmMain: TfrmMain
           1F5CCC3DB9E89197C10000000049454E44AE426082}
         FileName = 'C:\Users\Ana Clara\Documents\icon_blue.png'
       end>
-    Position.X = 32.000000000000000000
-    Position.Y = 44.000000000000000000
+    Position.X = 192.000000000000000000
+    Position.Y = 333.000000000000000000
     Size.Width = 57.000000000000000000
     Size.Height = 66.000000000000000000
     Size.PlatformDefault = False
+  end
+  object ltTitle: TLayout
+    Anchors = [akLeft, akRight, akBottom]
+    Margins.Top = 100.000000000000000000
+    Position.X = 4.000000000000000000
+    Position.Y = 28.000000000000000000
+    Size.Width = 425.000000000000000000
+    Size.Height = 285.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 2
+    object txtHelp: TText
+      Align = Top
+      Locked = True
+      Position.Y = 150.000000000000000000
+      Size.Width = 425.000000000000000000
+      Size.Height = 120.000000000000000000
+      Size.PlatformDefault = False
+      Text = 'Do que precisa hoje?'
+      TextSettings.Font.Family = 'Montserrat'
+      TextSettings.Font.Size = 36.000000000000000000
+      TextSettings.Font.StyleExt = {00020000000000000004000000}
+      TextSettings.FontColor = xFF34495E
+      TextSettings.HorzAlign = Leading
+      TextSettings.VertAlign = Leading
+    end
+    object txtMain: TText
+      Align = Top
+      Locked = True
+      Size.Width = 425.000000000000000000
+      Size.Height = 150.000000000000000000
+      Size.PlatformDefault = False
+      Text = 'Ol'#225', Ana!'
+      TextSettings.Font.Family = 'Montserrat'
+      TextSettings.Font.Size = 50.000000000000000000
+      TextSettings.Font.StyleExt = {00060000000000000004000000}
+      TextSettings.FontColor = xFF63C8C7
+      TextSettings.HorzAlign = Leading
+      TextSettings.VertAlign = Trailing
+    end
   end
 end
