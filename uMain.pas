@@ -31,6 +31,7 @@ type
     txtHelp: TText;
     txtMain: TText;
     ltTitle: TLayout;
+    ltHeader: TLayout;
     procedure btnSairClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure ExibirNomeUsuario;

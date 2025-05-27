@@ -1,0 +1,71 @@
+inherited frmMain_Surface: TfrmMain_Surface
+  ClientHeight = 1920
+  ClientWidth = 1080
+  DesignerMasterStyle = 0
+  inherited imgLogo: TImage
+    MultiResBitmap.Height = 153
+    MultiResBitmap.Width = 181
+  end
+  inherited ltMain: TLayout
+    Size.Width = 1080.000000000000000000
+    Size.Height = 1920.000000000000000000
+    inherited ltMenu: TGridLayout
+      Margins.Top = 50.000000000000000000
+      Scale.X = 10.000000000000000000
+      Scale.Y = 1.200000047683716000
+      Size.Height = 0.000000000000000000
+      inherited btnFluxo: TSpeedButton
+        inherited imgFluxo: TImage
+          MultiResBitmap.Height = 374
+          MultiResBitmap.Width = 374
+        end
+      end
+      inherited btnLancamento: TSpeedButton
+        Margins.Left = 15.000000000000000000
+        Margins.Right = -15.000000000000000000
+        Position.X = 165.000000000000000000
+        inherited imgLancamento: TImage
+          MultiResBitmap.Height = 374
+          MultiResBitmap.Width = 374
+        end
+      end
+      inherited btnCategorias: TSpeedButton
+        Margins.Left = 30.000000000000000000
+        Margins.Top = 15.000000000000000000
+        Margins.Bottom = -15.000000000000000000
+        Position.X = 330.000000000000000000
+        Position.Y = 15.000000000000000000
+        Scale.X = 0.000000000000000000
+        Size.Width = 120.000000000000000000
+        inherited imgCategorias: TImage
+          MultiResBitmap.Height = 374
+          MultiResBitmap.Width = 374
+        end
+      end
+      inherited btnConfig: TSpeedButton
+        Margins.Left = 45.000000000000000000
+        Margins.Top = 15.000000000000000000
+        Margins.Right = -15.000000000000000000
+        Margins.Bottom = -15.000000000000000000
+        Position.X = 495.000000000000000000
+        Position.Y = 15.000000000000000000
+        Size.Width = 120.000000000000000000
+        inherited imgConfig: TImage
+          MultiResBitmap.Height = 374
+          MultiResBitmap.Width = 374
+          Position.X = -30.000000000000000000
+        end
+      end
+    end
+    inherited ltTitle: TLayout
+      Size.Width = 1080.000000000000000000
+      Size.Height = 1920.000000000000000000
+      inherited txtHelp: TText
+        TextSettings.Font.StyleExt = {00020000000000000004000000}
+      end
+      inherited txtMain: TText
+        TextSettings.Font.StyleExt = {00060000000000000004000000}
+      end
+    end
+  end
+end
