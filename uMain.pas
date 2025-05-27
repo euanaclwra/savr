@@ -33,7 +33,6 @@ type
     ltTitle: TLayout;
     ltHeader: TLayout;
     procedure btnSairClick(Sender: TObject);
-    procedure FormCreate(Sender: TObject);
     procedure ExibirNomeUsuario;
     procedure imgLancamentoMouseEnter(Sender: TObject);
     procedure imgLancamentoMouseLeave(Sender: TObject);
@@ -43,6 +42,7 @@ type
     procedure imgConfigMouseLeave(Sender: TObject);
     procedure imgCategoriasMouseEnter(Sender: TObject);
     procedure imgCategoriasMouseLeave(Sender: TObject);
+    procedure FormShow(Sender: TObject);
   private
     { Private declarations }
   public
@@ -54,6 +54,8 @@ var
 
 implementation
 
+uses uSetup;
+
 {$R *.fmx}
 {$R *.Windows.fmx MSWINDOWS}
 {$R *.Surface.fmx MSWINDOWS}
@@ -63,8 +65,10 @@ begin
   Application.Terminate;
 end;
 
-procedure TfrmMain.FormCreate(Sender: TObject);
+procedure TfrmMain.FormShow(Sender: TObject);
 begin
+  frmSetup.Close;
+  UpdateConfiguracaoGlobal;
   ExibirNomeUsuario;
 end;
 

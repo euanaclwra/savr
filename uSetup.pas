@@ -142,9 +142,8 @@ end;
 
 procedure TfrmSetup.FinalizarSetup;
 begin
-  frmMain.Visible := True;
+  Application.MainForm := frmMain;
   frmMain.Show;
-  frmSetup.Close;
 end;
 
 function TfrmSetup.ValidarDadosTab3(out CampoInvalido: TEdit): Boolean;
@@ -304,15 +303,15 @@ var
 
 begin
   Result := False;
-  DiaAdiantamento := StrToInt(edtDiaAdiantamento.Text);
-  PercentualAdiantamento := StrToFloat(edtPctAdiantamento.Text);
+  //DiaAdiantamento := StrToInt(edtDiaAdiantamento.Text);
+  //PercentualAdiantamento := StrToFloat(edtPctAdiantamento.Text);
   DiaPagamentoFinal := GetDiaPagamentoFinal;
 
   DAO := TConfigGeralDAO.Create;
   try
-    if DAO.AlterarConfiguracao('DiaAdiantamento', DiaAdiantamento)
-    and DAO.AlterarConfiguracao('PercentualAdiantamento', PercentualAdiantamento)
-    and DAO.AlterarConfiguracao('DiaPagamentoFinal', DiaPagamentoFinal)
+    if //DAO.AlterarConfiguracao('DiaAdiantamento', DiaAdiantamento)
+    //and DAO.AlterarConfiguracao('PercentualAdiantamento', PercentualAdiantamento)
+    DAO.AlterarConfiguracao('DiaPagamentoFinal', DiaPagamentoFinal)
     then
     begin
       AppConfig := DAO.UpdateInstanciaConfig;

@@ -7,12 +7,13 @@ uses
   FireDAC.Stan.Error, FireDAC.UI.Intf, FireDAC.Phys.Intf, FireDAC.Stan.Def,
   FireDAC.Stan.Pool, FireDAC.Stan.Async, FireDAC.Phys, FireDAC.Phys.MySQL,
   FireDAC.Phys.MySQLDef, FireDAC.FMXUI.Wait, Data.DB, FireDAC.Comp.Client,
-  Vcl.Dialogs;
+  Vcl.Dialogs, FireDAC.Comp.UI;
 
 type
   TdmConexao = class(TDataModule)
     FDConnection: TFDConnection;
     FDPhysMySQLDriverLink1: TFDPhysMySQLDriverLink;
+    FDGUIxWaitCursor1: TFDGUIxWaitCursor;
   public
     constructor Create(AOwner: TComponent); override;
     procedure Conectar;

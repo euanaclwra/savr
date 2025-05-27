@@ -20,4 +20,9 @@ object dmConexao: TdmConexao
     Left = 424
     Top = 144
   end
+  object FDGUIxWaitCursor1: TFDGUIxWaitCursor
+    Provider = 'FMX'
+    Left = 216
+    Top = 136
+  end
 end

@@ -3,6 +3,8 @@ program savr;
 uses
   System.StartUpCopy,
   FMX.Forms,
+  SysUtils,
+  Vcl.Dialogs,
   uConexao in 'uConexao.pas' {dmConexao: TDataModule},
   uSetup in 'uSetup.pas' {frmSetup},
   uMain in 'uMain.pas' {frmMain},
@@ -12,7 +14,8 @@ uses
   uConfigGeralDAO in 'uConfigGeralDAO.pas',
   uAppGlobals in 'uAppGlobals.pas',
   uEditMoeda in 'uEditMoeda.pas',
-  uUtils in 'uUtils.pas';
+  uUtils in 'uUtils.pas',
+  uBootstrap in 'uBootstrap.pas' {frmBootstrap};
 
 {$R *.res}
 
@@ -23,15 +26,14 @@ begin
   try
     dmConexao.Conectar;
   except
-
+    on E : Exception do
+      ShowMessage(E.Message);
   end;
 
   AppConfig := TConfigGeralDAO.UpdateInstanciaConfig;
 
-  if AppConfig.NomeUsuario <> '' then
-    Application.CreateForm(TfrmMain, frmMain)
-  else
-    Application.CreateForm(TfrmSetup, frmSetup);
-
+  Application.CreateForm(TfrmBootstrap, frmBootstrap);
+  Application.CreateForm(TfrmMain, frmMain);
+  Application.CreateForm(TfrmSetup, frmSetup);
   Application.Run;
 end.
