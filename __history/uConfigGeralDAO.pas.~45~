@@ -10,11 +10,45 @@ type
   TConfigGeralDAO = class
   public
     function AlterarConfiguracao(AColuna: String; ANovoValor: Variant): Boolean;
-    function InsereRegistroDefault: Boolean;
+    procedure InsereRegistroDefault;
     class function UpdateInstanciaConfig: TConfigGeral;
   end;
 
 implementation
+
+procedure TConfigGeralDAO.InsereRegistroDefault;
+var
+  Qry: TFDQuery;
+begin
+  Qry := TFDQuery.Create(nil);
+
+  try
+    Qry.Connection := dmConexao.FDConnection;
+    Qry.SQL.Text := 'SELECT * FROM configuracao ORDER BY id LIMIT 1';
+    Qry.Open;
+
+    if Qry.IsEmpty then
+    begin
+      Qry.Close;
+      Qry.SQL.Text := 'INSERT INTO configuracao(valorsalario, flagparcelado, percentualadiantamento, diaadiantamento, diapagamentofinal, nomeusuario) ' +
+                'VALUES (:vsal, :fparc, :perad, :diaadiant, :diapag, :nome)';
+
+      Qry.ParamByName('vsal').AsFloat := 0;
+      Qry.ParamByName('fparc').AsBoolean := False;
+      Qry.ParamByName('perad').AsFloat := 0;
+      Qry.ParamByName('diaadiant').AsInteger := 0;
+      Qry.ParamByName('diapag').AsInteger := 0;
+      Qry.ParamByName('nome').AsString := '';
+      Qry.ExecSQL;
+    end
+    else
+    begin
+      Exit
+    end;
+  finally
+    Qry.Free;
+  end;
+end;
 
 function TConfigGeralDAO.AlterarConfiguracao(AColuna: String; ANovoValor: Variant): Boolean;
 var
@@ -39,9 +73,12 @@ class function TConfigGeralDAO.UpdateInstanciaConfig: TConfigGeral;
 var
    Qry: TFDQuery;
    Config: TConfigGeral;
+   DAO: TConfigGeralDAO;
 begin
   Result := nil;
   Qry := TFDQuery.Create(nil);
+  DAO := TConfigGeralDAO.Create;
+  DAO.InsereRegistroDefault;
 
   try
     Qry.Connection := dmConexao.FDConnection;

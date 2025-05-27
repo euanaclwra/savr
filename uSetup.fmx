@@ -20,7 +20,7 @@ object frmSetup: TfrmSetup
     Size.Width = 760.000000000000000000
     Size.Height = 478.000000000000000000
     Size.PlatformDefault = False
-    TabIndex = 2
+    TabIndex = 3
     TabOrder = 0
     TabPosition = None
     Sizes = (
@@ -937,7 +937,7 @@ object frmSetup: TfrmSetup
         item
         end>
       TextSettings.Trimming = None
-      IsSelected = True
+      IsSelected = False
       Size.Width = 8.000000000000000000
       Size.Height = 8.000000000000000000
       Size.PlatformDefault = False
@@ -1058,7 +1058,7 @@ object frmSetup: TfrmSetup
         item
         end>
       TextSettings.Trimming = None
-      IsSelected = False
+      IsSelected = True
       Size.Width = 8.000000000000000000
       Size.Height = 8.000000000000000000
       Size.PlatformDefault = False

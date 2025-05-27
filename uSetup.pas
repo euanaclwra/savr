@@ -62,9 +62,10 @@ type
     lnDiaPagamentoPadrao: TLine;
     function SalvarNomeUsuario: Boolean;
     function SalvarInfoSalario: Boolean;
-    function SalvarInfoDatas: Boolean;
-    function GetDiaPagamentoFinal: Integer;
     function ValidarDadosTab3(out CampoInvalido: TEdit): Boolean;
+    procedure SalvarInfoDatas;
+    procedure SalvarInfoDatasPadrao;
+    procedure SalvarInfoDatasParcelado;
     procedure AvancarPagina;
     procedure VoltarPagina;
     procedure ExibirNomeUsuario;
@@ -294,28 +295,19 @@ begin
   end;
 end;
 
-function TfrmSetup.SalvarInfoDatas: Boolean;
+procedure TfrmSetup.SalvarInfoDatasPadrao;
 var
- DAO: TConfigGeralDAO;
- DiaAdiantamento: Integer;
- PercentualAdiantamento: Double;
- DiaPagamentoFinal: Integer;
-
+  DAO: TConfigGeralDAO;
+  DiaPagamento: Integer;
 begin
-  Result := False;
-  //DiaAdiantamento := StrToInt(edtDiaAdiantamento.Text);
-  //PercentualAdiantamento := StrToFloat(edtPctAdiantamento.Text);
-  DiaPagamentoFinal := GetDiaPagamentoFinal;
-
+  DiaPagamento := StrToInt(edtDiaPagamentoPadrao.Text);
   DAO := TConfigGeralDAO.Create;
+
   try
-    if //DAO.AlterarConfiguracao('DiaAdiantamento', DiaAdiantamento)
-    //and DAO.AlterarConfiguracao('PercentualAdiantamento', PercentualAdiantamento)
-    DAO.AlterarConfiguracao('DiaPagamentoFinal', DiaPagamentoFinal)
+    if DAO.AlterarConfiguracao('DiaPagamentoFinal', DiaPagamento)
     then
     begin
       AppConfig := DAO.UpdateInstanciaConfig;
-      Result := True
     end
     else
       Exit;
@@ -324,12 +316,40 @@ begin
   end;
 end;
 
-function TfrmSetup.GetDiaPagamentoFinal: Integer;
+procedure TfrmSetup.SalvarInfoDatasParcelado;
+var
+ DAO: TConfigGeralDAO;
+ DiaAdiantamento: Integer;
+ PercentualAdiantamento: Double;
+ DiaPagamentoFinal: Integer;
+
+begin
+  DiaAdiantamento := StrToInt(edtDiaAdiantamento.Text);
+  PercentualAdiantamento := StrToFloat(edtPctAdiantamento.Text);
+  DiaPagamentoFinal := StrToInt(edtDiaPagamento.Text);
+
+  DAO := TConfigGeralDAO.Create;
+  try
+    if DAO.AlterarConfiguracao('DiaAdiantamento', DiaAdiantamento)
+     and DAO.AlterarConfiguracao('PercentualAdiantamento', PercentualAdiantamento)
+     and DAO.AlterarConfiguracao('DiaPagamentoFinal', DiaPagamentoFinal)
+    then
+    begin
+      AppConfig := DAO.UpdateInstanciaConfig;
+    end
+    else
+      Exit;
+  finally
+    DAO.Free;
+  end;
+end;
+
+procedure TfrmSetup.SalvarInfoDatas;
 begin
   if AppConfig.FlagParcelado then
-  Result := StrToInt(edtDiaPagamento.Text)
+    SalvarInfoDatasParcelado
   else
-  Result := StrToInt(edtDiaPagamentoPadrao.Text)
+    SalvarInfoDatasPadrao;
 end;
 
 procedure TfrmSetup.UpdateNavegacao;
