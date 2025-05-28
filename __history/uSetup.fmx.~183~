@@ -1054,7 +1054,9 @@ object frmSetup: TfrmSetup
       end
     end
     object itmDatas: TTabItem
-      CustomIcon = <>
+      CustomIcon = <
+        item
+        end>
       TextSettings.Trimming = None
       IsSelected = True
       Size.Width = 8.000000000000000000
@@ -1083,7 +1085,7 @@ object frmSetup: TfrmSetup
         Size.Width = 760.000000000000000000
         Size.Height = 478.000000000000000000
         Size.PlatformDefault = False
-        TabOrder = 1
+        TabOrder = 4
         object txDiaPagamentoPadrao: TText
           Align = Center
           Margins.Bottom = 25.000000000000000000
@@ -1102,10 +1104,14 @@ object frmSetup: TfrmSetup
           StyleLookup = 'transparentedit'
           TabOrder = 4
           FilterChar = '0123456789'
+          TextSettings.Font.Family = 'Montserrat'
+          TextSettings.Font.Size = 11.000000000000000000
+          TextSettings.FontColor = xFF34495E
           Margins.Top = 20.000000000000000000
           Size.Width = 100.000000000000000000
           Size.Height = 25.000000000000000000
           Size.PlatformDefault = False
+          StyledSettings = [Style]
           object lnDiaPagamentoPadrao: TLine
             Align = Center
             LineType = Diagonal
@@ -1126,7 +1132,7 @@ object frmSetup: TfrmSetup
         object edtPctAdiantamento: TEditMoeda
           Touch.InteractiveGestures = [LongTap, DoubleTap]
           Align = Center
-          TabOrder = 3
+          TabOrder = 4
           KeyboardType = NumberPad
           FilterChar = '0123456789,.'
           TextSettings.Font.Family = 'Montserrat'
@@ -1199,7 +1205,7 @@ object frmSetup: TfrmSetup
           Touch.InteractiveGestures = [LongTap, DoubleTap]
           Align = Center
           StyleLookup = 'transparentedit'
-          TabOrder = 4
+          TabOrder = 3
           FilterChar = '0123456789'
           TextSettings.Font.Family = 'Montserrat'
           TextSettings.Font.Size = 11.000000000000000000
@@ -1223,7 +1229,7 @@ object frmSetup: TfrmSetup
           Touch.InteractiveGestures = [LongTap, DoubleTap]
           Align = Center
           StyleLookup = 'transparentedit'
-          TabOrder = 6
+          TabOrder = 5
           FilterChar = '0123456789'
           TextSettings.Font.Family = 'Montserrat'
           TextSettings.Font.Size = 11.000000000000000000

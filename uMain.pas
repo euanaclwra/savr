@@ -6,7 +6,7 @@ uses
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.TabControl,
   FMX.Controls.Presentation, FMX.MultiView, FMX.Objects, FMX.StdCtrls,
-  FMX.Layouts, FMX.Ani, uAppGlobals;
+  FMX.Layouts, FMX.Ani, uAppGlobals, uFrmCategorias;
 
 type
   TfrmMain = class(TForm)
@@ -43,6 +43,7 @@ type
     procedure imgCategoriasMouseEnter(Sender: TObject);
     procedure imgCategoriasMouseLeave(Sender: TObject);
     procedure FormShow(Sender: TObject);
+    procedure btnCategoriasClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -59,6 +60,11 @@ uses uSetup;
 {$R *.fmx}
 {$R *.Windows.fmx MSWINDOWS}
 {$R *.Surface.fmx MSWINDOWS}
+
+procedure TfrmMain.btnCategoriasClick(Sender: TObject);
+begin
+  frmCategorias.Show;
+end;
 
 procedure TfrmMain.btnSairClick(Sender: TObject);
 begin

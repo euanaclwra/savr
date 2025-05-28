@@ -50,6 +50,9 @@ inherited frmSetup_Surface: TfrmSetup_Surface
         Position.Y = 772.000000000000000000
         Size.Width = 1080.000000000000000000
       end
+      inherited ltValorSalario: TLayout
+        Opacity = 0.000000000000000000
+      end
     end
     inherited itmDatas: TTabItem
       ExplicitSize.cx = 8.000000000000000000

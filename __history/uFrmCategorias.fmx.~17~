@@ -1,0 +1,51 @@
+object frmCategorias: TfrmCategorias
+  Left = 0
+  Top = 0
+  Caption = 'Categorias'
+  ClientHeight = 480
+  ClientWidth = 640
+  StyleBook = StyleBook1
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  DesignerMasterStyle = 0
+  object txtCategorias: TText
+    Position.X = 24.000000000000000000
+    Position.Y = 32.000000000000000000
+    Size.Width = 321.000000000000000000
+    Size.Height = 50.000000000000000000
+    Size.PlatformDefault = False
+    Text = 'Categorias de Lan'#231'amentos'
+    TextSettings.Font.Family = 'Montserrat'
+    TextSettings.Font.Size = 22.000000000000000000
+    TextSettings.Font.StyleExt = {00060000000000000004000000}
+    TextSettings.FontColor = xFF63C8C7
+    TextSettings.HorzAlign = Leading
+  end
+  object lbCategorias: TListBox
+    Align = Horizontal
+    Position.Y = 184.000000000000000000
+    Size.Width = 640.000000000000000000
+    Size.Height = 296.000000000000000000
+    Size.PlatformDefault = False
+    StyleLookup = 'lbCategoriasStyle1'
+    TabOrder = 1
+    DisableFocusEffect = True
+    DefaultItemStyles.ItemStyle = 'listboxitemstyle'
+    DefaultItemStyles.GroupHeaderStyle = ''
+    DefaultItemStyles.GroupFooterStyle = ''
+    Viewport.Width = 636.000000000000000000
+    Viewport.Height = 292.000000000000000000
+    object lbItem: TListBoxItem
+      TextSettings.Font.Family = 'Montserrat'
+      StyledSettings = [Size, Style, FontColor, Other]
+      StyleLookup = 'lbItemStyle1'
+      TabOrder = 0
+    end
+  end
+  object StyleBook1: TStyleBook
+    Styles = <
+      item
+      end>
+  end
+end

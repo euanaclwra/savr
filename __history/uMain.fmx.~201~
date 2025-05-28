@@ -659,7 +659,6 @@ object frmMain: TfrmMain
       Size.Height = 150.000000000000000000
       Size.PlatformDefault = False
       TextSettings.Trimming = None
-      OnClick = btnCategoriasClick
       object imgCategorias: TImage
         MultiResBitmap.Height = 374
         MultiResBitmap.Width = 374

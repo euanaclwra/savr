@@ -323,7 +323,6 @@ object frmMain: TfrmMain
             FileName = 'C:\Users\Ana Clara\Documents\fluxo-caixa.png'
           end>
         Align = Left
-        HitTest = False
         Size.Width = 150.000000000000000000
         Size.Height = 150.000000000000000000
         Size.PlatformDefault = False
@@ -624,7 +623,6 @@ object frmMain: TfrmMain
             FileName = 'C:\Users\Ana Clara\Documents\novo-lancamento.png'
           end>
         Align = Right
-        HitTest = False
         Position.X = 15.000000000000000000
         Size.Width = 150.000000000000000000
         Size.Height = 150.000000000000000000
@@ -659,7 +657,6 @@ object frmMain: TfrmMain
       Size.Height = 150.000000000000000000
       Size.PlatformDefault = False
       TextSettings.Trimming = None
-      OnClick = btnCategoriasClick
       object imgCategorias: TImage
         MultiResBitmap.Height = 374
         MultiResBitmap.Width = 374
@@ -1038,7 +1035,6 @@ object frmMain: TfrmMain
             FileName = 'C:\Users\Ana Clara\Documents\categorias.png'
           end>
         Align = Left
-        HitTest = False
         Size.Width = 150.000000000000000000
         Size.Height = 150.000000000000000000
         Size.PlatformDefault = False
@@ -1461,7 +1457,6 @@ object frmMain: TfrmMain
             FileName = 'C:\Users\Ana Clara\Documents\configuracao.png'
           end>
         Align = Right
-        HitTest = False
         Size.Width = 150.000000000000000000
         Size.Height = 150.000000000000000000
         Size.PlatformDefault = False

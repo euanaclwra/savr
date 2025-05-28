@@ -37,6 +37,9 @@ inherited frmSetup_Windows: TfrmSetup_Windows
       inherited txtWelcomeName: TText
         TextSettings.Font.StyleExt = {00060000000000000004000000}
       end
+      inherited ltValorSalario: TLayout
+        Opacity = 0.000000000000000000
+      end
     end
     inherited itmDatas: TTabItem
       ExplicitSize.cx = 8.000000000000000000
