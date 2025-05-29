@@ -2,15 +2,17 @@ unit uCategoria;
 
 interface
 type
+  TTipoCategoria = (tcDespesa, tcReceita);
+
   TCategoria = class
   private
     FID: Integer;
     FNome: string;
-    FTipo: Char;
+    FTipo: TTipoCategoria;
   public
     property ID: Integer read FID write FID;
     property Nome: string read FNome write FNome;
-    property Tipo: Char read FTipo write FTipo;
+    property Tipo: TTipoCategoria read FTipo write FTipo;
   end;
 
 implementation

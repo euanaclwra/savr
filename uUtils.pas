@@ -3,7 +3,7 @@ unit uUtils;
 interface
   uses
     SysUtils, Vcl.Controls, Vcl.Forms, FMX.Edit, Vcl.Graphics,
-    FMX.Objects, FMX.Types;
+    FMX.Objects, FMX.Types, uCategoria;
 
   type
     TDataType = (Texto, Inteiro, Moeda, Data, DiaMes);
@@ -11,8 +11,22 @@ interface
     function BoolToInt(AValue:Boolean): Integer;
     function IntToBool(AValue:Integer): Boolean;
     function CurrencyToFloat(AValue:String): Double;
+    function StrToCat(AValue:String): TTipoCategoria;
+    function CatToStr(AValue:TTipoCategoria): String;
     procedure ExibirMensagemErro(ACampo: TEdit);
 implementation
+
+function StrToCat(AValue:String): TTipoCategoria;
+begin
+  if AValue = 'R' then Result := tcReceita
+  else Result := tcDespesa
+end;
+
+function CatToStr(AValue:TTipoCategoria): String;
+begin
+  if AValue = tcReceita then Result := 'R'
+  else Result := 'D'
+end;
 
 function CurrencyToFloat(AValue:String): Double;
 begin
@@ -29,18 +43,14 @@ end;
 
 function BoolToInt(AValue:Boolean): Integer;
 begin
-  if AValue = True then
-  Result := 1
-  else
-  Result := 0
+  if AValue = True then Result := 1
+  else Result := 0
 end;
 
 function IntToBool(AValue:Integer): Boolean;
 begin
-  if AValue = 1 then
-  Result := True
-  else
-  Result := False
+  if AValue = 1 then Result := True
+  else Result := False
 end;
 
 function ValidarDados(AValue:String; AType:TDataType): Boolean;

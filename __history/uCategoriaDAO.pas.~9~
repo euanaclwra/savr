@@ -1,0 +1,40 @@
+unit uCategoriaDAO;
+
+interface
+
+uses
+  uCategoria, uConexao, System.SysUtils, FireDAC.Comp.Client, FireDAC.Stan.Param,
+  FireDAC.DApt, uUtils, System.Generics.Collections;
+
+type
+  TCategoriaDAO = class
+  public
+    function BuscarCategorias: TObjectList<TCategoria>;
+  end;
+
+implementation
+
+function TCategoriaDAO.BuscarCategorias: TObjectList<TCategoria>;
+var
+  ResultSet: TObjectList<TCategoria>;
+  Categoria: TCategoria;
+  Qry: TFDQuery;
+begin
+  Qry := TFDQuery.Create(nil);
+
+  try
+    Qry.Connection := dmConexao.FDConnection;
+    Qry.SQL.Text := 'SELECT * FROM categorias';
+    Qry.Open;
+
+    if not Qry.IsEmpty then
+    begin
+      //
+    end;
+  finally
+
+  end;
+
+end;
+
+end.
