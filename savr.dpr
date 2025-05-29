@@ -15,7 +15,8 @@ uses
   uAppGlobals in 'uAppGlobals.pas',
   uEditMoeda in 'uEditMoeda.pas',
   uUtils in 'uUtils.pas',
-  uBootstrap in 'uBootstrap.pas' {frmBootstrap};
+  uBootstrap in 'uBootstrap.pas' {frmBootstrap},
+  uFrmCategorias in 'uFrmCategorias.pas' {frmCategorias};
 
 {$R *.res}
 
@@ -35,5 +36,6 @@ begin
   Application.CreateForm(TfrmBootstrap, frmBootstrap);
   Application.CreateForm(TfrmMain, frmMain);
   Application.CreateForm(TfrmSetup, frmSetup);
+  Application.CreateForm(TfrmCategorias, frmCategorias);
   Application.Run;
 end.

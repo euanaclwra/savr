@@ -39,6 +39,9 @@ object frmCategorias: TfrmCategorias
     object lbItem: TListBoxItem
       TextSettings.Font.Family = 'Montserrat'
       StyledSettings = [Size, Style, FontColor, Other]
+      Size.Width = 636.000000000000000000
+      Size.Height = 30.000000000000000000
+      Size.PlatformDefault = False
       StyleLookup = 'lbItemStyle1'
       TabOrder = 0
     end
