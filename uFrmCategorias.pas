@@ -13,6 +13,10 @@ type
     lbCategorias: TListBox;
     lbItem: TListBoxItem;
     StyleBook1: TStyleBook;
+    ltHeader: TLayout;
+    rtHeader: TRectangle;
+    txtLabelName: TText;
+    txtLabelType: TText;
     procedure FormShow(Sender: TObject);
   private
     procedure CarregaListaCategorias;
