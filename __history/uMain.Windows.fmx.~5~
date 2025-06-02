@@ -1,0 +1,44 @@
+inherited frmMain_Windows: TfrmMain_Windows
+  DesignerMasterStyle = 0
+  inherited ltMenu: TGridLayout
+    inherited btnFluxo: TSpeedButton
+      inherited imgFluxo: TImage
+        MultiResBitmap.Height = 374
+        MultiResBitmap.Width = 374
+      end
+    end
+    inherited btnLancamento: TSpeedButton
+      inherited imgLancamento: TImage
+        MultiResBitmap.Height = 374
+        MultiResBitmap.Width = 374
+      end
+    end
+    inherited btnCategorias: TSpeedButton
+      Opacity = 0.500000000000000000
+      inherited imgCategorias: TImage
+        MultiResBitmap.Height = 374
+        MultiResBitmap.Width = 374
+      end
+    end
+    inherited btnConfig: TSpeedButton
+      inherited imgConfig: TImage
+        MultiResBitmap.Height = 374
+        MultiResBitmap.Width = 374
+      end
+    end
+  end
+  inherited ltHeader: TLayout
+    inherited ltTitle: TLayout
+      inherited txtHelp: TText
+        TextSettings.Font.StyleExt = {00020000000000000004000000}
+      end
+      inherited txtMain: TText
+        TextSettings.Font.StyleExt = {00060000000000000004000000}
+      end
+    end
+    inherited imgLogo: TImage
+      MultiResBitmap.Height = 153
+      MultiResBitmap.Width = 181
+    end
+  end
+end

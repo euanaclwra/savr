@@ -32,16 +32,9 @@ type
     txtMain: TText;
     ltTitle: TLayout;
     ltHeader: TLayout;
+    StyleBook1: TStyleBook;
     procedure btnSairClick(Sender: TObject);
     procedure ExibirNomeUsuario;
-    procedure imgLancamentoMouseEnter(Sender: TObject);
-    procedure imgLancamentoMouseLeave(Sender: TObject);
-    procedure imgFluxoMouseEnter(Sender: TObject);
-    procedure imgFluxoMouseLeave(Sender: TObject);
-    procedure imgConfigMouseEnter(Sender: TObject);
-    procedure imgConfigMouseLeave(Sender: TObject);
-    procedure imgCategoriasMouseEnter(Sender: TObject);
-    procedure imgCategoriasMouseLeave(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure btnCategoriasClick(Sender: TObject);
   private
@@ -76,54 +69,6 @@ begin
   frmSetup.Close;
   UpdateConfiguracaoGlobal;
   ExibirNomeUsuario;
-end;
-
-procedure TfrmMain.imgCategoriasMouseEnter(Sender: TObject);
-begin
-  fxCategoriasIn.Enabled := True;
-  fxCategoriasOut.Enabled := False;
-end;
-
-procedure TfrmMain.imgCategoriasMouseLeave(Sender: TObject);
-begin
-  fxCategoriasIn.Enabled := False;
-  fxCategoriasOut.Enabled := True;
-end;
-
-procedure TfrmMain.imgConfigMouseEnter(Sender: TObject);
-begin
-  fxConfigIn.Enabled := True;
-  fxConfigOut.Enabled := False;
-end;
-
-procedure TfrmMain.imgConfigMouseLeave(Sender: TObject);
-begin
-  fxConfigIn.Enabled := False;
-  fxConfigOut.Enabled := True;
-end;
-
-procedure TfrmMain.imgFluxoMouseEnter(Sender: TObject);
-begin
-  fxFluxoIn.Enabled := True;
-  fxFluxoOut.Enabled := False;
-end;
-
-procedure TfrmMain.imgFluxoMouseLeave(Sender: TObject);
-begin
-  fxFluxoIn.Enabled := False;
-  fxFluxoOut.Enabled := True;
-end;
-
-procedure TfrmMain.imgLancamentoMouseEnter(Sender: TObject);
-begin
-  fxLancamentoIn.Enabled := True;
-  fxLancamentoOut.Enabled := False;
-end;
-
-procedure TfrmMain.imgLancamentoMouseLeave(Sender: TObject);
-begin
-  fxLancamentoIn.Enabled := False;
-  fxLancamentoOut.Enabled := True;
 end;
 
 procedure TfrmMain.ExibirNomeUsuario;
