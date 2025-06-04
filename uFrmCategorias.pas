@@ -6,19 +6,21 @@ uses
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.Layouts,
   FMX.ListBox, FMX.Objects, uCategoria, System.Generics.Collections, uCategoriaDAO,
-  uUtils;
+  uUtils, FMX.Controls.Presentation, FMX.StdCtrls;
 
 type
   TfrmCategorias = class(TForm)
     txtCategorias: TText;
     lbCategorias: TListBox;
-    lbItem: TListBoxItem;
     StyleBook1: TStyleBook;
     ltHeader: TLayout;
     rtHeader: TRectangle;
     txtLabelName: TText;
     txtLabelType: TText;
     ltListaCategorias: TLayout;
+    btnInserir: TSpeedButton;
+    rtInserir: TRectangle;
+    txtInserir: TText;
     procedure FormShow(Sender: TObject);
   private
     procedure CarregaListaCategorias;
@@ -40,7 +42,6 @@ var
   Lista: TObjectList<TCategoria>;
   Categoria: TCategoria;
   Item: TListBoxItem;
-  NomeLabel, TipoLabel: TText;
 begin
   try
     DAO := TCategoriaDAO.Create;
