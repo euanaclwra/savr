@@ -17,6 +17,7 @@ type
     rtHeader: TRectangle;
     txtLabelName: TText;
     txtLabelType: TText;
+    Layout1: TLayout;
     procedure FormShow(Sender: TObject);
   private
     procedure CarregaListaCategorias;
