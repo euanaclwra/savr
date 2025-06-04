@@ -24,8 +24,8 @@ end;
 
 function CatToStr(AValue:TTipoCategoria): String;
 begin
-  if AValue = tcReceita then Result := 'R'
-  else Result := 'D'
+  if AValue = tcReceita then Result := 'Receita'
+  else Result := 'Despesa'
 end;
 
 function CurrencyToFloat(AValue:String): Double;

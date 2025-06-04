@@ -5,7 +5,8 @@ interface
 uses
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.Layouts,
-  FMX.ListBox, FMX.Objects, uCategoria, System.Generics.Collections, uCategoriaDAO;
+  FMX.ListBox, FMX.Objects, uCategoria, System.Generics.Collections, uCategoriaDAO,
+  uUtils;
 
 type
   TfrmCategorias = class(TForm)
@@ -17,10 +18,11 @@ type
     rtHeader: TRectangle;
     txtLabelName: TText;
     txtLabelType: TText;
-    Layout1: TLayout;
+    ltListaCategorias: TLayout;
     procedure FormShow(Sender: TObject);
   private
     procedure CarregaListaCategorias;
+    procedure PreencheLabelsItemCategoria(AItem: TListBoxItem; ACategoria: TCategoria);
   public
     { Public declarations }
   end;
@@ -38,6 +40,7 @@ var
   Lista: TObjectList<TCategoria>;
   Categoria: TCategoria;
   Item: TListBoxItem;
+  NomeLabel, TipoLabel: TText;
 begin
   try
     DAO := TCategoriaDAO.Create;
@@ -48,8 +51,7 @@ begin
       for Categoria in Lista do
       begin
         Item := TListBoxItem.Create(lbCategorias);
-        Item.Text := Categoria.Nome;
-        Item.Parent := lbCategorias;
+        PreencheLabelsItemCategoria(Item, Categoria)
       end;
     except
       on E: Exception do
@@ -59,6 +61,22 @@ begin
     DAO.Free;
     Lista.Free;
   end;
+end;
+
+procedure TfrmCategorias.PreencheLabelsItemCategoria(AItem: TListBoxItem; ACategoria: TCategoria);
+var
+  LabelNome, LabelTipo: TText;
+begin
+  AItem.Parent := lbCategorias;
+  AItem.StyleLookup :=  'itemCategoriaStyle';
+  LabelNome := TText(AItem.FindStyleResource('nametext'));
+  LabelTipo := TText(AItem.FindStyleResource('typetext'));
+
+  if Assigned(LabelNome) then
+    LabelNome.Text := ACategoria.Nome;
+
+  if Assigned(LabelTipo) then
+    LabelTipo.Text := CatToStr(ACategoria.Tipo);
 end;
 
 procedure TfrmCategorias.FormShow(Sender: TObject);
