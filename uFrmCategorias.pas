@@ -6,7 +6,7 @@ uses
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.Layouts,
   FMX.ListBox, FMX.Objects, uCategoria, System.Generics.Collections, uCategoriaDAO,
-  uUtils, FMX.Controls.Presentation, FMX.StdCtrls;
+  uUtils, FMX.Controls.Presentation, FMX.StdCtrls, uFrmNovaCategoria;
 
 type
   TfrmCategorias = class(TForm)
@@ -22,6 +22,7 @@ type
     rtInserir: TRectangle;
     txtInserir: TText;
     procedure FormShow(Sender: TObject);
+    procedure btnInserirClick(Sender: TObject);
   private
     procedure CarregaListaCategorias;
     procedure PreencheLabelsItemCategoria(AItem: TListBoxItem; ACategoria: TCategoria);
@@ -35,6 +36,11 @@ var
 implementation
 
 {$R *.fmx}
+
+procedure TfrmCategorias.btnInserirClick(Sender: TObject);
+begin
+  frmNovaCategoria.Show;
+end;
 
 procedure TfrmCategorias.CarregaListaCategorias;
 var
