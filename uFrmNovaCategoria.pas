@@ -5,7 +5,7 @@ interface
 uses
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.Objects,
-  FMX.Controls.Presentation, FMX.Edit, FMX.StdCtrls, FMX.Layouts;
+  FMX.Controls.Presentation, FMX.Edit, FMX.StdCtrls, FMX.Layouts, uDialogHelper;
 
 type
   TfrmNovaCategoria = class(TForm)
@@ -25,6 +25,9 @@ type
     btnCancelar: TSpeedButton;
     rtCancelar: TRectangle;
     txtCancelar: TText;
+    procedure btnCancelarClick(Sender: TObject);
+    procedure LimparCampos;
+    procedure FormShow(Sender: TObject);
   private
     { Private declarations }
   public
@@ -37,5 +40,26 @@ var
 implementation
 
 {$R *.fmx}
+
+procedure TfrmNovaCategoria.btnCancelarClick(Sender: TObject);
+begin
+  if edtNomeCategoria.Text <> '' then
+    TDialogHelper.Confirmar('Tem certeza que deseja sair? Nenhum dado será salvo!', procedure begin Close; end)
+  else
+  begin
+    Close;
+  end;
+end;
+
+procedure TfrmNovaCategoria.FormShow(Sender: TObject);
+begin
+  LimparCampos;
+end;
+
+procedure TfrmNovaCategoria.LimparCampos;
+begin
+  edtNomeCategoria.Text := '';
+  rdReceita.IsChecked := True;
+end;
 
 end.

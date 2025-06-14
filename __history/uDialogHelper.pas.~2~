@@ -1,0 +1,15 @@
+unit uDialogHelper;
+
+interface
+uses
+  SysUtils;
+
+type
+  TDialogHelper = class
+  public
+    class procedure Confirmar(const Message: String; const OnConfirm: TProc);
+  end;
+
+implementation
+
+end.
