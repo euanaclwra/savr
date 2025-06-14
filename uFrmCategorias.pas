@@ -83,7 +83,7 @@ begin
     LabelNome.Text := ACategoria.Nome;
 
   if Assigned(LabelTipo) then
-    LabelTipo.Text := CatToStr(ACategoria.Tipo);
+    LabelTipo.Text := CatToStrLegivel(ACategoria.Tipo);
 end;
 
 procedure TfrmCategorias.FormShow(Sender: TObject);

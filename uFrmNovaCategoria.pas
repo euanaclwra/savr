@@ -5,7 +5,8 @@ interface
 uses
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.Objects,
-  FMX.Controls.Presentation, FMX.Edit, FMX.StdCtrls, FMX.Layouts, uDialogHelper;
+  FMX.Controls.Presentation, FMX.Edit, FMX.StdCtrls, FMX.Layouts, uDialogHelper,
+  uUtils, uCategoria, uCategoriaDAO;
 
 type
   TfrmNovaCategoria = class(TForm)
@@ -25,11 +26,13 @@ type
     btnCancelar: TSpeedButton;
     rtCancelar: TRectangle;
     txtCancelar: TText;
-    procedure btnCancelarClick(Sender: TObject);
-    procedure LimparCampos;
     procedure FormShow(Sender: TObject);
+    procedure btnCancelarClick(Sender: TObject);
+    procedure btnSalvarClick(Sender: TObject);
   private
-    { Private declarations }
+    function CriarCategoria: TCategoria;
+    procedure LimparCampos;
+    function GetTipoCategoria: TTipoCategoria;
   public
     { Public declarations }
   end;
@@ -51,9 +54,52 @@ begin
   end;
 end;
 
+procedure TfrmNovaCategoria.btnSalvarClick(Sender: TObject);
+var
+  Categoria: TCategoria;
+  DAO: TCategoriaDAO;
+begin
+  Categoria := CriarCategoria;
+  DAO := TCategoriaDAO.Create;
+
+  if ValidarDados(edtNomeCategoria.Text, Texto) then
+  begin
+    DAO.InserirCategoria(Categoria);
+    Close;
+  end
+  else
+  ExibirMensagemErro(edtNomeCategoria);
+end;
+
 procedure TfrmNovaCategoria.FormShow(Sender: TObject);
 begin
   LimparCampos;
+end;
+
+function TfrmNovaCategoria.CriarCategoria: TCategoria;
+var
+  NovaCat: TCategoria;
+begin
+  Result := nil;
+
+  try
+    NovaCat := TCategoria.Create;
+    NovaCat.Nome := edtNomeCategoria.Text;
+    NovaCat.Tipo := GetTipoCategoria;
+    Result := NovaCat;
+  except
+      on E: Exception do
+      ShowMessage(E.Message);
+  end;
+
+end;
+
+function TfrmNovaCategoria.GetTipoCategoria: TTipoCategoria;
+begin
+  if rdDespesa.IsChecked = True then
+  Result := tcDespesa
+  else
+  Result := tcReceita;
 end;
 
 procedure TfrmNovaCategoria.LimparCampos;

@@ -1,0 +1,83 @@
+unit uCategoriaDAO;
+
+interface
+
+uses
+  uCategoria, uConexao, System.SysUtils, FireDAC.Comp.Client, FireDAC.Stan.Param,
+  FireDAC.DApt, uUtils, System.Generics.Collections, Vcl.Dialogs;
+
+type
+  TCategoriaDAO = class
+  public
+    function BuscarCategorias: TObjectList<TCategoria>;
+    procedure InserirCategoria(const ACategoria: TCategoria);
+  end;
+
+implementation
+
+procedure TCategoriaDAO.InserirCategoria(const ACategoria: TCategoria);
+var
+  Qry: TFDQuery;
+begin
+  Qry := TFDQuery.Create(nil);
+
+  try
+    Qry.Connection := dmConexao.FDConnection;
+    Qry.SQL.Text := 'INSERT INTO categorias (nome, tipo) VALUES (:nome, :tipo)';
+    Qry.ParamByName('nome').AsString := ACategoria.Nome;
+    Qry.ParamByName('tipo').AsString := CatToStr(ACategoria.Tipo);
+    Qry.ExecSQL;
+  finally
+    Qry.Free;
+  end;
+end;
+
+function TCategoriaDAO.BuscarCategorias: TObjectList<TCategoria>;
+var
+  ResultSet: TObjectList<TCategoria>;
+  Categoria: TCategoria;
+  Qry: TFDQuery;
+begin
+  Result := nil;
+  //Inicializa a Query
+  Qry := TFDQuery.Create(nil);
+  //Inicializa a lista de objetos para armazenar as categorias
+  ResultSet := TObjectList<TCategoria>.Create(True);
+
+  try
+    // Consulta todas as categorias existentes
+    Qry.Connection := dmConexao.FDConnection;
+    Qry.SQL.Text := 'SELECT * FROM categorias';
+    Qry.Open;
+
+    // Se a query não estiver vazia, ou seja, se houver alguma categoria...
+    if not Qry.IsEmpty then
+    begin
+      //Percorre todas as categorias do BD
+      while not Qry.Eof do
+      begin
+        try
+          //Cria um objeto de Categoria para o registro atual
+          Categoria := TCategoria.Create;
+          Categoria.ID := Qry.FieldByName('ID').AsInteger;
+          Categoria.Nome := Qry.FieldByName('Nome').AsString;
+          Categoria.Tipo := StrToCat(Qry.FieldByName('Tipo').AsString);
+
+          //Adiciona a categoria ao ResultSet
+          ResultSet.Add(Categoria);
+          Qry.Next;
+        except
+          on E: Exception do
+            ShowMessage(E.Message);
+        end;
+      end;
+
+      Result := ResultSet;
+    end;
+  finally
+    Qry.Free;
+  end;
+
+end;
+
+end.

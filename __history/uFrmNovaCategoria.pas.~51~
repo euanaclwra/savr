@@ -1,0 +1,99 @@
+unit uFrmNovaCategoria;
+
+interface
+
+uses
+  System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
+  FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.Objects,
+  FMX.Controls.Presentation, FMX.Edit, FMX.StdCtrls, FMX.Layouts, uDialogHelper,
+  uUtils, uCategoria;
+
+type
+  TfrmNovaCategoria = class(TForm)
+    txtNovaCategoria: TText;
+    edtNomeCategoria: TEdit;
+    lblNomeCategoria: TText;
+    lnNomeCategoria: TLine;
+    StyleBook1: TStyleBook;
+    ltInputs: TLayout;
+    rdReceita: TRadioButton;
+    ltTipo: TLayout;
+    rdDespesa: TRadioButton;
+    lblTipoCategoria: TText;
+    btnSalvar: TSpeedButton;
+    rtSalvar: TRectangle;
+    txtSalvar: TText;
+    btnCancelar: TSpeedButton;
+    rtCancelar: TRectangle;
+    txtCancelar: TText;
+  private
+    function CriarCategoria: TCategoria;
+    procedure LimparCampos;
+    procedure btnCancelarClick(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+    procedure btnSalvarClick(Sender: TObject);
+    function GetTipoCategoria: TTipoCategoria;
+  public
+    { Public declarations }
+  end;
+
+var
+  frmNovaCategoria: TfrmNovaCategoria;
+
+implementation
+
+{$R *.fmx}
+
+procedure TfrmNovaCategoria.btnCancelarClick(Sender: TObject);
+begin
+  if edtNomeCategoria.Text <> '' then
+    TDialogHelper.Confirmar('Tem certeza que deseja sair? Nenhum dado será salvo!', procedure begin Close; end)
+  else
+  begin
+    Close;
+  end;
+end;
+
+procedure TfrmNovaCategoria.btnSalvarClick(Sender: TObject);
+begin
+  if ValidarDados(edtNomeCategoria.Text, Texto) then
+  //
+end;
+
+procedure TfrmNovaCategoria.FormShow(Sender: TObject);
+begin
+  LimparCampos;
+end;
+
+function TfrmNovaCategoria.CriarCategoria: TCategoria;
+var
+  NovaCat: TCategoria;
+begin
+  Result := nil;
+
+  try
+    NovaCat := TCategoria.Create;
+    NovaCat.Nome := edtNomeCategoria.Text;
+    NovaCat.Tipo := GetTipoCategoria;
+    Result := NovaCat;
+  except
+
+  end;
+
+end;
+
+function TfrmNovaCategoria.GetTipoCategoria: TTipoCategoria;
+begin
+  if rdDespesa.IsChecked = True then
+  Result := tcDespesa
+  else
+  Result := tcReceita;
+end;
+
+procedure TfrmNovaCategoria.LimparCampos;
+begin
+  edtNomeCategoria.Text := '';
+  rdReceita.IsChecked := True;
+end;
+
+end.

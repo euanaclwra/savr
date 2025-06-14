@@ -13,6 +13,7 @@ interface
     function CurrencyToFloat(AValue:String): Double;
     function StrToCat(AValue:String): TTipoCategoria;
     function CatToStr(AValue:TTipoCategoria): String;
+    function CatToStrLegivel(AValue:TTipoCategoria): String;
     procedure ExibirMensagemErro(ACampo: TEdit);
 implementation
 
@@ -23,6 +24,12 @@ begin
 end;
 
 function CatToStr(AValue:TTipoCategoria): String;
+begin
+  if AValue = tcReceita then Result := 'R'
+  else Result := 'D'
+end;
+
+function CatToStrLegivel(AValue:TTipoCategoria): String;
 begin
   if AValue = tcReceita then Result := 'Receita'
   else Result := 'Despesa'
