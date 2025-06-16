@@ -30,9 +30,8 @@ type
     procedure btnCancelarClick(Sender: TObject);
     procedure btnSalvarClick(Sender: TObject);
   private
-    procedure LimparCampos;
-    procedure GetDadosCategoriaSelecionada(ACategoria: TCategoria);
     function CriarCategoria: TCategoria;
+    procedure LimparCampos;
     function GetTipoCategoria: TTipoCategoria;
   public
     CategoriaSalva: Boolean; // Sinaliza se houve alguma categoria alterada/criada
@@ -78,23 +77,11 @@ end;
 
 procedure TfrmCategoriaEditor.FormShow(Sender: TObject);
 begin
-  try
-    LimparCampos;
-    CategoriaSalva := False;
+  LimparCampos;
+  CategoriaSalva := False;
 
-    if Assigned(CategoriaEmEdicao) then
-      GetDadosCategoriaSelecionada(CategoriaEmEdicao);
-  except
-    on E: Exception do
-      ShowMessage('Erro ao carregar dados da categoria: ' + E.Message);
-  end;
-end;
-
-procedure TfrmCategoriaEditor.GetDadosCategoriaSelecionada(ACategoria: TCategoria);
-begin
-  edtNomeCategoria.Text := ACategoria.Nome;
-  if ACategoria.Tipo = tcDespesa then
-  rdDespesa.IsChecked := True;
+  if CategoriaEmEdicao <> nil then
+  //
 end;
 
 function TfrmCategoriaEditor.CriarCategoria: TCategoria;

@@ -1084,7 +1084,7 @@ object frmSetup: TfrmSetup
         Size.Width = 760.000000000000000000
         Size.Height = 478.000000000000000000
         Size.PlatformDefault = False
-        TabOrder = 4
+        TabOrder = 5
         object txDiaPagamentoPadrao: TText
           Align = Center
           Margins.Bottom = 25.000000000000000000

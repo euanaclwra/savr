@@ -46,7 +46,7 @@ var
 begin
   // Obtém o item/categoria que foi selecionada para edição
   Botao := TControl(Sender);
-  Item := TListBoxItem(Botao.Parent.Parent);
+  Item := ListBoxItemOf(Botao);
   Categoria := TCategoria(Item.Data);
 
   // Cria o form de edição
@@ -67,7 +67,7 @@ end;
 
 procedure TfrmCategorias.btnInserirClick(Sender: TObject);
 begin
-  frmCategoriaEditor := TfrmCategoriaEditor.Create(nil);
+  frmCategoriaEditor := TfrmCategoriaEditor.Create(Self);
 
   try
     frmCategoriaEditor.ShowModal;
@@ -104,7 +104,7 @@ begin
         Item := TListBoxItem.Create(lbCategorias);
         Item.Data := Categoria;
         // Preenche os elementos visuais do item
-        PreencheLabelsItemCategoria(Item, Categoria)
+        PreencheLabelsItemCategoria(Item, Categoria);
       end;
     except
       on E: Exception do

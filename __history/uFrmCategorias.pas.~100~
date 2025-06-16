@@ -6,7 +6,7 @@ uses
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.Layouts,
   FMX.ListBox, FMX.Objects, uCategoria, System.Generics.Collections, uCategoriaDAO,
-  uUtils, FMX.Controls.Presentation, FMX.StdCtrls, uFrmNovaCategoria;
+  uUtils, FMX.Controls.Presentation, FMX.StdCtrls, uFrmCategoriaEditor;
 
 type
   TfrmCategorias = class(TForm)
@@ -27,7 +27,6 @@ type
   private
     procedure CarregaListaCategorias;
     procedure PreencheLabelsItemCategoria(AItem: TListBoxItem; ACategoria: TCategoria);
-    function GetCategoriaSelecionada(Sender: TObject): TCategoria;
   public
     { Public declarations }
   end;
@@ -45,22 +44,39 @@ var
   Item: TListBoxItem;
   Categoria: TCategoria;
 begin
+  // Obtém o item/categoria que foi selecionada para edição
   Botao := TControl(Sender);
   Item := TListBoxItem(Botao.Parent.Parent);
+  Categoria := TCategoria(Item.Data);
+
+  // Cria o form de edição
+  frmCategoriaEditor := TfrmCategoriaEditor.Create(Self);
+
+  try
+    // Define a categoria selecionada como a categoria a ser editada
+    frmCategoriaEditor.CategoriaEmEdicao := Categoria;
+    //frmCategoriaEditor.ShowModal;
+
+    // Recarrega as categorias caso algum registro tenha sido criado/atualizado
+    //if frmCategoriaEditor.CategoriaSalva then
+      //CarregaListaCategorias;
+  finally
+    frmCategoriaEditor.Free;
+  end;
 end;
 
 procedure TfrmCategorias.btnInserirClick(Sender: TObject);
 begin
-  frmNovaCategoria := TfrmNovaCategoria.Create(nil);
+  frmCategoriaEditor := TfrmCategoriaEditor.Create(Self);
 
   try
-    frmNovaCategoria.ShowModal;
+    frmCategoriaEditor.ShowModal;
 
-    // Se uma categoria nova for salva, a exibição das categorias é atualizada para exibi-la
-    if frmNovaCategoria.CategoriaSalva then
+    // Recarrega as categorias caso algum registro tenha sido criado/atualizado
+    if frmCategoriaEditor.CategoriaSalva then
       CarregaListaCategorias;
   finally
-    frmNovaCategoria.Free;
+    frmCategoriaEditor.Free;
   end;
 end;
 

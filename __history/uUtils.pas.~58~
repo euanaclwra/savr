@@ -3,7 +3,7 @@ unit uUtils;
 interface
   uses
     SysUtils, Vcl.Controls, Vcl.Forms, FMX.Edit, Vcl.Graphics,
-    FMX.Objects, FMX.Types, uCategoria;
+    FMX.Objects, FMX.Types, FMX.ListBox, uCategoria;
 
   type
     TDataType = (Texto, Inteiro, Moeda, Data, DiaMes);
@@ -13,8 +13,15 @@ interface
     function CurrencyToFloat(AValue:String): Double;
     function StrToCat(AValue:String): TTipoCategoria;
     function CatToStr(AValue:TTipoCategoria): String;
+    function CatToStrLegivel(AValue:TTipoCategoria): String;
+    function ListBoxItemOf(AComponente: TFmxObject): TListBoxItem;
     procedure ExibirMensagemErro(ACampo: TEdit);
 implementation
+
+function ListBoxItemOf(AComponente: TFmxObject): TListBoxItem;
+begin
+  //
+end;
 
 function StrToCat(AValue:String): TTipoCategoria;
 begin
@@ -26,6 +33,12 @@ function CatToStr(AValue:TTipoCategoria): String;
 begin
   if AValue = tcReceita then Result := 'R'
   else Result := 'D'
+end;
+
+function CatToStrLegivel(AValue:TTipoCategoria): String;
+begin
+  if AValue = tcReceita then Result := 'Receita'
+  else Result := 'Despesa'
 end;
 
 function CurrencyToFloat(AValue:String): Double;

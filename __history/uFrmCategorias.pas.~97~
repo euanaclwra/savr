@@ -56,7 +56,10 @@ begin
     // Define a categoria selecionada como a categoria a ser editada
     frmCategoriaEditor.CategoriaEmEdicao := Categoria;
     frmCategoriaEditor.ShowModal;
-    CarregaListaCategorias;
+
+    // Recarrega as categorias caso algum registro tenha sido criado/atualizado
+    if frmCategoriaEditor.CategoriaSalva then
+      CarregaListaCategorias;
   finally
     frmCategoriaEditor.Free;
   end;
@@ -64,14 +67,14 @@ end;
 
 procedure TfrmCategorias.btnInserirClick(Sender: TObject);
 begin
-  frmCategoriaEditor := TfrmCategoriaEditor.Create(nil);
+  frmCategoriaEditor := TfrmCategoriaEditor.Create(Self);
 
   try
     frmCategoriaEditor.ShowModal;
 
-    // Se uma categoria nova for salva, a exibição das categorias é atualizada para exibi-la
-    if frmCategoriaEditor.CategoriaSalva then
-      CarregaListaCategorias;
+    // Recarrega as categorias caso algum registro tenha sido criado/atualizado
+    //if frmCategoriaEditor.CategoriaSalva then
+      //CarregaListaCategorias;
   finally
     frmCategoriaEditor.Free;
   end;

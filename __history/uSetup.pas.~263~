@@ -347,9 +347,9 @@ end;
 procedure TfrmSetup.SalvarInfoDatas;
 begin
   if AppConfig.FlagParcelado then
-    SalvarInfoDatasPadrao
+    SalvarInfoDatasParcelado
   else
-    SalvarInfoDatasParcelado;
+    SalvarInfoDatasPadrao;
 end;
 
 procedure TfrmSetup.UpdateNavegacao;

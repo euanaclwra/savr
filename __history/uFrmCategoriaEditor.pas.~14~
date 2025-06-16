@@ -78,23 +78,16 @@ end;
 
 procedure TfrmCategoriaEditor.FormShow(Sender: TObject);
 begin
-  try
-    LimparCampos;
-    CategoriaSalva := False;
+  LimparCampos;
+  CategoriaSalva := False;
 
-    if Assigned(CategoriaEmEdicao) then
-      GetDadosCategoriaSelecionada(CategoriaEmEdicao);
-  except
-    on E: Exception do
-      ShowMessage('Erro ao carregar dados da categoria: ' + E.Message);
-  end;
+  if CategoriaEmEdicao <> nil then
+  //
 end;
 
 procedure TfrmCategoriaEditor.GetDadosCategoriaSelecionada(ACategoria: TCategoria);
 begin
-  edtNomeCategoria.Text := ACategoria.Nome;
-  if ACategoria.Tipo = tcDespesa then
-  rdDespesa.IsChecked := True;
+  //
 end;
 
 function TfrmCategoriaEditor.CriarCategoria: TCategoria;

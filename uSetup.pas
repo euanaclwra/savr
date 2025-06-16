@@ -268,7 +268,7 @@ begin
   end;
 end;
 
-function TfrmSetup.SalvarInfoSalario: Boolean;  // Faz sentido uma função pra salvar os dados de cada tab?
+function TfrmSetup.SalvarInfoSalario: Boolean;
 var
  DAO: TConfigGeralDAO;
  ValorSalario: Double;

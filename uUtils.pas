@@ -3,7 +3,7 @@ unit uUtils;
 interface
   uses
     SysUtils, Vcl.Controls, Vcl.Forms, FMX.Edit, Vcl.Graphics,
-    FMX.Objects, FMX.Types, uCategoria;
+    FMX.Objects, FMX.Types, FMX.ListBox, uCategoria;
 
   type
     TDataType = (Texto, Inteiro, Moeda, Data, DiaMes);
@@ -14,8 +14,19 @@ interface
     function StrToCat(AValue:String): TTipoCategoria;
     function CatToStr(AValue:TTipoCategoria): String;
     function CatToStrLegivel(AValue:TTipoCategoria): String;
+    function ListBoxItemOf(AComponente: TFmxObject): TListBoxItem;
     procedure ExibirMensagemErro(ACampo: TEdit);
 implementation
+
+function ListBoxItemOf(AComponente: TFmxObject): TListBoxItem;
+begin
+  while (AComponente <> nil) and not (AComponente is TListBoxItem) do
+
+  if AComponente is TListBoxItem then
+    Result := TListBoxItem(AComponente)
+  else
+    Result := nil;
+end;
 
 function StrToCat(AValue:String): TTipoCategoria;
 begin

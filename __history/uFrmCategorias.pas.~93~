@@ -55,7 +55,10 @@ begin
   try
     // Define a categoria selecionada como a categoria a ser editada
     frmCategoriaEditor.CategoriaEmEdicao := Categoria;
-    if frmCategoriaEditor.ShowModal = mrOk then
+    frmCategoriaEditor.ShowModal;
+
+    // Recarrega as categorias caso algum registro tenha sido criado/atualizado
+    if frmCategoriaEditor.CategoriaSalva then
       CarregaListaCategorias;
   finally
     frmCategoriaEditor.Free;
@@ -69,7 +72,7 @@ begin
   try
     frmCategoriaEditor.ShowModal;
 
-    // Se uma categoria nova for salva, a exibição das categorias é atualizada para exibi-la
+    // Recarrega as categorias caso algum registro tenha sido criado/atualizado
     if frmCategoriaEditor.CategoriaSalva then
       CarregaListaCategorias;
   finally
