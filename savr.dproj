@@ -154,8 +154,8 @@
             <Form>frmCategorias</Form>
             <FormType>fmx</FormType>
         </DCCReference>
-        <DCCReference Include="uFrmNovaCategoria.pas">
-            <Form>frmNovaCategoria</Form>
+        <DCCReference Include="uFrmCategoriaEditor.pas">
+            <Form>frmCategoriaEditor</Form>
             <FormType>fmx</FormType>
         </DCCReference>
         <DCCReference Include="uDialogHelper.pas"/>

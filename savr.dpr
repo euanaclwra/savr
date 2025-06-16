@@ -17,7 +17,7 @@ uses
   uUtils in 'uUtils.pas',
   uBootstrap in 'uBootstrap.pas' {frmBootstrap},
   uFrmCategorias in 'uFrmCategorias.pas' {frmCategorias},
-  uFrmNovaCategoria in 'uFrmNovaCategoria.pas' {frmNovaCategoria},
+  uFrmCategoriaEditor in 'uFrmCategoriaEditor.pas' {frmCategoriaEditor},
   uDialogHelper in 'uDialogHelper.pas',
   uCategoriaDAO in 'uCategoriaDAO.pas';
 
@@ -40,6 +40,6 @@ begin
   Application.CreateForm(TfrmMain, frmMain);
   Application.CreateForm(TfrmSetup, frmSetup);
   Application.CreateForm(TfrmCategorias, frmCategorias);
-  Application.CreateForm(TfrmNovaCategoria, frmNovaCategoria);
+  Application.CreateForm(TfrmCategoriaEditor, frmCategoriaEditor);
   Application.Run;
 end.

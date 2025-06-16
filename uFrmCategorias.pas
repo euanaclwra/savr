@@ -6,7 +6,7 @@ uses
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.Layouts,
   FMX.ListBox, FMX.Objects, uCategoria, System.Generics.Collections, uCategoriaDAO,
-  uUtils, FMX.Controls.Presentation, FMX.StdCtrls, uFrmNovaCategoria;
+  uUtils, FMX.Controls.Presentation, FMX.StdCtrls, uFrmCategoriaEditor;
 
 type
   TfrmCategorias = class(TForm)
@@ -23,6 +23,7 @@ type
     txtInserir: TText;
     procedure FormShow(Sender: TObject);
     procedure btnInserirClick(Sender: TObject);
+    procedure btnEditarClick(Sender: TObject);
   private
     procedure CarregaListaCategorias;
     procedure PreencheLabelsItemCategoria(AItem: TListBoxItem; ACategoria: TCategoria);
@@ -37,18 +38,45 @@ implementation
 
 {$R *.fmx}
 
-procedure TfrmCategorias.btnInserirClick(Sender: TObject);
+procedure TfrmCategorias.btnEditarClick(Sender: TObject);
+var
+  Botao: TControl;
+  Item: TListBoxItem;
+  Categoria: TCategoria;
 begin
-  frmNovaCategoria := TfrmNovaCategoria.Create(nil);
+  // Obtém o item/categoria que foi selecionada para edição
+  Botao := TControl(Sender);
+  Item := TListBoxItem(Botao.Parent.Parent);
+  Categoria := TCategoria(Item.Data);
+
+  // Cria o form de edição
+  frmCategoriaEditor := TfrmCategoriaEditor.Create(Self);
 
   try
-    frmNovaCategoria.ShowModal;
+    // Define a categoria selecionada como a categoria a ser editada
+    frmCategoriaEditor.CategoriaEmEdicao := Categoria;
+    frmCategoriaEditor.ShowModal;
 
-    // Se uma categoria nova for salva, a exibição das categorias é atualizada para exibi-la
-    if frmNovaCategoria.CategoriaSalva then
+    // Recarrega as categorias caso algum registro tenha sido criado/atualizado
+    if frmCategoriaEditor.CategoriaSalva then
       CarregaListaCategorias;
   finally
-    frmNovaCategoria.Free;
+    frmCategoriaEditor.Free;
+  end;
+end;
+
+procedure TfrmCategorias.btnInserirClick(Sender: TObject);
+begin
+  frmCategoriaEditor := TfrmCategoriaEditor.Create(nil);
+
+  try
+    frmCategoriaEditor.ShowModal;
+
+    // Recarrega as categorias caso algum registro tenha sido criado/atualizado
+    if frmCategoriaEditor.CategoriaSalva then
+      CarregaListaCategorias;
+  finally
+    frmCategoriaEditor.Free;
   end;
 end;
 
@@ -74,6 +102,7 @@ begin
       begin
         // Para cada categoria, é exibido um novo ListBoxItem
         Item := TListBoxItem.Create(lbCategorias);
+        Item.Data := Categoria;
         // Preenche os elementos visuais do item
         PreencheLabelsItemCategoria(Item, Categoria)
       end;
@@ -90,6 +119,7 @@ end;
 procedure TfrmCategorias.PreencheLabelsItemCategoria(AItem: TListBoxItem; ACategoria: TCategoria);
 var
   LabelNome, LabelTipo: TText;
+  BtnEditar: TButton;
 begin
   // Define o ListBox como pai do item e aplica o estilo personalizado
   AItem.Parent := lbCategorias;
@@ -98,6 +128,7 @@ begin
   // Obtém os elementos visuais do estilo (nome e tipo)
   LabelNome := TText(AItem.FindStyleResource('nametext'));
   LabelTipo := TText(AItem.FindStyleResource('typetext'));
+  BtnEditar := TButton(AItem.FindStyleResource('editbutton'));
 
   // Atualiza os textos se os elementos forem encontrados
   if Assigned(LabelNome) then
@@ -105,6 +136,10 @@ begin
 
   if Assigned(LabelTipo) then
     LabelTipo.Text := CatToStrLegivel(ACategoria.Tipo);
+
+  // Atribui o método de edição ao evento de clique do elemento
+  if Assigned(BtnEditar) then
+    BtnEditar.OnClick := btnEditarClick;
 end;
 
 procedure TfrmCategorias.FormShow(Sender: TObject);
