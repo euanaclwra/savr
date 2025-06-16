@@ -9,6 +9,7 @@ object frmNovaCategoria: TfrmNovaCategoria
   FormFactor.Width = 320
   FormFactor.Height = 480
   FormFactor.Devices = [Desktop]
+  OnClose = FormClose
   OnShow = FormShow
   DesignerMasterStyle = 0
   object txtNovaCategoria: TText

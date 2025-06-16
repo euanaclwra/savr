@@ -39,7 +39,16 @@ implementation
 
 procedure TfrmCategorias.btnInserirClick(Sender: TObject);
 begin
-  frmNovaCategoria.Show;
+  frmNovaCategoria := TfrmNovaCategoria.Create(nil);
+
+  try
+    frmNovaCategoria.ShowModal;
+
+    if frmNovaCategoria.CategoriaSalva then
+      CarregaListaCategorias;
+  finally
+    frmNovaCategoria.Free;
+  end;
 end;
 
 procedure TfrmCategorias.CarregaListaCategorias;
@@ -49,6 +58,8 @@ var
   Categoria: TCategoria;
   Item: TListBoxItem;
 begin
+  lbCategorias.Clear;
+
   try
     DAO := TCategoriaDAO.Create;
     Lista := DAO.BuscarCategorias;

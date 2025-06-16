@@ -29,12 +29,13 @@ type
     procedure FormShow(Sender: TObject);
     procedure btnCancelarClick(Sender: TObject);
     procedure btnSalvarClick(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
     function CriarCategoria: TCategoria;
     procedure LimparCampos;
     function GetTipoCategoria: TTipoCategoria;
   public
-    { Public declarations }
+    CategoriaSalva: Boolean;
   end;
 
 var
@@ -65,15 +66,23 @@ begin
   if ValidarDados(edtNomeCategoria.Text, Texto) then
   begin
     DAO.InserirCategoria(Categoria);
+    CategoriaSalva := True;
     Close;
   end
   else
   ExibirMensagemErro(edtNomeCategoria);
 end;
 
+procedure TfrmNovaCategoria.FormClose(Sender: TObject;
+  var Action: TCloseAction);
+begin
+ //
+end;
+
 procedure TfrmNovaCategoria.FormShow(Sender: TObject);
 begin
   LimparCampos;
+  CategoriaSalva := False;
 end;
 
 function TfrmNovaCategoria.CriarCategoria: TCategoria;

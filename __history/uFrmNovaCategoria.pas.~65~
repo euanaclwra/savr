@@ -6,7 +6,7 @@ uses
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.Objects,
   FMX.Controls.Presentation, FMX.Edit, FMX.StdCtrls, FMX.Layouts, uDialogHelper,
-  uUtils, uCategoria;
+  uUtils, uCategoria, uCategoriaDAO, uFrmCategorias;
 
 type
   TfrmNovaCategoria = class(TForm)
@@ -26,15 +26,16 @@ type
     btnCancelar: TSpeedButton;
     rtCancelar: TRectangle;
     txtCancelar: TText;
+    procedure FormShow(Sender: TObject);
+    procedure btnCancelarClick(Sender: TObject);
+    procedure btnSalvarClick(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
     function CriarCategoria: TCategoria;
     procedure LimparCampos;
-    procedure btnCancelarClick(Sender: TObject);
-    procedure FormShow(Sender: TObject);
-    procedure btnSalvarClick(Sender: TObject);
     function GetTipoCategoria: TTipoCategoria;
   public
-    { Public declarations }
+    CategoriaSalva: Boolean;
   end;
 
 var
@@ -57,9 +58,25 @@ end;
 procedure TfrmNovaCategoria.btnSalvarClick(Sender: TObject);
 var
   Categoria: TCategoria;
+  DAO: TCategoriaDAO;
 begin
+  Categoria := CriarCategoria;
+  DAO := TCategoriaDAO.Create;
+
   if ValidarDados(edtNomeCategoria.Text, Texto) then
-  //
+  begin
+    DAO.InserirCategoria(Categoria);
+    CategoriaSalva := True;
+    Close;
+  end
+  else
+  ExibirMensagemErro(edtNomeCategoria);
+end;
+
+procedure TfrmNovaCategoria.FormClose(Sender: TObject;
+  var Action: TCloseAction);
+begin
+ //
 end;
 
 procedure TfrmNovaCategoria.FormShow(Sender: TObject);
