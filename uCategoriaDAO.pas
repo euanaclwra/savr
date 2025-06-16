@@ -31,6 +31,9 @@ begin
       Qry.ParamByName('tipo').AsString := CatToStr(ACategoria.Tipo);
       // Executa a query
       Qry.ExecSQL;
+
+      // Recupera o ID da categoria inserida e grava no objeto
+      ACategoria.ID := Qry.Connection.ExecSQLScalar('SELECT LAST_INSERT_ID()');
     except
         on E: Exception do
         ShowMessage(E.Message);

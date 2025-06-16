@@ -154,6 +154,12 @@
             <Form>frmCategorias</Form>
             <FormType>fmx</FormType>
         </DCCReference>
+        <DCCReference Include="uFrmNovaCategoria.pas">
+            <Form>frmNovaCategoria</Form>
+            <FormType>fmx</FormType>
+        </DCCReference>
+        <DCCReference Include="uDialogHelper.pas"/>
+        <DCCReference Include="uCategoriaDAO.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

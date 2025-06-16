@@ -16,7 +16,10 @@ uses
   uEditMoeda in 'uEditMoeda.pas',
   uUtils in 'uUtils.pas',
   uBootstrap in 'uBootstrap.pas' {frmBootstrap},
-  uFrmCategorias in 'uFrmCategorias.pas' {frmCategorias};
+  uFrmCategorias in 'uFrmCategorias.pas' {frmCategorias},
+  uFrmNovaCategoria in 'uFrmNovaCategoria.pas' {frmNovaCategoria},
+  uDialogHelper in 'uDialogHelper.pas',
+  uCategoriaDAO in 'uCategoriaDAO.pas';
 
 {$R *.res}
 
@@ -37,5 +40,6 @@ begin
   Application.CreateForm(TfrmMain, frmMain);
   Application.CreateForm(TfrmSetup, frmSetup);
   Application.CreateForm(TfrmCategorias, frmCategorias);
+  Application.CreateForm(TfrmNovaCategoria, frmNovaCategoria);
   Application.Run;
 end.
