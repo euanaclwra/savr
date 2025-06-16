@@ -44,6 +44,7 @@ begin
   try
     frmNovaCategoria.ShowModal;
 
+    // Se uma categoria nova for salva, a exibição das categorias é atualizada para exibi-la
     if frmNovaCategoria.CategoriaSalva then
       CarregaListaCategorias;
   finally
@@ -58,17 +59,22 @@ var
   Categoria: TCategoria;
   Item: TListBoxItem;
 begin
+  // Limpa a ListBox para evitar duplicação de conteúdo
   lbCategorias.Clear;
 
   try
     DAO := TCategoriaDAO.Create;
+    // Busca todos as categorias no Banco de Dados e armazena numa lista
     Lista := DAO.BuscarCategorias;
 
+    // Se houver algum objeto na lista...
     if Lista <> nil then
     try
       for Categoria in Lista do
       begin
+        // Para cada categoria, é exibido um novo ListBoxItem
         Item := TListBoxItem.Create(lbCategorias);
+        // Preenche os elementos visuais do item
         PreencheLabelsItemCategoria(Item, Categoria)
       end;
     except
@@ -85,11 +91,15 @@ procedure TfrmCategorias.PreencheLabelsItemCategoria(AItem: TListBoxItem; ACateg
 var
   LabelNome, LabelTipo: TText;
 begin
+  // Define o ListBox como pai do item e aplica o estilo personalizado
   AItem.Parent := lbCategorias;
   AItem.StyleLookup :=  'itemCategoriaStyle';
+
+  // Obtém os elementos visuais do estilo (nome e tipo)
   LabelNome := TText(AItem.FindStyleResource('nametext'));
   LabelTipo := TText(AItem.FindStyleResource('typetext'));
 
+  // Atualiza os textos se os elementos forem encontrados
   if Assigned(LabelNome) then
     LabelNome.Text := ACategoria.Nome;
 

@@ -39,7 +39,17 @@ implementation
 
 procedure TfrmCategorias.btnInserirClick(Sender: TObject);
 begin
-  frmNovaCategoria.Show;
+  frmNovaCategoria := TfrmNovaCategoria.Create(nil);
+
+  try
+    frmNovaCategoria.ShowModal;
+
+    // Se uma categoria nova for salva, a exibição das categorias é atualizada para exibi-la
+    if frmNovaCategoria.CategoriaSalva then
+      CarregaListaCategorias;
+  finally
+    frmNovaCategoria.Free;
+  end;
 end;
 
 procedure TfrmCategorias.CarregaListaCategorias;

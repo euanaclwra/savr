@@ -39,7 +39,17 @@ implementation
 
 procedure TfrmCategorias.btnInserirClick(Sender: TObject);
 begin
-  frmNovaCategoria.Show;
+  frmNovaCategoria := TfrmNovaCategoria.Create(nil);
+
+  try
+    frmNovaCategoria.ShowModal;
+
+    // Se uma categoria nova for salva, a exibição das categorias é atualizada para exibi-la
+    if frmNovaCategoria.CategoriaSalva then
+      CarregaListaCategorias;
+  finally
+    frmNovaCategoria.Free;
+  end;
 end;
 
 procedure TfrmCategorias.CarregaListaCategorias;
@@ -49,15 +59,22 @@ var
   Categoria: TCategoria;
   Item: TListBoxItem;
 begin
+  // Limpa a ListBox para evitar duplicação de conteúdo
+  lbCategorias.Clear;
+
   try
     DAO := TCategoriaDAO.Create;
+    // Busca todos as categorias no Banco de Dados e armazena numa lista
     Lista := DAO.BuscarCategorias;
 
+    // Se houver algum objeto na lista...
     if Lista <> nil then
     try
       for Categoria in Lista do
       begin
+        // Para cada categoria, é exibido um novo ListBoxItem
         Item := TListBoxItem.Create(lbCategorias);
+        // Preenche os elementos visuais do item
         PreencheLabelsItemCategoria(Item, Categoria)
       end;
     except
@@ -74,16 +91,20 @@ procedure TfrmCategorias.PreencheLabelsItemCategoria(AItem: TListBoxItem; ACateg
 var
   LabelNome, LabelTipo: TText;
 begin
+  // Define o componente pai do item
   AItem.Parent := lbCategorias;
+  // Define a classe de estilos do item
   AItem.StyleLookup :=  'itemCategoriaStyle';
+  // Define o Style Resource de cada elemento (nome e tipo da categoria)
   LabelNome := TText(AItem.FindStyleResource('nametext'));
   LabelTipo := TText(AItem.FindStyleResource('typetext'));
 
+  // Define o texto de cada elemento visual
   if Assigned(LabelNome) then
     LabelNome.Text := ACategoria.Nome;
 
   if Assigned(LabelTipo) then
-    LabelTipo.Text := CatToStr(ACategoria.Tipo);
+    LabelTipo.Text := CatToStrLegivel(ACategoria.Tipo);
 end;
 
 procedure TfrmCategorias.FormShow(Sender: TObject);

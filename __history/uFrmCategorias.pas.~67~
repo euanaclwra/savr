@@ -6,7 +6,7 @@ uses
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.Layouts,
   FMX.ListBox, FMX.Objects, uCategoria, System.Generics.Collections, uCategoriaDAO,
-  uUtils, FMX.Controls.Presentation, FMX.StdCtrls;
+  uUtils, FMX.Controls.Presentation, FMX.StdCtrls, uFrmNovaCategoria;
 
 type
   TfrmCategorias = class(TForm)
@@ -18,8 +18,11 @@ type
     txtLabelName: TText;
     txtLabelType: TText;
     ltListaCategorias: TLayout;
-    Button1: TButton;
+    btnInserir: TSpeedButton;
+    rtInserir: TRectangle;
+    txtInserir: TText;
     procedure FormShow(Sender: TObject);
+    procedure btnInserirClick(Sender: TObject);
   private
     procedure CarregaListaCategorias;
     procedure PreencheLabelsItemCategoria(AItem: TListBoxItem; ACategoria: TCategoria);
@@ -34,6 +37,21 @@ implementation
 
 {$R *.fmx}
 
+procedure TfrmCategorias.btnInserirClick(Sender: TObject);
+begin
+  frmNovaCategoria := TfrmNovaCategoria.Create(nil);
+
+  try
+    frmNovaCategoria.ShowModal;
+
+    // Se uma categoria nova for salva, a exibição das categorias é atualizada para exibi-la
+    if frmNovaCategoria.CategoriaSalva then
+      CarregaListaCategorias;
+  finally
+    frmNovaCategoria.Free;
+  end;
+end;
+
 procedure TfrmCategorias.CarregaListaCategorias;
 var
   DAO: TCategoriaDAO;
@@ -41,15 +59,22 @@ var
   Categoria: TCategoria;
   Item: TListBoxItem;
 begin
+  // Limpa a ListBox para evitar duplicação de conteúdo
+  lbCategorias.Clear;
+
   try
     DAO := TCategoriaDAO.Create;
+    // Busca todos as categorias no Banco de Dados e armazena numa lista
     Lista := DAO.BuscarCategorias;
 
+    // Se houver algum objeto na lista...
     if Lista <> nil then
     try
       for Categoria in Lista do
       begin
+        // Para cada categoria, é exibido um novo ListBoxItem
         Item := TListBoxItem.Create(lbCategorias);
+        // Preenche os elementos visuais do item
         PreencheLabelsItemCategoria(Item, Categoria)
       end;
     except
@@ -66,8 +91,11 @@ procedure TfrmCategorias.PreencheLabelsItemCategoria(AItem: TListBoxItem; ACateg
 var
   LabelNome, LabelTipo: TText;
 begin
+  // Define o componente pai do item
   AItem.Parent := lbCategorias;
+  // Define a classe de estilos do item
   AItem.StyleLookup :=  'itemCategoriaStyle';
+  // Define o Style Resource de cada elemento
   LabelNome := TText(AItem.FindStyleResource('nametext'));
   LabelTipo := TText(AItem.FindStyleResource('typetext'));
 
@@ -75,7 +103,7 @@ begin
     LabelNome.Text := ACategoria.Nome;
 
   if Assigned(LabelTipo) then
-    LabelTipo.Text := CatToStr(ACategoria.Tipo);
+    LabelTipo.Text := CatToStrLegivel(ACategoria.Tipo);
 end;
 
 procedure TfrmCategorias.FormShow(Sender: TObject);
