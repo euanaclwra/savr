@@ -58,7 +58,7 @@ begin
     try
       // Define a categoria selecionada como a categoria a ser editada
       frmCategoriaEditor.CategoriaEmEdicao := Categoria;
-      ShowMessage(Item.TagObject.ClassName);
+      ShowMessage(Item.Classname);
       //frmCategoriaEditor.ShowModal;
 
       // Recarrega as categorias caso algum registro tenha sido criado/atualizado
@@ -108,10 +108,10 @@ begin
         // Para cada categoria, é exibido um novo ListBoxItem
         Item := TListBoxItem.Create(nil);
         Item.Parent := lbCategorias;
-        Item.StyleLookup :=  'itemCategoriaStyle';
-        Item.TagObject := Categoria;
         // Preenche os elementos visuais do item
         PreencheLabelsItemCategoria(Item, Categoria);
+        // Define a categoria como conteúdo do item
+        Item.TagObject := Categoria;
       end;
     except
       on E: Exception do
@@ -129,7 +129,7 @@ var
   BtnEditar: TButton;
 begin
   // Aplica o estilo personalizado
-
+  AItem.StyleLookup :=  'itemCategoriaStyle';
 
   // Obtém os elementos visuais do estilo (nome e tipo)
   LabelNome := TText(AItem.FindStyleResource('nametext'));

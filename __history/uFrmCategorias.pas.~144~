@@ -48,7 +48,7 @@ begin
   Botao := TControl(Sender);
   Item := ListBoxItemOf(Botao);
 
-  if Assigned(Item) and Assigned(Item.Data) then
+  if Assigned(Item) and Assigned(Item.TagObject) then
   begin
     Categoria := TCategoria(Item.TagObject);
 
@@ -58,7 +58,7 @@ begin
     try
       // Define a categoria selecionada como a categoria a ser editada
       frmCategoriaEditor.CategoriaEmEdicao := Categoria;
-      ShowMessage(Item.Data.ClassName);
+      ShowMessage(Item.TagObject.Classname);
       //frmCategoriaEditor.ShowModal;
 
       // Recarrega as categorias caso algum registro tenha sido criado/atualizado
@@ -108,9 +108,10 @@ begin
         // Para cada categoria, é exibido um novo ListBoxItem
         Item := TListBoxItem.Create(nil);
         Item.Parent := lbCategorias;
-        Item.TagObject := Categoria;
         // Preenche os elementos visuais do item
         PreencheLabelsItemCategoria(Item, Categoria);
+        // Define a categoria como conteúdo do item
+        Item.TagObject := Categoria;
       end;
     except
       on E: Exception do

@@ -58,8 +58,7 @@ begin
     try
       // Define a categoria selecionada como a categoria a ser editada
       frmCategoriaEditor.CategoriaEmEdicao := Categoria;
-      ShowMessage(Item.TagObject.ClassName);
-      //frmCategoriaEditor.ShowModal;
+      frmCategoriaEditor.ShowModal;
 
       // Recarrega as categorias caso algum registro tenha sido criado/atualizado
       if frmCategoriaEditor.CategoriaSalva then
@@ -108,9 +107,10 @@ begin
         // Para cada categoria, é exibido um novo ListBoxItem
         Item := TListBoxItem.Create(nil);
         Item.Parent := lbCategorias;
-        Item.TagObject := Categoria;
         // Preenche os elementos visuais do item
         PreencheLabelsItemCategoria(Item, Categoria);
+        // Define a categoria como conteúdo do item
+        Item.TagObject := Categoria;
       end;
     except
       on E: Exception do

@@ -52,7 +52,7 @@ begin
   Result := nil;
   Qry := TFDQuery.Create(nil);
   // Inicializa a lista de objetos para armazenar as categorias
-  ResultSet := TObjectList<TCategoria>.Create(True);
+  ResultSet := TObjectList<TCategoria>.Create(False);
 
   try
     // Consulta todas as categorias existentes
