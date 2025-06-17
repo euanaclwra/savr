@@ -64,16 +64,22 @@ begin
   Categoria := CriarCategoria;
   DAO := TCategoriaDAO.Create;
 
-  // Valida o nome da categoria e a salva no Banco de Dados
+  // Valida o nome da categoria
   if ValidarDados(edtNomeCategoria.Text, Texto) then
   begin
-    DAO.InserirCategoria(Categoria);
+    // Se estiver no modo edição, atualiza a categoria
+    if CategoriaEmEdicao <> nil then
+      DAO.AtualizarCategoria(Categoria)
+    // Se estiver no modo inserção, cria a categoria
+    else
+      DAO.InserirCategoria(Categoria);
+
     // Altera a variável para sinalizar que houveram mudanças nas categorias
     CategoriaSalva := True;
     Close;
   end
   else
-  ExibirMensagemErro(edtNomeCategoria);
+    ExibirMensagemErro(edtNomeCategoria);
 end;
 
 procedure TfrmCategoriaEditor.FormShow(Sender: TObject);
@@ -81,14 +87,15 @@ begin
   LimparCampos;
   CategoriaSalva := False;
 
-  if CategoriaEmEdicao <> nil then
-  GetDadosCategoriaSelecionada(CategoriaEmEdicao);
+  if Assigned(CategoriaEmEdicao) then
+    GetDadosCategoriaSelecionada(CategoriaEmEdicao);
 end;
 
 procedure TfrmCategoriaEditor.GetDadosCategoriaSelecionada(ACategoria: TCategoria);
 begin
   edtNomeCategoria.Text := ACategoria.Nome;
-
+  if ACategoria.Tipo = tcDespesa then
+  rdDespesa.IsChecked := True;
 end;
 
 function TfrmCategoriaEditor.CriarCategoria: TCategoria;

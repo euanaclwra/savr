@@ -27,6 +27,7 @@ type
   private
     procedure CarregaListaCategorias;
     procedure PreencheLabelsItemCategoria(AItem: TListBoxItem; ACategoria: TCategoria);
+    procedure LiberaListBoxCategorias;
   public
     { Public declarations }
   end;
@@ -44,7 +45,7 @@ var
   Item: TListBoxItem;
   Categoria: TCategoria;
 begin
-  // Obtém o item/categoria que foi selecionada para edição
+  // Obtém o item que foi selecionado para edição
   Botao := TControl(Sender);
   Item := ListBoxItemOf(Botao);
 
@@ -91,8 +92,8 @@ var
   Categoria: TCategoria;
   Item: TListBoxItem;
 begin
-  // Limpa a ListBox para evitar duplicação de conteúdo
-  lbCategorias.Clear;
+  // Limpa a ListBox e libera a memória
+  LiberaListBoxCategorias;
 
   try
     DAO := TCategoriaDAO.Create;
@@ -145,6 +146,16 @@ begin
   // Atribui o método de edição ao evento de clique do elemento
   if Assigned(BtnEditar) then
     BtnEditar.OnClick := btnEditarClick;
+end;
+
+procedure TfrmCategorias.LiberaListBoxCategorias;
+var
+  i: Integer;
+begin
+  for i := 0 to (lbCategorias.Count - 1) do
+    lbCategorias.ItemByIndex(I).TagObject.Free;
+
+    lbCategorias.Clear;
 end;
 
 procedure TfrmCategorias.FormShow(Sender: TObject);

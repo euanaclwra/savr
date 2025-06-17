@@ -27,6 +27,7 @@ type
   private
     procedure CarregaListaCategorias;
     procedure PreencheLabelsItemCategoria(AItem: TListBoxItem; ACategoria: TCategoria);
+    procedure LiberaListBoxCategorias;
   public
     { Public declarations }
   end;
@@ -44,7 +45,7 @@ var
   Item: TListBoxItem;
   Categoria: TCategoria;
 begin
-  // Obtém o item/categoria que foi selecionada para edição
+  // Obtém o item que foi selecionado para edição
   Botao := TControl(Sender);
   Item := ListBoxItemOf(Botao);
 
@@ -58,8 +59,7 @@ begin
     try
       // Define a categoria selecionada como a categoria a ser editada
       frmCategoriaEditor.CategoriaEmEdicao := Categoria;
-      ShowMessage(Item.TagObject.ClassName);
-      //frmCategoriaEditor.ShowModal;
+      frmCategoriaEditor.ShowModal;
 
       // Recarrega as categorias caso algum registro tenha sido criado/atualizado
       if frmCategoriaEditor.CategoriaSalva then
@@ -113,7 +113,6 @@ begin
         // Define a categoria como conteúdo do item
         Item.TagObject := Categoria;
       end;
-      ShowMessage(Item.TagObject.ClassName);
     except
       on E: Exception do
         ShowMessage(E.Message);

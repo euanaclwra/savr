@@ -11,6 +11,7 @@ type
   public
     function BuscarCategorias: TObjectList<TCategoria>;
     procedure InserirCategoria(const ACategoria: TCategoria);
+    procedure AtualizarCategoria(const ACategoria: TCategoria);
   end;
 
 implementation
@@ -22,11 +23,22 @@ begin
   Qry := TFDQuery.Create(nil);
 
   try
-    Qry.Connection := dmConexao.FDConnection;
-    Qry.SQL.Text := 'INSERT INTO categorias (nome, tipo) VALUES (:nome, :tipo)';
-    Qry.ParamByName('nome').AsString := ACategoria.Nome;
-    Qry.ParamByName('tipo').AsString := CatToStr(ACategoria.Tipo);
-    Qry.ExecSQL;
+    try
+      Qry.Connection := dmConexao.FDConnection;
+      // SQL para inserir a nova categoria
+      Qry.SQL.Text := 'INSERT INTO categorias (nome, tipo) VALUES (:nome, :tipo)';
+      // Define as propriedades da categoria como parâmetro pro insert
+      Qry.ParamByName('nome').AsString := ACategoria.Nome;
+      Qry.ParamByName('tipo').AsString := CatToStr(ACategoria.Tipo);
+      // Executa a query
+      Qry.ExecSQL;
+
+      // Recupera o ID da categoria inserida e grava no objeto
+      ACategoria.ID := Qry.Connection.ExecSQLScalar('SELECT LAST_INSERT_ID()');
+    except
+        on E: Exception do
+        ShowMessage(E.Message);
+    end;
   finally
     Qry.Free;
   end;
@@ -39,10 +51,9 @@ var
   Qry: TFDQuery;
 begin
   Result := nil;
-  // Inicializa a Query
   Qry := TFDQuery.Create(nil);
   // Inicializa a lista de objetos para armazenar as categorias
-  ResultSet := TObjectList<TCategoria>.Create(True);
+  ResultSet := TObjectList<TCategoria>.Create(False);
 
   try
     // Consulta todas as categorias existentes
@@ -77,7 +88,31 @@ begin
   finally
     Qry.Free;
   end;
+end;
 
+procedure TCategoriaDAO.AtualizarCategoria(const ACategoria: TCategoria);
+var
+  Qry: TFDQuery;
+begin
+  Qry := TFDQuery.Create(nil);
+
+  try
+    try
+      Qry.Connection := dmConexao.FDConnection;
+      // SQL para atualizar a categoria
+      Qry.SQL.Text := 'UPDATE categorias SET nome = :nome, tipo = :tipo WHERE id = :id';
+      // Define as propriedades da categoria como parâmetro pro update
+      Qry.ParamByName('id').AsInteger := ACategoria.ID;
+      Qry.ParamByName('nome').AsString := ACategoria.Nome;
+      Qry.ParamByName('tipo').AsString := CatToStr(ACategoria.Tipo);
+      Qry.ExecSQL;
+    except
+      on E: Exception do
+        ShowMessage(E.Message);
+    end;
+  finally
+    Qry.Free;
+  end;
 end;
 
 end.

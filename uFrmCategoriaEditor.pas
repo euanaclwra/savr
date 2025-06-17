@@ -64,30 +64,31 @@ begin
   Categoria := CriarCategoria;
   DAO := TCategoriaDAO.Create;
 
-  // Valida o nome da categoria e a salva no Banco de Dados
+  // Valida o nome da categoria
   if ValidarDados(edtNomeCategoria.Text, Texto) then
   begin
-    DAO.InserirCategoria(Categoria);
+    // Se estiver no modo edição, atualiza a categoria
+    if CategoriaEmEdicao <> nil then
+      DAO.AtualizarCategoria(Categoria)
+    // Se estiver no modo inserção, cria a categoria
+    else
+      DAO.InserirCategoria(Categoria);
+
     // Altera a variável para sinalizar que houveram mudanças nas categorias
     CategoriaSalva := True;
     Close;
   end
   else
-  ExibirMensagemErro(edtNomeCategoria);
+    ExibirMensagemErro(edtNomeCategoria);
 end;
 
 procedure TfrmCategoriaEditor.FormShow(Sender: TObject);
 begin
-  try
-    LimparCampos;
-    CategoriaSalva := False;
+  LimparCampos;
+  CategoriaSalva := False;
 
-    if Assigned(CategoriaEmEdicao) then
-      GetDadosCategoriaSelecionada(CategoriaEmEdicao);
-  except
-    on E: Exception do
-      ShowMessage('Erro ao carregar dados da categoria: ' + E.Message);
-  end;
+  if Assigned(CategoriaEmEdicao) then
+    GetDadosCategoriaSelecionada(CategoriaEmEdicao);
 end;
 
 procedure TfrmCategoriaEditor.GetDadosCategoriaSelecionada(ACategoria: TCategoria);
@@ -107,6 +108,10 @@ begin
     NovaCat := TCategoria.Create;
     NovaCat.Nome := edtNomeCategoria.Text;
     NovaCat.Tipo := GetTipoCategoria;
+
+    if CategoriaEmEdicao <> nil then
+      NovaCat.ID := CategoriaEmEdicao.ID;
+
     Result := NovaCat;
   except
       on E: Exception do

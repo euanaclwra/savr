@@ -101,11 +101,9 @@ begin
       Qry.Connection := dmConexao.FDConnection;
       // SQL para atualizar a categoria
       Qry.SQL.Text := 'UPDATE categorias SET nome = :nome, tipo = :tipo WHERE id = :id';
-      // Define as propriedades da categoria como parâmetro pro update
       Qry.ParamByName('id').AsInteger := ACategoria.ID;
       Qry.ParamByName('nome').AsString := ACategoria.Nome;
       Qry.ParamByName('tipo').AsString := CatToStr(ACategoria.Tipo);
-      // Executa a query
       Qry.ExecSQL;
     except
       on E: Exception do
