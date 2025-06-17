@@ -207,7 +207,6 @@ object frmDialog: TfrmDialog
     TextSettings.FontColor = claWhite
     TextSettings.Trimming = None
     Visible = False
-    OnClick = btnOkClick
   end
   object btnYes: TSpeedButton
     Align = Center

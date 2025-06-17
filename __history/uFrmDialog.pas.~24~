@@ -19,7 +19,6 @@ type
     btnNo: TSpeedButton;
     procedure btnYesClick(Sender: TObject);
     procedure btnNoClick(Sender: TObject);
-    procedure btnOkClick(Sender: TObject);
   private
     FOnConfirm: TProc;
   public
@@ -35,11 +34,6 @@ implementation
 {$R *.fmx}
 
 procedure TfrmDialog.btnNoClick(Sender: TObject);
-begin
-  Close;
-end;
-
-procedure TfrmDialog.btnOkClick(Sender: TObject);
 begin
   Close;
 end;
