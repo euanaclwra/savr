@@ -46,23 +46,28 @@ var
 begin
   // Obtém o item/categoria que foi selecionada para edição
   Botao := TControl(Sender);
-  Item := TListBoxItem(Botao.Parent.Parent);
-  Categoria := TCategoria(Item.Data);
+  Item := ListBoxItemOf(Botao);
 
-  // Cria o form de edição
-  frmCategoriaEditor := TfrmCategoriaEditor.Create(Self);
+  if Assigned(Item) and Assigned(Item.Data) then
+  begin
+    Categoria := TCategoria(Item.Data);
 
-  try
-    // Define a categoria selecionada como a categoria a ser editada
-    frmCategoriaEditor.CategoriaEmEdicao := Categoria;
-    frmCategoriaEditor.ShowModal;
+    // Cria o form de edição
+    frmCategoriaEditor := TfrmCategoriaEditor.Create(nil);
 
-    // Recarrega as categorias caso algum registro tenha sido criado/atualizado
-    if frmCategoriaEditor.CategoriaSalva then
-      CarregaListaCategorias;
-  finally
-    frmCategoriaEditor.Free;
-  end;
+    try
+      // Define a categoria selecionada como a categoria a ser editada
+      frmCategoriaEditor.CategoriaEmEdicao := Categoria;
+      ShowMessage(Item.Data.ClassName);
+      //frmCategoriaEditor.ShowModal;
+
+      // Recarrega as categorias caso algum registro tenha sido criado/atualizado
+      if frmCategoriaEditor.CategoriaSalva then
+        CarregaListaCategorias;
+    finally
+      frmCategoriaEditor.Free;
+    end;
+  end
 end;
 
 procedure TfrmCategorias.btnInserirClick(Sender: TObject);
@@ -73,8 +78,8 @@ begin
     frmCategoriaEditor.ShowModal;
 
     // Recarrega as categorias caso algum registro tenha sido criado/atualizado
-    //if frmCategoriaEditor.CategoriaSalva then
-      //CarregaListaCategorias;
+    if frmCategoriaEditor.CategoriaSalva then
+      CarregaListaCategorias;
   finally
     frmCategoriaEditor.Free;
   end;
@@ -101,10 +106,11 @@ begin
       for Categoria in Lista do
       begin
         // Para cada categoria, é exibido um novo ListBoxItem
-        Item := TListBoxItem.Create(lbCategorias);
+        Item := TListBoxItem.Create(nil);
+        Item.Parent := lbCategorias;
         Item.Data := Categoria;
         // Preenche os elementos visuais do item
-        PreencheLabelsItemCategoria(Item, Categoria)
+        PreencheLabelsItemCategoria(Item, Categoria);
       end;
     except
       on E: Exception do
@@ -122,7 +128,6 @@ var
   BtnEditar: TButton;
 begin
   // Define o ListBox como pai do item e aplica o estilo personalizado
-  AItem.Parent := lbCategorias;
   AItem.StyleLookup :=  'itemCategoriaStyle';
 
   // Obtém os elementos visuais do estilo (nome e tipo)

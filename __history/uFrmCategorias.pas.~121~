@@ -46,25 +46,28 @@ var
 begin
   // Obtém o item/categoria que foi selecionada para edição
   Botao := TControl(Sender);
-  Item := TListBoxItem(Botao.Parent.Parent);
-  Categoria := TCategoria(Item.Data);
+  Item := ListBoxItemOf(Botao);
 
-  // Cria o form de edição
-  frmCategoriaEditor := TfrmCategoriaEditor.Create(Self);
+  if Assigned(Item) and Assigned(Item.Data) then
+  begin
+    Categoria := TCategoria(Item.Data);
 
-  try
-    // Define a categoria selecionada como a categoria a ser editada
-    frmCategoriaEditor.CategoriaEmEdicao := Categoria;
-    ShowMessage(Categoria.Nome);
+    // Cria o form de edição
+    frmCategoriaEditor := TfrmCategoriaEditor.Create(nil);
 
-    frmCategoriaEditor.ShowModal;
+    try
+      // Define a categoria selecionada como a categoria a ser editada
+      frmCategoriaEditor.CategoriaEmEdicao := Categoria;
+      ShowMessage(Categoria.Nome);
+      //frmCategoriaEditor.ShowModal;
 
-    // Recarrega as categorias caso algum registro tenha sido criado/atualizado
-    if frmCategoriaEditor.CategoriaSalva then
-      CarregaListaCategorias;
-  finally
-    frmCategoriaEditor.Free;
-  end;
+      // Recarrega as categorias caso algum registro tenha sido criado/atualizado
+      if frmCategoriaEditor.CategoriaSalva then
+        CarregaListaCategorias;
+    finally
+      frmCategoriaEditor.Free;
+    end;
+  end
 end;
 
 procedure TfrmCategorias.btnInserirClick(Sender: TObject);

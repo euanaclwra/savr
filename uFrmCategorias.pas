@@ -47,22 +47,27 @@ begin
   // Obtém o item/categoria que foi selecionada para edição
   Botao := TControl(Sender);
   Item := ListBoxItemOf(Botao);
-  Categoria := TCategoria(Item.Data);
 
-  // Cria o form de edição
-  frmCategoriaEditor := TfrmCategoriaEditor.Create(Self);
+  if Assigned(Item) and Assigned(Item.TagObject) then
+  begin
+    Categoria := TCategoria(Item.TagObject);
 
-  try
-    // Define a categoria selecionada como a categoria a ser editada
-    frmCategoriaEditor.CategoriaEmEdicao := Categoria;
-    frmCategoriaEditor.ShowModal;
+    // Cria o form de edição
+    frmCategoriaEditor := TfrmCategoriaEditor.Create(nil);
 
-    // Recarrega as categorias caso algum registro tenha sido criado/atualizado
-    if frmCategoriaEditor.CategoriaSalva then
-      CarregaListaCategorias;
-  finally
-    frmCategoriaEditor.Free;
-  end;
+    try
+      // Define a categoria selecionada como a categoria a ser editada
+      frmCategoriaEditor.CategoriaEmEdicao := Categoria;
+      ShowMessage(Item.TagObject.ClassName);
+      //frmCategoriaEditor.ShowModal;
+
+      // Recarrega as categorias caso algum registro tenha sido criado/atualizado
+      if frmCategoriaEditor.CategoriaSalva then
+        CarregaListaCategorias;
+    finally
+      frmCategoriaEditor.Free;
+    end;
+  end
 end;
 
 procedure TfrmCategorias.btnInserirClick(Sender: TObject);
@@ -101,8 +106,9 @@ begin
       for Categoria in Lista do
       begin
         // Para cada categoria, é exibido um novo ListBoxItem
-        Item := TListBoxItem.Create(lbCategorias);
-        Item.Data := Categoria;
+        Item := TListBoxItem.Create(nil);
+        Item.Parent := lbCategorias;
+        Item.TagObject := Categoria;
         // Preenche os elementos visuais do item
         PreencheLabelsItemCategoria(Item, Categoria);
       end;
@@ -121,8 +127,7 @@ var
   LabelNome, LabelTipo: TText;
   BtnEditar: TButton;
 begin
-  // Define o ListBox como pai do item e aplica o estilo personalizado
-  AItem.Parent := lbCategorias;
+  // Aplica o estilo personalizado
   AItem.StyleLookup :=  'itemCategoriaStyle';
 
   // Obtém os elementos visuais do estilo (nome e tipo)

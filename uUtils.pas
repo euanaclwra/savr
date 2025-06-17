@@ -20,7 +20,9 @@ implementation
 
 function ListBoxItemOf(AComponente: TFmxObject): TListBoxItem;
 begin
+  // Percorre a hierarquia de componentes até encontrar um TListBoxItem
   while (AComponente <> nil) and not (AComponente is TListBoxItem) do
+    AComponente := AComponente.Parent;
 
   if AComponente is TListBoxItem then
     Result := TListBoxItem(AComponente)
