@@ -1,0 +1,21 @@
+object frmDialog: TfrmDialog
+  Left = 0
+  Top = 0
+  Caption = 'frmDialog'
+  ClientHeight = 200
+  ClientWidth = 400
+  Fill.Kind = Solid
+  Position = ScreenCenter
+  FormStyle = Popup
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  DesignerMasterStyle = 0
+  object rtHeaderBar: TRectangle
+    Fill.Color = xFF34495E
+    Size.Width = 400.000000000000000000
+    Size.Height = 35.000000000000000000
+    Size.PlatformDefault = False
+    Stroke.Kind = None
+  end
+end

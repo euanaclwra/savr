@@ -1,0 +1,31 @@
+unit uFrmDialog;
+
+interface
+
+uses
+  System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
+  FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.Objects,
+  FMX.Controls.Presentation, FMX.StdCtrls;
+
+type
+  TfrmDialog = class(TForm)
+    iconInformation: TImage;
+    iconSuccess: TImage;
+    titleInformation: TText;
+    txtMessage: TText;
+    btnOk: TSpeedButton;
+    StyleBook1: TStyleBook;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmDialog: TfrmDialog;
+
+implementation
+
+{$R *.fmx}
+
+end.
