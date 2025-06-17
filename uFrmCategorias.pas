@@ -130,6 +130,7 @@ var
 begin
   // Aplica o estilo personalizado
   AItem.StyleLookup :=  'itemCategoriaStyle';
+  AItem.Height := 25;
 
   // Obtém os elementos visuais do estilo (nome e tipo)
   LabelNome := TText(AItem.FindStyleResource('nametext'));
