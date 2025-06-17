@@ -8,6 +8,8 @@ uses
   FMX.Controls.Presentation, FMX.StdCtrls;
 
 type
+  TConfirmCallback = reference to procedure;
+
   TfrmDialog = class(TForm)
     iconConfirm: TImage;
     iconSuccess: TImage;
@@ -21,10 +23,10 @@ type
     procedure btnNoClick(Sender: TObject);
     procedure btnOkClick(Sender: TObject);
   private
-    FOnConfirm: TProc;
+    FOnConfirm: TConfirmCallback;
   public
-    class procedure ShowConfirmDialog(Msg: String; OnConfirm: TProc);
-    class procedure ShowSuccessDialog(Msg: String; OnConfirm: TProc);
+    class procedure ShowConfirmDialog(Msg: String; OnConfirm: TConfirmCallback);
+    class procedure ShowSuccessDialog(Msg: String);
   end;
 
 var
@@ -51,55 +53,49 @@ begin
   Close;
 end;
 
-class procedure TfrmDialog.ShowConfirmDialog(Msg: string; OnConfirm: TProc);
+class procedure TfrmDialog.ShowConfirmDialog(Msg: string; OnConfirm: TConfirmCallback);
 var
   Dialog: TfrmDialog;
 begin
   Dialog := TfrmDialog.Create(nil);
-  try
-    // Ativa os elementos visuais de confirmação
-    Dialog.btnNo.Visible := True;
-    Dialog.btnYes.Visible := True;
-    Dialog.iconConfirm.Visible := True;
-    Dialog.iconSuccess.Visible := False;
-    Dialog.btnOk.Visible := False;
 
-    // Define o título e o texto da mensagem
-    Dialog.titleMessage.Text := 'Espere!';
-    Dialog.txtMessage.Text := Msg;
+  // Ativa os elementos visuais de confirmação
+  Dialog.btnNo.Visible := True;
+  Dialog.btnYes.Visible := True;
+  Dialog.iconConfirm.Visible := True;
+  Dialog.iconSuccess.Visible := False;
+  Dialog.btnOk.Visible := False;
 
-    // Define a ação após a confirmação
-    Dialog.FOnConfirm := OnConfirm;
+  // Define o título e o texto da mensagem
+  Dialog.titleMessage.Text := 'Espere!';
+  Dialog.txtMessage.Text := Msg;
 
-    // Mostra o Pop-Up
-    Dialog.ShowModal;
-  finally
-    Dialog.Free;
-  end;
+  // Define a ação de confirmação
+  Dialog.FOnConfirm := OnConfirm;
+
+  // Exibe o pop-up
+  Dialog.Show;
 end;
 
-class procedure TfrmDialog.ShowSuccessDialog(Msg: string; OnConfirm: TProc);
+class procedure TfrmDialog.ShowSuccessDialog(Msg: string);
 var
   Dialog: TfrmDialog;
 begin
   Dialog := TfrmDialog.Create(nil);
-  try
-    // Ativa os elementos visuais de sucesso
-    Dialog.btnNo.Visible := False;
-    Dialog.btnYes.Visible := False;
-    Dialog.iconConfirm.Visible := False;
-    Dialog.iconSuccess.Visible := True;
-    Dialog.btnOk.Visible := True;
 
-    // Define o título e o texto da mensagem
-    Dialog.titleMessage.Text := 'Sucesso!';
-    Dialog.txtMessage.Text := Msg;
+  // Ativa os elementos visuais de sucesso
+  Dialog.btnNo.Visible := False;
+  Dialog.btnYes.Visible := False;
+  Dialog.iconConfirm.Visible := False;
+  Dialog.iconSuccess.Visible := True;
+  Dialog.btnOk.Visible := True;
 
-    // Mostra o Pop-Up
-    Dialog.ShowModal;
-  finally
-    Dialog.Free;
-  end;
+  // Define o título e o texto da mensagem
+  Dialog.titleMessage.Text := 'Sucesso!';
+  Dialog.txtMessage.Text := Msg;
+
+  // Exibe o pop-up
+  Dialog.Show;
 end;
 
 end.

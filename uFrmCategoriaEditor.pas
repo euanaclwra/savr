@@ -87,12 +87,14 @@ begin
   LimparCampos;
   CategoriaSalva := False;
 
+  // Se alguma categoria foi selecionada para edição, exibe seus dados nos campos
   if Assigned(CategoriaEmEdicao) then
     GetDadosCategoriaSelecionada(CategoriaEmEdicao);
 end;
 
 procedure TfrmCategoriaEditor.GetDadosCategoriaSelecionada(ACategoria: TCategoria);
 begin
+  // Preenche os campos de acordo com a categoria selecionada para edição
   edtNomeCategoria.Text := ACategoria.Nome;
   if ACategoria.Tipo = tcDespesa then
   rdDespesa.IsChecked := True;
@@ -105,6 +107,8 @@ begin
   Result := nil;
 
   try
+    // Cria um objeto de categoria com base nas informações da tela
+    // É esse o objeto enviado como parâmetro ao salvar a categoria no BD
     NovaCat := TCategoria.Create;
     NovaCat.Nome := edtNomeCategoria.Text;
     NovaCat.Tipo := GetTipoCategoria;

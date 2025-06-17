@@ -12,6 +12,7 @@ procedure UpdateConfiguracaoGlobal;
 
 implementation
 
+// Método global para atualizar o objeto de configuração
 procedure UpdateConfiguracaoGlobal;
 begin
   AppConfig := TConfigGeralDAO.UpdateInstanciaConfig;

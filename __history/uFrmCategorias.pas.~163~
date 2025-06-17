@@ -1,0 +1,187 @@
+unit uFrmCategorias;
+
+interface
+
+uses
+  System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
+  FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.Layouts,
+  FMX.ListBox, FMX.Objects, uCategoria, System.Generics.Collections, uCategoriaDAO,
+  uUtils, FMX.Controls.Presentation, FMX.StdCtrls, uFrmCategoriaEditor, uFrmDialog;
+
+type
+  TfrmCategorias = class(TForm)
+    txtCategorias: TText;
+    lbCategorias: TListBox;
+    StyleBook1: TStyleBook;
+    ltHeader: TLayout;
+    rtHeader: TRectangle;
+    txtLabelName: TText;
+    txtLabelType: TText;
+    ltListaCategorias: TLayout;
+    btnInserir: TSpeedButton;
+    rtInserir: TRectangle;
+    txtInserir: TText;
+    procedure FormShow(Sender: TObject);
+    procedure btnInserirClick(Sender: TObject);
+    procedure btnEditarClick(Sender: TObject);
+    procedure btnExcluirClick(Sender: TObject);
+  private
+    procedure CarregaListaCategorias;
+    procedure PreencheLabelsItemCategoria(AItem: TListBoxItem; ACategoria: TCategoria);
+    procedure LiberaListBoxCategorias;
+  public
+    { Public declarations }
+  end;
+
+var
+  frmCategorias: TfrmCategorias;
+
+implementation
+
+{$R *.fmx}
+
+procedure TfrmCategorias.btnExcluirClick(Sender: TObject);
+var
+  Botao: TControl;
+  Item: TListBoxItem;
+  Categoria: TCategoria;
+begin
+  // Obtém o item que foi selecionado para exclusão
+  Botao := TControl(Sender);
+  Item := ListBoxItemOf(Botao);
+
+  if Assigned(Item) and Assigned(Item.TagObject) then
+  begin
+    Categoria := TCategoria(Item.TagObject);
+  end;
+end;
+
+procedure TfrmCategorias.btnEditarClick(Sender: TObject);
+var
+  Botao: TControl;
+  Item: TListBoxItem;
+  Categoria: TCategoria;
+begin
+  // Obtém o item que foi selecionado para edição
+  Botao := TControl(Sender);
+  Item := ListBoxItemOf(Botao);
+
+  if Assigned(Item) and Assigned(Item.TagObject) then
+  begin
+    Categoria := TCategoria(Item.TagObject);
+
+    // Cria o form de edição
+    frmCategoriaEditor := TfrmCategoriaEditor.Create(nil);
+
+    try
+      // Define a categoria selecionada como a categoria a ser editada
+      frmCategoriaEditor.CategoriaEmEdicao := Categoria;
+      frmCategoriaEditor.ShowModal;
+
+      // Recarrega as categorias caso algum registro tenha sido criado/atualizado
+      if frmCategoriaEditor.CategoriaSalva then
+        CarregaListaCategorias;
+    finally
+      frmCategoriaEditor.Free;
+    end;
+  end
+end;
+
+procedure TfrmCategorias.btnInserirClick(Sender: TObject);
+begin
+  frmCategoriaEditor := TfrmCategoriaEditor.Create(Self);
+
+  try
+    frmCategoriaEditor.ShowModal;
+
+    // Recarrega as categorias caso algum registro tenha sido criado/atualizado
+    if frmCategoriaEditor.CategoriaSalva then
+      CarregaListaCategorias;
+  finally
+    frmCategoriaEditor.Free;
+  end;
+end;
+
+procedure TfrmCategorias.CarregaListaCategorias;
+var
+  DAO: TCategoriaDAO;
+  Lista: TObjectList<TCategoria>;
+  Categoria: TCategoria;
+  Item: TListBoxItem;
+begin
+  // Limpa a ListBox e libera a memória
+  LiberaListBoxCategorias;
+
+  try
+    DAO := TCategoriaDAO.Create;
+    // Busca todos as categorias no Banco de Dados e armazena numa lista
+    Lista := DAO.BuscarCategorias;
+
+    // Se houver algum objeto na lista...
+    if Lista <> nil then
+    try
+      for Categoria in Lista do
+      begin
+        // Para cada categoria, é exibido um novo ListBoxItem
+        Item := TListBoxItem.Create(nil);
+        Item.Parent := lbCategorias;
+        // Preenche os elementos visuais do item
+        PreencheLabelsItemCategoria(Item, Categoria);
+        // Define a categoria como conteúdo do item
+        Item.TagObject := Categoria;
+      end;
+    except
+      on E: Exception do
+        ShowMessage(E.Message);
+    end;
+  finally
+    DAO.Free;
+    Lista.Free;
+  end;
+end;
+
+procedure TfrmCategorias.PreencheLabelsItemCategoria(AItem: TListBoxItem; ACategoria: TCategoria);
+var
+  LabelNome, LabelTipo: TText;
+  BtnEditar: TButton;
+  BtnExcluir: TButton;
+begin
+  // Aplica o estilo personalizado
+  AItem.StyleLookup :=  'itemCategoriaStyle';
+  AItem.Height := 25;
+
+  // Obtém os elementos visuais do estilo (nome e tipo)
+  LabelNome := TText(AItem.FindStyleResource('nametext'));
+  LabelTipo := TText(AItem.FindStyleResource('typetext'));
+  BtnEditar := TButton(AItem.FindStyleResource('editbutton'));
+
+  // Atualiza os textos se os elementos forem encontrados
+  if Assigned(LabelNome) then
+    LabelNome.Text := ACategoria.Nome;
+
+  if Assigned(LabelTipo) then
+    LabelTipo.Text := CatToStrLegivel(ACategoria.Tipo);
+
+  // Atribui os eventos aos respectivos botões
+  if Assigned(BtnEditar) then
+    BtnEditar.OnClick := btnEditarClick;
+end;
+
+procedure TfrmCategorias.LiberaListBoxCategorias;
+var
+  i: Integer;
+begin
+  // Limpa as categorias armazenadas em cada item da ListBox
+  for i := 0 to (lbCategorias.Count - 1) do
+    lbCategorias.ItemByIndex(I).TagObject.Free;
+
+    // Limpa os itens da ListBox
+    lbCategorias.Clear;
+end;
+
+procedure TfrmCategorias.FormShow(Sender: TObject);
+begin
+  CarregaListaCategorias;
+end;
+
+end.

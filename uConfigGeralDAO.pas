@@ -16,6 +16,10 @@ type
 
 implementation
 
+// A tabela de configuração é estática, pois o sistema não armazena múltiplas configurações
+// Ela contém apenas um registro, que representa o estado atual das configurações do usuário
+// Este método insere uma linha inicial com valores zerados caso não exista nenhum registro
+// Assim, garante que o registro estático sempre esteja presente para uso e atualização
 procedure TConfigGeralDAO.InsereRegistroDefault;
 var
   Qry: TFDQuery;
@@ -24,15 +28,18 @@ begin
 
   try
     Qry.Connection := dmConexao.FDConnection;
+    // Consulta a tabela de configurações
     Qry.SQL.Text := 'SELECT * FROM configuracao ORDER BY id LIMIT 1';
     Qry.Open;
 
+    // Se a query não retornar resultados (tabela vazia)
     if Qry.IsEmpty then
     begin
       Qry.Close;
       Qry.SQL.Text := 'INSERT INTO configuracao(valorsalario, flagparcelado, percentualadiantamento, diaadiantamento, diapagamentofinal, nomeusuario) ' +
                 'VALUES (:vsal, :fparc, :perad, :diaadiant, :diapag, :nome)';
 
+      // Insere uma linha zerada
       Qry.ParamByName('vsal').AsFloat := 0;
       Qry.ParamByName('fparc').AsBoolean := False;
       Qry.ParamByName('perad').AsFloat := 0;
@@ -42,14 +49,15 @@ begin
       Qry.ExecSQL;
     end
     else
-    begin
       Exit
-    end;
   finally
     Qry.Free;
   end;
 end;
 
+// Método que atualiza a linha estática de configurações
+// Atualiza uma coluna por vez
+// Recebe a coluna e o novo valor como parâmetros
 function TConfigGeralDAO.AlterarConfiguracao(AColuna: String; ANovoValor: Variant): Boolean;
 var
   Qry: TFDQuery;
@@ -69,6 +77,8 @@ begin
   end;
 end;
 
+// Método que atualiza o objeto local de configuração
+// Garante que o objeto esteja sempre sincronizado com o banco de dados
 class function TConfigGeralDAO.UpdateInstanciaConfig: TConfigGeral;
 var
    Qry: TFDQuery;
@@ -87,6 +97,7 @@ begin
 
     if not Qry.IsEmpty then
     begin
+      // Define as propriedades do objeto de acordo com a respectiva coluna do BD
       Config := TConfigGeral.Create;
       Config.ValorSalario := Qry.FieldByName('ValorSalario').AsFloat;
       Config.FlagParcelado := Qry.FieldByName('FlagParcelado').AsBoolean;
@@ -99,6 +110,7 @@ begin
     end
     else
     begin
+      // Retorna o objeto atualizado
       Result := TConfigGeral.Create;
     end;
   finally

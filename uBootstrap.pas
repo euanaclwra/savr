@@ -30,6 +30,8 @@ var
 begin
   Form := GetFirstForm;
 
+  // Define o form principal da aplicação
+  // Impede que a aplicação finalize ao fechar o primeiro form criado
   try
     Application.MainForm := Form;
     Form.Show;
@@ -40,6 +42,7 @@ end;
 
 function TfrmBootstrap.GetFirstForm: TForm;
 begin
+  // Inicia o form de Setup caso a aplicação não possua as configurações iniciais
   if (AppConfig <> nil) and (AppConfig.NomeUsuario <> '') then
     Result := frmMain
   else

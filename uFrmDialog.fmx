@@ -6,7 +6,7 @@ object frmDialog: TfrmDialog
   Caption = 'frmDialog'
   ClientHeight = 195
   ClientWidth = 400
-  Cursor = crHandPoint
+  Cursor = crArrow
   Fill.Kind = Solid
   Position = ScreenCenter
   StyleBook = StyleBook1
@@ -193,6 +193,7 @@ object frmDialog: TfrmDialog
   end
   object btnOk: TSpeedButton
     Align = Center
+    Cursor = crHandPoint
     StyledSettings = []
     ModalResult = 1
     Margins.Top = 140.000000000000000000
@@ -211,8 +212,9 @@ object frmDialog: TfrmDialog
   end
   object btnYes: TSpeedButton
     Align = Center
+    Cursor = crHandPoint
     StyledSettings = []
-    ModalResult = 1
+    ModalResult = 6
     Margins.Left = 85.000000000000000000
     Margins.Top = 140.000000000000000000
     Size.Width = 80.000000000000000000
@@ -229,8 +231,9 @@ object frmDialog: TfrmDialog
   end
   object btnNo: TSpeedButton
     Align = Center
+    Cursor = crHandPoint
     StyledSettings = []
-    ModalResult = 1
+    ModalResult = 7
     Margins.Top = 140.000000000000000000
     Margins.Right = 85.000000000000000000
     Size.Width = 80.000000000000000000
