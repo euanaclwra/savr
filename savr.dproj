@@ -160,6 +160,10 @@
         </DCCReference>
         <DCCReference Include="uDialogHelper.pas"/>
         <DCCReference Include="uCategoriaDAO.pas"/>
+        <DCCReference Include="uFrmDialog.pas">
+            <Form>frmDialog</Form>
+            <FormType>fmx</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

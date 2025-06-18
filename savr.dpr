@@ -19,7 +19,8 @@ uses
   uFrmCategorias in 'uFrmCategorias.pas' {frmCategorias},
   uFrmCategoriaEditor in 'uFrmCategoriaEditor.pas' {frmCategoriaEditor},
   uDialogHelper in 'uDialogHelper.pas',
-  uCategoriaDAO in 'uCategoriaDAO.pas';
+  uCategoriaDAO in 'uCategoriaDAO.pas',
+  uFrmDialog in 'uFrmDialog.pas' {frmDialog};
 
 {$R *.res}
 
@@ -41,5 +42,6 @@ begin
   Application.CreateForm(TfrmSetup, frmSetup);
   Application.CreateForm(TfrmCategorias, frmCategorias);
   Application.CreateForm(TfrmCategoriaEditor, frmCategoriaEditor);
+  Application.CreateForm(TfrmDialog, frmDialog);
   Application.Run;
 end.

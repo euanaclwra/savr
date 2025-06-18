@@ -6,7 +6,7 @@ uses
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.TabControl,
   FMX.Controls.Presentation, FMX.MultiView, FMX.Objects, FMX.StdCtrls,
-  FMX.Layouts, FMX.Ani, uAppGlobals, uFrmCategorias;
+  FMX.Layouts, FMX.Ani, uAppGlobals, uFrmCategorias, uFrmConfiguracoes;
 
 type
   TfrmMain = class(TForm)
@@ -33,10 +33,10 @@ type
     ltTitle: TLayout;
     ltHeader: TLayout;
     StyleBook1: TStyleBook;
-    procedure btnSairClick(Sender: TObject);
     procedure ExibirNomeUsuario;
     procedure FormShow(Sender: TObject);
     procedure btnCategoriasClick(Sender: TObject);
+    procedure btnConfigClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -59,9 +59,9 @@ begin
   frmCategorias.Show;
 end;
 
-procedure TfrmMain.btnSairClick(Sender: TObject);
+procedure TfrmMain.btnConfigClick(Sender: TObject);
 begin
-  Application.Terminate;
+  frmConfiguracoes.Show;
 end;
 
 procedure TfrmMain.FormShow(Sender: TObject);
