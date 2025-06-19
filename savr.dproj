@@ -164,6 +164,10 @@
             <Form>frmDialog</Form>
             <FormType>fmx</FormType>
         </DCCReference>
+        <DCCReference Include="uFrmConfiguracoes.pas">
+            <Form>frmConfiguracoes</Form>
+            <FormType>fmx</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

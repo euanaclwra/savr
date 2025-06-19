@@ -15,6 +15,12 @@ type
     txtUsuario: TText;
     imgUsuario: TImage;
     lnUsuario: TLine;
+    imgArrowUsuario: TImage;
+    btnRenda: TSpeedButton;
+    txtRenda: TText;
+    imgRenda: TImage;
+    Line1: TLine;
+    imgArrowRenda: TImage;
   private
     { Private declarations }
   public
