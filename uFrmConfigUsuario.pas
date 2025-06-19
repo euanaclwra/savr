@@ -5,7 +5,8 @@ interface
 uses
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.Objects,
-  FMX.Controls.Presentation, FMX.StdCtrls, FMX.Layouts, FMX.Edit, uAppGlobals;
+  FMX.Controls.Presentation, FMX.StdCtrls, FMX.Layouts, FMX.Edit, uAppGlobals,
+  uFrmDialog, uUtils, uConfigGeral, uConfigGeralDAO;
 
 type
   TfrmConfigUsuario = class(TForm)
@@ -22,8 +23,11 @@ type
     edtNomeUsuario: TEdit;
     lnNomeUsuario: TLine;
     procedure FormShow(Sender: TObject);
+    procedure btnCancelarClick(Sender: TObject);
+    procedure btnSalvarClick(Sender: TObject);
   private
     procedure ExibeNomeUsuario;
+    procedure SalvaNomeUsuario;
   public
     { Public declarations }
   end;
@@ -37,13 +41,58 @@ implementation
 
 procedure TfrmConfigUsuario.FormShow(Sender: TObject);
 begin
+  //Carrega o nome do usuário
   ExibeNomeUsuario;
+end;
+
+procedure TfrmConfigUsuario.btnCancelarClick(Sender: TObject);
+begin
+  // Exibe a mensagem de confirmação
+  frmDialog.ShowConfirmDialog('Tem certeza? Nenhum dado alterado será salvo!',
+  procedure
+  begin
+    Close;
+  end
+);
+end;
+
+procedure TfrmConfigUsuario.btnSalvarClick(Sender: TObject);
+begin
+  if ValidarDados(edtNomeUsuario.Text, Texto) then
+  begin
+    SalvaNomeUsuario;
+    Close
+  end
+  else
+    ExibirMensagemErro(edtNomeUsuario);
 end;
 
 procedure TfrmConfigUsuario.ExibeNomeUsuario;
 begin
   if Assigned(AppConfig) then
     edtNomeUsuario.Text := AppConfig.NomeUsuario;
+end;
+
+procedure TfrmConfigUsuario.SalvaNomeUsuario;
+var
+  DAO: TConfigGeralDAO;
+  Nome: String;
+begin
+  DAO := TConfigGeralDAO.Create;
+  Nome := edtNomeUsuario.Text;
+
+  try
+    // Tenta salvar o novo nome no BD
+    if DAO.AlterarConfiguracao('NomeUsuario', Nome) then
+    begin
+      // Atualiza o objeto global de configurações
+      AppConfig := DAO.UpdateInstanciaConfig;
+    end
+    else
+      Exit;
+  finally
+    DAO.Free;
+  end;
 end;
 
 end.

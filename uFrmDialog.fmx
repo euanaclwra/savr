@@ -4,8 +4,8 @@ object frmDialog: TfrmDialog
   BorderIcons = []
   BorderStyle = None
   Caption = 'frmDialog'
-  ClientHeight = 195
-  ClientWidth = 400
+  ClientHeight = 225
+  ClientWidth = 440
   Cursor = crArrow
   Fill.Kind = Solid
   Position = ScreenCenter
@@ -15,6 +15,21 @@ object frmDialog: TfrmDialog
   FormFactor.Height = 480
   FormFactor.Devices = [Desktop]
   DesignerMasterStyle = 0
+  object rtBackground: TRectangle
+    Align = Center
+    Fill.Color = claWhite
+    Size.Width = 417.000000000000000000
+    Size.Height = 205.000000000000000000
+    Size.PlatformDefault = False
+    Stroke.Kind = None
+    object fxShadowBackground: TShadowEffect
+      Distance = 3.000000000000000000
+      Direction = 90.000000000000000000
+      Softness = 0.500000000000000000
+      Opacity = 0.300000011920929000
+      ShadowColor = claBlack
+    end
+  end
   object iconConfirm: TImage
     MultiResBitmap.Height = 64
     MultiResBitmap.Width = 64

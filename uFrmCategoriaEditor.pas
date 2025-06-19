@@ -5,7 +5,7 @@ interface
 uses
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.Objects,
-  FMX.Controls.Presentation, FMX.Edit, FMX.StdCtrls, FMX.Layouts, uDialogHelper,
+  FMX.Controls.Presentation, FMX.Edit, FMX.StdCtrls, FMX.Layouts, uFrmDialog,
   uUtils, uCategoria, uCategoriaDAO;
 
 type
@@ -48,12 +48,13 @@ implementation
 
 procedure TfrmCategoriaEditor.btnCancelarClick(Sender: TObject);
 begin
-  if edtNomeCategoria.Text <> '' then
-    TDialogHelper.Confirmar('Tem certeza que deseja sair? Nenhum dado será salvo!', procedure begin Close; end)
-  else
+  // Exibe a mensagem de confirmação
+  frmDialog.ShowConfirmDialog('Tem certeza? Nenhum dado alterado será salvo!',
+  procedure
   begin
     Close;
-  end;
+  end
+);
 end;
 
 procedure TfrmCategoriaEditor.btnSalvarClick(Sender: TObject);

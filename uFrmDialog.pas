@@ -5,7 +5,7 @@ interface
 uses
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.Objects,
-  FMX.Controls.Presentation, FMX.StdCtrls;
+  FMX.Controls.Presentation, FMX.StdCtrls, FMX.Effects;
 
 type
   TConfirmCallback = reference to procedure;
@@ -19,6 +19,8 @@ type
     StyleBook1: TStyleBook;
     btnYes: TSpeedButton;
     btnNo: TSpeedButton;
+    rtBackground: TRectangle;
+    fxShadowBackground: TShadowEffect;
     procedure btnYesClick(Sender: TObject);
     procedure btnNoClick(Sender: TObject);
     procedure btnOkClick(Sender: TObject);

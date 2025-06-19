@@ -100,9 +100,11 @@ begin
   PaginaAtual := tbcSetup.TabIndex;
   ProximaPagina := tbcSetup.TabIndex + 1;
 
-  case PaginaAtual of  // Está legível/claro o suficiente?
+  // Executa métodos diferentes a depender da página atual
+  case PaginaAtual of
     1:
     begin
+      // Página 1 - Salva e exibe o nome do usuário
       if not ValidarDados(edtName.Text, Texto) then
       begin
         ExibirMensagemErro(edtName);
@@ -114,6 +116,7 @@ begin
     end;
     2:
     begin
+      // Página 2 - Salva o valor do salário
       if not ValidarDados(edtValorSalario.Text, Moeda) then
       begin
         ExibirMensagemErro(edtValorSalario);
@@ -125,8 +128,10 @@ begin
     end;
     3:
     begin
+      // Página 3 - Salva as datas do salário e finaliza o setup
       if not ValidarDadosTab3(CampoInvalido) then
       begin
+        // Exibe a mensagem de erro no campo retornado como inválido pela validação
         ExibirMensagemErro(CampoInvalido);
         Exit;
       end;
@@ -136,6 +141,7 @@ begin
     end;
   end;
 
+  // Métodos executados ao avançar qualquer página
   AvancarPagina;
   AtivarAnimacoesProximaPagina(tbcSetup, ProximaPagina);
   UpdateNavegacao;
@@ -151,6 +157,10 @@ function TfrmSetup.ValidarDadosTab3(out CampoInvalido: TEdit): Boolean;
 begin
   Result := False;
 
+  // Os campos dessa página mudam dependendo do tipo de salário (com ou sem adiantamento)
+  // Esse método realiza as validações necessárias a depender do tipo informado pelo usuário
+
+  // Validações do salário com adiantamento
   if AppConfig.FlagParcelado then
   begin
     if not ValidarDados(edtDiaAdiantamento.Text, Inteiro) then
@@ -169,6 +179,7 @@ begin
       Exit
     end;
   end
+  // Validações do salário sem adiantamento
   else
   begin
     if not ValidarDados(edtDiaPagamentoPadrao.Text, Inteiro) then
@@ -183,6 +194,7 @@ end;
 
 procedure TfrmSetup.ExibirLayoutSalario;
 begin
+  // Exibe os campos correspondentes a depender do tipo de salário selecionado
   if AppConfig.FlagParcelado then
   begin
     ltPagamentoParcelado.Visible := True;
@@ -198,19 +210,24 @@ end;
 procedure TfrmSetup.AtivarAnimacoesProximaPagina(ATabControl: TTabControl; ATabIndex: Integer);
 var
   Tab: TTabItem;
+  // Procedure recursiva interna
   procedure AtivarAnimacoes(AComponente: TFmxObject);
   var
     i: Integer;
   begin
+    // Se o componente atual for uma animação, ela é ativada
     if AComponente is TFloatAnimation then
       TFloatAnimation(AComponente).Enabled := True;
 
+    // Percorre todos os componentes filhos do componente atual, até encontrar uma animação
     for i := 0 to AComponente.ChildrenCount - 1 do
       AtivarAnimacoes(AComponente.Children[i]);
   end;
 begin
+  // Sai do método se a página atual for inválida
   if (ATabIndex < 0) or (ATabIndex >= ATabControl.TabCount) then Exit;
 
+  // Executa a procedure interna com base na página atual do TabControl
   Tab := tbcSetup.Tabs[ATabIndex];
   AtivarAnimacoes(Tab);
 end;
@@ -225,7 +242,7 @@ end;
 
 procedure TfrmSetup.FormCreate(Sender: TObject);
 var
-  DAO : TConfigGeralDAO;
+  DAO: TConfigGeralDAO;
 begin
   tbcSetup.TabIndex := 0;
 end;
