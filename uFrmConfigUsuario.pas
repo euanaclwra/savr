@@ -5,7 +5,7 @@ interface
 uses
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.Objects,
-  FMX.Controls.Presentation, FMX.StdCtrls;
+  FMX.Controls.Presentation, FMX.StdCtrls, FMX.Layouts, FMX.Edit, uAppGlobals;
 
 type
   TfrmConfigUsuario = class(TForm)
@@ -16,8 +16,14 @@ type
     btnSalvar: TSpeedButton;
     rtSalvar: TRectangle;
     txtSalvar: TText;
+    ltConfiguracoes: TLayout;
+    ltNomeUsuario: TLayout;
+    txtNomeUsuario: TText;
+    edtNomeUsuario: TEdit;
+    lnNomeUsuario: TLine;
+    procedure FormShow(Sender: TObject);
   private
-    { Private declarations }
+    procedure ExibeNomeUsuario;
   public
     { Public declarations }
   end;
@@ -28,5 +34,16 @@ var
 implementation
 
 {$R *.fmx}
+
+procedure TfrmConfigUsuario.FormShow(Sender: TObject);
+begin
+  ExibeNomeUsuario;
+end;
+
+procedure TfrmConfigUsuario.ExibeNomeUsuario;
+begin
+  if Assigned(AppConfig) then
+    edtNomeUsuario.Text := AppConfig.NomeUsuario;
+end;
 
 end.
