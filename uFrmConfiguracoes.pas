@@ -5,11 +5,11 @@ interface
 uses
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.Objects,
-  FMX.Controls.Presentation, FMX.StdCtrls, FMX.Layouts;
+  FMX.Controls.Presentation, FMX.StdCtrls, FMX.Layouts, uFrmConfigUsuario;
 
 type
   TfrmConfiguracoes = class(TForm)
-    txtCategorias: TText;
+    txtConfiguracoes: TText;
     ltConfig: TLayout;
     btnUsuario: TSpeedButton;
     txtUsuario: TText;
@@ -21,6 +21,7 @@ type
     imgRenda: TImage;
     Line1: TLine;
     imgArrowRenda: TImage;
+    procedure btnUsuarioClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -33,5 +34,10 @@ var
 implementation
 
 {$R *.fmx}
+
+procedure TfrmConfiguracoes.btnUsuarioClick(Sender: TObject);
+begin
+  frmConfigUsuario.ShowModal;
+end;
 
 end.

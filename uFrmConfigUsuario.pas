@@ -1,0 +1,32 @@
+unit uFrmConfigUsuario;
+
+interface
+
+uses
+  System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
+  FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.Objects,
+  FMX.Controls.Presentation, FMX.StdCtrls;
+
+type
+  TfrmConfigUsuario = class(TForm)
+    txtConfigUsuario: TText;
+    btnCancelar: TSpeedButton;
+    rtCancelar: TRectangle;
+    txtCancelar: TText;
+    btnSalvar: TSpeedButton;
+    rtSalvar: TRectangle;
+    txtSalvar: TText;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmConfigUsuario: TfrmConfigUsuario;
+
+implementation
+
+{$R *.fmx}
+
+end.

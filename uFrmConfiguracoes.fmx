@@ -5,11 +5,12 @@ object frmConfiguracoes: TfrmConfiguracoes
   ClientHeight = 480
   ClientWidth = 640
   Fill.Kind = Solid
+  WindowState = wsMaximized
   FormFactor.Width = 320
   FormFactor.Height = 480
   FormFactor.Devices = [Desktop]
   DesignerMasterStyle = 0
-  object txtCategorias: TText
+  object txtConfiguracoes: TText
     Align = Top
     Margins.Left = 20.000000000000000000
     Margins.Top = 20.000000000000000000
@@ -44,6 +45,7 @@ object frmConfiguracoes: TfrmConfiguracoes
       TextSettings.FontColor = claLightgray
       TextSettings.HorzAlign = Leading
       TextSettings.Trimming = None
+      OnClick = btnUsuarioClick
       object txtUsuario: TText
         Align = Left
         Margins.Left = 50.000000000000000000
