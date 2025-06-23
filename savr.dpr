@@ -18,10 +18,10 @@ uses
   uBootstrap in 'uBootstrap.pas' {frmBootstrap},
   uFrmCategorias in 'uFrmCategorias.pas' {frmCategorias},
   uFrmCategoriaEditor in 'uFrmCategoriaEditor.pas' {frmCategoriaEditor},
-  uDialogHelper in 'uDialogHelper.pas',
   uCategoriaDAO in 'uCategoriaDAO.pas',
   uFrmDialog in 'uFrmDialog.pas' {frmDialog},
-  uFrmConfiguracoes in 'uFrmConfiguracoes.pas' {frmConfiguracoes};
+  uFrmConfiguracoes in 'uFrmConfiguracoes.pas' {frmConfiguracoes},
+  uFrmConfigUsuario in 'uFrmConfigUsuario.pas' {frmConfigUsuario};
 
 {$R *.res}
 
@@ -45,5 +45,6 @@ begin
   Application.CreateForm(TfrmCategoriaEditor, frmCategoriaEditor);
   Application.CreateForm(TfrmDialog, frmDialog);
   Application.CreateForm(TfrmConfiguracoes, frmConfiguracoes);
+  Application.CreateForm(TfrmConfigUsuario, frmConfigUsuario);
   Application.Run;
 end.

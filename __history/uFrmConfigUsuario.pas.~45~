@@ -28,7 +28,6 @@ type
   private
     procedure ExibeNomeUsuario;
     procedure SalvaNomeUsuario;
-    procedure AlteraNomeTelaInicial;
   public
     { Public declarations }
   end;
@@ -60,7 +59,10 @@ end;
 procedure TfrmConfigUsuario.btnSalvarClick(Sender: TObject);
 begin
   if ValidarDados(edtNomeUsuario.Text, Texto) then
-    SalvaNomeUsuario
+  begin
+    SalvaNomeUsuario;
+    Close
+  end
   else
     ExibirMensagemErro(edtNomeUsuario);
 end;
@@ -69,11 +71,6 @@ procedure TfrmConfigUsuario.ExibeNomeUsuario;
 begin
   if Assigned(AppConfig) then
     edtNomeUsuario.Text := AppConfig.NomeUsuario;
-end;
-
-procedure TfrmConfigUsuario.AlteraNomeTelaInicial;
-begin
-  //
 end;
 
 procedure TfrmConfigUsuario.SalvaNomeUsuario;

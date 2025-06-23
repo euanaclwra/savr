@@ -158,7 +158,6 @@
             <Form>frmCategoriaEditor</Form>
             <FormType>fmx</FormType>
         </DCCReference>
-        <DCCReference Include="uDialogHelper.pas"/>
         <DCCReference Include="uCategoriaDAO.pas"/>
         <DCCReference Include="uFrmDialog.pas">
             <Form>frmDialog</Form>
@@ -166,6 +165,10 @@
         </DCCReference>
         <DCCReference Include="uFrmConfiguracoes.pas">
             <Form>frmConfiguracoes</Form>
+            <FormType>fmx</FormType>
+        </DCCReference>
+        <DCCReference Include="uFrmConfigUsuario.pas">
+            <Form>frmConfigUsuario</Form>
             <FormType>fmx</FormType>
         </DCCReference>
         <BuildConfiguration Include="Base">

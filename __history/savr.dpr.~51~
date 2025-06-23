@@ -14,7 +14,14 @@ uses
   uConfigGeralDAO in 'uConfigGeralDAO.pas',
   uAppGlobals in 'uAppGlobals.pas',
   uEditMoeda in 'uEditMoeda.pas',
-  uUtils in 'uUtils.pas';
+  uUtils in 'uUtils.pas',
+  uBootstrap in 'uBootstrap.pas' {frmBootstrap},
+  uFrmCategorias in 'uFrmCategorias.pas' {frmCategorias},
+  uFrmCategoriaEditor in 'uFrmCategoriaEditor.pas' {frmCategoriaEditor},
+  uDialogHelper in 'uDialogHelper.pas',
+  uCategoriaDAO in 'uCategoriaDAO.pas',
+  uFrmDialog in 'uFrmDialog.pas' {frmDialog},
+  uFrmConfiguracoes in 'uFrmConfiguracoes.pas' {frmConfiguracoes};
 
 {$R *.res}
 
@@ -31,7 +38,12 @@ begin
 
   AppConfig := TConfigGeralDAO.UpdateInstanciaConfig;
 
+  Application.CreateForm(TfrmBootstrap, frmBootstrap);
   Application.CreateForm(TfrmMain, frmMain);
   Application.CreateForm(TfrmSetup, frmSetup);
+  Application.CreateForm(TfrmCategorias, frmCategorias);
+  Application.CreateForm(TfrmCategoriaEditor, frmCategoriaEditor);
+  Application.CreateForm(TfrmDialog, frmDialog);
+  Application.CreateForm(TfrmConfiguracoes, frmConfiguracoes);
   Application.Run;
 end.

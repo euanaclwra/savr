@@ -6,7 +6,7 @@ uses
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.Objects,
   FMX.Controls.Presentation, FMX.StdCtrls, FMX.Layouts, FMX.Edit, uAppGlobals,
-  uFrmDialog, uUtils, uConfigGeral, uConfigGeralDAO, uMain;
+  uFrmDialog, uUtils, uConfigGeral, uConfigGeralDAO;
 
 type
   TfrmConfigUsuario = class(TForm)
@@ -28,7 +28,6 @@ type
   private
     procedure ExibeNomeUsuario;
     procedure SalvaNomeUsuario;
-    procedure AlteraNomeTelaInicial;
   public
     { Public declarations }
   end;
@@ -37,6 +36,8 @@ var
   frmConfigUsuario: TfrmConfigUsuario;
 
 implementation
+
+uses uMain;
 
 {$R *.fmx}
 
@@ -60,7 +61,10 @@ end;
 procedure TfrmConfigUsuario.btnSalvarClick(Sender: TObject);
 begin
   if ValidarDados(edtNomeUsuario.Text, Texto) then
-    SalvaNomeUsuario
+  begin
+    SalvaNomeUsuario;
+    Close
+  end
   else
     ExibirMensagemErro(edtNomeUsuario);
 end;
@@ -69,11 +73,6 @@ procedure TfrmConfigUsuario.ExibeNomeUsuario;
 begin
   if Assigned(AppConfig) then
     edtNomeUsuario.Text := AppConfig.NomeUsuario;
-end;
-
-procedure TfrmConfigUsuario.AlteraNomeTelaInicial;
-begin
-  //
 end;
 
 procedure TfrmConfigUsuario.SalvaNomeUsuario;
@@ -90,6 +89,7 @@ begin
     begin
       // Atualiza o objeto global de configurações
       AppConfig := DAO.UpdateInstanciaConfig;
+      frmMain.ExibirNomeUsuario;
     end
     else
       Exit;

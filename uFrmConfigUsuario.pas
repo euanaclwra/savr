@@ -37,6 +37,8 @@ var
 
 implementation
 
+uses uMain;
+
 {$R *.fmx}
 
 procedure TfrmConfigUsuario.FormShow(Sender: TObject);
@@ -87,6 +89,8 @@ begin
     begin
       // Atualiza o objeto global de configurações
       AppConfig := DAO.UpdateInstanciaConfig;
+      // Atualiza a exibição do nome na tela inicial
+      frmMain.ExibirNomeUsuario;
     end
     else
       Exit;
