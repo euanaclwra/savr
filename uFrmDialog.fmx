@@ -10,7 +10,6 @@ object frmDialog: TfrmDialog
   Fill.Kind = Solid
   Position = ScreenCenter
   StyleBook = StyleBook1
-  FormStyle = Popup
   FormFactor.Width = 320
   FormFactor.Height = 480
   FormFactor.Devices = [Desktop]

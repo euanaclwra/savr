@@ -49,12 +49,8 @@ implementation
 procedure TfrmCategoriaEditor.btnCancelarClick(Sender: TObject);
 begin
   // Exibe a mensagem de confirmação
-  frmDialog.ShowConfirmDialog('Tem certeza? Nenhum dado alterado será salvo!',
-  procedure
-  begin
-    Close;
-  end
-);
+  if frmDialog.ShowConfirmDialog('Tem certeza? Nenhum dado alterado será salvo!') then
+    ShowMessage('Mostrando!');
 end;
 
 procedure TfrmCategoriaEditor.btnSalvarClick(Sender: TObject);

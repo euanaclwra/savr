@@ -37,7 +37,7 @@ implementation
 
 procedure TfrmConfiguracoes.btnUsuarioClick(Sender: TObject);
 begin
-  frmConfigUsuario.ShowModal;
+  frmConfigUsuario.Show;
 end;
 
 end.

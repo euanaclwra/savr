@@ -56,7 +56,8 @@ begin
     Categoria := TCategoria(Item.TagObject);
 
   // Exibe a mensagem de confirmação
-  frmDialog.ShowConfirmDialog('Tem certeza que deseja excluir?',
+  frmDialog.ShowConfirmDialog('Tem certeza que deseja excluir?'
+  {,
   procedure
   var
     DAO: TCategoriaDAO;
@@ -69,7 +70,7 @@ begin
     finally
       DAO.Free;
     end;
-  end
+  end }
 );
   end;
 end;

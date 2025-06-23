@@ -1547,6 +1547,7 @@ object frmCategorias: TfrmCategorias
       Size.Height = 296.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 1
+      DisableFocusEffect = True
       DefaultItemStyles.ItemStyle = 'listboxitemstyle'
       DefaultItemStyles.GroupHeaderStyle = ''
       DefaultItemStyles.GroupFooterStyle = ''

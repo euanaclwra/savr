@@ -25,9 +25,9 @@ type
     procedure btnNoClick(Sender: TObject);
     procedure btnOkClick(Sender: TObject);
   private
-    FOnConfirm: TConfirmCallback;
+
   public
-    class procedure ShowConfirmDialog(Msg: String; OnConfirm: TConfirmCallback);
+    class function ShowConfirmDialog(Msg: String): Boolean;
     class procedure ShowSuccessDialog(Msg: String);
   end;
 
@@ -40,43 +40,42 @@ implementation
 
 procedure TfrmDialog.btnNoClick(Sender: TObject);
 begin
-  Close;
+  ModalResult := mrNone;
 end;
 
 procedure TfrmDialog.btnOkClick(Sender: TObject);
 begin
-  Close;
+  ModalResult := mrYes;
 end;
 
 procedure TfrmDialog.btnYesClick(Sender: TObject);
 begin
-  if Assigned(FOnConfirm) then
-    FOnConfirm;
-  Close;
+  ModalResult := mrYes;
 end;
 
-class procedure TfrmDialog.ShowConfirmDialog(Msg: string; OnConfirm: TConfirmCallback);
+class function TfrmDialog.ShowConfirmDialog(Msg: String): Boolean;
 var
   Dialog: TfrmDialog;
 begin
   Dialog := TfrmDialog.Create(nil);
 
-  // Ativa os elementos visuais de confirmação
-  Dialog.btnNo.Visible := True;
-  Dialog.btnYes.Visible := True;
-  Dialog.iconConfirm.Visible := True;
-  Dialog.iconSuccess.Visible := False;
-  Dialog.btnOk.Visible := False;
+  try
+    // Ativa os elementos visuais de confirmação
+    Dialog.btnNo.Visible := True;
+    Dialog.btnYes.Visible := True;
+    Dialog.iconConfirm.Visible := True;
+    Dialog.iconSuccess.Visible := False;
+    Dialog.btnOk.Visible := False;
 
-  // Define o título e o texto da mensagem
-  Dialog.titleMessage.Text := 'Espere!';
-  Dialog.txtMessage.Text := Msg;
+    // Define o título e o texto da mensagem
+    Dialog.titleMessage.Text := 'Espere!';
+    Dialog.txtMessage.Text := Msg;
 
-  // Define a ação de confirmação
-  Dialog.FOnConfirm := OnConfirm;
-
-  // Exibe o pop-up
-  Dialog.Show;
+    // Exibe o pop-up
+    Result := Dialog.ShowModal = mrYes;
+  finally
+    Dialog.DisposeOf;
+  end;
 end;
 
 class procedure TfrmDialog.ShowSuccessDialog(Msg: string);

@@ -1,0 +1,10 @@
+unit uDialogHelper;
+
+interface
+
+uses
+  System.SysUtils, FMX.Dialogs, FMX.DialogService;
+
+implementation
+
+end.
