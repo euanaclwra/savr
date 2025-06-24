@@ -186,6 +186,7 @@ object frmConfiguracoes: TfrmConfiguracoes
       TextSettings.FontColor = claLightgray
       TextSettings.HorzAlign = Leading
       TextSettings.Trimming = None
+      OnClick = btnRendaClick
       object txtRenda: TText
         Align = Left
         Margins.Left = 50.000000000000000000
