@@ -52,7 +52,26 @@ begin
 
   if Assigned(Item) and Assigned(Item.TagObject) then
   begin
+    // Obtém a categoria vinculada ao item selecionado
     Categoria := TCategoria(Item.TagObject);
+
+  // Exibe a mensagem de confirmação
+  frmDialog.ShowConfirmDialog('Tem certeza que deseja excluir?'
+  {,
+  procedure
+  var
+    DAO: TCategoriaDAO;
+  begin
+    DAO := TCategoriaDAO.Create;
+    try
+      // Exclui a categoria e atualiza a lista
+      DAO.ExcluirCategoria(Categoria);
+      CarregaListaCategorias;
+    finally
+      DAO.Free;
+    end;
+  end }
+);
   end;
 end;
 
@@ -68,6 +87,7 @@ begin
 
   if Assigned(Item) and Assigned(Item.TagObject) then
   begin
+    // Obtém a categoria vinculada ao item selecionado
     Categoria := TCategoria(Item.TagObject);
 
     // Cria o form de edição
@@ -154,6 +174,7 @@ begin
   LabelNome := TText(AItem.FindStyleResource('nametext'));
   LabelTipo := TText(AItem.FindStyleResource('typetext'));
   BtnEditar := TButton(AItem.FindStyleResource('editbutton'));
+  BtnExcluir := TButton(AItem.FindStyleResource('deletebutton'));
 
   // Atualiza os textos se os elementos forem encontrados
   if Assigned(LabelNome) then
@@ -162,9 +183,12 @@ begin
   if Assigned(LabelTipo) then
     LabelTipo.Text := CatToStrLegivel(ACategoria.Tipo);
 
-  // Atribui os eventos aos respectivos botões
+  // Atribui os eventos de clique aos respectivos botões
   if Assigned(BtnEditar) then
     BtnEditar.OnClick := btnEditarClick;
+
+  if Assigned(BtnExcluir) then
+    BtnExcluir.OnClick := btnExcluirClick;
 end;
 
 procedure TfrmCategorias.LiberaListBoxCategorias;

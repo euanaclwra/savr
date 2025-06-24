@@ -26,6 +26,7 @@ type
     procedure btnEditarClick(Sender: TObject);
     procedure btnExcluirClick(Sender: TObject);
   private
+    procedure ExcluiCategoria(ACategoria: TCategoria);
     procedure CarregaListaCategorias;
     procedure PreencheLabelsItemCategoria(AItem: TListBoxItem; ACategoria: TCategoria);
     procedure LiberaListBoxCategorias;
@@ -52,7 +53,26 @@ begin
 
   if Assigned(Item) and Assigned(Item.TagObject) then
   begin
+    // Obtém a categoria vinculada ao item selecionado
     Categoria := TCategoria(Item.TagObject);
+
+    // Exibe a mensagem de confirmação
+    if TfrmDialog.ShowConfirmDialog('Tem certeza? Nenhum dado alterado será salvo!') then
+    ExcluiCategoria(Categoria);
+  end;
+end;
+
+procedure TfrmCategorias.ExcluiCategoria(ACategoria: TCategoria);
+var
+  DAO: TCategoriaDAO;
+begin
+  DAO := TCategoriaDAO.Create;
+  try
+    // Exclui a categoria e atualiza a lista
+    DAO.ExcluirCategoria(ACategoria);
+    CarregaListaCategorias;
+  finally
+    DAO.Free;
   end;
 end;
 
@@ -68,6 +88,7 @@ begin
 
   if Assigned(Item) and Assigned(Item.TagObject) then
   begin
+    // Obtém a categoria vinculada ao item selecionado
     Categoria := TCategoria(Item.TagObject);
 
     // Cria o form de edição
@@ -144,6 +165,7 @@ procedure TfrmCategorias.PreencheLabelsItemCategoria(AItem: TListBoxItem; ACateg
 var
   LabelNome, LabelTipo: TText;
   BtnEditar: TButton;
+  BtnExcluir: TButton;
 begin
   // Aplica o estilo personalizado
   AItem.StyleLookup :=  'itemCategoriaStyle';
@@ -153,6 +175,7 @@ begin
   LabelNome := TText(AItem.FindStyleResource('nametext'));
   LabelTipo := TText(AItem.FindStyleResource('typetext'));
   BtnEditar := TButton(AItem.FindStyleResource('editbutton'));
+  BtnExcluir := TButton(AItem.FindStyleResource('deletebutton'));
 
   // Atualiza os textos se os elementos forem encontrados
   if Assigned(LabelNome) then
@@ -161,9 +184,12 @@ begin
   if Assigned(LabelTipo) then
     LabelTipo.Text := CatToStrLegivel(ACategoria.Tipo);
 
-  // Atribui o método de edição ao evento de clique do elemento
+  // Atribui os eventos de clique aos respectivos botões
   if Assigned(BtnEditar) then
     BtnEditar.OnClick := btnEditarClick;
+
+  if Assigned(BtnExcluir) then
+    BtnExcluir.OnClick := btnExcluirClick;
 end;
 
 procedure TfrmCategorias.LiberaListBoxCategorias;

@@ -5,7 +5,7 @@ interface
 uses
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.Objects,
-  FMX.Controls.Presentation, FMX.Edit, FMX.StdCtrls, FMX.Layouts, uDialogHelper,
+  FMX.Controls.Presentation, FMX.Edit, FMX.StdCtrls, FMX.Layouts, uFrmDialog,
   uUtils, uCategoria, uCategoriaDAO;
 
 type
@@ -48,12 +48,9 @@ implementation
 
 procedure TfrmCategoriaEditor.btnCancelarClick(Sender: TObject);
 begin
-  if edtNomeCategoria.Text <> '' then
-    TDialogHelper.Confirmar('Tem certeza que deseja sair? Nenhum dado será salvo!', procedure begin Close; end)
-  else
-  begin
-    Close;
-  end;
+  // Exibe a mensagem de confirmação
+  if frmDialog.ShowConfirmDialog('Tem certeza? Nenhum dado alterado será salvo!') then
+    ShowMessage('Mostrando!');
 end;
 
 procedure TfrmCategoriaEditor.btnSalvarClick(Sender: TObject);
@@ -87,12 +84,14 @@ begin
   LimparCampos;
   CategoriaSalva := False;
 
+  // Se alguma categoria foi selecionada para edição, exibe seus dados nos campos
   if Assigned(CategoriaEmEdicao) then
     GetDadosCategoriaSelecionada(CategoriaEmEdicao);
 end;
 
 procedure TfrmCategoriaEditor.GetDadosCategoriaSelecionada(ACategoria: TCategoria);
 begin
+  // Preenche os campos de acordo com a categoria selecionada para edição
   edtNomeCategoria.Text := ACategoria.Nome;
   if ACategoria.Tipo = tcDespesa then
   rdDespesa.IsChecked := True;
@@ -105,9 +104,15 @@ begin
   Result := nil;
 
   try
+    // Cria um objeto de categoria com base nas informações da tela
+    // É esse o objeto enviado como parâmetro ao salvar a categoria no BD
     NovaCat := TCategoria.Create;
     NovaCat.Nome := edtNomeCategoria.Text;
     NovaCat.Tipo := GetTipoCategoria;
+
+    if CategoriaEmEdicao <> nil then
+      NovaCat.ID := CategoriaEmEdicao.ID;
+
     Result := NovaCat;
   except
       on E: Exception do

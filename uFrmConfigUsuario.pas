@@ -50,7 +50,8 @@ end;
 procedure TfrmConfigUsuario.btnCancelarClick(Sender: TObject);
 begin
   // Exibe a mensagem de confirmação
-  TfrmDialog.ShowConfirmDialog('Tem certeza? Nenhum dado alterado será salvo!');
+  if TfrmDialog.ShowConfirmDialog('Tem certeza? Nenhum dado alterado será salvo!') then
+    Close;
 end;
 
 procedure TfrmConfigUsuario.btnSalvarClick(Sender: TObject);

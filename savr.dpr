@@ -43,7 +43,6 @@ begin
   Application.CreateForm(TfrmSetup, frmSetup);
   Application.CreateForm(TfrmCategorias, frmCategorias);
   Application.CreateForm(TfrmCategoriaEditor, frmCategoriaEditor);
-  Application.CreateForm(TfrmDialog, frmDialog);
   Application.CreateForm(TfrmConfiguracoes, frmConfiguracoes);
   Application.CreateForm(TfrmConfigUsuario, frmConfigUsuario);
   Application.Run;

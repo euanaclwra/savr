@@ -26,6 +26,7 @@ type
     procedure btnEditarClick(Sender: TObject);
     procedure btnExcluirClick(Sender: TObject);
   private
+    procedure ExcluiCategoria(ACategoria: TCategoria);
     procedure CarregaListaCategorias;
     procedure PreencheLabelsItemCategoria(AItem: TListBoxItem; ACategoria: TCategoria);
     procedure LiberaListBoxCategorias;
@@ -55,23 +56,23 @@ begin
     // Obtém a categoria vinculada ao item selecionado
     Categoria := TCategoria(Item.TagObject);
 
-  // Exibe a mensagem de confirmação
-  frmDialog.ShowConfirmDialog('Tem certeza que deseja excluir?'
-  {,
-  procedure
-  var
-    DAO: TCategoriaDAO;
-  begin
-    DAO := TCategoriaDAO.Create;
-    try
-      // Exclui a categoria e atualiza a lista
-      DAO.ExcluirCategoria(Categoria);
-      CarregaListaCategorias;
-    finally
-      DAO.Free;
-    end;
-  end }
-);
+    // Exibe a mensagem de confirmação
+    if TfrmDialog.ShowConfirmDialog('Tem certeza que deseja excluir?') then
+    ExcluiCategoria(Categoria);
+  end;
+end;
+
+procedure TfrmCategorias.ExcluiCategoria(ACategoria: TCategoria);
+var
+  DAO: TCategoriaDAO;
+begin
+  DAO := TCategoriaDAO.Create;
+  try
+    // Exclui a categoria e atualiza a lista
+    DAO.ExcluirCategoria(ACategoria);
+    CarregaListaCategorias;
+  finally
+    DAO.Free;
   end;
 end;
 
