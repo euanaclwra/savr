@@ -21,7 +21,8 @@ uses
   uCategoriaDAO in 'uCategoriaDAO.pas',
   uFrmDialog in 'uFrmDialog.pas' {frmDialog},
   uFrmConfiguracoes in 'uFrmConfiguracoes.pas' {frmConfiguracoes},
-  uFrmConfigUsuario in 'uFrmConfigUsuario.pas' {frmConfigUsuario};
+  uFrmConfigUsuario in 'uFrmConfigUsuario.pas' {frmConfigUsuario},
+  uFrmConfigRenda in 'uFrmConfigRenda.pas' {frmConfigRenda};
 
 {$R *.res}
 
@@ -45,5 +46,6 @@ begin
   Application.CreateForm(TfrmCategoriaEditor, frmCategoriaEditor);
   Application.CreateForm(TfrmConfiguracoes, frmConfiguracoes);
   Application.CreateForm(TfrmConfigUsuario, frmConfigUsuario);
+  Application.CreateForm(TfrmConfigRenda, frmConfigRenda);
   Application.Run;
 end.
