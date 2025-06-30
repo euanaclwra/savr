@@ -24,9 +24,16 @@ type
     edtValor: TEditMoeda;
     StyleBook1: TStyleBook;
     ckbAdiantamento: TCheckBox;
-    txtDiaRenda: TText;
+    txtDiaPagamento: TText;
     edtDiaPagamento: TEdit;
     lnDiaPagamento: TLine;
+    edtPctAdiantamento: TEditMoeda;
+    lnPctAdiantamento: TLine;
+    txtPctAdiantamento: TText;
+    ltAdiantamento: TLayout;
+    edtDiaAdiantamento: TEdit;
+    lnDiaAdiantamento: TLine;
+    txtDiaAdiantamento: TText;
     procedure btnCancelarClick(Sender: TObject);
   private
     { Private declarations }
