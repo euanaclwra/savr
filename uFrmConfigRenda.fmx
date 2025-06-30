@@ -9,6 +9,7 @@ object frmConfigRenda: TfrmConfigRenda
   FormFactor.Width = 320
   FormFactor.Height = 480
   FormFactor.Devices = [Desktop]
+  OnShow = FormShow
   DesignerMasterStyle = 0
   object txtConfigRenda: TText
     Align = Top
@@ -193,7 +194,7 @@ object frmConfigRenda: TfrmConfigRenda
         Touch.InteractiveGestures = [LongTap, DoubleTap]
         TabOrder = 1
         KeyboardType = NumberPad
-        FilterChar = '0123456789'
+        FilterChar = '0123456789,.'
         TextSettings.Font.Family = 'Montserrat'
         TextSettings.Font.Size = 11.000000000000000000
         TextSettings.FontColor = xFF34495E
@@ -280,7 +281,7 @@ object frmConfigRenda: TfrmConfigRenda
         Touch.InteractiveGestures = [LongTap, DoubleTap]
         TabOrder = 1
         KeyboardType = NumberPad
-        FilterChar = '0123456789'
+        FilterChar = '0123456789,.'
         TextSettings.Font.Family = 'Montserrat'
         TextSettings.Font.Size = 11.000000000000000000
         TextSettings.FontColor = xFF34495E

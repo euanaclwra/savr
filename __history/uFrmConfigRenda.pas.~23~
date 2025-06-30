@@ -6,7 +6,7 @@ uses
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.Objects,
   FMX.Controls.Presentation, FMX.StdCtrls, uFrmDialog, FMX.Edit, FMX.Layouts,
-  uEditMoeda;
+  uEditMoeda, uConfigGeral, uConfigGeralDAO, uAppGlobals, uUtils;
 
 type
   TfrmConfigRenda = class(TForm)
@@ -24,10 +24,20 @@ type
     edtValor: TEditMoeda;
     StyleBook1: TStyleBook;
     ckbAdiantamento: TCheckBox;
-    txtDiaRenda: TText;
+    txtDiaPagamento: TText;
+    edtDiaPagamento: TEdit;
+    lnDiaPagamento: TLine;
+    edtPctAdiantamento: TEditMoeda;
+    lnPctAdiantamento: TLine;
+    txtPctAdiantamento: TText;
+    ltAdiantamento: TLayout;
+    edtDiaAdiantamento: TEdit;
+    lnDiaAdiantamento: TLine;
+    txtDiaAdiantamento: TText;
     procedure btnCancelarClick(Sender: TObject);
   private
-    { Private declarations }
+    procedure CarregaConfiguracoesRenda;
+    procedure CarregaConfiguracoesAdiantamento;
   public
     { Public declarations }
   end;
@@ -44,6 +54,20 @@ begin
   // Exibe a mensagem de confirmação
   if TfrmDialog.ShowConfirmDialog('Tem certeza? Nenhuma alteração será salva!') then
     Close;
+end;
+
+procedure TfrmConfigRenda.CarregaConfiguracoesRenda;
+begin
+  if Assigned(AppConfig) then
+  begin
+    edtValor.Text := FloatToStr(AppConfig.ValorSalario);
+    edtDiaPagamento.Text := IntToStr(AppConfig.DiaPagamentoFinal);
+  end;
+end;
+
+procedure TfrmConfigRenda.CarregaConfiguracoesAdiantamento;
+begin
+  //
 end;
 
 end.

@@ -67,6 +67,7 @@ end;
 
 procedure TfrmConfigUsuario.ExibeNomeUsuario;
 begin
+  // Obtém o nome do usuário das configurações globais e exibe na tela
   if Assigned(AppConfig) then
     edtNomeUsuario.Text := AppConfig.NomeUsuario;
 end;

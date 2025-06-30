@@ -37,6 +37,8 @@ var
 
 implementation
 
+uses uMain;
+
 {$R *.fmx}
 
 procedure TfrmConfigUsuario.FormShow(Sender: TObject);
@@ -48,12 +50,8 @@ end;
 procedure TfrmConfigUsuario.btnCancelarClick(Sender: TObject);
 begin
   // Exibe a mensagem de confirmação
-  frmDialog.ShowConfirmDialog('Tem certeza? Nenhum dado alterado será salvo!',
-  procedure
-  begin
+  if TfrmDialog.ShowConfirmDialog('Tem certeza? Nenhuma alteração será salva!') then
     Close;
-  end
-);
 end;
 
 procedure TfrmConfigUsuario.btnSalvarClick(Sender: TObject);
@@ -69,6 +67,7 @@ end;
 
 procedure TfrmConfigUsuario.ExibeNomeUsuario;
 begin
+  // Obtém o nome do usuário das configurações globais
   if Assigned(AppConfig) then
     edtNomeUsuario.Text := AppConfig.NomeUsuario;
 end;
@@ -87,6 +86,8 @@ begin
     begin
       // Atualiza o objeto global de configurações
       AppConfig := DAO.UpdateInstanciaConfig;
+      // Atualiza a exibição do nome na tela inicial
+      frmMain.ExibirNomeUsuario;
     end
     else
       Exit;

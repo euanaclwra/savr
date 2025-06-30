@@ -5,20 +5,38 @@ interface
 uses
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.Objects,
-  FMX.Controls.Presentation, FMX.StdCtrls, uFrmDialog;
+  FMX.Controls.Presentation, FMX.StdCtrls, uFrmDialog, FMX.Edit, FMX.Layouts,
+  uEditMoeda, uConfigGeral, uConfigGeralDAO, uAppGlobals;
 
 type
   TfrmConfigRenda = class(TForm)
-    txtConfigUsuario: TText;
+    txtConfigRenda: TText;
     btnCancelar: TSpeedButton;
     rtCancelar: TRectangle;
     txtCancelar: TText;
     btnSalvar: TSpeedButton;
     rtSalvar: TRectangle;
     txtSalvar: TText;
+    ltConfiguracoes: TLayout;
+    ltRenda: TLayout;
+    txtValorRenda: TText;
+    lnValor: TLine;
+    edtValor: TEditMoeda;
+    StyleBook1: TStyleBook;
+    ckbAdiantamento: TCheckBox;
+    txtDiaPagamento: TText;
+    edtDiaPagamento: TEdit;
+    lnDiaPagamento: TLine;
+    edtPctAdiantamento: TEditMoeda;
+    lnPctAdiantamento: TLine;
+    txtPctAdiantamento: TText;
+    ltAdiantamento: TLayout;
+    edtDiaAdiantamento: TEdit;
+    lnDiaAdiantamento: TLine;
+    txtDiaAdiantamento: TText;
     procedure btnCancelarClick(Sender: TObject);
   private
-    { Private declarations }
+    procedure CarregaConfiguracoesRenda;
   public
     { Public declarations }
   end;
@@ -35,6 +53,11 @@ begin
   // Exibe a mensagem de confirmação
   if TfrmDialog.ShowConfirmDialog('Tem certeza? Nenhuma alteração será salva!') then
     Close;
+end;
+
+procedure TfrmConfigRenda.CarregaConfiguracoesRenda;
+begin
+  //
 end;
 
 end.
