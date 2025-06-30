@@ -213,7 +213,7 @@ object frmConfigRenda: TfrmConfigRenda
       object txtDiaRenda: TText
         Align = Right
         Margins.Left = 20.000000000000000000
-        Position.X = 400.000000000000000000
+        Position.X = 520.000000000000000000
         Size.Width = 120.000000000000000000
         Size.Height = 25.000000000000000000
         Size.PlatformDefault = False
@@ -224,43 +224,40 @@ object frmConfigRenda: TfrmConfigRenda
         TextSettings.FontColor = xFF34495E
         TextSettings.HorzAlign = Leading
       end
-      object edtDiaPagamento: TEdit
-        Touch.InteractiveGestures = [LongTap, DoubleTap]
-        Align = MostRight
-        StyleLookup = 'transparentedit'
-        TabOrder = 5
-        Position.X = 520.000000000000000000
-        Margins.Right = 20.000000000000000000
-        Size.Width = 100.000000000000000000
-        Size.Height = 25.000000000000000000
-        Size.PlatformDefault = False
-        object lnDiaPagamento: TLine
-          Align = Bottom
-          HitTest = False
-          LineType = Bottom
-          Position.Y = 19.000000000000000000
-          Size.Width = 100.000000000000000000
-          Size.Height = 6.000000000000000000
-          Size.PlatformDefault = False
-          Stroke.Color = xFF63C8C7
-        end
-      end
     end
     object ckbAdiantamento: TCheckBox
-      Align = Top
       StyledSettings = [Style]
-      Margins.Left = 20.000000000000000000
-      Margins.Top = 5.000000000000000000
+      Margins.Top = 70.000000000000000000
       Position.X = 20.000000000000000000
       Position.Y = 30.000000000000000000
-      Size.Width = 620.000000000000000000
+      Size.Width = 193.000000000000000000
       Size.Height = 19.000000000000000000
       Size.PlatformDefault = False
-      TabOrder = 5
+      TabOrder = 4
       Text = 'Possui valor de adiantamento?'
       TextSettings.Font.Family = 'Montserrat'
       TextSettings.Font.Size = 11.000000000000000000
       TextSettings.FontColor = xFF34495E
+    end
+    object edtDiaPagamento: TEdit
+      Touch.InteractiveGestures = [LongTap, DoubleTap]
+      StyleLookup = 'transparentedit'
+      TabOrder = 5
+      Position.X = 272.000000000000000000
+      Position.Y = 168.000000000000000000
+      Size.Width = 100.000000000000000000
+      Size.Height = 25.000000000000000000
+      Size.PlatformDefault = False
+      object lnDiaPagamento: TLine
+        Align = Bottom
+        HitTest = False
+        LineType = Bottom
+        Position.Y = 19.000000000000000000
+        Size.Width = 100.000000000000000000
+        Size.Height = 6.000000000000000000
+        Size.PlatformDefault = False
+        Stroke.Color = xFF63C8C7
+      end
     end
   end
   object StyleBook1: TStyleBook

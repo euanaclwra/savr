@@ -48,7 +48,7 @@ inherited frmSetup_Windows: TfrmSetup_Windows
         TextSettings.Font.StyleExt = {00060000000000000004000000}
       end
       inherited ltPagamentoPadrao: TLayout
-        TabOrder = 7
+        TabOrder = 9
       end
     end
   end

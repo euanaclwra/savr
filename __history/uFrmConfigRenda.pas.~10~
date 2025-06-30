@@ -25,8 +25,6 @@ type
     StyleBook1: TStyleBook;
     ckbAdiantamento: TCheckBox;
     txtDiaRenda: TText;
-    edtDiaPagamento: TEdit;
-    lnDiaPagamento: TLine;
     procedure btnCancelarClick(Sender: TObject);
   private
     { Private declarations }

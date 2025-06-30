@@ -1,30 +1,34 @@
-inherited frmSetup_Windows: TfrmSetup_Windows
+inherited frmSetup_Surface: TfrmSetup_Surface
+  ClientHeight = 1920
+  ClientWidth = 1080
   DesignerMasterStyle = 0
   inherited tbcSetup: TTabControl
+    Size.Width = 1080.000000000000000000
+    Size.Height = 1920.000000000000000000
     Sizes = (
-      760s
-      478s
-      760s
-      478s
-      760s
-      478s
-      760s
-      478s)
+      1080s
+      1920s
+      1080s
+      1920s
+      1080s
+      1920s
+      1080s
+      1920s)
     inherited itmWelcome: TTabItem
       ExplicitSize.cx = 8.000000000000000000
       ExplicitSize.cy = 8.000000000000000000
       inherited txtHello: TText
-        Opacity = 0.000000000000000000
+        Size.Width = 1080.000000000000000000
         TextSettings.Font.StyleExt = {00060000000000000004000000}
       end
       inherited txtWelcome: TText
-        Opacity = 0.000000000000000000
+        Size.Width = 1080.000000000000000000
         TextSettings.Font.StyleExt = {00060000000000000004000000}
       end
       inherited imgLogo: TImage
         MultiResBitmap.Height = 154
         MultiResBitmap.Width = 672
-        Opacity = 0.000000000000000000
+        Size.Width = 1080.000000000000000000
       end
     end
     inherited itmName: TTabItem
@@ -33,15 +37,21 @@ inherited frmSetup_Windows: TfrmSetup_Windows
       inherited txtName: TText
         TextSettings.Font.StyleExt = {00060000000000000004000000}
       end
-      inherited txtErrorName: TText
-        Opacity = 0.000000000000000000
-      end
     end
     inherited itmSalario: TTabItem
       ExplicitSize.cx = 8.000000000000000000
       ExplicitSize.cy = 8.000000000000000000
       inherited txtWelcomeName: TText
+        Position.Y = 736.000000000000000000
+        Size.Width = 1080.000000000000000000
         TextSettings.Font.StyleExt = {00060000000000000004000000}
+      end
+      inherited txtDados: TText
+        Position.Y = 772.000000000000000000
+        Size.Width = 1080.000000000000000000
+      end
+      inherited ltValorSalario: TLayout
+        Opacity = 0.000000000000000000
       end
     end
     inherited itmDatas: TTabItem
@@ -50,18 +60,27 @@ inherited frmSetup_Windows: TfrmSetup_Windows
       inherited txtLast: TText
         TextSettings.Font.StyleExt = {00060000000000000004000000}
       end
+      inherited ltPagamentoPadrao: TLayout
+        TabOrder = 7
+      end
     end
   end
   inherited btnProximo: TSpeedButton
     Opacity = 0.000000000000000000
+    Size.Width = 1065.000000000000000000
+    inherited txtProximo: TText
+      Position.X = 996.000000000000000000
+    end
     inherited imgProximo: TImage
       MultiResBitmap.Height = 256
       MultiResBitmap.Width = 256
+      Position.X = 1053.000000000000000000
     end
   end
   inherited btnVoltar: TSpeedButton
     StyledSettings = [Family, Style, FontColor]
     Opacity = 0.000000000000000000
+    Size.Width = 1065.000000000000000000
     inherited imgVoltar: TImage
       MultiResBitmap.Height = 256
       MultiResBitmap.Width = 256

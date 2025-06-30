@@ -247,13 +247,11 @@ object frmConfigRenda: TfrmConfigRenda
       end
     end
     object ckbAdiantamento: TCheckBox
-      Align = Top
+      Align = Bottom
       StyledSettings = [Style]
-      Margins.Left = 20.000000000000000000
-      Margins.Top = 5.000000000000000000
-      Position.X = 20.000000000000000000
-      Position.Y = 30.000000000000000000
-      Size.Width = 620.000000000000000000
+      Margins.Top = 70.000000000000000000
+      Position.Y = 262.000000000000000000
+      Size.Width = 640.000000000000000000
       Size.Height = 19.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 5

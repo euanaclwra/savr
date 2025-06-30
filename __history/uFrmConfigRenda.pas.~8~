@@ -18,15 +18,11 @@ type
     rtSalvar: TRectangle;
     txtSalvar: TText;
     ltConfiguracoes: TLayout;
-    ltRenda: TLayout;
-    txtValorRenda: TText;
+    ltValorRenda: TLayout;
+    txtNomeUsuario: TText;
     lnValor: TLine;
     edtValor: TEditMoeda;
     StyleBook1: TStyleBook;
-    ckbAdiantamento: TCheckBox;
-    txtDiaRenda: TText;
-    edtDiaPagamento: TEdit;
-    lnDiaPagamento: TLine;
     procedure btnCancelarClick(Sender: TObject);
   private
     { Private declarations }
