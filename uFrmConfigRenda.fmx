@@ -172,15 +172,15 @@ object frmConfigRenda: TfrmConfigRenda
     object ltRenda: TLayout
       Align = Top
       Size.Width = 640.000000000000000000
-      Size.Height = 25.000000000000000000
+      Size.Height = 20.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 0
       object txtValorRenda: TText
-        Align = Left
         Margins.Left = 20.000000000000000000
         Position.X = 20.000000000000000000
-        Size.Width = 120.000000000000000000
-        Size.Height = 25.000000000000000000
+        Position.Y = 10.000000000000000000
+        Size.Width = 115.000000000000000000
+        Size.Height = 10.000000000000000000
         Size.PlatformDefault = False
         Text = 'Valor da Renda Fixa:'
         TextSettings.Font.Family = 'Montserrat'
@@ -191,19 +191,18 @@ object frmConfigRenda: TfrmConfigRenda
       end
       object edtValor: TEditMoeda
         Touch.InteractiveGestures = [LongTap, DoubleTap]
-        Align = Left
         TabOrder = 1
         KeyboardType = NumberPad
         FilterChar = '0123456789'
         Position.X = 140.000000000000000000
         Size.Width = 151.000000000000000000
-        Size.Height = 25.000000000000000000
+        Size.Height = 20.000000000000000000
         Size.PlatformDefault = False
         object lnValor: TLine
           Align = Bottom
           HitTest = False
           LineType = Bottom
-          Position.Y = 19.000000000000000000
+          Position.Y = 14.000000000000000000
           Size.Width = 151.000000000000000000
           Size.Height = 6.000000000000000000
           Size.PlatformDefault = False
@@ -211,11 +210,11 @@ object frmConfigRenda: TfrmConfigRenda
         end
       end
       object txtDiaRenda: TText
-        Align = Right
         Margins.Left = 20.000000000000000000
-        Position.X = 400.000000000000000000
+        Position.X = 308.000000000000000000
+        Position.Y = 10.000000000000000000
         Size.Width = 120.000000000000000000
-        Size.Height = 25.000000000000000000
+        Size.Height = 10.000000000000000000
         Size.PlatformDefault = False
         Text = 'Dia do Recebimento:'
         TextSettings.Font.Family = 'Montserrat'
@@ -226,19 +225,18 @@ object frmConfigRenda: TfrmConfigRenda
       end
       object edtDiaPagamento: TEdit
         Touch.InteractiveGestures = [LongTap, DoubleTap]
-        Align = MostRight
         StyleLookup = 'transparentedit'
         TabOrder = 5
-        Position.X = 520.000000000000000000
+        Position.X = 432.000000000000000000
         Margins.Right = 20.000000000000000000
         Size.Width = 100.000000000000000000
-        Size.Height = 25.000000000000000000
+        Size.Height = 20.000000000000000000
         Size.PlatformDefault = False
         object lnDiaPagamento: TLine
           Align = Bottom
           HitTest = False
           LineType = Bottom
-          Position.Y = 19.000000000000000000
+          Position.Y = 14.000000000000000000
           Size.Width = 100.000000000000000000
           Size.Height = 6.000000000000000000
           Size.PlatformDefault = False
@@ -250,9 +248,9 @@ object frmConfigRenda: TfrmConfigRenda
       Align = Top
       StyledSettings = [Style]
       Margins.Left = 20.000000000000000000
-      Margins.Top = 5.000000000000000000
+      Margins.Top = 15.000000000000000000
       Position.X = 20.000000000000000000
-      Position.Y = 30.000000000000000000
+      Position.Y = 35.000000000000000000
       Size.Width = 620.000000000000000000
       Size.Height = 19.000000000000000000
       Size.PlatformDefault = False

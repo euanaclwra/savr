@@ -177,11 +177,11 @@ object frmConfigUsuario: TfrmConfigUsuario
       Size.PlatformDefault = False
       TabOrder = 0
       object txtNomeUsuario: TText
-        Align = Left
         Margins.Left = 20.000000000000000000
         Position.X = 20.000000000000000000
-        Size.Width = 113.000000000000000000
-        Size.Height = 25.000000000000000000
+        Position.Y = 15.000000000000000000
+        Size.Width = 105.000000000000000000
+        Size.Height = 10.000000000000000000
         Size.PlatformDefault = False
         Text = 'Nome do Usu'#225'rio:'
         TextSettings.Font.Family = 'Montserrat'
@@ -192,13 +192,12 @@ object frmConfigUsuario: TfrmConfigUsuario
       end
       object edtNomeUsuario: TEdit
         Touch.InteractiveGestures = [LongTap, DoubleTap]
-        Align = Left
         StyleLookup = 'transparentedit'
         TabOrder = 1
         TextSettings.Font.Family = 'Montserrat'
         TextSettings.Font.Size = 11.000000000000000000
         TextSettings.FontColor = xFF34495E
-        Position.X = 138.000000000000000000
+        Position.X = 130.000000000000000000
         Margins.Left = 5.000000000000000000
         Size.Width = 150.000000000000000000
         Size.Height = 25.000000000000000000
