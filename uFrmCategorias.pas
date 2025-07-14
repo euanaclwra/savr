@@ -143,7 +143,7 @@ begin
     try
       for Categoria in Lista do
       begin
-        // Para cada categoria, é exibido um novo ListBoxItem
+        // Para cada categoria, é criado um novo ListBoxItem
         Item := TListBoxItem.Create(nil);
         Item.Parent := lbCategorias;
         // Preenche os elementos visuais do item
