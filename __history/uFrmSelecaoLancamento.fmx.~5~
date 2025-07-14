@@ -1,0 +1,27 @@
+object frmSelecaoLancamento: TfrmSelecaoLancamento
+  Left = 0
+  Top = 0
+  Caption = 'Tipo de Lan'#231'amento'
+  ClientHeight = 300
+  ClientWidth = 300
+  Fill.Kind = Solid
+  Position = ScreenCenter
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  DesignerMasterStyle = 0
+  object RadioButton1: TRadioButton
+    Position.X = 104.000000000000000000
+    Position.Y = 152.000000000000000000
+    TabOrder = 1
+    Text = 'RadioButton1'
+  end
+  object ltGroupRadio: TLayout
+    Align = Horizontal
+    Position.Y = 128.000000000000000000
+    Size.Width = 300.000000000000000000
+    Size.Height = 241.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 2
+  end
+end

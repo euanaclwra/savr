@@ -1,0 +1,37 @@
+object frmSelecaoLancamento: TfrmSelecaoLancamento
+  Left = 0
+  Top = 0
+  Caption = 'Tipo de Lan'#231'amento'
+  ClientHeight = 250
+  ClientWidth = 250
+  Fill.Kind = Solid
+  Position = ScreenCenter
+  StyleBook = StyleBook1
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  DesignerMasterStyle = 0
+  object ltGroupRadio: TLayout
+    Align = Center
+    Size.Width = 250.000000000000000000
+    Size.Height = 153.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 0
+    object rdReceita: TRadioButton
+      Align = Top
+      StyledSettings = [Size, Style]
+      Size.Width = 250.000000000000000000
+      Size.Height = 70.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      Text = 'Receita'
+      TextSettings.Font.Family = 'Montserrat'
+      TextSettings.FontColor = xFF34495E
+    end
+  end
+  object StyleBook1: TStyleBook
+    Styles = <
+      item
+      end>
+  end
+end
