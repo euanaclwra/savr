@@ -358,6 +358,7 @@ object frmMain: TfrmMain
       Size.Height = 150.000000000000000000
       Size.PlatformDefault = False
       TextSettings.Trimming = None
+      OnClick = btnLancamentoClick
       object imgLancamento: TImage
         MultiResBitmap.Height = 374
         MultiResBitmap.Width = 374
@@ -631,7 +632,6 @@ object frmMain: TfrmMain
         Size.Width = 150.000000000000000000
         Size.Height = 150.000000000000000000
         Size.PlatformDefault = False
-        OnClick = imgLancamentoClick
       end
       object fxLancamentoIn: TFloatAnimation
         Duration = 0.200000002980232200

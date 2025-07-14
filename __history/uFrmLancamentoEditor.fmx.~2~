@@ -1,0 +1,28 @@
+object frmLancamentoEditor: TfrmLancamentoEditor
+  Left = 0
+  Top = 0
+  Caption = 'Lan'#231'amento'
+  ClientHeight = 480
+  ClientWidth = 640
+  Fill.Kind = Solid
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  DesignerMasterStyle = 0
+  object txtNovaCategoria: TText
+    Align = Top
+    Margins.Left = 20.000000000000000000
+    Margins.Top = 20.000000000000000000
+    Position.X = 20.000000000000000000
+    Position.Y = 20.000000000000000000
+    Size.Width = 620.000000000000000000
+    Size.Height = 50.000000000000000000
+    Size.PlatformDefault = False
+    Text = 'Lan'#231'amento'
+    TextSettings.Font.Family = 'Montserrat'
+    TextSettings.Font.Size = 22.000000000000000000
+    TextSettings.Font.StyleExt = {00060000000000000004000000}
+    TextSettings.FontColor = xFF34495E
+    TextSettings.HorzAlign = Leading
+  end
+end
