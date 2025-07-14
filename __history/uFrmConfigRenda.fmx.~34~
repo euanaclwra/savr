@@ -9,6 +9,7 @@ object frmConfigRenda: TfrmConfigRenda
   FormFactor.Width = 320
   FormFactor.Height = 480
   FormFactor.Devices = [Desktop]
+  OnShow = FormShow
   DesignerMasterStyle = 0
   object txtConfigRenda: TText
     Align = Top
@@ -193,23 +194,27 @@ object frmConfigRenda: TfrmConfigRenda
         Touch.InteractiveGestures = [LongTap, DoubleTap]
         TabOrder = 1
         KeyboardType = NumberPad
-        FilterChar = '0123456789'
+        FilterChar = '0123456789,.'
+        TextSettings.Font.Family = 'Montserrat'
+        TextSettings.Font.Size = 11.000000000000000000
+        TextSettings.FontColor = xFF34495E
         Position.X = 140.000000000000000000
-        Size.Width = 151.000000000000000000
+        Size.Width = 150.000000000000000000
         Size.Height = 20.000000000000000000
         Size.PlatformDefault = False
+        StyledSettings = [Style]
         object lnValor: TLine
           Align = Bottom
           HitTest = False
           LineType = Bottom
           Position.Y = 14.000000000000000000
-          Size.Width = 151.000000000000000000
+          Size.Width = 150.000000000000000000
           Size.Height = 6.000000000000000000
           Size.PlatformDefault = False
           Stroke.Color = xFF63C8C7
         end
       end
-      object txtDiaRenda: TText
+      object txtDiaPagamento: TText
         Margins.Left = 20.000000000000000000
         Position.X = 308.000000000000000000
         Position.Y = 10.000000000000000000
@@ -227,11 +232,15 @@ object frmConfigRenda: TfrmConfigRenda
         Touch.InteractiveGestures = [LongTap, DoubleTap]
         StyleLookup = 'transparentedit'
         TabOrder = 5
+        TextSettings.Font.Family = 'Montserrat'
+        TextSettings.Font.Size = 11.000000000000000000
+        TextSettings.FontColor = xFF34495E
         Position.X = 432.000000000000000000
         Margins.Right = 20.000000000000000000
         Size.Width = 100.000000000000000000
         Size.Height = 20.000000000000000000
         Size.PlatformDefault = False
+        StyledSettings = [Style]
         object lnDiaPagamento: TLine
           Align = Bottom
           HitTest = False
@@ -267,23 +276,27 @@ object frmConfigRenda: TfrmConfigRenda
       Size.Width = 640.000000000000000000
       Size.Height = 25.000000000000000000
       Size.PlatformDefault = False
-      TabOrder = 5
+      TabOrder = 6
       object edtPctAdiantamento: TEditMoeda
         Touch.InteractiveGestures = [LongTap, DoubleTap]
         TabOrder = 1
         KeyboardType = NumberPad
-        FilterChar = '0123456789'
-        Position.X = 115.000000000000000000
+        FilterChar = '0123456789,.'
+        TextSettings.Font.Family = 'Montserrat'
+        TextSettings.Font.Size = 11.000000000000000000
+        TextSettings.FontColor = xFF34495E
+        Position.X = 140.000000000000000000
         Position.Y = 4.000000000000000000
-        Size.Width = 170.000000000000000000
+        Size.Width = 150.000000000000000000
         Size.Height = 20.000000000000000000
         Size.PlatformDefault = False
+        StyledSettings = [Style]
         object lnPctAdiantamento: TLine
           Align = Bottom
           HitTest = False
           LineType = Bottom
           Position.Y = 14.000000000000000000
-          Size.Width = 170.000000000000000000
+          Size.Width = 150.000000000000000000
           Size.Height = 6.000000000000000000
           Size.PlatformDefault = False
           Stroke.Color = xFF63C8C7
@@ -291,17 +304,56 @@ object frmConfigRenda: TfrmConfigRenda
       end
       object txtPctAdiantamento: TText
         Margins.Left = 20.000000000000000000
-        Position.X = 20.000000000000000000
-        Size.Width = 95.000000000000000000
-        Size.Height = 25.000000000000000000
+        Position.X = 16.000000000000000000
+        Position.Y = 15.000000000000000000
+        Size.Width = 119.000000000000000000
+        Size.Height = 10.000000000000000000
         Size.PlatformDefault = False
-        Text = 'Porcentagem do Adiantamento:'
+        Text = '% do Adiantamento:'
         TextSettings.Font.Family = 'Montserrat'
         TextSettings.Font.Size = 11.000000000000000000
         TextSettings.Font.StyleExt = {00050000000000000004000000}
         TextSettings.FontColor = xFF34495E
         TextSettings.HorzAlign = Trailing
       end
+    end
+    object edtDiaAdiantamento: TEdit
+      Touch.InteractiveGestures = [LongTap, DoubleTap]
+      StyleLookup = 'transparentedit'
+      TabOrder = 5
+      TextSettings.Font.Family = 'Montserrat'
+      TextSettings.Font.Size = 11.000000000000000000
+      TextSettings.FontColor = xFF34495E
+      Position.X = 435.000000000000000000
+      Position.Y = 68.000000000000000000
+      Size.Width = 100.000000000000000000
+      Size.Height = 20.000000000000000000
+      Size.PlatformDefault = False
+      StyledSettings = [Style]
+      object lnDiaAdiantamento: TLine
+        Align = Bottom
+        HitTest = False
+        LineType = Bottom
+        Position.Y = 14.000000000000000000
+        Size.Width = 100.000000000000000000
+        Size.Height = 6.000000000000000000
+        Size.PlatformDefault = False
+        Stroke.Color = xFF63C8C7
+      end
+    end
+    object txtDiaAdiantamento: TText
+      Margins.Left = 20.000000000000000000
+      Position.X = 309.000000000000000000
+      Position.Y = 78.000000000000000000
+      Size.Width = 124.000000000000000000
+      Size.Height = 10.000000000000000000
+      Size.PlatformDefault = False
+      Text = 'Dia do Adiantamento:'
+      TextSettings.Font.Family = 'Montserrat'
+      TextSettings.Font.Size = 11.000000000000000000
+      TextSettings.Font.StyleExt = {00050000000000000004000000}
+      TextSettings.FontColor = xFF34495E
+      TextSettings.HorzAlign = Leading
     end
   end
   object StyleBook1: TStyleBook

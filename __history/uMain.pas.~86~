@@ -38,7 +38,6 @@ type
     procedure FormShow(Sender: TObject);
     procedure btnCategoriasClick(Sender: TObject);
     procedure btnConfigClick(Sender: TObject);
-    procedure imgLancamentoClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -71,11 +70,6 @@ begin
   frmSetup.Close;
   UpdateConfiguracaoGlobal;
   ExibirNomeUsuario;
-end;
-
-procedure TfrmMain.imgLancamentoClick(Sender: TObject);
-begin
-  frmLancamentoEditor.Show;
 end;
 
 procedure TfrmMain.ExibirNomeUsuario;

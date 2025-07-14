@@ -337,6 +337,7 @@ object frmMain: TfrmMain
         StartValue = 1.000000000000000000
         StartFromCurrent = True
         StopValue = 0.699999988079071000
+        Trigger = 'IsMouseOver=true'
       end
       object fxFluxoOut: TFloatAnimation
         AnimationType = Out
@@ -346,6 +347,7 @@ object frmMain: TfrmMain
         StartValue = 0.699999988079071000
         StartFromCurrent = True
         StopValue = 1.000000000000000000
+        Trigger = 'IsMouseOver=false'
       end
     end
     object btnLancamento: TSpeedButton
@@ -629,25 +631,25 @@ object frmMain: TfrmMain
         Size.Width = 150.000000000000000000
         Size.Height = 150.000000000000000000
         Size.PlatformDefault = False
-        OnMouseEnter = imgLancamentoMouseEnter
-        OnMouseLeave = imgLancamentoMouseLeave
-        object fxLancamentoIn: TFloatAnimation
-          Duration = 0.200000002980232200
-          Interpolation = Cubic
-          PropertyName = 'Opacity'
-          StartValue = 1.000000000000000000
-          StartFromCurrent = True
-          StopValue = 0.699999988079071000
-        end
-        object fxLancamentoOut: TFloatAnimation
-          AnimationType = Out
-          Duration = 0.200000002980232200
-          Interpolation = Cubic
-          PropertyName = 'Opacity'
-          StartValue = 0.699999988079071000
-          StartFromCurrent = True
-          StopValue = 1.000000000000000000
-        end
+      end
+      object fxLancamentoIn: TFloatAnimation
+        Duration = 0.200000002980232200
+        Interpolation = Cubic
+        PropertyName = 'Opacity'
+        StartValue = 1.000000000000000000
+        StartFromCurrent = True
+        StopValue = 0.699999988079071000
+        Trigger = 'IsMouseOver=true'
+      end
+      object fxLancamentoOut: TFloatAnimation
+        AnimationType = Out
+        Duration = 0.200000002980232200
+        Interpolation = Cubic
+        PropertyName = 'Opacity'
+        StartValue = 0.699999988079071000
+        StartFromCurrent = True
+        StopValue = 1.000000000000000000
+        Trigger = 'IsMouseOver=false'
       end
     end
     object btnCategorias: TSpeedButton
@@ -1043,25 +1045,25 @@ object frmMain: TfrmMain
         Size.Width = 150.000000000000000000
         Size.Height = 150.000000000000000000
         Size.PlatformDefault = False
-        OnMouseEnter = imgCategoriasMouseEnter
-        OnMouseLeave = imgCategoriasMouseLeave
-        object fxCategoriasIn: TFloatAnimation
-          Duration = 0.200000002980232200
-          Interpolation = Cubic
-          PropertyName = 'Opacity'
-          StartValue = 1.000000000000000000
-          StartFromCurrent = True
-          StopValue = 0.699999988079071000
-        end
-        object fxCategoriasOut: TFloatAnimation
-          AnimationType = Out
-          Duration = 0.200000002980232200
-          Interpolation = Cubic
-          PropertyName = 'Opacity'
-          StartValue = 0.699999988079071000
-          StartFromCurrent = True
-          StopValue = 1.000000000000000000
-        end
+      end
+      object fxCategoriasIn: TFloatAnimation
+        Duration = 0.200000002980232200
+        Interpolation = Cubic
+        PropertyName = 'Opacity'
+        StartValue = 1.000000000000000000
+        StartFromCurrent = True
+        StopValue = 0.699999988079071000
+        Trigger = 'IsMouseOver=true'
+      end
+      object fxCategoriasOut: TFloatAnimation
+        AnimationType = Out
+        Duration = 0.200000002980232200
+        Interpolation = Cubic
+        PropertyName = 'Opacity'
+        StartValue = 0.699999988079071000
+        StartFromCurrent = True
+        StopValue = 1.000000000000000000
+        Trigger = 'IsMouseOver=false'
       end
     end
     object btnConfig: TSpeedButton
@@ -1076,6 +1078,7 @@ object frmMain: TfrmMain
       Size.Height = 150.000000000000000000
       Size.PlatformDefault = False
       TextSettings.Trimming = None
+      OnClick = btnConfigClick
       object imgConfig: TImage
         MultiResBitmap.Height = 374
         MultiResBitmap.Width = 374
@@ -1466,25 +1469,25 @@ object frmMain: TfrmMain
         Size.Width = 150.000000000000000000
         Size.Height = 150.000000000000000000
         Size.PlatformDefault = False
-        OnMouseEnter = imgConfigMouseEnter
-        OnMouseLeave = imgConfigMouseLeave
-        object fxConfigIn: TFloatAnimation
-          Duration = 0.200000002980232200
-          Interpolation = Cubic
-          PropertyName = 'Opacity'
-          StartValue = 1.000000000000000000
-          StartFromCurrent = True
-          StopValue = 0.699999988079071000
-        end
-        object fxConfigOut: TFloatAnimation
-          AnimationType = Out
-          Duration = 0.200000002980232200
-          Interpolation = Cubic
-          PropertyName = 'Opacity'
-          StartValue = 0.699999988079071000
-          StartFromCurrent = True
-          StopValue = 1.000000000000000000
-        end
+      end
+      object fxConfigIn: TFloatAnimation
+        Duration = 0.200000002980232200
+        Interpolation = Cubic
+        PropertyName = 'Opacity'
+        StartValue = 1.000000000000000000
+        StartFromCurrent = True
+        StopValue = 0.699999988079071000
+        Trigger = 'IsMouseOver=true'
+      end
+      object fxConfigOut: TFloatAnimation
+        AnimationType = Out
+        Duration = 0.200000002980232200
+        Interpolation = Cubic
+        PropertyName = 'Opacity'
+        StartValue = 0.699999988079071000
+        StartFromCurrent = True
+        StopValue = 1.000000000000000000
+        Trigger = 'IsMouseOver=false'
       end
     end
   end
@@ -1522,7 +1525,7 @@ object frmMain: TfrmMain
         Locked = True
         Margins.Left = 32.000000000000000000
         Position.Y = 4.000000000000000000
-        Size.Width = 369.000000000000000000
+        Size.Width = 385.000000000000000000
         Size.Height = 73.000000000000000000
         Size.PlatformDefault = False
         Text = 'Ol'#225', Ana!'

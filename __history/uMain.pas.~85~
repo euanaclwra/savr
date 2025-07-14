@@ -6,8 +6,7 @@ uses
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.TabControl,
   FMX.Controls.Presentation, FMX.MultiView, FMX.Objects, FMX.StdCtrls,
-  FMX.Layouts, FMX.Ani, uAppGlobals, uFrmCategorias, uFrmConfiguracoes,
-  uFrmLancamentoEditor;
+  FMX.Layouts, FMX.Ani, uAppGlobals, uFrmCategorias, uFrmConfiguracoes;
 
 type
   TfrmMain = class(TForm)
@@ -38,7 +37,6 @@ type
     procedure FormShow(Sender: TObject);
     procedure btnCategoriasClick(Sender: TObject);
     procedure btnConfigClick(Sender: TObject);
-    procedure imgLancamentoClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -71,11 +69,6 @@ begin
   frmSetup.Close;
   UpdateConfiguracaoGlobal;
   ExibirNomeUsuario;
-end;
-
-procedure TfrmMain.imgLancamentoClick(Sender: TObject);
-begin
-  frmLancamentoEditor.Show;
 end;
 
 procedure TfrmMain.ExibirNomeUsuario;

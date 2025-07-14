@@ -32,9 +32,9 @@
     <Transaction>2025/06/23 17:49:31.000.486,=C:\Users\Ana Clara\Documents\Embarcadero\Studio\Projects\Savr\Unit1.pas</Transaction>
     <Transaction>2025/06/23 17:50:33.000.288,C:\Users\Ana Clara\Documents\Embarcadero\Studio\Projects\Savr\Unit1.fmx=C:\Users\Ana Clara\Documents\Embarcadero\Studio\Projects\Savr\uFrmTestDialog.fmx</Transaction>
     <Transaction>2025/06/23 17:50:33.000.288,C:\Users\Ana Clara\Documents\Embarcadero\Studio\Projects\Savr\Unit1.pas=C:\Users\Ana Clara\Documents\Embarcadero\Studio\Projects\Savr\uFrmTestDialog.pas</Transaction>
-    <Transaction>2025/06/24 18:17:51.631,=C:\Users\Ana Clara\Documents\Embarcadero\Studio\Projects\Savr\Unit1.pas</Transaction>
-    <Transaction>2025/06/24 18:18:22.349,C:\Users\Ana Clara\Documents\Embarcadero\Studio\Projects\Savr\uFrmConfigRenda.fmx=C:\Users\Ana Clara\Documents\Embarcadero\Studio\Projects\Savr\Unit1.fmx</Transaction>
-    <Transaction>2025/06/24 18:18:22.349,C:\Users\Ana Clara\Documents\Embarcadero\Studio\Projects\Savr\uFrmConfigRenda.pas=C:\Users\Ana Clara\Documents\Embarcadero\Studio\Projects\Savr\Unit1.pas</Transaction>
+    <Transaction>2025/06/24 18:17:51.000.631,=C:\Users\Ana Clara\Documents\Embarcadero\Studio\Projects\Savr\Unit1.pas</Transaction>
+    <Transaction>2025/06/24 18:18:22.000.349,C:\Users\Ana Clara\Documents\Embarcadero\Studio\Projects\Savr\uFrmConfigRenda.fmx=C:\Users\Ana Clara\Documents\Embarcadero\Studio\Projects\Savr\Unit1.fmx</Transaction>
+    <Transaction>2025/06/24 18:18:22.000.349,C:\Users\Ana Clara\Documents\Embarcadero\Studio\Projects\Savr\uFrmConfigRenda.pas=C:\Users\Ana Clara\Documents\Embarcadero\Studio\Projects\Savr\Unit1.pas</Transaction>
   </Transactions>
 	<ProjectSortOrder AutoSort="0" SortType="0">
     <File Path="uAppGlobals.pas"/>

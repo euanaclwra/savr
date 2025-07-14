@@ -36,9 +36,11 @@ type
     txtDiaAdiantamento: TText;
     procedure btnCancelarClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
+    procedure btnSalvarClick(Sender: TObject);
   private
     procedure CarregaConfiguracoesRenda;
     procedure CarregaConfiguracoesAdiantamento;
+    procedure SalvaConfiguracoesRenda;
   public
     { Public declarations }
   end;
@@ -57,6 +59,11 @@ begin
     Close;
 end;
 
+procedure TfrmConfigRenda.SalvaConfiguracoesRenda;
+begin
+  //
+end;
+
 procedure TfrmConfigRenda.CarregaConfiguracoesRenda;
 begin
   if Assigned(AppConfig) then
@@ -64,7 +71,7 @@ begin
     // Obtém o nome do usuário das configurações globais e exibe na tela
     edtValor.Text := FloatToStr(AppConfig.ValorSalario);
     edtDiaPagamento.Text := IntToStr(AppConfig.DiaPagamentoFinal);
-    // Se a renda for parcelada, exibe as configurações deo adiantamento
+    // Se a renda for parcelada, exibe as configurações do adiantamento
     if AppConfig.FlagParcelado = True then
       CarregaConfiguracoesAdiantamento;
   end;
@@ -73,6 +80,11 @@ end;
 procedure TfrmConfigRenda.FormShow(Sender: TObject);
 begin
   CarregaConfiguracoesRenda;
+end;
+
+procedure TfrmConfigRenda.btnSalvarClick(Sender: TObject);
+begin
+  SalvaConfiguracoesRenda;
 end;
 
 procedure TfrmConfigRenda.CarregaConfiguracoesAdiantamento;
