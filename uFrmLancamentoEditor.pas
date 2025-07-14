@@ -11,7 +11,7 @@ uses
 type
   TfrmLancamentoEditor = class(TForm)
     txtNovaCategoria: TText;
-    ltForm: TLayout;
+    ltLancamento: TLayout;
     ltValor: TLayout;
     txtValor: TText;
     edtValor: TEditMoeda;
