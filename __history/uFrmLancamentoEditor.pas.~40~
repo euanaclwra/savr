@@ -1,0 +1,81 @@
+unit uFrmLancamentoEditor;
+
+interface
+
+uses
+  System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
+  FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.Objects,
+  FMX.Controls.Presentation, FMX.Edit, uEditMoeda, FMX.Layouts, FMX.StdCtrls,
+  FMX.ListBox, uCategoriaDAO, uCategoria, System.Generics.Collections,
+  FMX.DateTimeCtrls;
+
+type
+  TfrmLancamentoEditor = class(TForm)
+    txtLancReceita: TText;
+    ltLancamento: TLayout;
+    ltValor: TLayout;
+    txtValor: TText;
+    edtValor: TEditMoeda;
+    StyleBook1: TStyleBook;
+    lnValor: TLine;
+    ltCategoria: TLayout;
+    txtCategoria: TText;
+    cmbCategoria: TComboBox;
+    lnCategoria: TLine;
+    ltOcorrencia: TLayout;
+    txtOcorrencia: TText;
+    DateEdit1: TDateEdit;
+  private
+    procedure CarregarCategorias(AComboBox: TComboBox; AType: TTipoCategoria);
+  public
+    { Public declarations }
+  end;
+
+var
+  frmLancamentoEditor: TfrmLancamentoEditor;
+
+implementation
+
+{$R *.fmx}
+
+procedure TfrmLancamentoEditor.CarregarCategorias(AComboBox: TComboBox; AType: TTipoCategoria);
+var
+  DAO: TCategoriaDAO;
+  Lista: TObjectList<TCategoria>;
+  Categoria: TCategoria;
+  Item: TListBoxItem;
+begin
+  // Começa limpando os itens que já estavam na combobox
+  AComboBox.Clear;
+  // Cria o objeto de acesso ao BD
+  DAO := TCategoriaDAO.Create;
+
+  try
+    // Busca todos as categorias no Banco de Dados e armazena numa lista
+    Lista := DAO.BuscarCategorias;
+
+    // Se houver algum objeto na lista...
+    if Lista <> nil then
+    try
+      for Categoria in Lista do
+      begin
+        // Para cada categoria do tipo informado encontrado, é criado um novo item na ComboBox
+        if Categoria.Tipo = AType then
+        begin
+          Item := TListBoxItem.Create(nil);
+          Item.Parent := AComboBox;
+          // Define o nome da categoria como texto do item
+          Item.Text := Categoria.Nome;
+        end;
+      end;
+    except
+      on E: Exception do
+        ShowMessage(E.Message);
+    end;
+  finally
+    DAO.Free;
+    Lista.Free;
+  end;
+end;
+
+end.

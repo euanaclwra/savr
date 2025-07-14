@@ -13,8 +13,10 @@ type
     ltGroupRadio: TLayout;
     StyleBook1: TStyleBook;
     rdDespesa: TRadioButton;
-    btnNo: TSpeedButton;
+    btnCriar: TSpeedButton;
     txtSelecione: TText;
+    procedure FormShow(Sender: TObject);
+    procedure btnCriarClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -27,5 +29,16 @@ var
 implementation
 
 {$R *.fmx}
+
+procedure TfrmSelecaoLancamento.btnCriarClick(Sender: TObject);
+begin
+//
+end;
+
+procedure TfrmSelecaoLancamento.FormShow(Sender: TObject);
+begin
+  rdReceita.IsChecked := False;
+  rdDespesa.IsChecked := False;
+end;
 
 end.

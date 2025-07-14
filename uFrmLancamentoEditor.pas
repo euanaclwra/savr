@@ -6,11 +6,12 @@ uses
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.Objects,
   FMX.Controls.Presentation, FMX.Edit, uEditMoeda, FMX.Layouts, FMX.StdCtrls,
-  FMX.ListBox, uCategoriaDAO, uCategoria, System.Generics.Collections;
+  FMX.ListBox, uCategoriaDAO, uCategoria, System.Generics.Collections,
+  FMX.DateTimeCtrls;
 
 type
   TfrmLancamentoEditor = class(TForm)
-    txtNovaCategoria: TText;
+    txtLancReceita: TText;
     ltLancamento: TLayout;
     ltValor: TLayout;
     txtValor: TText;
@@ -21,9 +22,12 @@ type
     txtCategoria: TText;
     cmbCategoria: TComboBox;
     lnCategoria: TLine;
-    procedure FormShow(Sender: TObject);
+    ltOcorrencia: TLayout;
+    txtOcorrencia: TText;
+    dtOcorrencia: TDateEdit;
+    lnOcorrencia: TLine;
   private
-    procedure CarregarCategorias(AComboBox: TComboBox);
+    procedure CarregarCategorias(AComboBox: TComboBox; AType: TTipoCategoria);
   public
     { Public declarations }
   end;
@@ -35,7 +39,7 @@ implementation
 
 {$R *.fmx}
 
-procedure TfrmLancamentoEditor.CarregarCategorias(AComboBox: TComboBox);
+procedure TfrmLancamentoEditor.CarregarCategorias(AComboBox: TComboBox; AType: TTipoCategoria);
 var
   DAO: TCategoriaDAO;
   Lista: TObjectList<TCategoria>;
@@ -56,11 +60,14 @@ begin
     try
       for Categoria in Lista do
       begin
-        // Para cada categoria, é criado um novo ListBoxItem
-        Item := TListBoxItem.Create(nil);
-        Item.Parent := AComboBox;
-        // Define o nome da categoria como texto do item
-        Item.Text := Categoria.Nome;
+        // Para cada categoria do tipo informado encontrado, é criado um novo item na ComboBox
+        if Categoria.Tipo = AType then
+        begin
+          Item := TListBoxItem.Create(nil);
+          Item.Parent := AComboBox;
+          // Define o nome da categoria como texto do item
+          Item.Text := Categoria.Nome;
+        end;
       end;
     except
       on E: Exception do
@@ -70,11 +77,6 @@ begin
     DAO.Free;
     Lista.Free;
   end;
-end;
-
-procedure TfrmLancamentoEditor.FormShow(Sender: TObject);
-begin
-  CarregarCategorias(cmbCategoria);
 end;
 
 end.

@@ -7,7 +7,7 @@ uses
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.TabControl,
   FMX.Controls.Presentation, FMX.MultiView, FMX.Objects, FMX.StdCtrls,
   FMX.Layouts, FMX.Ani, uAppGlobals, uFrmCategorias, uFrmConfiguracoes,
-  uFrmLancamentoEditor;
+  uFrmSelecaoLancamento;
 
 type
   TfrmMain = class(TForm)
@@ -63,7 +63,7 @@ end;
 
 procedure TfrmMain.btnConfigClick(Sender: TObject);
 begin
-  frmConfiguracoes.Show;
+  frmConfiguracoes.ShowModal;
 end;
 
 procedure TfrmMain.FormShow(Sender: TObject);
@@ -75,7 +75,7 @@ end;
 
 procedure TfrmMain.btnLancamentoClick(Sender: TObject);
 begin
-  frmLancamentoEditor.Show;
+  frmSelecaoLancamento.Show;
 end;
 
 procedure TfrmMain.ExibirNomeUsuario;

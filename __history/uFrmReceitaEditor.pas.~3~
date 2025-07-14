@@ -1,0 +1,83 @@
+unit uFrmReceitaEditor;
+
+interface
+
+uses
+  System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
+  FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.Objects,
+  FMX.Controls.Presentation, FMX.Edit, uEditMoeda, FMX.Layouts, FMX.StdCtrls,
+  FMX.ListBox, uCategoriaDAO, uCategoria, System.Generics.Collections;
+
+type
+  TfrmReceitaEditor = class(TForm)
+    txtLancReceita: TText;
+    ltLancamento: TLayout;
+    ltValor: TLayout;
+    txtValor: TText;
+    edtValor: TEditMoeda;
+    StyleBook1: TStyleBook;
+    lnValor: TLine;
+    ltCategoria: TLayout;
+    txtCategoria: TText;
+    cmbCategoria: TComboBox;
+    lnCategoria: TLine;
+    procedure FormShow(Sender: TObject);
+  private
+    procedure CarregarCategorias(AComboBox: TComboBox);
+  public
+    { Public declarations }
+  end;
+
+var
+  frmReceitaEditor: TfrmReceitaEditor;
+
+implementation
+
+{$R *.fmx}
+
+procedure TfrmReceitaEditor.CarregarCategorias(AComboBox: TComboBox);
+var
+  DAO: TCategoriaDAO;
+  Lista: TObjectList<TCategoria>;
+  Categoria: TCategoria;
+  Item: TListBoxItem;
+begin
+  // Começa limpando os itens que já estavam na combobox
+  AComboBox.Clear;
+  // Cria o objeto de acesso ao BD
+  DAO := TCategoriaDAO.Create;
+
+  try
+    // Busca todos as categorias no Banco de Dados e armazena numa lista
+    Lista := DAO.BuscarCategorias;
+
+    // Se houver algum objeto na lista...
+    if Lista <> nil then
+    try
+      for Categoria in Lista do
+      begin
+        if Categoria.Tipo = tcReceita then
+        begin
+          // Para cada categoria, é criado um novo ListBoxItem
+          Item := TListBoxItem.Create(nil);
+          Item.Parent := AComboBox;
+          // Define o nome da categoria como texto do item
+          Item.Text := Categoria.Nome;
+        end;
+      end;
+    except
+      on E: Exception do
+        ShowMessage(E.Message);
+    end;
+  finally
+    DAO.Free;
+    Lista.Free;
+  end;
+end;
+
+procedure TfrmReceitaEditor.FormShow(Sender: TObject);
+begin
+  CarregarCategorias(cmbCategoria);
+end;
+
+end.
