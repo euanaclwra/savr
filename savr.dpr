@@ -22,7 +22,9 @@ uses
   uFrmDialog in 'uFrmDialog.pas' {frmDialog},
   uFrmConfiguracoes in 'uFrmConfiguracoes.pas' {frmConfiguracoes},
   uFrmConfigUsuario in 'uFrmConfigUsuario.pas' {frmConfigUsuario},
-  uFrmConfigRenda in 'uFrmConfigRenda.pas' {frmConfigRenda};
+  uFrmConfigRenda in 'uFrmConfigRenda.pas' {frmConfigRenda},
+  uFrmLancamentoEditor in 'uFrmLancamentoEditor.pas' {frmLancamentoEditor},
+  uFrmSelecaoLancamento in 'uFrmSelecaoLancamento.pas' {frmSelecaoLancamento};
 
 {$R *.res}
 
@@ -47,5 +49,7 @@ begin
   Application.CreateForm(TfrmConfiguracoes, frmConfiguracoes);
   Application.CreateForm(TfrmConfigUsuario, frmConfigUsuario);
   Application.CreateForm(TfrmConfigRenda, frmConfigRenda);
+  Application.CreateForm(TfrmLancamentoEditor, frmLancamentoEditor);
+  Application.CreateForm(TfrmSelecaoLancamento, frmSelecaoLancamento);
   Application.Run;
 end.

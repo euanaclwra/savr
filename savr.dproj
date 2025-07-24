@@ -175,6 +175,14 @@
             <Form>frmConfigRenda</Form>
             <FormType>fmx</FormType>
         </DCCReference>
+        <DCCReference Include="uFrmLancamentoEditor.pas">
+            <Form>frmLancamentoEditor</Form>
+            <FormType>fmx</FormType>
+        </DCCReference>
+        <DCCReference Include="uFrmSelecaoLancamento.pas">
+            <Form>frmSelecaoLancamento</Form>
+            <FormType>fmx</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
