@@ -87,15 +87,14 @@ object frmLancamentoBase: TfrmLancamentoBase
       end
       object txtEntidade: TText
         Align = Left
-        Anchors = [akLeft, akRight]
         Margins.Left = 35.000000000000000000
         Margins.Top = 10.000000000000000000
         Position.X = 325.000000000000000000
         Position.Y = 10.000000000000000000
-        Size.Width = 45.000000000000000000
+        Size.Width = 54.000000000000000000
         Size.Height = 15.000000000000000000
         Size.PlatformDefault = False
-        Text = 'Pago a:'
+        Text = 'Pago por:'
         TextSettings.Font.Family = 'Montserrat'
         TextSettings.Font.Size = 11.000000000000000000
         TextSettings.Font.StyleExt = {00050000000000000004000000}
@@ -112,9 +111,9 @@ object frmLancamentoBase: TfrmLancamentoBase
         TextSettings.Font.Family = 'Montserrat'
         TextSettings.Font.Size = 11.000000000000000000
         TextSettings.FontColor = xFF34495E
-        Position.X = 380.000000000000000000
+        Position.X = 389.000000000000000000
         Margins.Left = 10.000000000000000000
-        Size.Width = 240.000000000000000000
+        Size.Width = 231.000000000000000000
         Size.Height = 25.000000000000000000
         Size.PlatformDefault = False
         StyledSettings = [Style]
@@ -124,7 +123,7 @@ object frmLancamentoBase: TfrmLancamentoBase
           HitTest = False
           LineType = Bottom
           Position.Y = 8.000000000000000000
-          Size.Width = 240.000000000000000000
+          Size.Width = 231.000000000000000000
           Size.Height = 17.000000000000000000
           Size.PlatformDefault = False
           Stroke.Color = xFF63C8C7
@@ -145,7 +144,7 @@ object frmLancamentoBase: TfrmLancamentoBase
         Margins.Top = 10.000000000000000000
         Position.X = 325.000000000000000000
         Position.Y = 10.000000000000000000
-        Size.Width = 45.000000000000000000
+        Size.Width = 54.000000000000000000
         Size.Height = 15.000000000000000000
         Size.PlatformDefault = False
         Text = 'Data:'
@@ -157,11 +156,12 @@ object frmLancamentoBase: TfrmLancamentoBase
         TextSettings.VertAlign = Leading
       end
       object dtData: TDateEdit
-        Date = 45852.000000000000000000
+        Date = 45863.000000000000000000
+        TodayDefault = True
         Align = Left
         Margins.Left = 10.000000000000000000
-        Position.X = 380.000000000000000000
-        Size.Width = 240.000000000000000000
+        Position.X = 389.000000000000000000
+        Size.Width = 231.000000000000000000
         Size.Height = 25.000000000000000000
         Size.PlatformDefault = False
         StyledSettings = [Style]
@@ -174,7 +174,7 @@ object frmLancamentoBase: TfrmLancamentoBase
           Locked = True
           HitTest = False
           LineType = Bottom
-          Size.Width = 240.000000000000000000
+          Size.Width = 231.000000000000000000
           Size.Height = 25.000000000000000000
           Size.PlatformDefault = False
           Stroke.Color = xFF63C8C7

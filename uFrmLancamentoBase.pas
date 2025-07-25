@@ -42,7 +42,7 @@ type
     txtSalvar: TText;
     edtObservacoes: TMemo;
     pnObservacoes: TPanel;
-  private
+  protected
     procedure CarregarCategorias(AComboBox: TComboBox; AType: TTipoCategoria);
   public
     { Public declarations }
