@@ -35,13 +35,6 @@ type
     lnDescricao: TLine;
     txtObservacoes: TText;
     edtObservacoes: TEdit;
-    rtObservacoes: TRectangle;
-    btnCancelar: TSpeedButton;
-    rtCancelar: TRectangle;
-    txtCancelar: TText;
-    btnSalvar: TSpeedButton;
-    rtSalvar: TRectangle;
-    txtSalvar: TText;
   private
     procedure CarregarCategorias(AComboBox: TComboBox; AType: TTipoCategoria);
   public
