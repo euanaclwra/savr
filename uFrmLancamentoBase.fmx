@@ -1,12 +1,12 @@
 object frmLancamentoBase: TfrmLancamentoBase
   Left = 0
   Top = 0
-  Caption = 'Receita'
+  Caption = 'Lan'#231'amento'
   ClientHeight = 480
   ClientWidth = 640
   Fill.Kind = Solid
+  Position = ScreenCenter
   StyleBook = StyleBook1
-  WindowState = wsMaximized
   FormFactor.Width = 320
   FormFactor.Height = 480
   FormFactor.Devices = [Desktop]
@@ -44,11 +44,11 @@ object frmLancamentoBase: TfrmLancamentoBase
       TabOrder = 1
       object txtValor: TText
         Align = MostLeft
-        Margins.Left = 20.000000000000000000
+        Margins.Left = 30.000000000000000000
         Margins.Top = 10.000000000000000000
-        Position.X = 20.000000000000000000
+        Position.X = 30.000000000000000000
         Position.Y = 10.000000000000000000
-        Size.Width = 40.000000000000000000
+        Size.Width = 70.000000000000000000
         Size.Height = 15.000000000000000000
         Size.PlatformDefault = False
         Text = 'Valor:'
@@ -56,6 +56,8 @@ object frmLancamentoBase: TfrmLancamentoBase
         TextSettings.Font.Size = 11.000000000000000000
         TextSettings.Font.StyleExt = {00050000000000000004000000}
         TextSettings.FontColor = xFF34495E
+        TextSettings.HorzAlign = Leading
+        TextSettings.VertAlign = Leading
       end
       object edtValor: TEditMoeda
         Touch.InteractiveGestures = [LongTap, DoubleTap]
@@ -66,9 +68,9 @@ object frmLancamentoBase: TfrmLancamentoBase
         TextSettings.Font.Family = 'Montserrat'
         TextSettings.Font.Size = 11.000000000000000000
         TextSettings.FontColor = xFF34495E
-        Position.X = 94.000000000000000000
-        Margins.Left = 34.000000000000000000
-        Size.Width = 150.000000000000000000
+        Position.X = 110.000000000000000000
+        Margins.Left = 10.000000000000000000
+        Size.Width = 180.000000000000000000
         Size.Height = 25.000000000000000000
         Size.PlatformDefault = False
         StyledSettings = [Style]
@@ -77,7 +79,7 @@ object frmLancamentoBase: TfrmLancamentoBase
           Locked = True
           HitTest = False
           LineType = Bottom
-          Size.Width = 150.000000000000000000
+          Size.Width = 180.000000000000000000
           Size.Height = 25.000000000000000000
           Size.PlatformDefault = False
           Stroke.Color = xFF63C8C7
@@ -86,9 +88,9 @@ object frmLancamentoBase: TfrmLancamentoBase
       object txtEntidade: TText
         Align = Left
         Anchors = [akLeft, akRight]
-        Margins.Left = 75.000000000000000000
+        Margins.Left = 35.000000000000000000
         Margins.Top = 10.000000000000000000
-        Position.X = 319.000000000000000000
+        Position.X = 325.000000000000000000
         Position.Y = 10.000000000000000000
         Size.Width = 45.000000000000000000
         Size.Height = 15.000000000000000000
@@ -98,6 +100,8 @@ object frmLancamentoBase: TfrmLancamentoBase
         TextSettings.Font.Size = 11.000000000000000000
         TextSettings.Font.StyleExt = {00050000000000000004000000}
         TextSettings.FontColor = xFF34495E
+        TextSettings.HorzAlign = Leading
+        TextSettings.VertAlign = Leading
       end
       object edtEntidade: TEdit
         Touch.InteractiveGestures = [LongTap, DoubleTap]
@@ -108,19 +112,19 @@ object frmLancamentoBase: TfrmLancamentoBase
         TextSettings.Font.Family = 'Montserrat'
         TextSettings.Font.Size = 11.000000000000000000
         TextSettings.FontColor = xFF34495E
-        Position.X = 389.000000000000000000
-        Margins.Left = 25.000000000000000000
-        Margins.Right = 20.000000000000000000
-        Size.Width = 231.000000000000000000
+        Position.X = 380.000000000000000000
+        Margins.Left = 10.000000000000000000
+        Size.Width = 240.000000000000000000
         Size.Height = 25.000000000000000000
         Size.PlatformDefault = False
         StyledSettings = [Style]
         object lnEntidade: TLine
           Align = Bottom
+          Locked = True
           HitTest = False
           LineType = Bottom
           Position.Y = 8.000000000000000000
-          Size.Width = 231.000000000000000000
+          Size.Width = 240.000000000000000000
           Size.Height = 17.000000000000000000
           Size.PlatformDefault = False
           Stroke.Color = xFF63C8C7
@@ -137,11 +141,11 @@ object frmLancamentoBase: TfrmLancamentoBase
       TabOrder = 0
       object txtData: TText
         Align = Left
-        Margins.Left = 86.000000000000000000
+        Margins.Left = 35.000000000000000000
         Margins.Top = 10.000000000000000000
-        Position.X = 331.000000000000000000
+        Position.X = 325.000000000000000000
         Position.Y = 10.000000000000000000
-        Size.Width = 30.000000000000000000
+        Size.Width = 45.000000000000000000
         Size.Height = 15.000000000000000000
         Size.PlatformDefault = False
         Text = 'Data:'
@@ -149,13 +153,15 @@ object frmLancamentoBase: TfrmLancamentoBase
         TextSettings.Font.Size = 11.000000000000000000
         TextSettings.Font.StyleExt = {00050000000000000004000000}
         TextSettings.FontColor = xFF34495E
+        TextSettings.HorzAlign = Leading
+        TextSettings.VertAlign = Leading
       end
       object dtData: TDateEdit
         Date = 45852.000000000000000000
         Align = Left
-        Margins.Left = 25.000000000000000000
-        Position.X = 386.000000000000000000
-        Size.Width = 100.000000000000000000
+        Margins.Left = 10.000000000000000000
+        Position.X = 380.000000000000000000
+        Size.Width = 240.000000000000000000
         Size.Height = 25.000000000000000000
         Size.PlatformDefault = False
         StyledSettings = [Style]
@@ -165,9 +171,10 @@ object frmLancamentoBase: TfrmLancamentoBase
         TextSettings.FontColor = xFF34495E
         object lnOcorrencia: TLine
           Align = Bottom
+          Locked = True
           HitTest = False
           LineType = Bottom
-          Size.Width = 100.000000000000000000
+          Size.Width = 240.000000000000000000
           Size.Height = 25.000000000000000000
           Size.PlatformDefault = False
           Stroke.Color = xFF63C8C7
@@ -175,11 +182,11 @@ object frmLancamentoBase: TfrmLancamentoBase
       end
       object txtCategoria: TText
         Align = MostLeft
-        Margins.Left = 20.000000000000000000
+        Margins.Left = 30.000000000000000000
         Margins.Top = 10.000000000000000000
-        Position.X = 20.000000000000000000
+        Position.X = 30.000000000000000000
         Position.Y = 10.000000000000000000
-        Size.Width = 61.000000000000000000
+        Size.Width = 70.000000000000000000
         Size.Height = 15.000000000000000000
         Size.PlatformDefault = False
         Text = 'Categoria:'
@@ -187,12 +194,14 @@ object frmLancamentoBase: TfrmLancamentoBase
         TextSettings.Font.Size = 11.000000000000000000
         TextSettings.Font.StyleExt = {00050000000000000004000000}
         TextSettings.FontColor = xFF34495E
+        TextSettings.HorzAlign = Leading
+        TextSettings.VertAlign = Leading
       end
       object cmbCategoria: TComboBox
         Align = Left
-        Margins.Left = 14.000000000000000000
-        Position.X = 95.000000000000000000
-        Size.Width = 150.000000000000000000
+        Margins.Left = 10.000000000000000000
+        Position.X = 110.000000000000000000
+        Size.Width = 180.000000000000000000
         Size.Height = 25.000000000000000000
         Size.PlatformDefault = False
         TabOrder = 1
@@ -202,7 +211,7 @@ object frmLancamentoBase: TfrmLancamentoBase
           HitTest = False
           LineType = Bottom
           Position.Y = 15.000000000000000000
-          Size.Width = 150.000000000000000000
+          Size.Width = 180.000000000000000000
           Size.Height = 10.000000000000000000
           Size.PlatformDefault = False
           Stroke.Color = xFF63C8C7
@@ -211,18 +220,18 @@ object frmLancamentoBase: TfrmLancamentoBase
     end
     object ltObservacoes: TLayout
       Align = Top
-      Margins.Top = 10.000000000000000000
-      Position.Y = 105.000000000000000000
+      Margins.Top = 20.000000000000000000
+      Position.Y = 115.000000000000000000
       Size.Width = 640.000000000000000000
       Size.Height = 70.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 2
       object txtObservacoes: TText
         Align = MostLeft
-        Margins.Left = 20.000000000000000000
+        Margins.Left = 30.000000000000000000
         Margins.Bottom = 60.000000000000000000
-        Position.X = 20.000000000000000000
-        Size.Width = 69.000000000000000000
+        Position.X = 30.000000000000000000
+        Size.Width = 70.000000000000000000
         Size.Height = 10.000000000000000000
         Size.PlatformDefault = False
         Text = 'Observa'#231#227'o:'
@@ -233,9 +242,9 @@ object frmLancamentoBase: TfrmLancamentoBase
       end
       object pnObservacoes: TPanel
         Align = Left
-        Margins.Left = 15.000000000000000000
-        Position.X = 104.000000000000000000
-        Size.Width = 486.000000000000000000
+        Margins.Left = 10.000000000000000000
+        Position.X = 110.000000000000000000
+        Size.Width = 510.000000000000000000
         Size.Height = 70.000000000000000000
         Size.PlatformDefault = False
         StyleLookup = 'Panel1Style1'
@@ -249,13 +258,13 @@ object frmLancamentoBase: TfrmLancamentoBase
           TextSettings.Font.Size = 11.000000000000000000
           TextSettings.FontColor = xFF34495E
           TextSettings.WordWrap = True
-          Align = Left
-          Size.Width = 485.000000000000000000
+          Align = Client
+          Size.Width = 510.000000000000000000
           Size.Height = 70.000000000000000000
           Size.PlatformDefault = False
           StyleLookup = 'edtObservacoesStyle1'
           TabOrder = 0
-          Viewport.Width = 481.000000000000000000
+          Viewport.Width = 506.000000000000000000
           Viewport.Height = 66.000000000000000000
         end
       end
@@ -270,11 +279,11 @@ object frmLancamentoBase: TfrmLancamentoBase
       TabOrder = 3
       object txtDescricao: TText
         Align = Left
-        Margins.Left = 20.000000000000000000
+        Margins.Left = 30.000000000000000000
         Margins.Top = 10.000000000000000000
-        Position.X = 20.000000000000000000
+        Position.X = 30.000000000000000000
         Position.Y = 10.000000000000000000
-        Size.Width = 60.000000000000000000
+        Size.Width = 70.000000000000000000
         Size.Height = 15.000000000000000000
         Size.PlatformDefault = False
         Text = 'Descri'#231#227'o:'
@@ -282,6 +291,8 @@ object frmLancamentoBase: TfrmLancamentoBase
         TextSettings.Font.Size = 11.000000000000000000
         TextSettings.Font.StyleExt = {00050000000000000004000000}
         TextSettings.FontColor = xFF34495E
+        TextSettings.HorzAlign = Leading
+        TextSettings.VertAlign = Leading
       end
       object edtDescricao: TEdit
         Touch.InteractiveGestures = [LongTap, DoubleTap]
@@ -291,18 +302,19 @@ object frmLancamentoBase: TfrmLancamentoBase
         TextSettings.Font.Family = 'Montserrat'
         TextSettings.Font.Size = 11.000000000000000000
         TextSettings.FontColor = xFF34495E
-        Position.X = 90.000000000000000000
+        Position.X = 110.000000000000000000
         Margins.Left = 10.000000000000000000
-        Size.Width = 500.000000000000000000
+        Size.Width = 510.000000000000000000
         Size.Height = 25.000000000000000000
         Size.PlatformDefault = False
         StyledSettings = [Style]
         object lnDescricao: TLine
           Align = Bottom
+          Locked = True
           HitTest = False
           LineType = Bottom
           Position.Y = 8.000000000000000000
-          Size.Width = 500.000000000000000000
+          Size.Width = 510.000000000000000000
           Size.Height = 17.000000000000000000
           Size.PlatformDefault = False
           Stroke.Color = xFF63C8C7
