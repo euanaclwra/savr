@@ -7,7 +7,7 @@ uses
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.Objects,
   FMX.Controls.Presentation, FMX.Edit, uEditMoeda, FMX.Layouts, FMX.StdCtrls,
   FMX.ListBox, uCategoriaDAO, uCategoria, System.Generics.Collections,
-  FMX.DateTimeCtrls;
+  FMX.DateTimeCtrls, FMX.Memo.Types, FMX.ScrollBox, FMX.Memo;
 
 type
   TfrmLancamentoBase = class(TForm)
@@ -34,14 +34,14 @@ type
     edtDescricao: TEdit;
     lnDescricao: TLine;
     txtObservacoes: TText;
-    edtObservacoes: TEdit;
-    rtObservacoes: TRectangle;
     btnCancelar: TSpeedButton;
     rtCancelar: TRectangle;
     txtCancelar: TText;
     btnSalvar: TSpeedButton;
     rtSalvar: TRectangle;
     txtSalvar: TText;
+    edtObservacoes: TMemo;
+    pnObservacoes: TPanel;
   private
     procedure CarregarCategorias(AComboBox: TComboBox; AType: TTipoCategoria);
   public
