@@ -183,6 +183,14 @@
             <Form>frmSelecaoLancamento</Form>
             <FormType>fmx</FormType>
         </DCCReference>
+        <DCCReference Include="uFrmReceitaEditor.pas">
+            <Form>frmReceitaEditor</Form>
+            <FormType>fmx</FormType>
+        </DCCReference>
+        <DCCReference Include="uFrmDespesaEditor.pas">
+            <Form>frmDespesaEditor</Form>
+            <FormType>fmx</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

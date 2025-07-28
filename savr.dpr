@@ -24,7 +24,9 @@ uses
   uFrmConfigUsuario in 'uFrmConfigUsuario.pas' {frmConfigUsuario},
   uFrmConfigRenda in 'uFrmConfigRenda.pas' {frmConfigRenda},
   uFrmLancamentoBase in 'uFrmLancamentoBase.pas' {frmLancamentoBase},
-  uFrmSelecaoLancamento in 'uFrmSelecaoLancamento.pas' {frmSelecaoLancamento};
+  uFrmSelecaoLancamento in 'uFrmSelecaoLancamento.pas' {frmSelecaoLancamento},
+  uFrmReceitaEditor in 'uFrmReceitaEditor.pas' {frmReceitaEditor},
+  uFrmDespesaEditor in 'uFrmDespesaEditor.pas' {frmDespesaEditor};
 
 {$R *.res}
 
@@ -51,5 +53,7 @@ begin
   Application.CreateForm(TfrmConfigRenda, frmConfigRenda);
   Application.CreateForm(TfrmLancamentoBase, frmLancamentoBase);
   Application.CreateForm(TfrmSelecaoLancamento, frmSelecaoLancamento);
+  Application.CreateForm(TfrmReceitaEditor, frmReceitaEditor);
+  Application.CreateForm(TfrmDespesaEditor, frmDespesaEditor);
   Application.Run;
 end.

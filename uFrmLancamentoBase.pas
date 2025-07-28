@@ -7,7 +7,7 @@ uses
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.Objects,
   FMX.Controls.Presentation, FMX.Edit, uEditMoeda, FMX.Layouts, FMX.StdCtrls,
   FMX.ListBox, uCategoriaDAO, uCategoria, System.Generics.Collections,
-  FMX.DateTimeCtrls, FMX.Memo.Types, FMX.ScrollBox, FMX.Memo;
+  FMX.DateTimeCtrls, FMX.Memo.Types, FMX.ScrollBox, FMX.Memo, uLancamento;
 
 type
   TfrmLancamentoBase = class(TForm)
@@ -19,8 +19,6 @@ type
     StyleBook1: TStyleBook;
     lnValor: TLine;
     txtCategoria: TText;
-    cmbCategoria: TComboBox;
-    lnCategoria: TLine;
     ltOcorrencia: TLayout;
     txtData: TText;
     dtData: TDateEdit;
@@ -42,8 +40,10 @@ type
     txtSalvar: TText;
     edtObservacoes: TMemo;
     pnObservacoes: TPanel;
+    cmbCategoria: TComboBox;
   protected
     procedure CarregarCategorias(AComboBox: TComboBox; AType: TTipoCategoria);
+    function CriarLancamento: TLancamento;
   public
     { Public declarations }
   end;
@@ -54,6 +54,24 @@ var
 implementation
 
 {$R *.fmx}
+
+function TfrmLancamentoBase.CriarLancamento: TLancamento;
+var
+  NovoLanc: TLancamento;
+begin
+  Result := nil;
+
+  try
+    // Cria um objeto de lançamento com base nas informações da tela
+    // É esse o objeto enviado como parâmetro ao salvar a categoria no BD
+    NovoLanc := TLancamento.Create;
+
+    Result := NovoLanc;
+  except
+      on E: Exception do
+      ShowMessage(E.Message);
+  end;
+end;
 
 procedure TfrmLancamentoBase.CarregarCategorias(AComboBox: TComboBox; AType: TTipoCategoria);
 var
@@ -81,8 +99,8 @@ begin
         begin
           Item := TListBoxItem.Create(nil);
           Item.Parent := AComboBox;
-          // Define o nome da categoria como texto do item
-          Item.Text := Categoria.Nome;
+          // Vincula a categoria selecionada ao item da combobox
+          AComboBox.Items.AddObject(Categoria.Nome, Categoria);
         end;
       end;
     except

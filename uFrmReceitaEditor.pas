@@ -7,10 +7,11 @@ uses
   FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls,
   uFrmLancamentoBase, FMX.Memo.Types, FMX.Objects, FMX.ScrollBox, FMX.Memo,
   FMX.ListBox, FMX.DateTimeCtrls, FMX.Controls.Presentation, FMX.Edit,
-  uEditMoeda, FMX.Layouts;
+  uEditMoeda, FMX.Layouts, uCategoria;
 
 type
   TfrmReceitaEditor = class(TfrmLancamentoBase)
+    procedure FormShow(Sender: TObject);
   private
     { Private declarations }
   public
@@ -23,5 +24,11 @@ var
 implementation
 
 {$R *.fmx}
+
+procedure TfrmReceitaEditor.FormShow(Sender: TObject);
+begin
+  inherited;
+  CarregarCategorias(cmbCategoria, tcReceita);
+end;
 
 end.

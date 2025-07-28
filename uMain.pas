@@ -7,7 +7,7 @@ uses
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.TabControl,
   FMX.Controls.Presentation, FMX.MultiView, FMX.Objects, FMX.StdCtrls,
   FMX.Layouts, FMX.Ani, uAppGlobals, uFrmCategorias, uFrmConfiguracoes,
-  uFrmSelecaoLancamento;
+  uFrmSelecaoLancamento, FMX.ListBox;
 
 type
   TfrmMain = class(TForm)

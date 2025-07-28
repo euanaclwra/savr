@@ -5,7 +5,8 @@ interface
 uses
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.Layouts,
-  FMX.Controls.Presentation, FMX.StdCtrls, FMX.Objects, uFrmReceitaEditor;
+  FMX.Controls.Presentation, FMX.StdCtrls, FMX.Objects, uFrmReceitaEditor,
+  uFrmDespesaEditor;
 
 type
   TfrmSelecaoLancamento = class(TForm)
@@ -33,6 +34,7 @@ implementation
 procedure TfrmSelecaoLancamento.btnCriarClick(Sender: TObject);
 begin
   if rdReceita.IsChecked then frmReceitaEditor.Show;
+  if rdDespesa.IsChecked then frmDespesaEditor.Show;  
   Close;
 end;
 
