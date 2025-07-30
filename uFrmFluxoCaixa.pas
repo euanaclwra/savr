@@ -32,6 +32,11 @@ type
     txtCategoria: TText;
     cmbCategoria: TComboBox;
     lnCategoria: TLine;
+    lbLancamentos: TListBox;
+    ltHeader: TLayout;
+    Rectangle1: TRectangle;
+    txtData: TText;
+    txtDescricao: TText;
     procedure txtInserirClick(Sender: TObject);
   private
     { Private declarations }

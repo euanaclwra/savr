@@ -6,7 +6,7 @@ uses
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.Objects,
   FMX.Controls.Presentation, FMX.StdCtrls, uFrmSelecaoLancamento, FMX.Layouts,
-  FMX.DateTimeCtrls;
+  FMX.DateTimeCtrls, FMX.ListBox;
 
 type
   TfrmFluxoCaixa = class(TForm)
@@ -25,6 +25,14 @@ type
     txtInicio: TText;
     dtInicio: TDateEdit;
     lnInicio: TLine;
+    txtFim: TText;
+    dtFim: TDateEdit;
+    lnFim: TLine;
+    ltCategoria: TLayout;
+    txtCategoria: TText;
+    cmbCategoria: TComboBox;
+    lnCategoria: TLine;
+    ListBox1: TListBox;
     procedure txtInserirClick(Sender: TObject);
   private
     { Private declarations }

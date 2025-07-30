@@ -1087,58 +1087,17 @@ object frmFluxoCaixa: TfrmFluxoCaixa
           0708636C61426C61636B000000}
       end>
   end
-  object lbLancamentos: TListBox
+  object ListBox1: TListBox
     Align = Client
     Size.Width = 640.000000000000000000
     Size.Height = 267.000000000000000000
     Size.PlatformDefault = False
-    TabOrder = 3
+    TabOrder = 4
     DisableFocusEffect = True
     DefaultItemStyles.ItemStyle = ''
     DefaultItemStyles.GroupHeaderStyle = ''
     DefaultItemStyles.GroupFooterStyle = ''
     Viewport.Width = 636.000000000000000000
     Viewport.Height = 263.000000000000000000
-    object ltHeader: TLayout
-      Align = Top
-      Size.Width = 636.000000000000000000
-      Size.Height = 30.000000000000000000
-      Size.PlatformDefault = False
-      TabOrder = 0
-      object Rectangle1: TRectangle
-        Align = Client
-        Fill.Color = xFF63C8C7
-        Size.Width = 636.000000000000000000
-        Size.Height = 30.000000000000000000
-        Size.PlatformDefault = False
-        Stroke.Kind = None
-        object txtData: TText
-          Align = Left
-          Margins.Left = 10.000000000000000000
-          Position.X = 10.000000000000000000
-          Size.Width = 90.000000000000000000
-          Size.Height = 30.000000000000000000
-          Size.PlatformDefault = False
-          Text = 'Data'
-          TextSettings.Font.Family = 'Montserrat'
-          TextSettings.Font.StyleExt = {00050000000000000004000000}
-          TextSettings.FontColor = claWhite
-          TextSettings.HorzAlign = Leading
-        end
-        object txtDescricao: TText
-          Align = Left
-          Margins.Left = 10.000000000000000000
-          Position.X = 110.000000000000000000
-          Size.Width = 90.000000000000000000
-          Size.Height = 30.000000000000000000
-          Size.PlatformDefault = False
-          Text = 'Data'
-          TextSettings.Font.Family = 'Montserrat'
-          TextSettings.Font.StyleExt = {00050000000000000004000000}
-          TextSettings.FontColor = claWhite
-          TextSettings.HorzAlign = Leading
-        end
-      end
-    end
   end
 end
