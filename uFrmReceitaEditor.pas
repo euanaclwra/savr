@@ -7,11 +7,12 @@ uses
   FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls,
   uFrmLancamentoBase, FMX.Memo.Types, FMX.Objects, FMX.ScrollBox, FMX.Memo,
   FMX.ListBox, FMX.DateTimeCtrls, FMX.Controls.Presentation, FMX.Edit,
-  uEditMoeda, FMX.Layouts, uCategoria;
+  uEditMoeda, FMX.Layouts, uCategoria, uLancamento, uUtils, uLancamentoDAO;
 
 type
   TfrmReceitaEditor = class(TfrmLancamentoBase)
     procedure FormShow(Sender: TObject);
+    procedure btnSalvarClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -24,6 +25,41 @@ var
 implementation
 
 {$R *.fmx}
+
+procedure TfrmReceitaEditor.btnSalvarClick(Sender: TObject);
+var
+  Lancamento: TLancamento;
+  DAO: TLancamentoDAO;
+begin
+  // Valida os campos obrigatórios (valor, data e categoria)
+  if not ValidarDados(edtValor.Text, Moeda) then
+  begin
+    ExibirMensagemErro(edtValor);
+    Exit;
+  end;
+  if not ValidarDados(DateToStr(dtData.Date), DataHora) then
+  begin
+    ExibirMensagemErro(dtData);
+    Exit;
+  end;
+  if not cmbCategoria.ItemIndex >= 0 then
+  begin
+    ExibirMensagemErro(cmbCategoria);
+    Exit;
+  end;
+
+  // Cria o objeto de acesso ao banco de dados
+  DAO := TLancamentoDAO.Create;
+
+  try
+    // Gera um lançamento de receita
+    Lancamento := CriarLancamento(tcReceita);
+    // Salva o lançamento no banco de dados
+    DAO.InserirLancamento(Lancamento);
+  finally
+    DAO.Free;
+  end;
+end;
 
 procedure TfrmReceitaEditor.FormShow(Sender: TObject);
 begin

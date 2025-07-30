@@ -8,7 +8,7 @@ uses
   FMX.Controls.Presentation, FMX.Edit, uEditMoeda, FMX.Layouts, FMX.StdCtrls,
   FMX.ListBox, uCategoriaDAO, uCategoria, System.Generics.Collections,
   FMX.DateTimeCtrls, FMX.Memo.Types, FMX.ScrollBox, FMX.Memo, uLancamento,
-  uUtils;
+  uUtils, uLancamentoDAO;
 
 type
   TfrmLancamentoBase = class(TForm)
@@ -59,23 +59,23 @@ implementation
 
 function TfrmLancamentoBase.CriarLancamento(ATipo: TTipoCategoria): TLancamento;
 var
-  NovoLanc: TLancamento;
+  NovoLancamento: TLancamento;
 begin
   Result := nil;
 
   try
     // Cria um objeto de lançamento com base nas informações da tela
     // É esse o objeto enviado como parâmetro ao salvar o lançamento no BD
-    NovoLanc := TLancamento.Create;
-    NovoLanc.CategoriaID := TCategoria(cmbCategoria.Items.Objects[cmbCategoria.ItemIndex]).ID;
-    NovoLanc.Tipo := ATipo;
-    NovoLanc.Data := dtData.Date;
-    NovoLanc.Descricao := edtDescricao.Text;
-    NovoLanc.Valor := CurrencyToFloat(edtValor.Text);
-    NovoLanc.Observacoes := edtObservacoes.Text;
-    NovoLanc.Entidade := edtEntidade.Text;
+    NovoLancamento := TLancamento.Create;
+    NovoLancamento.CategoriaID := TCategoria(cmbCategoria.Items.Objects[cmbCategoria.ItemIndex]).ID;
+    NovoLancamento.Tipo := ATipo;
+    NovoLancamento.Data := dtData.Date;
+    NovoLancamento.Descricao := edtDescricao.Text;
+    NovoLancamento.Valor := CurrencyToFloat(edtValor.Text);
+    NovoLancamento.Observacoes := edtObservacoes.Text;
+    NovoLancamento.Entidade := edtEntidade.Text;
 
-    Result := NovoLanc;
+    Result := NovoLancamento;
   except
       on E: Exception do
       ShowMessage(E.Message);

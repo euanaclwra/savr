@@ -3,10 +3,10 @@ unit uUtils;
 interface
   uses
     SysUtils, Vcl.Controls, Vcl.Forms, FMX.Edit, Vcl.Graphics,
-    FMX.Objects, FMX.Types, FMX.ListBox, uCategoria;
+    FMX.Objects, FMX.Types, FMX.ListBox, uCategoria, FMX.Controls;
 
   type
-    TDataType = (Texto, Inteiro, Moeda, Data, DiaMes);
+    TDataType = (Texto, Inteiro, Moeda, DataHora, DiaMes);
     function ValidarDados(AValue:String; AType:TDataType): Boolean;
     function BoolToInt(AValue:Boolean): Integer;
     function IntToBool(AValue:Integer): Boolean;
@@ -15,7 +15,7 @@ interface
     function CatToStr(AValue:TTipoCategoria): String;
     function CatToStrLegivel(AValue:TTipoCategoria): String;
     function ListBoxItemOf(AComponente: TFmxObject): TListBoxItem;
-    procedure ExibirMensagemErro(ACampo: TEdit);
+    procedure ExibirMensagemErro(ACampo: TStyledControl);
 implementation
 
 function ListBoxItemOf(AComponente: TFmxObject): TListBoxItem;
@@ -88,14 +88,14 @@ begin
       Result := TryStrToInt(AValue, IntegerNumber);
     Moeda:
       Result := CurrencyToFloat(AValue) > 0;
-    Data:
-      Result := TryStrToDate(AValue, ValidDate);
+    DataHora:
+      Result := TryStrToDate(AValue, ValidDate) and (ValidDate > EncodeDate(1899, 12, 30));
     DiaMes:
       Result := TryStrToInt(AValue, IntegerNumber) and (IntegerNumber <= 31);
   end;
 end;
 
-procedure ExibirMensagemErro(ACampo: TEdit);
+procedure ExibirMensagemErro(ACampo: TStyledControl);
 var
    TxtError: TText;
 begin
