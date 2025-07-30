@@ -7,7 +7,7 @@ uses
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.TabControl,
   FMX.Controls.Presentation, FMX.MultiView, FMX.Objects, FMX.StdCtrls,
   FMX.Layouts, FMX.Ani, uAppGlobals, uFrmCategorias, uFrmConfiguracoes,
-  uFrmSelecaoLancamento, FMX.ListBox;
+  uFrmSelecaoLancamento, FMX.ListBox, uFrmFluxoCaixa;
 
 type
   TfrmMain = class(TForm)
@@ -39,6 +39,7 @@ type
     procedure btnCategoriasClick(Sender: TObject);
     procedure btnConfigClick(Sender: TObject);
     procedure btnLancamentoClick(Sender: TObject);
+    procedure btnFluxoClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -66,6 +67,11 @@ begin
   frmConfiguracoes.ShowModal;
 end;
 
+procedure TfrmMain.btnFluxoClick(Sender: TObject);
+begin
+  frmFluxoCaixa.Show;
+end;
+
 procedure TfrmMain.FormShow(Sender: TObject);
 begin
   frmSetup.Close;
@@ -75,7 +81,7 @@ end;
 
 procedure TfrmMain.btnLancamentoClick(Sender: TObject);
 begin
-  frmSelecaoLancamento.Show;
+  frmSelecaoLancamento.ShowModal;
 end;
 
 procedure TfrmMain.ExibirNomeUsuario;
