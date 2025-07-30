@@ -14,6 +14,7 @@ type
     FValor: Double;
     FData: TDate;
     FObservacoes: string;
+    FEntidade: string;
   public
     property ID: Integer read FID write FID;
     property CategoriaID: Integer read FCategoriaID write FCategoriaID;
@@ -22,6 +23,7 @@ type
     property Valor: Double read FValor write FValor;
     property Data: TDate read FData write FData;
     property Observacoes: string read FObservacoes write FObservacoes;
+    property Entidade: string read FEntidade write FEntidade;
   end;
 
 implementation

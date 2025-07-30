@@ -1,0 +1,89 @@
+unit uMain;
+
+interface
+
+uses
+  System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
+  FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.TabControl,
+  FMX.Controls.Presentation, FMX.MultiView, FMX.Objects, FMX.StdCtrls,
+  FMX.Layouts, FMX.Ani, uAppGlobals, uFrmCategorias, uFrmConfiguracoes,
+  uFrmSelecaoLancamento, FMX.ListBox;
+
+type
+  TfrmMain = class(TForm)
+    ltMenu: TGridLayout;
+    btnFluxo: TSpeedButton;
+    imgFluxo: TImage;
+    btnLancamento: TSpeedButton;
+    imgLancamento: TImage;
+    btnCategorias: TSpeedButton;
+    imgCategorias: TImage;
+    btnConfig: TSpeedButton;
+    imgConfig: TImage;
+    imgLogo: TImage;
+    fxLancamentoIn: TFloatAnimation;
+    fxLancamentoOut: TFloatAnimation;
+    fxFluxoIn: TFloatAnimation;
+    fxFluxoOut: TFloatAnimation;
+    fxConfigIn: TFloatAnimation;
+    fxConfigOut: TFloatAnimation;
+    fxCategoriasIn: TFloatAnimation;
+    fxCategoriasOut: TFloatAnimation;
+    txtHelp: TText;
+    txtMain: TText;
+    ltTitle: TLayout;
+    ltHeader: TLayout;
+    StyleBook1: TStyleBook;
+    procedure ExibirNomeUsuario;
+    procedure FormShow(Sender: TObject);
+    procedure btnCategoriasClick(Sender: TObject);
+    procedure btnConfigClick(Sender: TObject);
+    procedure btnLancamentoClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmMain: TfrmMain;
+
+implementation
+
+uses uSetup;
+
+{$R *.fmx}
+{$R *.Windows.fmx MSWINDOWS}
+{$R *.Surface.fmx MSWINDOWS}
+
+procedure TfrmMain.btnCategoriasClick(Sender: TObject);
+begin
+  frmCategorias.Show;
+end;
+
+procedure TfrmMain.btnConfigClick(Sender: TObject);
+begin
+  frmConfiguracoes.ShowModal;
+end;
+
+procedure TfrmMain.FormShow(Sender: TObject);
+begin
+  frmSetup.Close;
+  UpdateConfiguracaoGlobal;
+  ExibirNomeUsuario;
+end;
+
+procedure TfrmMain.btnLancamentoClick(Sender: TObject);
+begin
+  frmSelecaoLancamento.Show;
+end;
+
+procedure TfrmMain.ExibirNomeUsuario;
+var
+  Nome: String;
+begin
+  Nome := AppConfig.NomeUsuario;
+  txtMain.Text := 'Olá, ' + Nome + '!';
+end;
+
+end.

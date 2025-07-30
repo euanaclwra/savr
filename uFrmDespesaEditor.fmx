@@ -1,5 +1,6 @@
 inherited frmDespesaEditor: TfrmDespesaEditor
   Caption = 'Lan'#231'amento de Despesa'
+  OnShow = FormShow
   DesignerMasterStyle = 0
   inherited txtLancReceita: TText
     Text = 'Despesa'

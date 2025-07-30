@@ -7,7 +7,8 @@ uses
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.Objects,
   FMX.Controls.Presentation, FMX.Edit, uEditMoeda, FMX.Layouts, FMX.StdCtrls,
   FMX.ListBox, uCategoriaDAO, uCategoria, System.Generics.Collections,
-  FMX.DateTimeCtrls, FMX.Memo.Types, FMX.ScrollBox, FMX.Memo, uLancamento;
+  FMX.DateTimeCtrls, FMX.Memo.Types, FMX.ScrollBox, FMX.Memo, uLancamento,
+  uUtils;
 
 type
   TfrmLancamentoBase = class(TForm)
@@ -41,9 +42,10 @@ type
     edtObservacoes: TMemo;
     pnObservacoes: TPanel;
     cmbCategoria: TComboBox;
+    lnCategoria: TLine;
   protected
     procedure CarregarCategorias(AComboBox: TComboBox; AType: TTipoCategoria);
-    function CriarLancamento: TLancamento;
+    function CriarLancamento(ATipo: TTipoCategoria): TLancamento;
   public
     { Public declarations }
   end;
@@ -55,7 +57,7 @@ implementation
 
 {$R *.fmx}
 
-function TfrmLancamentoBase.CriarLancamento: TLancamento;
+function TfrmLancamentoBase.CriarLancamento(ATipo: TTipoCategoria): TLancamento;
 var
   NovoLanc: TLancamento;
 begin
@@ -63,8 +65,15 @@ begin
 
   try
     // Cria um objeto de lançamento com base nas informações da tela
-    // É esse o objeto enviado como parâmetro ao salvar a categoria no BD
+    // É esse o objeto enviado como parâmetro ao salvar o lançamento no BD
     NovoLanc := TLancamento.Create;
+    NovoLanc.CategoriaID := TCategoria(cmbCategoria.Items.Objects[cmbCategoria.ItemIndex]).ID;
+    NovoLanc.Tipo := ATipo;
+    NovoLanc.Data := dtData.Date;
+    NovoLanc.Descricao := edtDescricao.Text;
+    NovoLanc.Valor := CurrencyToFloat(edtValor.Text);
+    NovoLanc.Observacoes := edtObservacoes.Text;
+    NovoLanc.Entidade := edtEntidade.Text;
 
     Result := NovoLanc;
   except

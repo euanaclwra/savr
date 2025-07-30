@@ -45,12 +45,12 @@
     <Transaction>2025/07/14 17:43:43.000.743,C:\Users\Ana Clara\Documents\Embarcadero\Studio\Projects\Savr\uFrmLancamentoEditor.pas=C:\Users\Ana Clara\Documents\Embarcadero\Studio\Projects\Savr\uFrmReceitaEditor.pas</Transaction>
     <Transaction>2025/07/24 18:50:44.000.335,C:\Users\Ana Clara\Documents\Embarcadero\Studio\Projects\Savr\uFrmLancamentoEditor.fmx=C:\Users\Ana Clara\Documents\Embarcadero\Studio\Projects\Savr\uFrmLancamentoBase.fmx</Transaction>
     <Transaction>2025/07/24 18:50:44.000.335,C:\Users\Ana Clara\Documents\Embarcadero\Studio\Projects\Savr\uFrmLancamentoEditor.pas=C:\Users\Ana Clara\Documents\Embarcadero\Studio\Projects\Savr\uFrmLancamentoBase.pas</Transaction>
-    <Transaction>2025/07/25 20:35:13.529,=C:\Users\Ana Clara\Documents\Embarcadero\Studio\Projects\Savr\Unit1.pas</Transaction>
-    <Transaction>2025/07/25 20:35:50.697,C:\Users\Ana Clara\Documents\Embarcadero\Studio\Projects\Savr\uFrmReceitaEditor.fmx=C:\Users\Ana Clara\Documents\Embarcadero\Studio\Projects\Savr\Unit1.fmx</Transaction>
-    <Transaction>2025/07/25 20:35:50.697,C:\Users\Ana Clara\Documents\Embarcadero\Studio\Projects\Savr\uFrmReceitaEditor.pas=C:\Users\Ana Clara\Documents\Embarcadero\Studio\Projects\Savr\Unit1.pas</Transaction>
-    <Transaction>2025/07/25 20:43:35.698,=C:\Users\Ana Clara\Documents\Embarcadero\Studio\Projects\Savr\Unit1.pas</Transaction>
-    <Transaction>2025/07/25 20:44:01.987,C:\Users\Ana Clara\Documents\Embarcadero\Studio\Projects\Savr\uFrmDespesaEditor.fmx=C:\Users\Ana Clara\Documents\Embarcadero\Studio\Projects\Savr\Unit1.fmx</Transaction>
-    <Transaction>2025/07/25 20:44:01.987,C:\Users\Ana Clara\Documents\Embarcadero\Studio\Projects\Savr\uFrmDespesaEditor.pas=C:\Users\Ana Clara\Documents\Embarcadero\Studio\Projects\Savr\Unit1.pas</Transaction>
+    <Transaction>2025/07/25 20:35:13.000.529,=C:\Users\Ana Clara\Documents\Embarcadero\Studio\Projects\Savr\Unit1.pas</Transaction>
+    <Transaction>2025/07/25 20:35:50.000.697,C:\Users\Ana Clara\Documents\Embarcadero\Studio\Projects\Savr\uFrmReceitaEditor.fmx=C:\Users\Ana Clara\Documents\Embarcadero\Studio\Projects\Savr\Unit1.fmx</Transaction>
+    <Transaction>2025/07/25 20:35:50.000.697,C:\Users\Ana Clara\Documents\Embarcadero\Studio\Projects\Savr\uFrmReceitaEditor.pas=C:\Users\Ana Clara\Documents\Embarcadero\Studio\Projects\Savr\Unit1.pas</Transaction>
+    <Transaction>2025/07/25 20:43:35.000.698,=C:\Users\Ana Clara\Documents\Embarcadero\Studio\Projects\Savr\Unit1.pas</Transaction>
+    <Transaction>2025/07/25 20:44:01.000.987,C:\Users\Ana Clara\Documents\Embarcadero\Studio\Projects\Savr\uFrmDespesaEditor.fmx=C:\Users\Ana Clara\Documents\Embarcadero\Studio\Projects\Savr\Unit1.fmx</Transaction>
+    <Transaction>2025/07/25 20:44:01.000.987,C:\Users\Ana Clara\Documents\Embarcadero\Studio\Projects\Savr\uFrmDespesaEditor.pas=C:\Users\Ana Clara\Documents\Embarcadero\Studio\Projects\Savr\Unit1.pas</Transaction>
   </Transactions>
 	<ProjectSortOrder AutoSort="0" SortType="0">
     <File Path="uAppGlobals.pas"/>
