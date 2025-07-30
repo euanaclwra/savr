@@ -8,7 +8,7 @@ uses
   FMX.Controls.Presentation, FMX.Edit, uEditMoeda, FMX.Layouts, FMX.StdCtrls,
   FMX.ListBox, uCategoriaDAO, uCategoria, System.Generics.Collections,
   FMX.DateTimeCtrls, FMX.Memo.Types, FMX.ScrollBox, FMX.Memo, uLancamento,
-  uUtils, uLancamentoDAO;
+  uUtils, uLancamentoDAO, uFrmDialog;
 
 type
   TfrmLancamentoBase = class(TForm)
@@ -43,6 +43,7 @@ type
     pnObservacoes: TPanel;
     cmbCategoria: TComboBox;
     lnCategoria: TLine;
+    procedure btnCancelarClick(Sender: TObject);
   protected
     procedure CarregarCategorias(AComboBox: TComboBox; AType: TTipoCategoria);
     function CriarLancamento(ATipo: TTipoCategoria): TLancamento;
@@ -80,6 +81,13 @@ begin
       on E: Exception do
       ShowMessage(E.Message);
   end;
+end;
+
+procedure TfrmLancamentoBase.btnCancelarClick(Sender: TObject);
+begin
+  // Exibe a mensagem de confirmação
+  if TfrmDialog.ShowConfirmDialog('Tem certeza? Nenhum dado alterado será salvo!') then
+    Close;
 end;
 
 procedure TfrmLancamentoBase.CarregarCategorias(AComboBox: TComboBox; AType: TTipoCategoria);

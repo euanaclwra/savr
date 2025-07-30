@@ -270,8 +270,8 @@ object frmLancamentoBase: TfrmLancamentoBase
           Size.PlatformDefault = False
           StyleLookup = 'edtObservacoesStyle1'
           TabOrder = 0
-          Viewport.Width = 510.000000000000000000
-          Viewport.Height = 70.000000000000000000
+          Viewport.Width = 506.000000000000000000
+          Viewport.Height = 66.000000000000000000
         end
       end
     end
@@ -341,7 +341,6 @@ object frmLancamentoBase: TfrmLancamentoBase
       TextSettings.Font.StyleExt = {00050000000000000004000000}
       TextSettings.FontColor = xFF63C8C7
       TextSettings.Trimming = None
-      OnClick = btnCancelarClick
       object rtCancelar: TRectangle
         Align = Client
         Fill.Bitmap.Bitmap.PNG = {
