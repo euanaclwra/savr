@@ -231,7 +231,7 @@ object frmFluxoCaixa: TfrmFluxoCaixa
         TextSettings.FontColor = xFF34495E
         TextSettings.HorzAlign = Leading
       end
-      object dtFim: TDateEdit
+      object DateEdit1: TDateEdit
         Date = 45868.000000000000000000
         Align = Left
         Position.X = 255.000000000000000000
@@ -243,9 +243,7 @@ object frmFluxoCaixa: TfrmFluxoCaixa
         TextSettings.Font.Family = 'Montserrat'
         TextSettings.Font.Size = 11.000000000000000000
         TextSettings.FontColor = xFF34495E
-        ParentShowHint = False
-        ShowHint = False
-        object lnFim: TLine
+        object Line1: TLine
           Align = Bottom
           Locked = True
           HitTest = False
@@ -282,26 +280,15 @@ object frmFluxoCaixa: TfrmFluxoCaixa
         TextSettings.FontColor = xFF34495E
         TextSettings.HorzAlign = Leading
       end
-      object cmbCategoria: TComboBox
+      object ComboBox1: TComboBox
         Align = Left
         ItemWidth = 100.000000000000000000
         ItemHeight = 25.000000000000000000
         Position.X = 95.000000000000000000
-        Size.Width = 260.000000000000000000
+        Size.Width = 100.000000000000000000
         Size.Height = 25.000000000000000000
         Size.PlatformDefault = False
         TabOrder = 1
-        object lnCategoria: TLine
-          Align = Bottom
-          Locked = True
-          HitTest = False
-          LineType = Bottom
-          Position.Y = 8.000000000000000000
-          Size.Width = 260.000000000000000000
-          Size.Height = 17.000000000000000000
-          Size.PlatformDefault = False
-          Stroke.Color = xFF63C8C7
-        end
       end
     end
   end

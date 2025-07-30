@@ -26,12 +26,11 @@ type
     dtInicio: TDateEdit;
     lnInicio: TLine;
     txtFim: TText;
-    dtFim: TDateEdit;
-    lnFim: TLine;
+    DateEdit1: TDateEdit;
+    Line1: TLine;
     ltCategoria: TLayout;
     txtCategoria: TText;
-    cmbCategoria: TComboBox;
-    lnCategoria: TLine;
+    ComboBox1: TComboBox;
     procedure txtInserirClick(Sender: TObject);
   private
     { Private declarations }

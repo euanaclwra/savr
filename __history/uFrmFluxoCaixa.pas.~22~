@@ -30,7 +30,7 @@ type
     lnFim: TLine;
     ltCategoria: TLayout;
     txtCategoria: TText;
-    cmbCategoria: TComboBox;
+    ComboBox1: TComboBox;
     lnCategoria: TLine;
     procedure txtInserirClick(Sender: TObject);
   private

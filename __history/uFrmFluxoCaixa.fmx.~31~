@@ -282,7 +282,7 @@ object frmFluxoCaixa: TfrmFluxoCaixa
         TextSettings.FontColor = xFF34495E
         TextSettings.HorzAlign = Leading
       end
-      object cmbCategoria: TComboBox
+      object ComboBox1: TComboBox
         Align = Left
         ItemWidth = 100.000000000000000000
         ItemHeight = 25.000000000000000000
