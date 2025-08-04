@@ -2,8 +2,8 @@
 <BorlandProject>
 	<Transactions>
     <Transaction>2025/05/27 14:39:29.000.000,=C:\Users\Ana Clara\Documents\Embarcadero\Studio\Projects\Savr\Unit1.pas</Transaction>
-    <Transaction>2025/05/27 14:39:56.000.082,C:\Users\Ana Clara\Documents\Embarcadero\Studio\Projects\Savr\Unit1.pas=C:\Users\Ana Clara\Documents\Embarcadero\Studio\Projects\Savr\uBootstrap.pas</Transaction>
     <Transaction>2025/05/27 14:39:56.000.082,C:\Users\Ana Clara\Documents\Embarcadero\Studio\Projects\Savr\Unit1.fmx=C:\Users\Ana Clara\Documents\Embarcadero\Studio\Projects\Savr\uBootstrap.fmx</Transaction>
+    <Transaction>2025/05/27 14:39:56.000.082,C:\Users\Ana Clara\Documents\Embarcadero\Studio\Projects\Savr\Unit1.pas=C:\Users\Ana Clara\Documents\Embarcadero\Studio\Projects\Savr\uBootstrap.pas</Transaction>
     <Transaction>2025/05/28 17:40:13.000.056,=C:\Users\Ana Clara\Documents\Embarcadero\Studio\Projects\Savr\Unit1.pas</Transaction>
     <Transaction>2025/05/28 17:40:45.000.495,C:\Users\Ana Clara\Documents\Embarcadero\Studio\Projects\Savr\uFrmCategorais.pas=C:\Users\Ana Clara\Documents\Embarcadero\Studio\Projects\Savr\Unit1.pas</Transaction>
     <Transaction>2025/05/28 17:40:45.000.495,C:\Users\Ana Clara\Documents\Embarcadero\Studio\Projects\Savr\uFrmCategorais.fmx=C:\Users\Ana Clara\Documents\Embarcadero\Studio\Projects\Savr\Unit1.fmx</Transaction>
@@ -20,11 +20,11 @@
     <Transaction>2025/06/16 18:35:22.000.676,C:\Users\Ana Clara\Documents\Embarcadero\Studio\Projects\Savr\uFrmNovaCategoria.pas=C:\Users\Ana Clara\Documents\Embarcadero\Studio\Projects\Savr\uFrmCategoriaEditor.pas</Transaction>
     <Transaction>2025/06/16 18:35:22.000.676,C:\Users\Ana Clara\Documents\Embarcadero\Studio\Projects\Savr\uFrmNovaCategoria.fmx=C:\Users\Ana Clara\Documents\Embarcadero\Studio\Projects\Savr\uFrmCategoriaEditor.fmx</Transaction>
     <Transaction>2025/06/17 15:59:31.000.282,=C:\Users\Ana Clara\Documents\Embarcadero\Studio\Projects\Savr\Unit1.pas</Transaction>
-    <Transaction>2025/06/17 16:01:25.000.969,C:\Users\Ana Clara\Documents\Embarcadero\Studio\Projects\Savr\Unit1.fmx=C:\Users\Ana Clara\Documents\Embarcadero\Studio\Projects\Savr\uFrmDialog.fmx</Transaction>
     <Transaction>2025/06/17 16:01:25.000.969,C:\Users\Ana Clara\Documents\Embarcadero\Studio\Projects\Savr\Unit1.pas=C:\Users\Ana Clara\Documents\Embarcadero\Studio\Projects\Savr\uFrmDialog.pas</Transaction>
+    <Transaction>2025/06/17 16:01:25.000.969,C:\Users\Ana Clara\Documents\Embarcadero\Studio\Projects\Savr\Unit1.fmx=C:\Users\Ana Clara\Documents\Embarcadero\Studio\Projects\Savr\uFrmDialog.fmx</Transaction>
     <Transaction>2025/06/18 18:06:35.000.546,=C:\Users\Ana Clara\Documents\Embarcadero\Studio\Projects\Savr\Unit1.pas</Transaction>
-    <Transaction>2025/06/18 18:07:09.000.659,C:\Users\Ana Clara\Documents\Embarcadero\Studio\Projects\Savr\uFrmConfiguracoes.fmx=C:\Users\Ana Clara\Documents\Embarcadero\Studio\Projects\Savr\Unit1.fmx</Transaction>
     <Transaction>2025/06/18 18:07:09.000.659,C:\Users\Ana Clara\Documents\Embarcadero\Studio\Projects\Savr\uFrmConfiguracoes.pas=C:\Users\Ana Clara\Documents\Embarcadero\Studio\Projects\Savr\Unit1.pas</Transaction>
+    <Transaction>2025/06/18 18:07:09.000.659,C:\Users\Ana Clara\Documents\Embarcadero\Studio\Projects\Savr\uFrmConfiguracoes.fmx=C:\Users\Ana Clara\Documents\Embarcadero\Studio\Projects\Savr\Unit1.fmx</Transaction>
     <Transaction>2025/06/19 17:02:07.000.996,=C:\Users\Ana Clara\Documents\Embarcadero\Studio\Projects\Savr\Unit1.pas</Transaction>
     <Transaction>2025/06/19 17:03:27.000.873,C:\Users\Ana Clara\Documents\Embarcadero\Studio\Projects\Savr\Unit1.pas=C:\Users\Ana Clara\Documents\Embarcadero\Studio\Projects\Savr\uFrmConfigUsuario.pas</Transaction>
     <Transaction>2025/06/19 17:03:27.000.873,C:\Users\Ana Clara\Documents\Embarcadero\Studio\Projects\Savr\Unit1.fmx=C:\Users\Ana Clara\Documents\Embarcadero\Studio\Projects\Savr\uFrmConfigUsuario.fmx</Transaction>
@@ -37,10 +37,10 @@
     <Transaction>2025/06/24 18:18:22.000.349,C:\Users\Ana Clara\Documents\Embarcadero\Studio\Projects\Savr\uFrmConfigRenda.fmx=C:\Users\Ana Clara\Documents\Embarcadero\Studio\Projects\Savr\Unit1.fmx</Transaction>
     <Transaction>2025/07/14 15:57:16.000.146,=C:\Users\Ana Clara\Documents\Embarcadero\Studio\Projects\Savr\uFrmLancamentoEditor.pas</Transaction>
     <Transaction>2025/07/14 17:01:47.000.032,=C:\Users\Ana Clara\Documents\Embarcadero\Studio\Projects\Savr\Unit1.pas</Transaction>
-    <Transaction>2025/07/14 17:02:17.000.383,C:\Users\Ana Clara\Documents\Embarcadero\Studio\Projects\Savr\uFrmSelecaoLancamento.pas=C:\Users\Ana Clara\Documents\Embarcadero\Studio\Projects\Savr\Unit1.pas</Transaction>
     <Transaction>2025/07/14 17:02:17.000.383,C:\Users\Ana Clara\Documents\Embarcadero\Studio\Projects\Savr\uFrmSelecaoLancamento.fmx=C:\Users\Ana Clara\Documents\Embarcadero\Studio\Projects\Savr\Unit1.fmx</Transaction>
-    <Transaction>2025/07/14 17:32:19.000.123,C:\Users\Ana Clara\Documents\Embarcadero\Studio\Projects\Savr\uFrmReceitaEditor.pas=C:\Users\Ana Clara\Documents\Embarcadero\Studio\Projects\Savr\uFrmLancamentoEditor.pas</Transaction>
+    <Transaction>2025/07/14 17:02:17.000.383,C:\Users\Ana Clara\Documents\Embarcadero\Studio\Projects\Savr\uFrmSelecaoLancamento.pas=C:\Users\Ana Clara\Documents\Embarcadero\Studio\Projects\Savr\Unit1.pas</Transaction>
     <Transaction>2025/07/14 17:32:19.000.123,C:\Users\Ana Clara\Documents\Embarcadero\Studio\Projects\Savr\uFrmReceitaEditor.fmx=C:\Users\Ana Clara\Documents\Embarcadero\Studio\Projects\Savr\uFrmLancamentoEditor.fmx</Transaction>
+    <Transaction>2025/07/14 17:32:19.000.123,C:\Users\Ana Clara\Documents\Embarcadero\Studio\Projects\Savr\uFrmReceitaEditor.pas=C:\Users\Ana Clara\Documents\Embarcadero\Studio\Projects\Savr\uFrmLancamentoEditor.pas</Transaction>
     <Transaction>2025/07/14 17:43:43.000.743,C:\Users\Ana Clara\Documents\Embarcadero\Studio\Projects\Savr\uFrmLancamentoEditor.fmx=C:\Users\Ana Clara\Documents\Embarcadero\Studio\Projects\Savr\uFrmReceitaEditor.fmx</Transaction>
     <Transaction>2025/07/14 17:43:43.000.743,C:\Users\Ana Clara\Documents\Embarcadero\Studio\Projects\Savr\uFrmLancamentoEditor.pas=C:\Users\Ana Clara\Documents\Embarcadero\Studio\Projects\Savr\uFrmReceitaEditor.pas</Transaction>
     <Transaction>2025/07/24 18:50:44.000.335,C:\Users\Ana Clara\Documents\Embarcadero\Studio\Projects\Savr\uFrmLancamentoEditor.fmx=C:\Users\Ana Clara\Documents\Embarcadero\Studio\Projects\Savr\uFrmLancamentoBase.fmx</Transaction>
@@ -51,6 +51,7 @@
     <Transaction>2025/07/25 20:43:35.000.698,=C:\Users\Ana Clara\Documents\Embarcadero\Studio\Projects\Savr\Unit1.pas</Transaction>
     <Transaction>2025/07/25 20:44:01.000.987,C:\Users\Ana Clara\Documents\Embarcadero\Studio\Projects\Savr\uFrmDespesaEditor.fmx=C:\Users\Ana Clara\Documents\Embarcadero\Studio\Projects\Savr\Unit1.fmx</Transaction>
     <Transaction>2025/07/25 20:44:01.000.987,C:\Users\Ana Clara\Documents\Embarcadero\Studio\Projects\Savr\uFrmDespesaEditor.pas=C:\Users\Ana Clara\Documents\Embarcadero\Studio\Projects\Savr\Unit1.pas</Transaction>
+    <Transaction>2025/07/30 17:22:59.000.651,=C:\Users\Ana Clara\Documents\Embarcadero\Studio\Projects\Savr\uFrmFluxoCaixa.pas</Transaction>
   </Transactions>
 	<ProjectSortOrder AutoSort="0" SortType="0">
     <File Path="uAppGlobals.pas"/>
@@ -89,5 +90,7 @@
     <File Path="uFrmReceitaEditor.fmx"/>
     <File Path="uFrmDespesaEditor.pas"/>
     <File Path="uFrmDespesaEditor.fmx"/>
+    <File Path="uFrmFluxoCaixa.pas"/>
+    <File Path="uFrmFluxoCaixa.fmx"/>
   </ProjectSortOrder>
 </BorlandProject>

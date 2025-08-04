@@ -26,7 +26,8 @@ uses
   uFrmLancamentoBase in 'uFrmLancamentoBase.pas' {frmLancamentoBase},
   uFrmSelecaoLancamento in 'uFrmSelecaoLancamento.pas' {frmSelecaoLancamento},
   uFrmReceitaEditor in 'uFrmReceitaEditor.pas' {frmReceitaEditor},
-  uFrmDespesaEditor in 'uFrmDespesaEditor.pas' {frmDespesaEditor};
+  uFrmDespesaEditor in 'uFrmDespesaEditor.pas' {frmDespesaEditor},
+  uFrmFluxoCaixa in 'uFrmFluxoCaixa.pas' {frmFluxoCaixa};
 
 {$R *.res}
 
@@ -55,5 +56,6 @@ begin
   Application.CreateForm(TfrmSelecaoLancamento, frmSelecaoLancamento);
   Application.CreateForm(TfrmReceitaEditor, frmReceitaEditor);
   Application.CreateForm(TfrmDespesaEditor, frmDespesaEditor);
+  Application.CreateForm(TfrmFluxoCaixa, frmFluxoCaixa);
   Application.Run;
 end.

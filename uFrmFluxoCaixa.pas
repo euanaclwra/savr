@@ -36,8 +36,11 @@ type
     ltHeader: TLayout;
     Rectangle1: TRectangle;
     txtData: TText;
+    txtEntidade: TText;
     txtDescricao: TText;
-    procedure txtInserirClick(Sender: TObject);
+    txtObservacoes: TText;
+    txtValor: TText;
+    procedure btnInserirClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -50,8 +53,9 @@ var
 implementation
 
 {$R *.fmx}
+{$R *.Windows.fmx MSWINDOWS}
 
-procedure TfrmFluxoCaixa.txtInserirClick(Sender: TObject);
+procedure TfrmFluxoCaixa.btnInserirClick(Sender: TObject);
 begin
   frmSelecaoLancamento.ShowModal;
 end;
