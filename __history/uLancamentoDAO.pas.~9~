@@ -21,31 +21,7 @@ var
   Lancamento: TLancamento;
   Qry: TFDQuery;
 begin
-  Result := nil;
-  Qry := TFDQuery.Create(nil);
-  ResultSet := TObjectList<TLancamento>.Create(False);
-
-  try
-     Qry.Connection := dmConexao.FDConnection;
-     Qry.SQL.Text := 'SELECT * FROM lancamentos';
-     Qry.Open;
-
-     if not Qry.IsEmpty then
-     begin
-       while not Qry.Eof do
-       begin
-        try
-          Lancamento := TLancamento.Create;
-          Lancamento.ID := Qry.FieldByName('ID').AsInteger;
-        except
-          on E: Exception do
-            ShowMessage(E.Message);
-        end;
-       end;
-     end;
-  finally
-    Qry.Free;
-  end;
+  //
 end;
 
 procedure TLancamentoDAO.InserirLancamento(const ALancamento: TLancamento);

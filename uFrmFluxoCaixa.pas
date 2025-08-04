@@ -42,7 +42,7 @@ type
     txtValor: TText;
     procedure btnInserirClick(Sender: TObject);
   private
-    { Private declarations }
+    procedure CarregaListaLancamentos;
   public
     { Public declarations }
   end;
@@ -54,6 +54,11 @@ implementation
 
 {$R *.fmx}
 {$R *.Windows.fmx MSWINDOWS}
+
+procedure TfrmFluxoCaixa.CarregaListaLancamentos;
+begin
+  //
+end;
 
 procedure TfrmFluxoCaixa.btnInserirClick(Sender: TObject);
 begin

@@ -9,10 +9,16 @@ uses
 type
   TLancamentoDAO = class
   public
+    function BuscarLancamentos: TObjectList<TLancamento>;
     procedure InserirLancamento(const ALancamento: TLancamento);
   end;
 
 implementation
+
+function TLancamentoDAO.BuscarLancamentos: TObjectList<TLancamento>;
+begin
+  //
+end;
 
 procedure TLancamentoDAO.InserirLancamento(const ALancamento: TLancamento);
 var
@@ -26,9 +32,16 @@ begin
       // SQL para inserir o novo lançamento
       Qry.SQL.Text := 'INSERT INTO lancamentos (categoria, tipo, descricao, valor, data, observacoes, entidade) VALUES' +
       '(:categoria, :tipo, :descricao, :valor, :data, :observacoes, :entidade)';
+
       // Define as propriedades do lançamento como parâmetro pro insert
       Qry.ParamByName('categoria').AsInteger := ALancamento.CategoriaID;
       Qry.ParamByName('tipo').AsString := CatToStr(ALancamento.Tipo);
+      Qry.ParamByName('descricao').AsString := ALancamento.Descricao;
+      Qry.ParamByName('valor').AsFloat := ALancamento.Valor;
+      Qry.ParamByName('data').AsDate := ALancamento.Data;
+      Qry.ParamByName('observacoes').AsString := ALancamento.Observacoes;
+      qry.ParamByName('entidade').AsString := ALancamento.Entidade;
+
       // Executa a query
       Qry.ExecSQL;
 

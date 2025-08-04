@@ -36,7 +36,6 @@ begin
        begin
         try
           Lancamento := TLancamento.Create;
-          Lancamento.ID := Qry.FieldByName('ID').AsInteger;
         except
           on E: Exception do
             ShowMessage(E.Message);

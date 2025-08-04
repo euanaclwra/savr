@@ -2,8 +2,8 @@ object frmFluxoCaixa: TfrmFluxoCaixa
   Left = 0
   Top = 0
   Caption = 'Fluxo de Caixa'
-  ClientHeight = 480
-  ClientWidth = 640
+  ClientHeight = 467
+  ClientWidth = 1003
   Fill.Kind = Solid
   StyleBook = StyleBook1
   WindowState = wsMaximized
@@ -17,7 +17,7 @@ object frmFluxoCaixa: TfrmFluxoCaixa
     Margins.Top = 20.000000000000000000
     Position.X = 20.000000000000000000
     Position.Y = 20.000000000000000000
-    Size.Width = 620.000000000000000000
+    Size.Width = 983.000000000000000000
     Size.Height = 50.000000000000000000
     Size.PlatformDefault = False
     Text = 'Fluxo de Caixa'
@@ -40,6 +40,7 @@ object frmFluxoCaixa: TfrmFluxoCaixa
     TextSettings.Font.StyleExt = {00050000000000000004000000}
     TextSettings.FontColor = xFF63C8C7
     TextSettings.Trimming = None
+    OnClick = btnInserirClick
     object rtInserir: TRectangle
       Align = Client
       Fill.Bitmap.Bitmap.PNG = {
@@ -89,31 +90,30 @@ object frmFluxoCaixa: TfrmFluxoCaixa
       TextSettings.Font.Size = 11.000000000000000000
       TextSettings.Font.StyleExt = {00050000000000000004000000}
       TextSettings.FontColor = xFF63C8C7
-      OnClick = txtInserirClick
     end
   end
   object ltFiltros: TLayout
     Align = Top
     Margins.Top = 30.000000000000000000
     Position.Y = 100.000000000000000000
-    Size.Width = 640.000000000000000000
+    Size.Width = 1003.000000000000000000
     Size.Height = 113.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 2
     object ltTipo: TLayout
       Align = Top
-      Size.Width = 640.000000000000000000
+      Size.Width = 1003.000000000000000000
       Size.Height = 25.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 0
       object txtTipo: TText
         Align = Left
         Margins.Left = 20.000000000000000000
-        Margins.Top = 15.000000000000000000
+        Margins.Top = 12.000000000000000000
         Position.X = 20.000000000000000000
-        Position.Y = 15.000000000000000000
+        Position.Y = 12.000000000000000000
         Size.Width = 75.000000000000000000
-        Size.Height = 10.000000000000000000
+        Size.Height = 13.000000000000000000
         Size.PlatformDefault = False
         Text = 'Tipo:'
         TextSettings.Font.Family = 'Montserrat'
@@ -125,11 +125,11 @@ object frmFluxoCaixa: TfrmFluxoCaixa
       object rdReceitas: TRadioButton
         Align = Left
         StyledSettings = [Style]
-        Margins.Top = 13.000000000000000000
+        Margins.Top = 11.000000000000000000
         Position.X = 95.000000000000000000
-        Position.Y = 13.000000000000000000
+        Position.Y = 11.000000000000000000
         Size.Width = 85.000000000000000000
-        Size.Height = 12.000000000000000000
+        Size.Height = 14.000000000000000000
         Size.PlatformDefault = False
         TabOrder = 3
         Text = 'Receitas'
@@ -140,11 +140,11 @@ object frmFluxoCaixa: TfrmFluxoCaixa
       object rdDespesas: TRadioButton
         Align = Left
         StyledSettings = [Style]
-        Margins.Top = 13.000000000000000000
+        Margins.Top = 11.000000000000000000
         Position.X = 180.000000000000000000
-        Position.Y = 13.000000000000000000
+        Position.Y = 11.000000000000000000
         Size.Width = 85.000000000000000000
-        Size.Height = 12.000000000000000000
+        Size.Height = 14.000000000000000000
         Size.PlatformDefault = False
         TabOrder = 2
         Text = 'Despesas'
@@ -155,11 +155,11 @@ object frmFluxoCaixa: TfrmFluxoCaixa
       object rdAmbos: TRadioButton
         Align = Left
         StyledSettings = [Style]
-        Margins.Top = 13.000000000000000000
+        Margins.Top = 11.000000000000000000
         Position.X = 265.000000000000000000
-        Position.Y = 13.000000000000000000
+        Position.Y = 11.000000000000000000
         Size.Width = 85.000000000000000000
-        Size.Height = 12.000000000000000000
+        Size.Height = 14.000000000000000000
         Size.PlatformDefault = False
         TabOrder = 1
         Text = 'Ambos'
@@ -172,7 +172,7 @@ object frmFluxoCaixa: TfrmFluxoCaixa
       Align = Top
       Margins.Top = 10.000000000000000000
       Position.Y = 35.000000000000000000
-      Size.Width = 640.000000000000000000
+      Size.Width = 1003.000000000000000000
       Size.Height = 25.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 1
@@ -263,7 +263,7 @@ object frmFluxoCaixa: TfrmFluxoCaixa
       Align = Top
       Margins.Top = 10.000000000000000000
       Position.Y = 70.000000000000000000
-      Size.Width = 640.000000000000000000
+      Size.Width = 1003.000000000000000000
       Size.Height = 25.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 2
@@ -1089,26 +1089,26 @@ object frmFluxoCaixa: TfrmFluxoCaixa
   end
   object lbLancamentos: TListBox
     Align = Client
-    Size.Width = 640.000000000000000000
-    Size.Height = 267.000000000000000000
+    Size.Width = 1003.000000000000000000
+    Size.Height = 254.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 3
     DisableFocusEffect = True
     DefaultItemStyles.ItemStyle = ''
     DefaultItemStyles.GroupHeaderStyle = ''
     DefaultItemStyles.GroupFooterStyle = ''
-    Viewport.Width = 636.000000000000000000
-    Viewport.Height = 263.000000000000000000
+    Viewport.Width = 999.000000000000000000
+    Viewport.Height = 250.000000000000000000
     object ltHeader: TLayout
       Align = Top
-      Size.Width = 636.000000000000000000
+      Size.Width = 999.000000000000000000
       Size.Height = 30.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 0
       object Rectangle1: TRectangle
         Align = Client
         Fill.Color = xFF63C8C7
-        Size.Width = 636.000000000000000000
+        Size.Width = 999.000000000000000000
         Size.Height = 30.000000000000000000
         Size.PlatformDefault = False
         Stroke.Kind = None
@@ -1116,10 +1116,62 @@ object frmFluxoCaixa: TfrmFluxoCaixa
           Align = Left
           Margins.Left = 10.000000000000000000
           Position.X = 10.000000000000000000
-          Size.Width = 90.000000000000000000
+          Size.Width = 120.000000000000000000
           Size.Height = 30.000000000000000000
           Size.PlatformDefault = False
           Text = 'Data'
+          TextSettings.Font.Family = 'Montserrat'
+          TextSettings.Font.StyleExt = {00050000000000000004000000}
+          TextSettings.FontColor = claWhite
+          TextSettings.HorzAlign = Leading
+        end
+        object txtEntidade: TText
+          Align = Left
+          Margins.Left = 10.000000000000000000
+          Position.X = 140.000000000000000000
+          Size.Width = 270.000000000000000000
+          Size.Height = 30.000000000000000000
+          Size.PlatformDefault = False
+          Text = 'Entidade'
+          TextSettings.Font.Family = 'Montserrat'
+          TextSettings.Font.StyleExt = {00050000000000000004000000}
+          TextSettings.FontColor = claWhite
+          TextSettings.HorzAlign = Leading
+        end
+        object txtDescricao: TText
+          Align = Left
+          Margins.Left = 10.000000000000000000
+          Position.X = 420.000000000000000000
+          Size.Width = 350.000000000000000000
+          Size.Height = 30.000000000000000000
+          Size.PlatformDefault = False
+          Text = 'Descri'#231#227'o'
+          TextSettings.Font.Family = 'Montserrat'
+          TextSettings.Font.StyleExt = {00050000000000000004000000}
+          TextSettings.FontColor = claWhite
+          TextSettings.HorzAlign = Leading
+        end
+        object txtObservacoes: TText
+          Align = Left
+          Margins.Left = 10.000000000000000000
+          Position.X = 780.000000000000000000
+          Size.Width = 350.000000000000000000
+          Size.Height = 30.000000000000000000
+          Size.PlatformDefault = False
+          Text = 'Observa'#231#245'es'
+          TextSettings.Font.Family = 'Montserrat'
+          TextSettings.Font.StyleExt = {00050000000000000004000000}
+          TextSettings.FontColor = claWhite
+          TextSettings.HorzAlign = Leading
+        end
+        object txtValor: TText
+          Align = Left
+          Margins.Left = 10.000000000000000000
+          Position.X = 1140.000000000000000000
+          Size.Width = 100.000000000000000000
+          Size.Height = 30.000000000000000000
+          Size.PlatformDefault = False
+          Text = 'Valor'
           TextSettings.Font.Family = 'Montserrat'
           TextSettings.Font.StyleExt = {00050000000000000004000000}
           TextSettings.FontColor = claWhite
