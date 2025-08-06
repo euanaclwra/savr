@@ -170,18 +170,15 @@ begin
   AItem.StyleLookup :=  'itemCategoriaStyle';
   AItem.Height := 25;
 
-  // Obtém os elementos visuais do estilo (nome e tipo)
+  // Obtém os elementos visuais do estilo
   LabelNome := TText(AItem.FindStyleResource('nametext'));
   LabelTipo := TText(AItem.FindStyleResource('typetext'));
   BtnEditar := TButton(AItem.FindStyleResource('editbutton'));
   BtnExcluir := TButton(AItem.FindStyleResource('deletebutton'));
 
   // Atualiza os textos se os elementos forem encontrados
-  if Assigned(LabelNome) then
-    LabelNome.Text := ACategoria.Nome;
-
-  if Assigned(LabelTipo) then
-    LabelTipo.Text := CatToStrLegivel(ACategoria.Tipo);
+  SetLabelText(LabelNome, ACategoria.Nome);
+  SetLabelText(LabelTipo, CatToStrLegivel(ACategoria.Tipo));
 
   // Atribui os eventos de clique aos respectivos botões
   if Assigned(BtnEditar) then

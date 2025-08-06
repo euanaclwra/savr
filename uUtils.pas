@@ -17,7 +17,14 @@ interface
     function ListBoxItemOf(AComponente: TFmxObject): TListBoxItem;
     procedure ExibirMensagemErro(ACampo: TStyledControl);
     procedure ClearListBox(AListBox: TListBox);
+    procedure SetLabelText(ALabel: TText; AText: String);
 implementation
+
+procedure SetLabelText(ALabel: TText; AText: String);
+begin
+  if Assigned(ALabel) then
+    ALabel.Text := AText;
+end;
 
 procedure ClearListBox(AListBox: TListBox);
 var

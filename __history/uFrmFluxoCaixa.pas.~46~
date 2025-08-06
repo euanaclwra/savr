@@ -44,6 +44,7 @@ type
     procedure btnInserirClick(Sender: TObject);
   private
     procedure CarregaListaLancamentos;
+    procedure PreencheLabelsItemLancamento(AItem: TListBoxItem; ALancamento: TLancamento);
   public
     { Public declarations }
   end;
@@ -55,6 +56,22 @@ implementation
 
 {$R *.fmx}
 {$R *.Windows.fmx MSWINDOWS}
+
+procedure TfrmFluxoCaixa.PreencheLabelsItemLancamento(AItem: TListBoxItem; ALancamento: TLancamento);
+var
+   LabelData, LabelEntidade, LabelDescricao, LabelObs, LabelValor: TText;
+begin
+  // Aplica o estilo personalizado
+  AItem.StyleLookup :=  'itemLancamentoStyle';
+  AItem.Height := 25;
+
+  // Obtém os elementos visuais do estilo
+  LabelData := TText(AItem.FindStyleResource('datetext'));
+  LabelEntidade := TText(AItem.FindStyleResource('entitytext'));
+  LabelDescricao := TText(AItem.FindStyleResource('descriptiontext'));
+  LabelObs := TText(AItem.FindStyleResource('obstext'));
+  LabelValor := TText(AItem.FindStyleResource('valuetext'));
+end;
 
 procedure TfrmFluxoCaixa.CarregaListaLancamentos;
 var
@@ -80,7 +97,7 @@ begin
         Item := TListBoxItem.Create(nil);
         Item.Parent := lbLancamentos;
         // Preenche os elementos visuais do item
-        // PreencheLabelsItemCategoria(Item, Categoria);
+        PreencheLabelsItemLancamento(Item, Lancamento);
         // Define o lançamento como conteúdo do item
         Item.TagObject := Lancamento;
       end;
