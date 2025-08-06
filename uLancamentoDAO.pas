@@ -4,7 +4,7 @@ interface
 
 uses
   uLancamento, uConexao, System.SysUtils, FireDAC.Comp.Client, FireDAC.Stan.Param,
-  FireDAC.DApt, uUtils, System.Generics.Collections, Vcl.Dialogs;
+  FireDAC.DApt, uUtils, System.Generics.Collections, Vcl.Dialogs, uCategoriaDAO;
 
 type
   TLancamentoDAO = class
@@ -20,8 +20,10 @@ var
   ResultSet: TObjectList<TLancamento>;
   Lancamento: TLancamento;
   Qry: TFDQuery;
+  DAOCategoria: TCategoriaDAO;
 begin
   Result := nil;
+  DAOCategoria := TCategoriaDAO.Create;
   Qry := TFDQuery.Create(nil);
   // Inicializa a lista de objetos para armazenar os lançamentos
   ResultSet := TObjectList<TLancamento>.Create(False);
@@ -43,6 +45,7 @@ begin
           Lancamento := TLancamento.Create;
           Lancamento.ID := Qry.FieldByName('ID').AsInteger;
           Lancamento.CategoriaID := Qry.FieldByName('categoria').AsInteger;
+          Lancamento.Categoria := DAOCategoria.BuscarCategoriaPorID(Lancamento.CategoriaID);
           Lancamento.Tipo := StrToCat(Qry.FieldByName('tipo').AsString);
           Lancamento.Descricao := Qry.FieldByName('descricao').AsString;
           Lancamento.Valor := Qry.FieldByName('valor').AsFloat;

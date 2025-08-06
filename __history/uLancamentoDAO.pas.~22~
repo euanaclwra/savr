@@ -23,12 +23,44 @@ var
 begin
   Result := nil;
   Qry := TFDQuery.Create(nil);
+  // Inicializa a lista de objetos para armazenar os lançamentos
   ResultSet := TObjectList<TLancamento>.Create(False);
 
   try
+    // Consulta todas os lançamentos existentes
      Qry.Connection := dmConexao.FDConnection;
      Qry.SQL.Text := 'SELECT * FROM lancamentos';
      Qry.Open;
+
+     // Se a query não estiver vazia, ou seja, se houver algum lançamento
+     if not Qry.IsEmpty then
+     begin
+      // Percorre todos os lançamentos do BD
+       while not Qry.Eof do
+       begin
+        try
+          // Cria um objeto de Lançamento para o registro atual
+          Lancamento := TLancamento.Create;
+          Lancamento.ID := Qry.FieldByName('ID').AsInteger;
+          Lancamento.CategoriaID := Qry.FieldByName('categoria').AsInteger;
+          Lancamento.Tipo := StrToCat(Qry.FieldByName('tipo').AsString);
+          Lancamento.Descricao := Qry.FieldByName('descricao').AsString;
+          Lancamento.Valor := Qry.FieldByName('valor').AsFloat;
+          Lancamento.Data := Qry.FieldByName('data').AsDateTime;
+          Lancamento.Observacoes := Qry.FieldByName('observacoes').AsString;
+          Lancamento.Entidade := Qry.FieldByName('entidade').AsString;
+
+          // Adiciona o lançamento ao ResultSet
+          ResultSet.Add(Lancamento);
+          Qry.Next;
+        except
+          on E: Exception do
+            ShowMessage(E.Message);
+        end;
+       end;
+
+       Result := ResultSet;
+     end;
   finally
     Qry.Free;
   end;

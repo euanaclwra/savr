@@ -45,7 +45,6 @@ type
   private
     Lancamentos: TObjectList<TLancamento>;
     procedure CarregaListaLancamentos;
-    procedure PreencheLabelsItemLancamento(AItem: TListBoxItem; ALancamento: TLancamento);
     procedure ResizeGridColumns;
   public
     { Public declarations }
@@ -73,29 +72,6 @@ begin
   grdLancamentos.Columns[5].Width := TotalWidth * 0.10;
 end;
 
-procedure TfrmFluxoCaixa.PreencheLabelsItemLancamento(AItem: TListBoxItem; ALancamento: TLancamento);
-var
-   LabelData, LabelEntidade, LabelDescricao, LabelObs, LabelValor: TText;
-begin
-  // Aplica o estilo personalizado
-  AItem.StyleLookup :=  'itemLancamentoStyle';
-  AItem.Height := 25;
-
-  // Obtém os elementos visuais do estilo
-  LabelData := TText(AItem.FindStyleResource('datetext'));
-  LabelEntidade := TText(AItem.FindStyleResource('entitytext'));
-  LabelDescricao := TText(AItem.FindStyleResource('descriptiontext'));
-  LabelObs := TText(AItem.FindStyleResource('obstext'));
-  LabelValor := TText(AItem.FindStyleResource('positivevaluetext'));
-
-  // Atualiza os textos se os elementos forem encontrados
-  SetLabelText(LabelData, DateToStr(ALancamento.Data));
-  SetLabelText(LabelEntidade, ALancamento.Entidade);
-  SetLabelText(LabelDescricao, ALancamento.Descricao);
-  SetLabelText(LabelObs, ALancamento.Observacoes);
-  SetLabelText(LabelValor, FloatToStr(ALancamento.Valor));
-end;
-
 procedure TfrmFluxoCaixa.CarregaListaLancamentos;
 var
   DAO: TLancamentoDAO;
@@ -116,7 +92,8 @@ begin
         grdLancamentos.Cells[1, grdLancamentos.RowCount - 1] := Lancamento.Entidade;
         grdLancamentos.Cells[2, grdLancamentos.RowCount - 1] := Lancamento.Descricao;
         grdLancamentos.Cells[3, grdLancamentos.RowCount - 1] := Lancamento.Observacoes;
-        grdLancamentos.Cells[4, grdLancamentos.RowCount - 1] := FormatFloat('R$ #,##0.00', Lancamento.Valor);
+        grdLancamentos.Cells[3, grdLancamentos.RowCount - 1] := Lancamento.Categoria.Nome;
+        grdLancamentos.Cells[5, grdLancamentos.RowCount - 1] := FormatFloat('R$ #,##0.00', Lancamento.Valor);
       end;
     except
       on E: Exception do

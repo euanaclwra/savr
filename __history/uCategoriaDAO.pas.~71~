@@ -19,8 +19,34 @@ type
 implementation
 
 function TCategoriaDAO.BuscarCategoriaPorID(const ID: Integer): TCategoria;
+var
+  Qry: TFDQuery;
+  Categoria: TCategoria;
 begin
-  //
+  Result := nil;
+  Qry := TFDQuery.Create(nil);
+
+  try
+    Qry.Connection := dmConexao.FDConnection;
+    // SQL para consultar a categoria com o ID correspondente
+    Qry.SQL.Text := 'SELECT * categorias WHERE id = :id';
+    Qry.ParamByName('id').AsInteger := ID;
+    Qry.Open;
+
+    // Se a query não estiver vazia, ou seja, se existir uma categoria com esse ID
+    if not Qry.IsEmpty then
+    begin
+      // Cria um objeto de categoria para o registro encontrado
+      Categoria := TCategoria.Create;
+      Categoria.ID := Qry.FieldByName('id').AsInteger;
+      Categoria.Nome := Qry.FieldByName('nome').AsString;
+      Categoria.Tipo := StrToCat(Qry.FieldByName('tipo').AsString);
+      // Retorna a categoria encontrada
+      Result := Categoria;
+    end;
+  finally
+    Qry.Free;
+  end;
 end;
 
 procedure TCategoriaDAO.InserirCategoria(const ACategoria: TCategoria);

@@ -1,4 +1,4 @@
-unit uFrmFluxoCaixa;
+﻿unit uFrmFluxoCaixa;
 
 interface
 
@@ -7,7 +7,7 @@ uses
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.Objects,
   FMX.Controls.Presentation, FMX.StdCtrls, uFrmSelecaoLancamento, FMX.Layouts,
   FMX.DateTimeCtrls, FMX.ListBox, uLancamento, uLancamentoDAO, System.Generics.Collections,
-  uUtils, System.Rtti, FMX.Grid.Style, FMX.Grid, FMX.ScrollBox;
+  uUtils, System.Rtti, FMX.Grid.Style, FMX.Grid, FMX.ScrollBox, uCategoria;
 
 type
   TfrmFluxoCaixa = class(TForm)
@@ -40,12 +40,12 @@ type
     clObservacoes: TStringColumn;
     clCategoria: TStringColumn;
     clValor: TStringColumn;
+    clTipo: TStringColumn;
     procedure btnInserirClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
   private
     Lancamentos: TObjectList<TLancamento>;
     procedure CarregaListaLancamentos;
-    procedure PreencheLabelsItemLancamento(AItem: TListBoxItem; ALancamento: TLancamento);
     procedure ResizeGridColumns;
   public
     { Public declarations }
@@ -67,33 +67,11 @@ begin
 
   grdLancamentos.Columns[0].Width := TotalWidth * 0.10;
   grdLancamentos.Columns[1].Width := TotalWidth * 0.15;
-  grdLancamentos.Columns[2].Width := TotalWidth * 0.30;
+  grdLancamentos.Columns[2].Width := TotalWidth * 0.25;
   grdLancamentos.Columns[3].Width := TotalWidth * 0.25;
   grdLancamentos.Columns[4].Width := TotalWidth * 0.10;
-  grdLancamentos.Columns[4].Width := TotalWidth * 0.10;
-end;
-
-procedure TfrmFluxoCaixa.PreencheLabelsItemLancamento(AItem: TListBoxItem; ALancamento: TLancamento);
-var
-   LabelData, LabelEntidade, LabelDescricao, LabelObs, LabelValor: TText;
-begin
-  // Aplica o estilo personalizado
-  AItem.StyleLookup :=  'itemLancamentoStyle';
-  AItem.Height := 25;
-
-  // Obt�m os elementos visuais do estilo
-  LabelData := TText(AItem.FindStyleResource('datetext'));
-  LabelEntidade := TText(AItem.FindStyleResource('entitytext'));
-  LabelDescricao := TText(AItem.FindStyleResource('descriptiontext'));
-  LabelObs := TText(AItem.FindStyleResource('obstext'));
-  LabelValor := TText(AItem.FindStyleResource('positivevaluetext'));
-
-  // Atualiza os textos se os elementos forem encontrados
-  SetLabelText(LabelData, DateToStr(ALancamento.Data));
-  SetLabelText(LabelEntidade, ALancamento.Entidade);
-  SetLabelText(LabelDescricao, ALancamento.Descricao);
-  SetLabelText(LabelObs, ALancamento.Observacoes);
-  SetLabelText(LabelValor, FloatToStr(ALancamento.Valor));
+  grdLancamentos.Columns[5].Width := TotalWidth * 0.10;
+  grdLancamentos.Columns[6].Width := TotalWidth * 0.05;
 end;
 
 procedure TfrmFluxoCaixa.CarregaListaLancamentos;
@@ -116,7 +94,13 @@ begin
         grdLancamentos.Cells[1, grdLancamentos.RowCount - 1] := Lancamento.Entidade;
         grdLancamentos.Cells[2, grdLancamentos.RowCount - 1] := Lancamento.Descricao;
         grdLancamentos.Cells[3, grdLancamentos.RowCount - 1] := Lancamento.Observacoes;
-        grdLancamentos.Cells[4, grdLancamentos.RowCount - 1] := FormatFloat('R$ #,##0.00', Lancamento.Valor);
+        grdLancamentos.Cells[4, grdLancamentos.RowCount - 1] := Lancamento.Categoria.Nome;
+        grdLancamentos.Cells[5, grdLancamentos.RowCount - 1] := FormatFloat('R$ #,##0.00', Lancamento.Valor);
+
+        if Lancamento.Tipo = tcReceita then
+          grdLancamentos.Cells[6, grdLancamentos.RowCount - 1] := '🟢';
+        else
+          grdLancamentos.Cells[6, grdLancamentos.RowCount - 1] := '🔴';
       end;
     except
       on E: Exception do

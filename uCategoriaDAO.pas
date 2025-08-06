@@ -29,7 +29,7 @@ begin
   try
     Qry.Connection := dmConexao.FDConnection;
     // SQL para consultar a categoria com o ID correspondente
-    Qry.SQL.Text := 'SELECT * categorias WHERE id = :id';
+    Qry.SQL.Text := 'SELECT * FROM categorias WHERE id = :id';
     Qry.ParamByName('id').AsInteger := ID;
     Qry.Open;
 

@@ -38,6 +38,7 @@ type
     clEntidade: TStringColumn;
     clDescricao: TStringColumn;
     clObservacoes: TStringColumn;
+    clCategoria: TStringColumn;
     clValor: TStringColumn;
     procedure btnInserirClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
@@ -66,14 +67,15 @@ begin
 
   grdLancamentos.Columns[0].Width := TotalWidth * 0.10;
   grdLancamentos.Columns[1].Width := TotalWidth * 0.15;
-  grdLancamentos.Columns[2].Width := TotalWidth * 0.35;
-  grdLancamentos.Columns[3].Width := TotalWidth * 0.30;
+  grdLancamentos.Columns[2].Width := TotalWidth * 0.30;
+  grdLancamentos.Columns[3].Width := TotalWidth * 0.25;
   grdLancamentos.Columns[4].Width := TotalWidth * 0.10;
+  grdLancamentos.Columns[5].Width := TotalWidth * 0.10;
 end;
 
 procedure TfrmFluxoCaixa.PreencheLabelsItemLancamento(AItem: TListBoxItem; ALancamento: TLancamento);
 var
-   LabelData, LabelEntidade, LabelDescricao, LabelObs, LabelValor: TText;
+   LabelData, LabelEntidade, LabelDescricao, LabelObs, LabelValor, LabelCat: TText;
 begin
   // Aplica o estilo personalizado
   AItem.StyleLookup :=  'itemLancamentoStyle';
@@ -84,6 +86,7 @@ begin
   LabelEntidade := TText(AItem.FindStyleResource('entitytext'));
   LabelDescricao := TText(AItem.FindStyleResource('descriptiontext'));
   LabelObs := TText(AItem.FindStyleResource('obstext'));
+  LabelCat := TText(AItem.FindStyleResource('categorytext'));
   LabelValor := TText(AItem.FindStyleResource('positivevaluetext'));
 
   // Atualiza os textos se os elementos forem encontrados
@@ -91,6 +94,7 @@ begin
   SetLabelText(LabelEntidade, ALancamento.Entidade);
   SetLabelText(LabelDescricao, ALancamento.Descricao);
   SetLabelText(LabelObs, ALancamento.Observacoes);
+  //SetLabelText(LabelCat, ALancamento.CategoriaID)
   SetLabelText(LabelValor, FloatToStr(ALancamento.Valor));
 end;
 

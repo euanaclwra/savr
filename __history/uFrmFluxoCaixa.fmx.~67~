@@ -1156,16 +1156,20 @@ object frmFluxoCaixa: TfrmFluxoCaixa
       end>
   end
   object grdLancamentos: TStringGrid
-    Align = Scale
+    Align = Client
     CanFocus = True
     ClipChildren = True
-    Position.Y = 213.000000000000000000
     Size.Width = 1003.000000000000000000
     Size.Height = 254.000000000000000000
     Size.PlatformDefault = False
+    TextSettings.Font.Family = 'Montserrat'
+    TextSettings.Font.Size = 11.000000000000000000
+    TextSettings.FontColor = xFF34495E
+    StyledSettings = [Style]
     TabOrder = 3
+    RowCount = 0
     Options = [AlternatingRowBackground, Editing, ColumnResize, ColumnMove, ColLines, RowLines, Tabs, Header, HeaderClick, AutoDisplacement]
-    Viewport.Width = 983.000000000000000000
+    Viewport.Width = 999.000000000000000000
     Viewport.Height = 229.000000000000000000
     object clData: TStringColumn
       HorzAlign = Center
@@ -1177,6 +1181,7 @@ object frmFluxoCaixa: TfrmFluxoCaixa
       HeaderSettings.TextSettings.FontColor = xFF34495E
       HeaderSettings.TextSettings.WordWrap = False
       HeaderSettings.TextSettings.HorzAlign = Center
+      ReadOnly = True
     end
     object clEntidade: TStringColumn
       HorzAlign = Center
@@ -1188,9 +1193,9 @@ object frmFluxoCaixa: TfrmFluxoCaixa
       HeaderSettings.TextSettings.FontColor = xFF34495E
       HeaderSettings.TextSettings.WordWrap = False
       HeaderSettings.TextSettings.HorzAlign = Center
+      ReadOnly = True
     end
     object clDescricao: TStringColumn
-      HorzAlign = Center
       Header = 'Descri'#231#227'o'
       HeaderSettings.StyledSettings = []
       HeaderSettings.TextSettings.Font.Family = 'Montserrat'
@@ -1199,9 +1204,9 @@ object frmFluxoCaixa: TfrmFluxoCaixa
       HeaderSettings.TextSettings.FontColor = xFF34495E
       HeaderSettings.TextSettings.WordWrap = False
       HeaderSettings.TextSettings.HorzAlign = Center
+      ReadOnly = True
     end
     object clObservacoes: TStringColumn
-      HorzAlign = Center
       Header = 'Observa'#231#245'es'
       HeaderSettings.StyledSettings = []
       HeaderSettings.TextSettings.Font.Family = 'Montserrat'
@@ -1210,9 +1215,21 @@ object frmFluxoCaixa: TfrmFluxoCaixa
       HeaderSettings.TextSettings.FontColor = xFF34495E
       HeaderSettings.TextSettings.WordWrap = False
       HeaderSettings.TextSettings.HorzAlign = Center
+      ReadOnly = True
+    end
+    object clCategoria: TStringColumn
+      HorzAlign = Trailing
+      Header = 'Categoria'
+      HeaderSettings.StyledSettings = []
+      HeaderSettings.TextSettings.Font.Family = 'Montserrat'
+      HeaderSettings.TextSettings.Font.Size = 11.000000000000000000
+      HeaderSettings.TextSettings.Font.StyleExt = {00070000000000000004000000}
+      HeaderSettings.TextSettings.FontColor = xFF34495E
+      HeaderSettings.TextSettings.WordWrap = False
+      HeaderSettings.TextSettings.HorzAlign = Center
+      ReadOnly = True
     end
     object clValor: TStringColumn
-      HorzAlign = Center
       Header = 'Valor'
       HeaderSettings.StyledSettings = []
       HeaderSettings.TextSettings.Font.Family = 'Montserrat'
@@ -1221,6 +1238,7 @@ object frmFluxoCaixa: TfrmFluxoCaixa
       HeaderSettings.TextSettings.FontColor = xFF34495E
       HeaderSettings.TextSettings.WordWrap = False
       HeaderSettings.TextSettings.HorzAlign = Center
+      ReadOnly = True
     end
   end
 end
