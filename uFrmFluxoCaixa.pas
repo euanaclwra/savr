@@ -7,7 +7,7 @@ uses
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.Objects,
   FMX.Controls.Presentation, FMX.StdCtrls, uFrmSelecaoLancamento, FMX.Layouts,
   FMX.DateTimeCtrls, FMX.ListBox, uLancamento, uLancamentoDAO, System.Generics.Collections,
-  uUtils;
+  uUtils, System.Rtti, FMX.Grid.Style, FMX.Grid, FMX.ScrollBox;
 
 type
   TfrmFluxoCaixa = class(TForm)
@@ -33,19 +33,18 @@ type
     txtCategoria: TText;
     cmbCategoria: TComboBox;
     lnCategoria: TLine;
-    lbLancamentos: TListBox;
-    ltHeader: TLayout;
-    Rectangle1: TRectangle;
-    txtData: TText;
-    txtEntidade: TText;
-    txtDescricao: TText;
-    txtObservacoes: TText;
-    txtValor: TText;
+    grdLancamentos: TStringGrid;
+    clData: TStringColumn;
+    clEntidade: TStringColumn;
+    clDescricao: TStringColumn;
+    clObservacoes: TStringColumn;
+    clValor: TStringColumn;
     procedure btnInserirClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
   private
-    procedure CarregaListaLancamentos;
+    //procedure CarregaListaLancamentos;
     procedure PreencheLabelsItemLancamento(AItem: TListBoxItem; ALancamento: TLancamento);
+    procedure ResizeGridColumns;
   public
     { Public declarations }
   end;
@@ -57,6 +56,19 @@ implementation
 
 {$R *.fmx}
 {$R *.Windows.fmx MSWINDOWS}
+
+procedure TfrmFluxoCaixa.ResizeGridColumns;
+var
+  TotalWidth: Single;
+begin
+  TotalWidth := grdLancamentos.Width;
+
+  grdLancamentos.Columns[0].Width := TotalWidth * 0.10;
+  grdLancamentos.Columns[1].Width := TotalWidth * 0.15;
+  grdLancamentos.Columns[2].Width := TotalWidth * 0.35;
+  grdLancamentos.Columns[3].Width := TotalWidth * 0.30;
+  grdLancamentos.Columns[4].Width := TotalWidth * 0.10;
+end;
 
 procedure TfrmFluxoCaixa.PreencheLabelsItemLancamento(AItem: TListBoxItem; ALancamento: TLancamento);
 var
@@ -71,7 +83,7 @@ begin
   LabelEntidade := TText(AItem.FindStyleResource('entitytext'));
   LabelDescricao := TText(AItem.FindStyleResource('descriptiontext'));
   LabelObs := TText(AItem.FindStyleResource('obstext'));
-  LabelValor := TText(AItem.FindStyleResource('valuetext'));
+  LabelValor := TText(AItem.FindStyleResource('positivevaluetext'));
 
   // Atualiza os textos se os elementos forem encontrados
   SetLabelText(LabelData, DateToStr(ALancamento.Data));
@@ -81,7 +93,7 @@ begin
   SetLabelText(LabelValor, FloatToStr(ALancamento.Valor));
 end;
 
-procedure TfrmFluxoCaixa.CarregaListaLancamentos;
+{ procedure TfrmFluxoCaixa.CarregaListaLancamentos;
 var
   DAO: TLancamentoDAO;
   Lista: TObjectList<TLancamento>;
@@ -117,11 +129,12 @@ begin
     DAO.Free;
     Lista.Free;
   end;
-end;
+end; }
 
 procedure TfrmFluxoCaixa.FormShow(Sender: TObject);
 begin
-  CarregaListaLancamentos;
+  ResizeGridColumns;
+  //CarregaListaLancamentos;
 end;
 
 procedure TfrmFluxoCaixa.btnInserirClick(Sender: TObject);
