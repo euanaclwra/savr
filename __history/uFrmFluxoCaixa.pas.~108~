@@ -41,14 +41,19 @@ type
     clCategoria: TStringColumn;
     clValor: TStringColumn;
     clTipo: TStringColumn;
+    btnAplicarFiltros: TSpeedButton;
+    rtAplicarFiltros: TRectangle;
+    txtAplicarFiltros: TText;
+    ltAplicarFiltros: TLayout;
     procedure btnInserirClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
+    procedure btnAplicarFiltrosClick(Sender: TObject);
   private
-    Lancamentos: TObjectList<TLancamento>;
+    FFiltroTipo: TTipoCategoria;
+    FFiltroData: TDate;
+    FFiltroCategoria: Integer;
     procedure CarregaListaLancamentos;
     procedure ResizeGridColumns;
-  public
-    { Public declarations }
   end;
 
 var
@@ -65,6 +70,7 @@ var
 begin
   TotalWidth := grdLancamentos.Width;
 
+  // Define a largura das colunas de acordo com a largura total da tela
   grdLancamentos.Columns[0].Width := TotalWidth * 0.10;
   grdLancamentos.Columns[1].Width := TotalWidth * 0.15;
   grdLancamentos.Columns[2].Width := TotalWidth * 0.25;
@@ -80,13 +86,19 @@ var
   Lista: TObjectList<TLancamento>;
   Lancamento: TLancamento;
 begin
+  // Começa limpando os lançamentos que já estavam no TStringGrid
+  grdLancamentos.RowCount := 0;
+  // Cria o objeto de acesso ao BD
   DAO := TLancamentoDAO.Create;
 
   try
+    // Busca todos os lançamentos do Banco de Dados e armazena numa lista
     Lista := DAO.BuscarLancamentos;
 
+    // Se houver algum objeto na lista...
     if Lista <> nil then
     try
+      // Para cada lançamento, é criada uma nova linha no TStringGrid
       for Lancamento in Lista do
       begin
         grdLancamentos.RowCount := grdLancamentos.RowCount + 1;
@@ -113,9 +125,22 @@ end;
 
 procedure TfrmFluxoCaixa.FormShow(Sender: TObject);
 begin
-  Lancamentos := TObjectList<TLancamento>.Create(False);
+  rdAmbos.IsChecked := True;
   ResizeGridColumns;
   CarregaListaLancamentos;
+end;
+
+procedure TfrmFluxoCaixa.btnAplicarFiltrosClick(Sender: TObject);
+begin
+  // Tipo
+  if rdReceitas.IsChecked then
+    FFiltroTipo := tcReceita
+  else if rdDespesas.IsChecked then
+    FFiltroTipo := tcDespesa
+  else
+    FFiltroTipo := tcTodos;
+
+  // Data
 end;
 
 procedure TfrmFluxoCaixa.btnInserirClick(Sender: TObject);

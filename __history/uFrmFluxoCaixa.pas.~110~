@@ -41,14 +41,20 @@ type
     clCategoria: TStringColumn;
     clValor: TStringColumn;
     clTipo: TStringColumn;
+    btnAplicarFiltros: TSpeedButton;
+    rtAplicarFiltros: TRectangle;
+    txtAplicarFiltros: TText;
+    ltAplicarFiltros: TLayout;
     procedure btnInserirClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
+    procedure btnAplicarFiltrosClick(Sender: TObject);
   private
-    Lancamentos: TObjectList<TLancamento>;
+    FFiltroTipo: TTipoCategoria;
+    FFiltroDataInicial: TDate;
+    FFiltroDataFinal: TDate;
+    FFiltroCategoria: Integer;
     procedure CarregaListaLancamentos;
     procedure ResizeGridColumns;
-  public
-    { Public declarations }
   end;
 
 var
@@ -120,9 +126,27 @@ end;
 
 procedure TfrmFluxoCaixa.FormShow(Sender: TObject);
 begin
-  Lancamentos := TObjectList<TLancamento>.Create(False);
+  rdAmbos.IsChecked := True;
   ResizeGridColumns;
   CarregaListaLancamentos;
+end;
+
+procedure TfrmFluxoCaixa.btnAplicarFiltrosClick(Sender: TObject);
+begin
+  // Tipo
+  if rdReceitas.IsChecked then
+    FFiltroTipo := tcReceita
+  else if rdDespesas.IsChecked then
+    FFiltroTipo := tcDespesa
+  else
+    FFiltroTipo := tcTodos;
+
+  // Data
+  FFiltroDataInicial := dtInicio.Date;
+  FFiltroDataFinal := dtFim.Date;
+
+  // Categoria
+
 end;
 
 procedure TfrmFluxoCaixa.btnInserirClick(Sender: TObject);

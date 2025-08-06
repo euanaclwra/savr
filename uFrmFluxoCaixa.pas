@@ -7,7 +7,7 @@ uses
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.Objects,
   FMX.Controls.Presentation, FMX.StdCtrls, uFrmSelecaoLancamento, FMX.Layouts,
   FMX.DateTimeCtrls, FMX.ListBox, uLancamento, uLancamentoDAO, System.Generics.Collections,
-  uUtils, System.Rtti, FMX.Grid.Style, FMX.Grid, FMX.ScrollBox, uCategoria;
+  uUtils, System.Rtti, FMX.Grid.Style, FMX.Grid, FMX.ScrollBox, uCategoria, uCategoriaDAO;
 
 type
   TfrmFluxoCaixa = class(TForm)
@@ -41,14 +41,22 @@ type
     clCategoria: TStringColumn;
     clValor: TStringColumn;
     clTipo: TStringColumn;
+    btnAplicarFiltros: TSpeedButton;
+    rtAplicarFiltros: TRectangle;
+    txtAplicarFiltros: TText;
+    ltAplicarFiltros: TLayout;
     procedure btnInserirClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
+    procedure btnAplicarFiltrosClick(Sender: TObject);
   private
-    Lancamentos: TObjectList<TLancamento>;
+    FFiltroTipo: TTipoCategoria;
+    FFiltroDataInicial: TDate;
+    FFiltroDataFinal: TDate;
+    FFiltroCategoria: Integer;
     procedure CarregaListaLancamentos;
+    procedure CarregarCategorias;
     procedure ResizeGridColumns;
-  public
-    { Public declarations }
+    procedure LimparFiltros;
   end;
 
 var
@@ -58,6 +66,58 @@ implementation
 
 {$R *.fmx}
 {$R *.Windows.fmx MSWINDOWS}
+
+procedure TfrmFluxoCaixa.LimparFiltros;
+begin
+  FFiltroTipo := tcTodos;
+  FFiltroDataInicial := 0;
+  FFiltroDataFinal := 0;
+  FFiltroCategoria := 0;
+end;
+
+procedure TfrmFluxoCaixa.CarregarCategorias;
+var
+  DAO: TCategoriaDAO;
+  Lista: TObjectList<TCategoria>;
+  Categoria: TCategoria;
+  Item: TListBoxItem;
+begin
+  // Começa limpando os itens que já estavam na combobox
+  cmbCategoria.Clear;
+  // Cria o objeto de acesso ao BD
+  DAO := TCategoriaDAO.Create;
+
+  try
+    // Busca todos as categorias no Banco de Dados e armazena numa lista
+    Lista := DAO.BuscarCategorias;
+
+    // Se houver algum objeto na lista...
+    if Lista <> nil then
+    try
+      for Categoria in Lista do
+      begin
+        // Para cada categoria encontrada, é criado um novo item na TComboBox
+        Item := TListBoxItem.Create(nil);
+        Item.Parent := cmbCategoria;
+        Item.Text := Categoria.Nome;
+        // Aplica o estilo padrão
+        Item.StyledSettings := [];
+        Item.TextSettings.Font.Family := 'Montserrat';
+        Item.TextSettings.Font.Size := 11;
+        Item.TextSettings.FontColor := $FF34495E;
+        // Vincula a categoria selecionada ao item da combobox
+        Item.TagObject := Categoria;
+        cmbCategoria.AddObject(Item);
+      end;
+    except
+      on E: Exception do
+        ShowMessage(E.Message);
+    end;
+  finally
+    DAO.Free;
+    Lista.Free;
+  end;
+end;
 
 procedure TfrmFluxoCaixa.ResizeGridColumns;
 var
@@ -120,10 +180,28 @@ end;
 
 procedure TfrmFluxoCaixa.FormShow(Sender: TObject);
 begin
-  Lancamentos := TObjectList<TLancamento>.Create(False);
   rdAmbos.IsChecked := True;
   ResizeGridColumns;
   CarregaListaLancamentos;
+end;
+
+procedure TfrmFluxoCaixa.btnAplicarFiltrosClick(Sender: TObject);
+begin
+  // Tipo
+  if rdReceitas.IsChecked then
+    FFiltroTipo := tcReceita
+  else if rdDespesas.IsChecked then
+    FFiltroTipo := tcDespesa
+  else
+    FFiltroTipo := tcTodos;
+
+  // Data
+  FFiltroDataInicial := dtInicio.Date;
+  FFiltroDataFinal := dtFim.Date;
+
+  // Categoria
+  if Assigned(cmbCategoria.ListItems[cmbCategoria.ItemIndex].TagObject) then
+    FFiltroCategoria := TCategoria(cmbCategoria.ListItems[cmbCategoria.ItemIndex].TagObject).ID;
 end;
 
 procedure TfrmFluxoCaixa.btnInserirClick(Sender: TObject);
