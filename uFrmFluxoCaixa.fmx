@@ -1253,8 +1253,8 @@ object frmFluxoCaixa: TfrmFluxoCaixa
     TabOrder = 3
     RowCount = 0
     Options = [AlternatingRowBackground, Editing, ColumnResize, ColumnMove, ColLines, RowLines, Tabs, Header, HeaderClick, AutoDisplacement]
-    Viewport.Width = 1003.000000000000000000
-    Viewport.Height = 234.000000000000000000
+    Viewport.Width = 999.000000000000000000
+    Viewport.Height = 209.000000000000000000
     object clData: TStringColumn
       HorzAlign = Center
       Header = 'Data'

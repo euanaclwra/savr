@@ -53,7 +53,7 @@ type
     FFiltroDataInicial: TDate;
     FFiltroDataFinal: TDate;
     FFiltroCategoria: Integer;
-    procedure CarregaListaLancamentos;
+    procedure CarregaListaLancamentos(ATipo: TTipoCategoria; ADataInicial: TDate; ADataFinal: TDate; ACategoria: Integer);
     procedure CarregarCategorias;
     procedure ResizeGridColumns;
     procedure LimparFiltros;
@@ -135,7 +135,7 @@ begin
   grdLancamentos.Columns[6].Width := TotalWidth * 0.05;
 end;
 
-procedure TfrmFluxoCaixa.CarregaListaLancamentos;
+procedure TfrmFluxoCaixa.CarregaListaLancamentos(ATipo: TTipoCategoria; ADataInicial: TDate; ADataFinal: TDate; ACategoria: Integer);
 var
   DAO: TLancamentoDAO;
   Lista: TObjectList<TLancamento>;
@@ -148,7 +148,7 @@ begin
 
   try
     // Busca todos os lançamentos do Banco de Dados e armazena numa lista
-    Lista := DAO.BuscarLancamentos;
+    Lista := DAO.BuscarLancamentos(ATipo, ADataInicial, ADataFinal, ACategoria);
 
     // Se houver algum objeto na lista...
     if Lista <> nil then
@@ -180,9 +180,10 @@ end;
 
 procedure TfrmFluxoCaixa.FormShow(Sender: TObject);
 begin
-  rdAmbos.IsChecked := True;
+  CarregarCategorias;
+  LimparFiltros;
   ResizeGridColumns;
-  CarregaListaLancamentos;
+  CarregaListaLancamentos(FFiltroTipo, FFiltroDataInicial, FFiltroDataFinal, FFiltroCategoria);
 end;
 
 procedure TfrmFluxoCaixa.btnAplicarFiltrosClick(Sender: TObject);
@@ -200,8 +201,11 @@ begin
   FFiltroDataFinal := dtFim.Date;
 
   // Categoria
-  if Assigned(cmbCategoria.ListItems[cmbCategoria.ItemIndex].TagObject) then
+  if (cmbCategoria.ItemIndex >= 0) and Assigned(cmbCategoria.ListItems[cmbCategoria.ItemIndex].TagObject) then
     FFiltroCategoria := TCategoria(cmbCategoria.ListItems[cmbCategoria.ItemIndex].TagObject).ID;
+
+  // Busca os lançamentos com os filtros aplicados
+  CarregaListaLancamentos(FFiltroTipo, FFiltroDataInicial, FFiltroDataFinal, FFiltroCategoria)
 end;
 
 procedure TfrmFluxoCaixa.btnInserirClick(Sender: TObject);

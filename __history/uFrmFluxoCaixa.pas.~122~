@@ -53,9 +53,10 @@ type
     FFiltroDataInicial: TDate;
     FFiltroDataFinal: TDate;
     FFiltroCategoria: Integer;
-    procedure CarregaListaLancamentos;
-    procedure CarregarCategorias(AComboBox: TComboBox);
+    procedure CarregaListaLancamentos(ATipo: TTipoCategoria; ADataInicial: TDate; ADataFinal: TDate; ACategoria: Integer);
+    procedure CarregarCategorias;
     procedure ResizeGridColumns;
+    procedure LimparFiltros;
   end;
 
 var
@@ -66,7 +67,15 @@ implementation
 {$R *.fmx}
 {$R *.Windows.fmx MSWINDOWS}
 
-procedure TfrmFluxoCaixa.CarregarCategorias(AComboBox: TComboBox);
+procedure TfrmFluxoCaixa.LimparFiltros;
+begin
+  FFiltroTipo := tcTodos;
+  FFiltroDataInicial := 0;
+  FFiltroDataFinal := 0;
+  FFiltroCategoria := 0;
+end;
+
+procedure TfrmFluxoCaixa.CarregarCategorias;
 var
   DAO: TCategoriaDAO;
   Lista: TObjectList<TCategoria>;
@@ -74,7 +83,7 @@ var
   Item: TListBoxItem;
 begin
   // Começa limpando os itens que já estavam na combobox
-  AComboBox.Clear;
+  cmbCategoria.Clear;
   // Cria o objeto de acesso ao BD
   DAO := TCategoriaDAO.Create;
 
@@ -89,7 +98,7 @@ begin
       begin
         // Para cada categoria encontrada, é criado um novo item na TComboBox
         Item := TListBoxItem.Create(nil);
-        Item.Parent := AComboBox;
+        Item.Parent := cmbCategoria;
         Item.Text := Categoria.Nome;
         // Aplica o estilo padrão
         Item.StyledSettings := [];
@@ -98,7 +107,7 @@ begin
         Item.TextSettings.FontColor := $FF34495E;
         // Vincula a categoria selecionada ao item da combobox
         Item.TagObject := Categoria;
-        AComboBox.AddObject(Item);
+        cmbCategoria.AddObject(Item);
       end;
     except
       on E: Exception do
@@ -126,7 +135,7 @@ begin
   grdLancamentos.Columns[6].Width := TotalWidth * 0.05;
 end;
 
-procedure TfrmFluxoCaixa.CarregaListaLancamentos;
+procedure TfrmFluxoCaixa.CarregaListaLancamentos(ATipo: TTipoCategoria; ADataInicial: TDate; ADataFinal: TDate; ACategoria: Integer);
 var
   DAO: TLancamentoDAO;
   Lista: TObjectList<TLancamento>;
@@ -139,7 +148,7 @@ begin
 
   try
     // Busca todos os lançamentos do Banco de Dados e armazena numa lista
-    Lista := DAO.BuscarLancamentos;
+    Lista := DAO.BuscarLancamentos(ATipo, ADataInicial, ADataFinal, ACategoria);
 
     // Se houver algum objeto na lista...
     if Lista <> nil then
@@ -171,9 +180,10 @@ end;
 
 procedure TfrmFluxoCaixa.FormShow(Sender: TObject);
 begin
-  rdAmbos.IsChecked := True;
+  CarregarCategorias;
+  LimparFiltros;
   ResizeGridColumns;
-  CarregaListaLancamentos;
+  CarregaListaLancamentos(FFiltroTipo, FFiltroDataInicial, FFiltroDataFinal, FFiltroCategoria);
 end;
 
 procedure TfrmFluxoCaixa.btnAplicarFiltrosClick(Sender: TObject);
@@ -191,7 +201,11 @@ begin
   FFiltroDataFinal := dtFim.Date;
 
   // Categoria
+  if Assigned(cmbCategoria.ListItems[cmbCategoria.ItemIndex].TagObject) then
+    FFiltroCategoria := TCategoria(cmbCategoria.ListItems[cmbCategoria.ItemIndex].TagObject).ID;
 
+  // Busca os lançamentos com os filtros aplicados
+  CarregaListaLancamentos(FFiltroTipo, FFiltroDataInicial, FFiltroDataFinal, FFiltroCategoria)
 end;
 
 procedure TfrmFluxoCaixa.btnInserirClick(Sender: TObject);

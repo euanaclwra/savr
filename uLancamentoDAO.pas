@@ -9,13 +9,13 @@ uses
 type
   TLancamentoDAO = class
   public
-    function BuscarLancamentos(ATipo: TTipoCategoria = tcTodos; AData: TDate = 0; ACategoria: Integer = 0): TObjectList<TLancamento>;
+    function BuscarLancamentos(ATipo: TTipoCategoria = tcTodos; ADataInicial: TDate = 0; ADataFinal: TDate = 0; ACategoria: Integer = 0): TObjectList<TLancamento>;
     procedure InserirLancamento(const ALancamento: TLancamento);
   end;
 
 implementation
 
-function TLancamentoDAO.BuscarLancamentos(ATipo: TTipoCategoria = tcTodos; AData: TDate = 0; ACategoria: Integer = 0): TObjectList<TLancamento>;
+function TLancamentoDAO.BuscarLancamentos(ATipo: TTipoCategoria = tcTodos; ADataInicial: TDate = 0; ADataFinal: TDate = 0; ACategoria: Integer = 0): TObjectList<TLancamento>;
 var
   ResultSet: TObjectList<TLancamento>;
   Lancamento: TLancamento;
@@ -37,8 +37,8 @@ begin
      if ATipo <> tcTodos then
       Qry.SQL.Text := Qry.SQL.Text + ' AND tipo = ' + QuotedStr(CatToStr(ATipo));
     // Filtro por data
-     if AData <> 0 then
-      Qry.SQL.Text := Qry.SQL.Text + ' AND data = ' + QuotedStr(FormatDateTime('yyyy-mm-dd', AData));
+     if (ADataInicial <> 0) and (ADataFinal <> 0) then
+      Qry.SQL.Text := Qry.SQL.Text + ' AND data BETWEEN ' + QuotedStr(FormatDateTime('yyyy-mm-dd', ADataInicial)) + ' AND ' + QuotedStr(FormatDateTime('yyyy-mm-dd', ADataFinal));
     //Filtro por categoria    ]
       if ACategoria <> 0 then
         Qry.SQL.Text := Qry.SQL.Text + ' AND categoria = ' + QuotedStr(IntToStr(ACategoria));
