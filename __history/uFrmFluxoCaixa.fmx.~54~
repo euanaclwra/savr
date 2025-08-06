@@ -10,7 +10,6 @@ object frmFluxoCaixa: TfrmFluxoCaixa
   FormFactor.Width = 320
   FormFactor.Height = 480
   FormFactor.Devices = [Desktop]
-  OnShow = FormShow
   DesignerMasterStyle = 0
   object txtFluxo: TText
     Align = Top

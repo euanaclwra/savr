@@ -26,9 +26,9 @@ type
     procedure btnEditarClick(Sender: TObject);
     procedure btnExcluirClick(Sender: TObject);
   private
+    procedure ExcluiCategoria(ACategoria: TCategoria);
     procedure CarregaListaCategorias;
     procedure PreencheLabelsItemCategoria(AItem: TListBoxItem; ACategoria: TCategoria);
-    procedure LiberaListBoxCategorias;
   public
     { Public declarations }
   end;
@@ -56,20 +56,22 @@ begin
     Categoria := TCategoria(Item.TagObject);
 
     // Exibe a mensagem de confirmação
-    frmDialog.ShowConfirmDialog('Tem certeza que deseja excluir?',
-      // Caso o usuário confirme, exclui a categoria
-      procedure
-      var
-        DAO: TCategoriaDAO;
-      begin
-        DAO := TCategoriaDAO.Create;
-        try
-          DAO.ExcluirCategoria(Categoria);
-        finally
-          DAO.Free;
-        end;
-      end
-    );
+    if TfrmDialog.ShowConfirmDialog('Tem certeza que deseja excluir?') then
+    ExcluiCategoria(Categoria);
+  end;
+end;
+
+procedure TfrmCategorias.ExcluiCategoria(ACategoria: TCategoria);
+var
+  DAO: TCategoriaDAO;
+begin
+  DAO := TCategoriaDAO.Create;
+  try
+    // Exclui a categoria e atualiza a lista
+    DAO.ExcluirCategoria(ACategoria);
+    CarregaListaCategorias;
+  finally
+    DAO.Free;
   end;
 end;
 
@@ -128,7 +130,7 @@ var
   Item: TListBoxItem;
 begin
   // Limpa a ListBox e libera a memória
-  LiberaListBoxCategorias;
+  ClearListBox(lbCategorias);
 
   try
     DAO := TCategoriaDAO.Create;
@@ -140,7 +142,7 @@ begin
     try
       for Categoria in Lista do
       begin
-        // Para cada categoria, é exibido um novo ListBoxItem
+        // Para cada categoria, é criado um novo ListBoxItem
         Item := TListBoxItem.Create(nil);
         Item.Parent := lbCategorias;
         // Preenche os elementos visuais do item
@@ -168,18 +170,15 @@ begin
   AItem.StyleLookup :=  'itemCategoriaStyle';
   AItem.Height := 25;
 
-  // Obtém os elementos visuais do estilo (nome e tipo)
+  // Obtém os elementos visuais do estilo
   LabelNome := TText(AItem.FindStyleResource('nametext'));
   LabelTipo := TText(AItem.FindStyleResource('typetext'));
   BtnEditar := TButton(AItem.FindStyleResource('editbutton'));
   BtnExcluir := TButton(AItem.FindStyleResource('deletebutton'));
 
   // Atualiza os textos se os elementos forem encontrados
-  if Assigned(LabelNome) then
-    LabelNome.Text := ACategoria.Nome;
-
-  if Assigned(LabelTipo) then
-    LabelTipo.Text := CatToStrLegivel(ACategoria.Tipo);
+  SetLabelText(LabelNome, ACategoria.Nome);
+  SetLabelText(LabelTipo, CatToStrLegivel(ACategoria.Tipo));
 
   // Atribui os eventos de clique aos respectivos botões
   if Assigned(BtnEditar) then
@@ -187,18 +186,6 @@ begin
 
   if Assigned(BtnExcluir) then
     BtnExcluir.OnClick := btnExcluirClick;
-end;
-
-procedure TfrmCategorias.LiberaListBoxCategorias;
-var
-  i: Integer;
-begin
-  // Limpa as categorias armazenadas em cada item da ListBox
-  for i := 0 to (lbCategorias.Count - 1) do
-    lbCategorias.ItemByIndex(I).TagObject.Free;
-
-    // Limpa os itens da ListBox
-    lbCategorias.Clear;
 end;
 
 procedure TfrmCategorias.FormShow(Sender: TObject);

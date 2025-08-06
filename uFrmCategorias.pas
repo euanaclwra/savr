@@ -181,11 +181,8 @@ begin
   SetLabelText(LabelTipo, CatToStrLegivel(ACategoria.Tipo));
 
   // Atribui os eventos de clique aos respectivos botões
-  if Assigned(BtnEditar) then
-    BtnEditar.OnClick := btnEditarClick;
-
-  if Assigned(BtnExcluir) then
-    BtnExcluir.OnClick := btnExcluirClick;
+  if Assigned(BtnEditar) then BtnEditar.OnClick := btnEditarClick;
+  if Assigned(BtnExcluir) then BtnExcluir.OnClick := btnExcluirClick;
 end;
 
 procedure TfrmCategorias.FormShow(Sender: TObject);

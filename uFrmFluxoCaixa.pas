@@ -42,6 +42,7 @@ type
     txtObservacoes: TText;
     txtValor: TText;
     procedure btnInserirClick(Sender: TObject);
+    procedure FormShow(Sender: TObject);
   private
     procedure CarregaListaLancamentos;
     procedure PreencheLabelsItemLancamento(AItem: TListBoxItem; ALancamento: TLancamento);
@@ -78,7 +79,6 @@ begin
   SetLabelText(LabelDescricao, ALancamento.Descricao);
   SetLabelText(LabelObs, ALancamento.Observacoes);
   SetLabelText(LabelValor, FloatToStr(ALancamento.Valor));
-
 end;
 
 procedure TfrmFluxoCaixa.CarregaListaLancamentos;
@@ -117,6 +117,11 @@ begin
     DAO.Free;
     Lista.Free;
   end;
+end;
+
+procedure TfrmFluxoCaixa.FormShow(Sender: TObject);
+begin
+  CarregaListaLancamentos;
 end;
 
 procedure TfrmFluxoCaixa.btnInserirClick(Sender: TObject);
