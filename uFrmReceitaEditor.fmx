@@ -39,18 +39,6 @@ inherited frmReceitaEditor: TfrmReceitaEditor
         TextSettings.Font.StyleExt = {00050000000000000004000000}
       end
     end
-    inherited btnCancelar: TSpeedButton
-      TextSettings.Font.StyleExt = {00050000000000000004000000}
-      inherited txtCancelar: TText
-        TextSettings.Font.StyleExt = {00050000000000000004000000}
-      end
-    end
-    inherited btnSalvar: TSpeedButton
-      TextSettings.Font.StyleExt = {00050000000000000004000000}
-      inherited txtSalvar: TText
-        TextSettings.Font.StyleExt = {00050000000000000004000000}
-      end
-    end
   end
   inherited StyleBook1: TStyleBook
     Styles = <
@@ -1083,5 +1071,18 @@ inherited frmReceitaEditor: TfrmReceitaEditor
           0C5442727573684F626A65637400095374796C654E616D65060A666F72656772
           6F756E640B42727573682E436F6C6F720708636C61426C61636B000000}
       end>
+  end
+  inherited btnCancelar: TSpeedButton
+    TextSettings.Font.StyleExt = {00050000000000000004000000}
+    inherited txtCancelar: TText
+      TextSettings.Font.StyleExt = {00050000000000000004000000}
+    end
+  end
+  inherited btnSalvar: TSpeedButton
+    TextSettings.Font.StyleExt = {00050000000000000004000000}
+    OnClick = btnSalvarClick
+    inherited txtSalvar: TText
+      TextSettings.Font.StyleExt = {00050000000000000004000000}
+    end
   end
 end
