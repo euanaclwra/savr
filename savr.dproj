@@ -195,6 +195,7 @@
             <Form>frmFluxoCaixa</Form>
             <FormType>fmx</FormType>
         </DCCReference>
+        <DCCReference Include="uLancamentoDAO.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

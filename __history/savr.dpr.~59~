@@ -27,8 +27,7 @@ uses
   uFrmSelecaoLancamento in 'uFrmSelecaoLancamento.pas' {frmSelecaoLancamento},
   uFrmReceitaEditor in 'uFrmReceitaEditor.pas' {frmReceitaEditor},
   uFrmDespesaEditor in 'uFrmDespesaEditor.pas' {frmDespesaEditor},
-  uFrmFluxoCaixa in 'uFrmFluxoCaixa.pas' {frmFluxoCaixa},
-  uLancamentoDAO in 'uLancamentoDAO.pas';
+  uFrmFluxoCaixa in 'uFrmFluxoCaixa.pas' {frmFluxoCaixa};
 
 {$R *.res}
 
