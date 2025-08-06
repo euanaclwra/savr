@@ -31,22 +31,8 @@ var
   Lancamento: TLancamento;
   DAO: TLancamentoDAO;
 begin
-  // Valida os campos obrigatórios (valor, data e categoria)
-  if not ValidarDados(edtValor.Text, Moeda) then
-  begin
-    ExibirMensagemErro(edtValor);
-    Exit;
-  end;
-  if not ValidarDados(DateToStr(dtData.Date), DataHora) then
-  begin
-    ExibirMensagemErro(dtData);
-    Exit;
-  end;
-  if not cmbCategoria.ItemIndex >= 0 then
-  begin
-    ExibirMensagemErro(cmbCategoria);
-    Exit;
-  end;
+  // Valida os campos obrigatórios (valor, data, descrição e categoria)
+  if not ValidaCamposObrigatorios then Exit;
 
   // Cria o objeto de acesso ao banco de dados
   DAO := TLancamentoDAO.Create;

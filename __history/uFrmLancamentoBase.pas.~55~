@@ -7,7 +7,8 @@ uses
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.Objects,
   FMX.Controls.Presentation, FMX.Edit, uEditMoeda, FMX.Layouts, FMX.StdCtrls,
   FMX.ListBox, uCategoriaDAO, uCategoria, System.Generics.Collections,
-  FMX.DateTimeCtrls, FMX.Memo.Types, FMX.ScrollBox, FMX.Memo, uLancamento;
+  FMX.DateTimeCtrls, FMX.Memo.Types, FMX.ScrollBox, FMX.Memo, uLancamento,
+  uUtils, uLancamentoDAO, uFrmDialog;
 
 type
   TfrmLancamentoBase = class(TForm)
@@ -42,9 +43,11 @@ type
     pnObservacoes: TPanel;
     cmbCategoria: TComboBox;
     lnCategoria: TLine;
+    procedure btnCancelarClick(Sender: TObject);
   protected
     procedure CarregarCategorias(AComboBox: TComboBox; AType: TTipoCategoria);
     function CriarLancamento(ATipo: TTipoCategoria): TLancamento;
+    function ValidarCamposObrigatorios: Boolean;
   public
     { Public declarations }
   end;
@@ -58,22 +61,34 @@ implementation
 
 function TfrmLancamentoBase.CriarLancamento(ATipo: TTipoCategoria): TLancamento;
 var
-  NovoLanc: TLancamento;
+  NovoLancamento: TLancamento;
 begin
   Result := nil;
 
   try
     // Cria um objeto de lançamento com base nas informações da tela
-    // É esse o objeto enviado como parâmetro ao salvar a categoria no BD
-    NovoLanc := TLancamento.Create;
-    NovoLanc.CategoriaID := TCategoria(cmbCategoria.Items.Objects[cmbCategoria.ItemIndex]).ID;
-    NovoLanc.Tipo := ATipo;
+    // É esse o objeto enviado como parâmetro ao salvar o lançamento no BD
+    NovoLancamento := TLancamento.Create;
+    NovoLancamento.CategoriaID := TCategoria(cmbCategoria.Items.Objects[cmbCategoria.ItemIndex]).ID;
+    NovoLancamento.Tipo := ATipo;
+    NovoLancamento.Data := dtData.Date;
+    NovoLancamento.Descricao := edtDescricao.Text;
+    NovoLancamento.Valor := CurrencyToFloat(edtValor.Text);
+    NovoLancamento.Observacoes := edtObservacoes.Text;
+    NovoLancamento.Entidade := edtEntidade.Text;
 
-    Result := NovoLanc;
+    Result := NovoLancamento;
   except
       on E: Exception do
       ShowMessage(E.Message);
   end;
+end;
+
+procedure TfrmLancamentoBase.btnCancelarClick(Sender: TObject);
+begin
+  // Exibe a mensagem de confirmação
+  if TfrmDialog.ShowConfirmDialog('Tem certeza? Nenhum dado alterado será salvo!') then
+    Close;
 end;
 
 procedure TfrmLancamentoBase.CarregarCategorias(AComboBox: TComboBox; AType: TTipoCategoria);

@@ -12,7 +12,7 @@ uses
 type
   TfrmReceitaEditor = class(TfrmLancamentoBase)
     procedure FormShow(Sender: TObject);
-    procedure btnSalvarClick(Sender: TObject); override;
+    procedure btnSalvarClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -31,7 +31,10 @@ var
   Lancamento: TLancamento;
   DAO: TLancamentoDAO;
 begin
-  inherited;
+  // Valida os campos obrigatórios (valor, data, descrição e categoria)
+  if not ValidaCamposObrigatorios then Exit;
+
+
   // Cria o objeto de acesso ao banco de dados
   DAO := TLancamentoDAO.Create;
 

@@ -8,7 +8,7 @@ uses
   FMX.Controls.Presentation, FMX.Edit, uEditMoeda, FMX.Layouts, FMX.StdCtrls,
   FMX.ListBox, uCategoriaDAO, uCategoria, System.Generics.Collections,
   FMX.DateTimeCtrls, FMX.Memo.Types, FMX.ScrollBox, FMX.Memo, uLancamento,
-  uUtils;
+  uUtils, uLancamentoDAO, uFrmDialog;
 
 type
   TfrmLancamentoBase = class(TForm)
@@ -43,9 +43,11 @@ type
     pnObservacoes: TPanel;
     cmbCategoria: TComboBox;
     lnCategoria: TLine;
+    procedure btnCancelarClick(Sender: TObject);
   protected
     procedure CarregarCategorias(AComboBox: TComboBox; AType: TTipoCategoria);
     function CriarLancamento(ATipo: TTipoCategoria): TLancamento;
+    function ValidarCamposObrigatorios: Boolean;
   public
     { Public declarations }
   end;
@@ -57,29 +59,64 @@ implementation
 
 {$R *.fmx}
 
+function TfrmLancamentoBase.ValidarCamposObrigatorios: Boolean;
+begin
+  Result := False;
+
+  if not ValidarDados(edtValor.Text, Moeda) then
+  begin
+    ExibirMensagemErro(edtValor);
+    Exit;
+  end;
+  if not ValidarDados(DateToStr(dtData.Date), DataHora) then
+  begin
+    ExibirMensagemErro(dtData);
+    Exit;
+  end;
+  if not (cmbCategoria.ItemIndex >= 0) then
+  begin
+    ExibirMensagemErro(cmbCategoria);
+    Exit;
+  end;
+  if not ValidarDados(edtDescricao.Text, Texto) then
+  begin
+    ExibirMensagemErro(edtDescricao);
+    Exit;
+  end;
+
+  Result := True;
+end;
+
 function TfrmLancamentoBase.CriarLancamento(ATipo: TTipoCategoria): TLancamento;
 var
-  NovoLanc: TLancamento;
+  NovoLancamento: TLancamento;
 begin
   Result := nil;
 
   try
     // Cria um objeto de lançamento com base nas informações da tela
-    // É esse o objeto enviado como parâmetro ao salvar a categoria no BD
-    NovoLanc := TLancamento.Create;
-    NovoLanc.CategoriaID := TCategoria(cmbCategoria.Items.Objects[cmbCategoria.ItemIndex]).ID;
-    NovoLanc.Tipo := ATipo;
-    NovoLanc.Data := dtData.Date;
-    NovoLanc.Descricao := edtDescricao.Text;
-    NovoLanc.Valor := CurrencyToFloat(edtValor.Text);
-    NovoLanc.Observacoes := edtObservacoes.Text;
-    NovoLanc.Entidade := edtEntidade.Text;
+    // É esse o objeto enviado como parâmetro ao salvar o lançamento no BD
+    NovoLancamento := TLancamento.Create;
+    NovoLancamento.CategoriaID := TCategoria(cmbCategoria.Items.Objects[cmbCategoria.ItemIndex]).ID;
+    NovoLancamento.Tipo := ATipo;
+    NovoLancamento.Data := dtData.Date;
+    NovoLancamento.Descricao := edtDescricao.Text;
+    NovoLancamento.Valor := CurrencyToFloat(edtValor.Text);
+    NovoLancamento.Observacoes := edtObservacoes.Text;
+    NovoLancamento.Entidade := edtEntidade.Text;
 
-    Result := NovoLanc;
+    Result := NovoLancamento;
   except
       on E: Exception do
       ShowMessage(E.Message);
   end;
+end;
+
+procedure TfrmLancamentoBase.btnCancelarClick(Sender: TObject);
+begin
+  // Exibe a mensagem de confirmação
+  if TfrmDialog.ShowConfirmDialog('Tem certeza? Nenhum dado alterado será salvo!') then
+    Close;
 end;
 
 procedure TfrmLancamentoBase.CarregarCategorias(AComboBox: TComboBox; AType: TTipoCategoria);
