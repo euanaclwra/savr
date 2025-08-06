@@ -4,7 +4,7 @@ interface
 
 uses
   uLancamento, uConexao, System.SysUtils, FireDAC.Comp.Client, FireDAC.Stan.Param,
-  FireDAC.DApt, uUtils, System.Generics.Collections, Vcl.Dialogs, uCategoriaDAO;
+  FireDAC.DApt, uUtils, System.Generics.Collections, Vcl.Dialogs, uCategoriaDAO, uCategoria;
 
 type
   TLancamentoDAO = class

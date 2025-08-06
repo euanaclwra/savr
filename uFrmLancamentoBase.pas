@@ -105,7 +105,7 @@ begin
     // Cria um objeto de lançamento com base nas informações da tela
     // É esse o objeto enviado como parâmetro ao salvar o lançamento no BD
     NovoLancamento := TLancamento.Create;
-    NovoLancamento.CategoriaID := TCategoria(cmbCategoria.Items.Objects[cmbCategoria.ItemIndex]).ID;
+    NovoLancamento.CategoriaID := TCategoria(cmbCategoria.ListItems[cmbCategoria.ItemIndex].TagObject).ID;
     NovoLancamento.Tipo := ATipo;
     NovoLancamento.Data := dtData.Date;
     NovoLancamento.Descricao := edtDescricao.Text;
@@ -163,13 +163,20 @@ begin
     try
       for Categoria in Lista do
       begin
-        // Para cada categoria do tipo informado encontrado, é criado um novo item na ComboBox
+        // Para cada categoria do tipo informado encontrado, é criado um novo item na TComboBox
         if Categoria.Tipo = AType then
         begin
           Item := TListBoxItem.Create(nil);
           Item.Parent := AComboBox;
+          Item.Text := Categoria.Nome;
+          // Aplica o estilo padrão
+          Item.StyledSettings := [];
+          Item.TextSettings.Font.Family := 'Montserrat';
+          Item.TextSettings.Font.Size := 11;
+          Item.TextSettings.FontColor := $FF34495E;
           // Vincula a categoria selecionada ao item da combobox
-          AComboBox.Items.AddObject(Categoria.Nome, Categoria);
+          Item.TagObject := Categoria;
+          AComboBox.AddObject(Item);
         end;
       end;
     except
