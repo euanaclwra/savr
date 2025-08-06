@@ -9,13 +9,13 @@ uses
 type
   TLancamentoDAO = class
   public
-    function BuscarLancamentos: TObjectList<TLancamento>;
+    function BuscarLancamentos(ATipo: TTipoCategoria = tcTodos; AData: TDate = 0; ACategoria: Integer = 0): TObjectList<TLancamento>;
     procedure InserirLancamento(const ALancamento: TLancamento);
   end;
 
 implementation
 
-function TLancamentoDAO.BuscarLancamentos: TObjectList<TLancamento>;
+function TLancamentoDAO.BuscarLancamentos(ATipo: TTipoCategoria = tcTodos; AData: TDate = 0; ACategoria: Integer = 0): TObjectList<TLancamento>;
 var
   ResultSet: TObjectList<TLancamento>;
   Lancamento: TLancamento;
@@ -29,9 +29,20 @@ begin
   ResultSet := TObjectList<TLancamento>.Create(False);
 
   try
-    // Consulta todas os lançamentos existentes
+    // Consulta todos os lançamentos existentes
      Qry.Connection := dmConexao.FDConnection;
-     Qry.SQL.Text := 'SELECT * FROM lancamentos';
+     Qry.SQL.Text := 'SELECT * FROM lancamentos WHERE 1 = 1';
+
+    // Filtro por tipo
+     if ATipo <> tcTodos then
+      Qry.SQL.Text := Qry.SQL.Text + ' AND tipo = ' + QuotedStr(CatToStr(ATipo));
+    // Filtro por data
+     if AData <> 0 then
+      Qry.SQL.Text := Qry.SQL.Text + ' AND data = ' + QuotedStr(FormatDateTime('yyyy-mm-dd', AData));
+    //Filtro por categoria    ]
+      if ACategoria <> 0 then
+        Qry.SQL.Text := Qry.SQL.Text + ' AND categoria = ' + QuotedStr(IntToStr(ACategoria));
+
      Qry.Open;
 
      // Se a query não estiver vazia, ou seja, se houver algum lançamento

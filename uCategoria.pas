@@ -2,7 +2,7 @@ unit uCategoria;
 
 interface
 type
-  TTipoCategoria = (tcDespesa, tcReceita);
+  TTipoCategoria = (tcDespesa, tcReceita, tcTodos);
 
   TCategoria = class
   private
