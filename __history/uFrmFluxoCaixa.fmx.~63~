@@ -321,7 +321,7 @@ object frmFluxoCaixa: TfrmFluxoCaixa
           617465456469747374796C65636C65617265646974627574746F6E3103F91306
           1B44617465456469747374796C65436865636B426F785374796C653103DC0B06
           0D436F6D626F426F787374796C6503291406136974656D4C616E63616D656E74
-          6F5374796C6503880600545046300654496D61676500095374796C654E616D65
+          6F5374796C6503230800545046300654496D61676500095374796C654E616D65
           0610726164696F627574746F6E732E706E67174D756C74695265734269746D61
           702E4C6F616453697A6502020E4D756C74695265734269746D61700E01055769
           647468021F06486569676874020D03504E470A1702000089504E470D0A1A0A00
@@ -532,7 +532,7 @@ object frmFluxoCaixa: TfrmFluxoCaixa
           74746F6E3105416C69676E070643656E7465720A53697A652E57696474680500
           000000000000C805400B53697A652E4865696768740500000000000000C80340
           1453697A652E506C6174666F726D44656661756C74080756697369626C650808
-          5461624F726465720250001254427574746F6E5374796C654F626A6563740009
+          5461624F72646572024F001254427574746F6E5374796C654F626A6563740009
           5374796C654E616D65060A6261636B67726F756E6405416C69676E0708436F6E
           74656E74730C536F757263654C6F6F6B7570061B57696E646F77732031302044
           65736B746F707374796C652E706E670A53697A652E5769647468050000000000
@@ -675,7 +675,7 @@ object frmFluxoCaixa: TfrmFluxoCaixa
           69747374796C65636C65617265646974627574746F6E3105416C69676E070643
           656E7465720A53697A652E57696474680500000000000000C805400B53697A65
           2E4865696768740500000000000000C803401453697A652E506C6174666F726D
-          44656661756C74080756697369626C6508085461624F72646572026300125442
+          44656661756C74080756697369626C6508085461624F72646572026100125442
           7574746F6E5374796C654F626A65637400095374796C654E616D65060A626163
           6B67726F756E6405416C69676E0708436F6E74656E74730C536F757263654C6F
           6F6B7570061B57696E646F7773203130204465736B746F707374796C652E706E
@@ -1122,7 +1122,7 @@ object frmFluxoCaixa: TfrmFluxoCaixa
           657474696E67732E486F727A416C69676E07074C656164696E67000005545465
           787400095374796C654E616D6506076F62737465787405416C69676E07044C65
           66740C4D617267696E732E4C6566740500000000000000A002400A506F736974
-          696F6E2E580500000000000000C308400A53697A652E57696474680500000000
+          696F6E2E580500000000000080DE08400A53697A652E57696474680500000000
           000000AF07400B53697A652E4865696768740500000000000000C80340145369
           7A652E506C6174666F726D44656661756C74080454657874140D0000004F6273
           65727661C3A7C3B56573185465787453657474696E67732E466F6E742E46616D
@@ -1130,109 +1130,107 @@ object frmFluxoCaixa: TfrmFluxoCaixa
           742E53697A650500000000000000B00240165465787453657474696E67732E46
           6F6E74436F6C6F720709784646333434393545165465787453657474696E6773
           2E486F727A416C69676E07074C656164696E6700000554546578740009537479
-          6C654E616D65060976616C75657465787405416C69676E07044C6566740C4D61
-          7267696E732E4C6566740500000000000000A002400A506F736974696F6E2E58
-          05000000000000808E09400A53697A652E57696474680500000000000000C805
-          400B53697A652E4865696768740500000000000000C803401453697A652E506C
-          6174666F726D44656661756C74080454657874060556616C6F72185465787453
-          657474696E67732E466F6E742E46616D696C79060A4D6F6E7473657272617416
-          5465787453657474696E67732E466F6E742E53697A650500000000000000B002
-          40165465787453657474696E67732E466F6E74436F6C6F720709784646333434
-          393545165465787453657474696E67732E486F727A416C69676E070854726169
-          6C696E67000000}
+          6C654E616D650611706F73697469766576616C75657465787405416C69676E07
+          044C6566740C4D617267696E732E4C6566740500000000000000A002400A506F
+          736974696F6E2E5805000000000000409C09400A53697A652E57696474680500
+          000000000000C805400B53697A652E4865696768740500000000000000C80340
+          1453697A652E506C6174666F726D44656661756C74080454657874060556616C
+          6F72185465787453657474696E67732E466F6E742E46616D696C79060A4D6F6E
+          74736572726174165465787453657474696E67732E466F6E742E53697A650500
+          000000000000B002401A5465787453657474696E67732E466F6E742E5374796C
+          654578740A0D0000000005000000000000000400000016546578745365747469
+          6E67732E466F6E74436F6C6F7207097846463633433843371654657874536574
+          74696E67732E486F727A416C69676E0708547261696C696E6700000554546578
+          7400095374796C654E616D6506116E6567617469766576616C75657465787405
+          416C69676E07044C6566740C4D617267696E732E4C6566740500000000000000
+          A002400A506F736974696F6E2E580500000000000000C308400A53697A652E57
+          696474680500000000000000C805400B53697A652E4865696768740500000000
+          000000C803401453697A652E506C6174666F726D44656661756C740804546578
+          74060556616C6F72185465787453657474696E67732E466F6E742E46616D696C
+          79060A4D6F6E74736572726174165465787453657474696E67732E466F6E742E
+          53697A650500000000000000B002401A5465787453657474696E67732E466F6E
+          742E5374796C654578740A0D0000000005000000000000000400000016546578
+          7453657474696E67732E466F6E74436F6C6F7207097846464436393130451654
+          65787453657474696E67732E486F727A416C69676E0708547261696C696E6700
+          0000}
       end>
   end
-  object lbLancamentos: TListBox
-    Align = Client
+  object grdLancamentos: TStringGrid
+    Align = Scale
+    CanFocus = True
+    ClipChildren = True
+    Position.Y = 213.000000000000000000
     Size.Width = 1003.000000000000000000
     Size.Height = 254.000000000000000000
     Size.PlatformDefault = False
+    TextSettings.Font.Family = 'Montserrat'
+    TextSettings.Font.Size = 11.000000000000000000
+    TextSettings.FontColor = xFF34495E
+    StyledSettings = [Style]
     TabOrder = 3
-    DisableFocusEffect = True
-    DefaultItemStyles.ItemStyle = ''
-    DefaultItemStyles.GroupHeaderStyle = ''
-    DefaultItemStyles.GroupFooterStyle = ''
+    RowCount = 0
+    Options = [AlternatingRowBackground, Editing, ColumnResize, ColumnMove, ColLines, RowLines, Tabs, Header, HeaderClick, AutoDisplacement]
     Viewport.Width = 999.000000000000000000
-    Viewport.Height = 250.000000000000000000
-    object ltHeader: TLayout
-      Align = Top
-      Size.Width = 999.000000000000000000
-      Size.Height = 30.000000000000000000
-      Size.PlatformDefault = False
-      TabOrder = 0
-      object Rectangle1: TRectangle
-        Align = Client
-        Fill.Color = xFF63C8C7
-        Size.Width = 999.000000000000000000
-        Size.Height = 30.000000000000000000
-        Size.PlatformDefault = False
-        Stroke.Kind = None
-        object txtData: TText
-          Align = Left
-          Margins.Left = 10.000000000000000000
-          Position.X = 10.000000000000000000
-          Size.Width = 120.000000000000000000
-          Size.Height = 30.000000000000000000
-          Size.PlatformDefault = False
-          Text = 'Data'
-          TextSettings.Font.Family = 'Montserrat'
-          TextSettings.Font.StyleExt = {00050000000000000004000000}
-          TextSettings.FontColor = claWhite
-          TextSettings.HorzAlign = Leading
-        end
-        object txtEntidade: TText
-          Align = Left
-          Margins.Left = 10.000000000000000000
-          Position.X = 140.000000000000000000
-          Size.Width = 270.000000000000000000
-          Size.Height = 30.000000000000000000
-          Size.PlatformDefault = False
-          Text = 'Entidade'
-          TextSettings.Font.Family = 'Montserrat'
-          TextSettings.Font.StyleExt = {00050000000000000004000000}
-          TextSettings.FontColor = claWhite
-          TextSettings.HorzAlign = Leading
-        end
-        object txtDescricao: TText
-          Align = Left
-          Margins.Left = 10.000000000000000000
-          Position.X = 420.000000000000000000
-          Size.Width = 350.000000000000000000
-          Size.Height = 30.000000000000000000
-          Size.PlatformDefault = False
-          Text = 'Descri'#231#227'o'
-          TextSettings.Font.Family = 'Montserrat'
-          TextSettings.Font.StyleExt = {00050000000000000004000000}
-          TextSettings.FontColor = claWhite
-          TextSettings.HorzAlign = Leading
-        end
-        object txtObservacoes: TText
-          Align = Left
-          Margins.Left = 10.000000000000000000
-          Position.X = 780.000000000000000000
-          Size.Width = 350.000000000000000000
-          Size.Height = 30.000000000000000000
-          Size.PlatformDefault = False
-          Text = 'Observa'#231#245'es'
-          TextSettings.Font.Family = 'Montserrat'
-          TextSettings.Font.StyleExt = {00050000000000000004000000}
-          TextSettings.FontColor = claWhite
-          TextSettings.HorzAlign = Leading
-        end
-        object txtValor: TText
-          Align = Left
-          Margins.Left = 10.000000000000000000
-          Position.X = 1140.000000000000000000
-          Size.Width = 100.000000000000000000
-          Size.Height = 30.000000000000000000
-          Size.PlatformDefault = False
-          Text = 'Valor'
-          TextSettings.Font.Family = 'Montserrat'
-          TextSettings.Font.StyleExt = {00050000000000000004000000}
-          TextSettings.FontColor = claWhite
-          TextSettings.HorzAlign = Leading
-        end
-      end
+    Viewport.Height = 229.000000000000000000
+    object clData: TStringColumn
+      HorzAlign = Center
+      Header = 'Data'
+      HeaderSettings.StyledSettings = []
+      HeaderSettings.TextSettings.Font.Family = 'Montserrat'
+      HeaderSettings.TextSettings.Font.Size = 11.000000000000000000
+      HeaderSettings.TextSettings.Font.StyleExt = {00070000000000000004000000}
+      HeaderSettings.TextSettings.FontColor = xFF34495E
+      HeaderSettings.TextSettings.WordWrap = False
+      HeaderSettings.TextSettings.HorzAlign = Center
+      ReadOnly = True
+    end
+    object clEntidade: TStringColumn
+      HorzAlign = Center
+      Header = 'Entidade'
+      HeaderSettings.StyledSettings = []
+      HeaderSettings.TextSettings.Font.Family = 'Montserrat'
+      HeaderSettings.TextSettings.Font.Size = 11.000000000000000000
+      HeaderSettings.TextSettings.Font.StyleExt = {00070000000000000004000000}
+      HeaderSettings.TextSettings.FontColor = xFF34495E
+      HeaderSettings.TextSettings.WordWrap = False
+      HeaderSettings.TextSettings.HorzAlign = Center
+      ReadOnly = True
+    end
+    object clDescricao: TStringColumn
+      HorzAlign = Leading
+      Header = 'Descri'#231#227'o'
+      HeaderSettings.StyledSettings = []
+      HeaderSettings.TextSettings.Font.Family = 'Montserrat'
+      HeaderSettings.TextSettings.Font.Size = 11.000000000000000000
+      HeaderSettings.TextSettings.Font.StyleExt = {00070000000000000004000000}
+      HeaderSettings.TextSettings.FontColor = xFF34495E
+      HeaderSettings.TextSettings.WordWrap = False
+      HeaderSettings.TextSettings.HorzAlign = Center
+      ReadOnly = True
+    end
+    object clObservacoes: TStringColumn
+      HorzAlign = Leading
+      Header = 'Observa'#231#245'es'
+      HeaderSettings.StyledSettings = []
+      HeaderSettings.TextSettings.Font.Family = 'Montserrat'
+      HeaderSettings.TextSettings.Font.Size = 11.000000000000000000
+      HeaderSettings.TextSettings.Font.StyleExt = {00070000000000000004000000}
+      HeaderSettings.TextSettings.FontColor = xFF34495E
+      HeaderSettings.TextSettings.WordWrap = False
+      HeaderSettings.TextSettings.HorzAlign = Center
+      ReadOnly = True
+    end
+    object clValor: TStringColumn
+      HorzAlign = Trailing
+      Header = 'Valor'
+      HeaderSettings.StyledSettings = []
+      HeaderSettings.TextSettings.Font.Family = 'Montserrat'
+      HeaderSettings.TextSettings.Font.Size = 11.000000000000000000
+      HeaderSettings.TextSettings.Font.StyleExt = {00070000000000000004000000}
+      HeaderSettings.TextSettings.FontColor = xFF34495E
+      HeaderSettings.TextSettings.WordWrap = False
+      HeaderSettings.TextSettings.HorzAlign = Center
+      ReadOnly = True
     end
   end
 end

@@ -38,6 +38,7 @@ type
     clEntidade: TStringColumn;
     clDescricao: TStringColumn;
     clObservacoes: TStringColumn;
+    clCategoria: TStringColumn;
     clValor: TStringColumn;
     procedure btnInserirClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
@@ -66,8 +67,9 @@ begin
 
   grdLancamentos.Columns[0].Width := TotalWidth * 0.10;
   grdLancamentos.Columns[1].Width := TotalWidth * 0.15;
-  grdLancamentos.Columns[2].Width := TotalWidth * 0.35;
-  grdLancamentos.Columns[3].Width := TotalWidth * 0.30;
+  grdLancamentos.Columns[2].Width := TotalWidth * 0.30;
+  grdLancamentos.Columns[3].Width := TotalWidth * 0.25;
+  grdLancamentos.Columns[4].Width := TotalWidth * 0.10;
   grdLancamentos.Columns[4].Width := TotalWidth * 0.10;
 end;
 
@@ -99,7 +101,6 @@ var
   DAO: TLancamentoDAO;
   Lista: TObjectList<TLancamento>;
   Lancamento: TLancamento;
-  Item: TStringColumn;
 begin
   DAO := TLancamentoDAO.Create;
 
@@ -130,7 +131,7 @@ procedure TfrmFluxoCaixa.FormShow(Sender: TObject);
 begin
   Lancamentos := TObjectList<TLancamento>.Create(False);
   ResizeGridColumns;
-  //CarregaListaLancamentos;
+  CarregaListaLancamentos;
 end;
 
 procedure TfrmFluxoCaixa.btnInserirClick(Sender: TObject);

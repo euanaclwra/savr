@@ -10,12 +10,38 @@ type
   TCategoriaDAO = class
   public
     function BuscarCategorias: TObjectList<TCategoria>;
+    function BuscarCategoriaPorID(const ID: Integer): TCategoria;
     procedure InserirCategoria(const ACategoria: TCategoria);
     procedure AtualizarCategoria(const ACategoria: TCategoria);
     procedure ExcluirCategoria(const ACategoria: TCategoria);
   end;
 
 implementation
+
+function TCategoriaDAO.BuscarCategoriaPorID(const ID: Integer): TCategoria;
+var
+  Qry: TFDQuery;
+  Categoria: TCategoria;
+begin
+  Result := nil;
+  Qry := TFDQuery.Create(nil);
+
+  try
+    Qry.Connection := dmConexao.FDConnection;
+    Qry.SQL.Text := 'SELECT * categorias WHERE id = :id';
+    Qry.ParamByName('id').AsInteger := ID;
+
+    if not Qry.IsEmpty then
+    begin
+      Categoria := TCategoria.Create;
+      Categoria.ID := Qry.FieldByName('id').AsInteger;
+      Categoria.Nome := Qry.FieldByName('nome').AsString;
+      Categoria.Tipo := StrToCat(Qry.FieldByName('tipo').AsString);
+    end;
+  finally
+    Qry.Free;
+  end;
+end;
 
 procedure TCategoriaDAO.InserirCategoria(const ACategoria: TCategoria);
 var
@@ -125,10 +151,27 @@ begin
 
   try
     Qry.Connection := dmConexao.FDConnection;
-    Qry.SQL.Text := 'SELECT * FROM categorias where id = :id';
+    // Verifica se categoria selecionada existe
+    Qry.SQL.Text := 'SELECT * FROM categorias WHERE id = :id';
     Qry.ParamByName('id').AsInteger := ACategoria.ID;
-  finally
+    Qry.Open;
 
+    // Se a query não estiver vazia, ou seja, se a categoria existir...
+    if not Qry.IsEmpty then
+    begin
+      try
+        Qry.Close;
+        // Exclui a categoria com o ID selecionado
+        Qry.SQL.Text := 'DELETE FROM categorias WHERE id = :id';
+        Qry.ParamByName('id').AsInteger := ACategoria.ID;
+        Qry.ExecSQL;
+      except
+        on E: Exception do
+          ShowMessage(E.Message);
+      end;
+    end;
+  finally
+    Qry.Free;
   end;
 end;
 

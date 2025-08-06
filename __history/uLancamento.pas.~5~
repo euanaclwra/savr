@@ -9,7 +9,6 @@ type
   private
     FID: Integer;
     FCategoriaID: Integer;
-    FCategoria: TCategoria;
     FTipo: TTipoCategoria;
     FDescricao: string;
     FValor: Double;
@@ -19,7 +18,6 @@ type
   public
     property ID: Integer read FID write FID;
     property CategoriaID: Integer read FCategoriaID write FCategoriaID;
-    property Categoria: TCategoria read FCategoria write FCategoria;
     property Tipo: TTipoCategoria read FTipo write FTipo;
     property Descricao: string read FDescricao write FDescricao;
     property Valor: Double read FValor write FValor;

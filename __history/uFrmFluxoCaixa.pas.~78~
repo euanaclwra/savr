@@ -115,8 +115,6 @@ begin
         grdLancamentos.Cells[2, grdLancamentos.RowCount - 1] := Lancamento.Descricao;
         grdLancamentos.Cells[3, grdLancamentos.RowCount - 1] := Lancamento.Observacoes;
         grdLancamentos.Cells[4, grdLancamentos.RowCount - 1] := FormatFloat('R$ #,##0.00', Lancamento.Valor);
-
-        Lancamentos := Lista;
       end;
     except
       on E: Exception do

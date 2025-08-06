@@ -38,6 +38,7 @@ type
     clEntidade: TStringColumn;
     clDescricao: TStringColumn;
     clObservacoes: TStringColumn;
+    clCategoria: TStringColumn;
     clValor: TStringColumn;
     procedure btnInserirClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
@@ -66,14 +67,15 @@ begin
 
   grdLancamentos.Columns[0].Width := TotalWidth * 0.10;
   grdLancamentos.Columns[1].Width := TotalWidth * 0.15;
-  grdLancamentos.Columns[2].Width := TotalWidth * 0.35;
-  grdLancamentos.Columns[3].Width := TotalWidth * 0.30;
+  grdLancamentos.Columns[2].Width := TotalWidth * 0.30;
+  grdLancamentos.Columns[3].Width := TotalWidth * 0.25;
   grdLancamentos.Columns[4].Width := TotalWidth * 0.10;
+  grdLancamentos.Columns[5].Width := TotalWidth * 0.10;
 end;
 
 procedure TfrmFluxoCaixa.PreencheLabelsItemLancamento(AItem: TListBoxItem; ALancamento: TLancamento);
 var
-   LabelData, LabelEntidade, LabelDescricao, LabelObs, LabelValor: TText;
+   LabelData, LabelEntidade, LabelDescricao, LabelObs, LabelValor, LabelCat: TText;
 begin
   // Aplica o estilo personalizado
   AItem.StyleLookup :=  'itemLancamentoStyle';
@@ -115,8 +117,6 @@ begin
         grdLancamentos.Cells[2, grdLancamentos.RowCount - 1] := Lancamento.Descricao;
         grdLancamentos.Cells[3, grdLancamentos.RowCount - 1] := Lancamento.Observacoes;
         grdLancamentos.Cells[4, grdLancamentos.RowCount - 1] := FormatFloat('R$ #,##0.00', Lancamento.Valor);
-
-        Lancamentos := Lista;
       end;
     except
       on E: Exception do
@@ -131,7 +131,7 @@ procedure TfrmFluxoCaixa.FormShow(Sender: TObject);
 begin
   Lancamentos := TObjectList<TLancamento>.Create(False);
   ResizeGridColumns;
-  //CarregaListaLancamentos;
+  CarregaListaLancamentos;
 end;
 
 procedure TfrmFluxoCaixa.btnInserirClick(Sender: TObject);
