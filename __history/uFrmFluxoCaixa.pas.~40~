@@ -86,7 +86,7 @@ begin
         Item := TListBoxItem.Create(nil);
         Item.Parent := lbLancamentos;
         // Preenche os elementos visuais do item
-        PreencheLabelsItemLancamento(Item, Lancamento);
+        // PreencheLabelsItemLancamento(Item, Categoria);
         // Define o lançamento como conteúdo do item
         Item.TagObject := Lancamento;
       end;

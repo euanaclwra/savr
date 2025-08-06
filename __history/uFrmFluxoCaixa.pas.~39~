@@ -6,7 +6,8 @@ uses
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.Objects,
   FMX.Controls.Presentation, FMX.StdCtrls, uFrmSelecaoLancamento, FMX.Layouts,
-  FMX.DateTimeCtrls, FMX.ListBox, uLancamento, uLancamentoDAO, System.Generics.Collections;
+  FMX.DateTimeCtrls, FMX.ListBox, uLancamento, uLancamentoDAO, System.Generics.Collections,
+  uUtils;
 
 type
   TfrmFluxoCaixa = class(TForm)
@@ -43,7 +44,7 @@ type
     procedure btnInserirClick(Sender: TObject);
   private
     procedure CarregaListaLancamentos;
-    procedure LiberaListBoxLancamentos;
+    procedure PreencheLabelsItemLancamento;
   public
     { Public declarations }
   end;
@@ -56,6 +57,11 @@ implementation
 {$R *.fmx}
 {$R *.Windows.fmx MSWINDOWS}
 
+procedure TfrmFluxoCaixa.PreencheLabelsItemLancamento;
+begin
+  //
+end;
+
 procedure TfrmFluxoCaixa.CarregaListaLancamentos;
 var
   DAO: TLancamentoDAO;
@@ -63,10 +69,36 @@ var
   Lancamento: TLancamento;
   Item: TListBoxItem;
 begin
-  //
-end;
+  // Limpa a ListBox e libera a memória
+  ClearListBox(lbLancamentos);
 
-procedure TfrmFluxoCaixa
+  try
+    DAO := TLancamentoDAO.Create;
+    // Busca todos os lançamentos no Banco de Dados e armazena numa lista
+    Lista := DAO.BuscarLancamentos;
+
+    // Se houver algum objeto na lista...
+    if Lista <> nil then
+    try
+      for Lancamento in Lista do
+      begin
+        // Para cada lançamento, é criado um novo ListBoxItem
+        Item := TListBoxItem.Create(nil);
+        Item.Parent := lbLancamentos;
+        // Preenche os elementos visuais do item
+        // PreencheLabelsItemCategoria(Item, Categoria);
+        // Define o lançamento como conteúdo do item
+        Item.TagObject := Lancamento;
+      end;
+    except
+      on E: Exception do
+        ShowMessage(E.Message);
+    end;
+  finally
+    DAO.Free;
+    Lista.Free;
+  end;
+end;
 
 procedure TfrmFluxoCaixa.btnInserirClick(Sender: TObject);
 begin
