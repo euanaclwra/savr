@@ -29,7 +29,6 @@ type
     procedure ExcluiCategoria(ACategoria: TCategoria);
     procedure CarregaListaCategorias;
     procedure PreencheLabelsItemCategoria(AItem: TListBoxItem; ACategoria: TCategoria);
-    procedure LiberaListBoxCategorias;
   public
     { Public declarations }
   end;
@@ -131,7 +130,7 @@ var
   Item: TListBoxItem;
 begin
   // Limpa a ListBox e libera a memória
-  LiberaListBoxCategorias;
+  ClearListBox(lbCategorias);
 
   try
     DAO := TCategoriaDAO.Create;
@@ -190,18 +189,6 @@ begin
 
   if Assigned(BtnExcluir) then
     BtnExcluir.OnClick := btnExcluirClick;
-end;
-
-procedure TfrmCategorias.LiberaListBoxCategorias;
-var
-  i: Integer;
-begin
-  // Limpa as categorias armazenadas em cada item da ListBox
-  for i := 0 to (lbCategorias.Count - 1) do
-    lbCategorias.ItemByIndex(I).TagObject.Free;
-
-    // Limpa os itens da ListBox
-    lbCategorias.Clear;
 end;
 
 procedure TfrmCategorias.FormShow(Sender: TObject);

@@ -6,7 +6,7 @@ uses
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.Objects,
   FMX.Controls.Presentation, FMX.StdCtrls, uFrmSelecaoLancamento, FMX.Layouts,
-  FMX.DateTimeCtrls, FMX.ListBox;
+  FMX.DateTimeCtrls, FMX.ListBox, uLancamento, uLancamentoDAO, System.Generics.Collections;
 
 type
   TfrmFluxoCaixa = class(TForm)
@@ -32,9 +32,18 @@ type
     txtCategoria: TText;
     cmbCategoria: TComboBox;
     lnCategoria: TLine;
-    procedure txtInserirClick(Sender: TObject);
+    lbLancamentos: TListBox;
+    ltHeader: TLayout;
+    Rectangle1: TRectangle;
+    txtData: TText;
+    txtEntidade: TText;
+    txtDescricao: TText;
+    txtObservacoes: TText;
+    txtValor: TText;
+    procedure btnInserirClick(Sender: TObject);
   private
-    { Private declarations }
+    procedure CarregaListaLancamentos;
+    procedure LiberaListBoxLancamentos;
   public
     { Public declarations }
   end;
@@ -45,8 +54,21 @@ var
 implementation
 
 {$R *.fmx}
+{$R *.Windows.fmx MSWINDOWS}
 
-procedure TfrmFluxoCaixa.txtInserirClick(Sender: TObject);
+procedure TfrmFluxoCaixa.CarregaListaLancamentos;
+var
+  DAO: TLancamentoDAO;
+  Lista: TObjectList<TLancamento>;
+  Lancamento: TLancamento;
+  Item: TListBoxItem;
+begin
+  //
+end;
+
+procedure TfrmFluxoCaixa
+
+procedure TfrmFluxoCaixa.btnInserirClick(Sender: TObject);
 begin
   frmSelecaoLancamento.ShowModal;
 end;

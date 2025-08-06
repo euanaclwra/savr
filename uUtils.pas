@@ -16,7 +16,20 @@ interface
     function CatToStrLegivel(AValue:TTipoCategoria): String;
     function ListBoxItemOf(AComponente: TFmxObject): TListBoxItem;
     procedure ExibirMensagemErro(ACampo: TStyledControl);
+    procedure ClearListBox(AListBox: TListBox);
 implementation
+
+procedure ClearListBox(AListBox: TListBox);
+var
+  i: Integer;
+begin
+  // Limpa as categorias armazenadas em cada item da ListBox
+  for i := 0 to (AListBox.Count - 1) do
+    AListBox.ItemByIndex(I).TagObject.Free;
+
+    // Limpa os itens da ListBox
+    AListBox.Clear;
+end;
 
 function ListBoxItemOf(AComponente: TFmxObject): TListBoxItem;
 begin
