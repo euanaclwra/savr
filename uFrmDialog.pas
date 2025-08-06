@@ -45,7 +45,7 @@ end;
 
 procedure TfrmDialog.btnOkClick(Sender: TObject);
 begin
-  ModalResult := mrYes;
+  Close;
 end;
 
 procedure TfrmDialog.btnYesClick(Sender: TObject);

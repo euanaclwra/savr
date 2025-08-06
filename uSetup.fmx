@@ -921,6 +921,7 @@ object frmSetup: TfrmSetup
         Size.PlatformDefault = False
         TextPrompt = 'Digite aqui'
         StyledSettings = []
+        OnChange = edtNameChange
       end
       object lnName: TLine
         Align = Center
@@ -1084,7 +1085,7 @@ object frmSetup: TfrmSetup
         Size.Width = 760.000000000000000000
         Size.Height = 478.000000000000000000
         Size.PlatformDefault = False
-        TabOrder = 8
+        TabOrder = 9
         object txDiaPagamentoPadrao: TText
           Align = Center
           Margins.Bottom = 25.000000000000000000
@@ -1111,6 +1112,7 @@ object frmSetup: TfrmSetup
           Size.Height = 25.000000000000000000
           Size.PlatformDefault = False
           StyledSettings = [Style]
+          OnChange = edtDiaPagamentoPadraoChange
           object lnDiaPagamentoPadrao: TLine
             Align = Center
             LineType = Diagonal
@@ -1142,6 +1144,7 @@ object frmSetup: TfrmSetup
           Size.Height = 25.000000000000000000
           Size.PlatformDefault = False
           StyledSettings = [Style]
+          OnChange = edtPctAdiantamentoChange
           object lnPctAdiantamento: TLine
             Align = Center
             LineType = Diagonal
@@ -1214,6 +1217,7 @@ object frmSetup: TfrmSetup
           Size.Height = 25.000000000000000000
           Size.PlatformDefault = False
           StyledSettings = [Style]
+          OnChange = edtDiaAdiantamentoChange
           object lnDiaAdiantamento: TLine
             Align = Center
             LineType = Diagonal
@@ -1238,6 +1242,7 @@ object frmSetup: TfrmSetup
           Size.Height = 25.000000000000000000
           Size.PlatformDefault = False
           StyledSettings = [Style]
+          OnChange = edtDiaPagamentoChange
           object lnDiaPagamento: TLine
             Align = Center
             LineType = Diagonal

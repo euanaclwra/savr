@@ -60,14 +60,6 @@ type
     lnDiaPagamento: TLine;
     edtDiaPagamentoPadrao: TEdit;
     lnDiaPagamentoPadrao: TLine;
-    function SalvarNomeUsuario: Boolean;
-    function SalvarInfoSalario: Boolean;
-    function ValidarDadosTab3(out CampoInvalido: TEdit): Boolean;
-    procedure SalvarInfoDatas;
-    procedure SalvarInfoDatasPadrao;
-    procedure SalvarInfoDatasParcelado;
-    procedure AvancarPagina;
-    procedure VoltarPagina;
     procedure ExibirNomeUsuario;
     procedure ExibirLayoutSalario;
     procedure UpdateNavegacao;
@@ -76,8 +68,21 @@ type
     procedure btnVoltarClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FinalizarSetup;
+    procedure edtNameChange(Sender: TObject);
+    procedure edtValorSalarioChange(Sender: TObject);
+    procedure edtDiaPagamentoPadraoChange(Sender: TObject);
+    procedure edtDiaAdiantamentoChange(Sender: TObject);
+    procedure edtDiaPagamentoChange(Sender: TObject);
+    procedure edtPctAdiantamentoChange(Sender: TObject);
   private
-    { Private declarations }
+    function SalvarNomeUsuario: Boolean;
+    function SalvarInfoSalario: Boolean;
+    function ValidarDadosTab3(out CampoInvalido: TEdit): Boolean;
+    procedure SalvarInfoDatas;
+    procedure SalvarInfoDatasPadrao;
+    procedure SalvarInfoDatasParcelado;
+    procedure AvancarPagina;
+    procedure VoltarPagina;
   public
     { Public declarations }
   end;
@@ -251,6 +256,36 @@ procedure TfrmSetup.btnVoltarClick(Sender: TObject);
 begin
   VoltarPagina;
   UpdateNavegacao;
+end;
+
+procedure TfrmSetup.edtDiaAdiantamentoChange(Sender: TObject);
+begin
+  OcultarMensagemErro(Sender);
+end;
+
+procedure TfrmSetup.edtDiaPagamentoChange(Sender: TObject);
+begin
+  OcultarMensagemErro(Sender);
+end;
+
+procedure TfrmSetup.edtDiaPagamentoPadraoChange(Sender: TObject);
+begin
+  OcultarMensagemErro(Sender);
+end;
+
+procedure TfrmSetup.edtNameChange(Sender: TObject);
+begin
+  OcultarMensagemErro(Sender);
+end;
+
+procedure TfrmSetup.edtPctAdiantamentoChange(Sender: TObject);
+begin
+  OcultarMensagemErro(Sender);
+end;
+
+procedure TfrmSetup.edtValorSalarioChange(Sender: TObject);
+begin
+  OcultarMensagemErro(Sender);
 end;
 
 procedure TfrmSetup.AvancarPagina;

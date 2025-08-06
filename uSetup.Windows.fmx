@@ -47,9 +47,6 @@ inherited frmSetup_Windows: TfrmSetup_Windows
       inherited txtLast: TText
         TextSettings.Font.StyleExt = {00060000000000000004000000}
       end
-      inherited ltPagamentoPadrao: TLayout
-        TabOrder = 9
-      end
     end
   end
   inherited btnProximo: TSpeedButton

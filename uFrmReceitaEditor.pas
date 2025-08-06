@@ -7,7 +7,7 @@ uses
   FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls,
   uFrmLancamentoBase, FMX.Memo.Types, FMX.Objects, FMX.ScrollBox, FMX.Memo,
   FMX.ListBox, FMX.DateTimeCtrls, FMX.Controls.Presentation, FMX.Edit,
-  uEditMoeda, FMX.Layouts, uCategoria, uLancamento, uUtils, uLancamentoDAO;
+  uEditMoeda, FMX.Layouts, uCategoria, uLancamento, uUtils, uLancamentoDAO, uFrmDialog;
 
 type
   TfrmReceitaEditor = class(TfrmLancamentoBase)
@@ -44,8 +44,10 @@ begin
     DAO.InserirLancamento(Lancamento);
   finally
     DAO.Free;
-    Close;
   end;
+
+  TfrmDialog.ShowSuccessDialog('Acesse o Fluxo de Caixa para visualizar o lançamento.');
+  Close;
 end;
 
 procedure TfrmReceitaEditor.FormShow(Sender: TObject);
