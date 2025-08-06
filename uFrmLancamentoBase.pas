@@ -44,6 +44,10 @@ type
     cmbCategoria: TComboBox;
     lnCategoria: TLine;
     procedure btnCancelarClick(Sender: TObject);
+    procedure edtValorChange(Sender: TObject);
+    procedure cmbCategoriaChange(Sender: TObject);
+    procedure edtDescricaoChange(Sender: TObject);
+    procedure dtDataChange(Sender: TObject);
   protected
     procedure CarregarCategorias(AComboBox: TComboBox; AType: TTipoCategoria);
     function CriarLancamento(ATipo: TTipoCategoria): TLancamento;
@@ -116,6 +120,21 @@ begin
   end;
 end;
 
+procedure TfrmLancamentoBase.dtDataChange(Sender: TObject);
+begin
+  OcultarMensagemErro(Sender);
+end;
+
+procedure TfrmLancamentoBase.edtDescricaoChange(Sender: TObject);
+begin
+  OcultarMensagemErro(Sender);
+end;
+
+procedure TfrmLancamentoBase.edtValorChange(Sender: TObject);
+begin
+  OcultarMensagemErro(Sender);
+end;
+
 procedure TfrmLancamentoBase.btnCancelarClick(Sender: TObject);
 begin
   // Exibe a mensagem de confirmação
@@ -161,6 +180,11 @@ begin
     DAO.Free;
     Lista.Free;
   end;
+end;
+
+procedure TfrmLancamentoBase.cmbCategoriaChange(Sender: TObject);
+begin
+  OcultarMensagemErro(Sender);
 end;
 
 end.

@@ -16,6 +16,7 @@ interface
     function CatToStrLegivel(AValue:TTipoCategoria): String;
     function ListBoxItemOf(AComponente: TFmxObject): TListBoxItem;
     procedure ExibirMensagemErro(ACampo: TStyledControl);
+    procedure OcultarMensagemErro(Sender: TObject);
     procedure ClearListBox(AListBox: TListBox);
     procedure SetLabelText(ALabel: TText; AText: String);
 implementation
@@ -132,13 +133,22 @@ begin
     TxtError.TextSettings.FontColor := $FF952727;
   end;
 
-  TxtError.Text := 'Opa! Digite um valor válido...';
+  TxtError.Text := 'Opa! Insira um valor válido...';
   TxtError.Position.X := ACampo.Position.X;
-  TxtError.Position.Y := ACampo.Position.Y + ACampo.Height + 5;
+  TxtError.Position.Y := ACampo.Position.Y + ACampo.Height;
   TxtError.Height := 20;
-  TxtError.Width := ACampo.Width;
+  TxtError.Width := ACampo.Width * 2;
   TxtError.HorzTextAlign := TTextAlign.Leading;
   TxtError.Visible := True;
+end;
+
+procedure OcultarMensagemErro(Sender: TObject);
+begin
+  if Sender is TStyledControl then
+  begin
+    if Assigned(TStyledControl(Sender).TagObject) and (TStyledControl(Sender).TagObject is TText) then
+      TText(TStyledControl(Sender).TagObject).Visible := False;
+  end;
 end;
 
 end.

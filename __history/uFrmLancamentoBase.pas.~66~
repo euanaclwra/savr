@@ -8,7 +8,7 @@ uses
   FMX.Controls.Presentation, FMX.Edit, uEditMoeda, FMX.Layouts, FMX.StdCtrls,
   FMX.ListBox, uCategoriaDAO, uCategoria, System.Generics.Collections,
   FMX.DateTimeCtrls, FMX.Memo.Types, FMX.ScrollBox, FMX.Memo, uLancamento,
-  uUtils, uLancamentoDAO;
+  uUtils, uLancamentoDAO, uFrmDialog;
 
 type
   TfrmLancamentoBase = class(TForm)
@@ -43,10 +43,13 @@ type
     pnObservacoes: TPanel;
     cmbCategoria: TComboBox;
     lnCategoria: TLine;
-    procedure btnSalvarClick(Sender: TObject);
+    procedure btnCancelarClick(Sender: TObject);
+    procedure edtValorChange(Sender: TObject);
+    procedure cmbCategoriaChange(Sender: TObject);
   protected
     procedure CarregarCategorias(AComboBox: TComboBox; AType: TTipoCategoria);
     function CriarLancamento(ATipo: TTipoCategoria): TLancamento;
+    function ValidaCamposObrigatorios: Boolean;
   public
     { Public declarations }
   end;
@@ -57,6 +60,38 @@ var
 implementation
 
 {$R *.fmx}
+
+function TfrmLancamentoBase.ValidaCamposObrigatorios: Boolean;
+begin
+  Result := False;
+
+  // Valida o valor do lançamento
+  if not ValidarDados(edtValor.Text, Moeda) then
+  begin
+    ExibirMensagemErro(edtValor);
+    Exit;
+  end;
+  // Valida a data do lançamento
+  if not ValidarDados(DateToStr(dtData.Date), DataHora) then
+  begin
+    ExibirMensagemErro(dtData);
+    Exit;
+  end;
+  // Valida a categoria do lançamento
+  if not (cmbCategoria.ItemIndex >= 0) then
+  begin
+    ExibirMensagemErro(cmbCategoria);
+    Exit;
+  end;
+  // Valida a descrição do lançamento
+  if not ValidarDados(edtDescricao.Text, Texto) then
+  begin
+    ExibirMensagemErro(edtDescricao);
+    Exit;
+  end;
+
+  Result := True;
+end;
 
 function TfrmLancamentoBase.CriarLancamento(ATipo: TTipoCategoria): TLancamento;
 var
@@ -83,24 +118,16 @@ begin
   end;
 end;
 
-procedure TfrmLancamentoBase.btnSalvarClick(Sender: TObject);
+procedure TfrmLancamentoBase.edtValorChange(Sender: TObject);
 begin
-  // Valida os campos obrigatórios (valor, data e categoria)
-  if not ValidarDados(edtValor.Text, Moeda) then
-  begin
-    ExibirMensagemErro(edtValor);
-    Exit;
-  end;
-  if not ValidarDados(DateToStr(dtData.Date), DataHora) then
-  begin
-    ExibirMensagemErro(dtData);
-    Exit;
-  end;
-  if not cmbCategoria.ItemIndex >= 0 then
-  begin
-    ExibirMensagemErro(cmbCategoria);
-    Exit;
-  end;
+  OcultarMensagemErro(Sender);
+end;
+
+procedure TfrmLancamentoBase.btnCancelarClick(Sender: TObject);
+begin
+  // Exibe a mensagem de confirmação
+  if TfrmDialog.ShowConfirmDialog('Tem certeza? Nenhum dado alterado será salvo!') then
+    Close;
 end;
 
 procedure TfrmLancamentoBase.CarregarCategorias(AComboBox: TComboBox; AType: TTipoCategoria);
@@ -141,6 +168,11 @@ begin
     DAO.Free;
     Lista.Free;
   end;
+end;
+
+procedure TfrmLancamentoBase.cmbCategoriaChange(Sender: TObject);
+begin
+  OcultarMensagemErro(Sender);
 end;
 
 end.

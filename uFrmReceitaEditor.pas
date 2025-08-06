@@ -44,6 +44,7 @@ begin
     DAO.InserirLancamento(Lancamento);
   finally
     DAO.Free;
+    Close;
   end;
 end;
 

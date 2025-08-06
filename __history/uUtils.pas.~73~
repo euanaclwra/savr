@@ -3,10 +3,10 @@ unit uUtils;
 interface
   uses
     SysUtils, Vcl.Controls, Vcl.Forms, FMX.Edit, Vcl.Graphics,
-    FMX.Objects, FMX.Types, FMX.ListBox, uCategoria;
+    FMX.Objects, FMX.Types, FMX.ListBox, uCategoria, FMX.Controls;
 
   type
-    TDataType = (Texto, Inteiro, Moeda, Data, DiaMes);
+    TDataType = (Texto, Inteiro, Moeda, DataHora, DiaMes);
     function ValidarDados(AValue:String; AType:TDataType): Boolean;
     function BoolToInt(AValue:Boolean): Integer;
     function IntToBool(AValue:Integer): Boolean;
@@ -15,18 +15,37 @@ interface
     function CatToStr(AValue:TTipoCategoria): String;
     function CatToStrLegivel(AValue:TTipoCategoria): String;
     function ListBoxItemOf(AComponente: TFmxObject): TListBoxItem;
-    procedure ExibirMensagemErro(ACampo: TEdit);
+    procedure ExibirMensagemErro(ACampo: TStyledControl);
+    procedure ClearListBox(AListBox: TListBox);
+    procedure SetLabelText(ALabel: TText; AText: String);
 implementation
+
+procedure SetLabelText(ALabel: TText; AText: String);
+begin
+  if Assigned(ALabel) then
+    ALabel.Text := AText;
+end;
+
+procedure ClearListBox(AListBox: TListBox);
+var
+  i: Integer;
+begin
+  // Limpa as categorias armazenadas em cada item da ListBox
+  for i := 0 to (AListBox.Count - 1) do
+    AListBox.ItemByIndex(I).TagObject.Free;
+
+    // Limpa os itens da ListBox
+    AListBox.Clear;
+end;
 
 function ListBoxItemOf(AComponente: TFmxObject): TListBoxItem;
 begin
+  // Percorre a hierarquia de componentes até encontrar um TListBoxItem
   while (AComponente <> nil) and not (AComponente is TListBoxItem) do
+    AComponente := AComponente.Parent;
 
   if AComponente is TListBoxItem then
-  begin
-    Result := TListBoxItem(AComponente);
-    Exit
-  end
+    Result := TListBoxItem(AComponente)
   else
     Result := nil;
 end;
@@ -89,16 +108,22 @@ begin
       Result := TryStrToInt(AValue, IntegerNumber);
     Moeda:
       Result := CurrencyToFloat(AValue) > 0;
-    Data:
-      Result := TryStrToDate(AValue, ValidDate);
+    DataHora:
+      Result := TryStrToDate(AValue, ValidDate) and (ValidDate > EncodeDate(1899, 12, 30));
     DiaMes:
       Result := TryStrToInt(AValue, IntegerNumber) and (IntegerNumber <= 31);
   end;
 end;
 
-procedure ExibirMensagemErro(ACampo: TEdit);
+procedure ExibirMensagemErro(ACampo: TStyledControl);
 var
    TxtError: TText;
+
+  procedure OcultarMensagemErro(Sender: TObject);
+  begin
+    if Assigned(ACampo.TagObject) and (ACampo.TagObject is TText) then
+      TText(ACampo.TagObject).Visible := False;
+  end;
 begin
   if Assigned(ACampo.TagObject) and (ACampo.TagObject is TText) then
     TxtError := TText(ACampo.TagObject)
@@ -113,11 +138,11 @@ begin
     TxtError.TextSettings.FontColor := $FF952727;
   end;
 
-  TxtError.Text := 'Opa! Digite um valor válido...';
+  TxtError.Text := 'Opa! Insira um valor válido...';
   TxtError.Position.X := ACampo.Position.X;
-  TxtError.Position.Y := ACampo.Position.Y + ACampo.Height + 5;
+  TxtError.Position.Y := ACampo.Position.Y + ACampo.Height;
   TxtError.Height := 20;
-  TxtError.Width := ACampo.Width;
+  TxtError.Width := ACampo.Width * 2;
   TxtError.HorzTextAlign := TTextAlign.Leading;
   TxtError.Visible := True;
 end;

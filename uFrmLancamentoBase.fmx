@@ -74,6 +74,7 @@ object frmLancamentoBase: TfrmLancamentoBase
         Size.Height = 25.000000000000000000
         Size.PlatformDefault = False
         StyledSettings = [Style]
+        OnChange = edtValorChange
         object lnValor: TLine
           Align = Bottom
           Locked = True
@@ -158,6 +159,7 @@ object frmLancamentoBase: TfrmLancamentoBase
       object dtData: TDateEdit
         Date = 45875.000000000000000000
         TodayDefault = True
+        OnChange = dtDataChange
         Align = Left
         Margins.Left = 10.000000000000000000
         Position.X = 389.000000000000000000
@@ -211,6 +213,7 @@ object frmLancamentoBase: TfrmLancamentoBase
         Size.Height = 25.000000000000000000
         Size.PlatformDefault = False
         TabOrder = 4
+        OnChange = cmbCategoriaChange
         object lnCategoria: TLine
           Align = Bottom
           Locked = True
@@ -270,8 +273,8 @@ object frmLancamentoBase: TfrmLancamentoBase
           Size.PlatformDefault = False
           StyleLookup = 'edtObservacoesStyle1'
           TabOrder = 0
-          Viewport.Width = 510.000000000000000000
-          Viewport.Height = 70.000000000000000000
+          Viewport.Width = 506.000000000000000000
+          Viewport.Height = 66.000000000000000000
         end
       end
     end
@@ -314,6 +317,7 @@ object frmLancamentoBase: TfrmLancamentoBase
         Size.Height = 25.000000000000000000
         Size.PlatformDefault = False
         StyledSettings = [Style]
+        OnChange = edtDescricaoChange
         object lnDescricao: TLine
           Align = Bottom
           Locked = True

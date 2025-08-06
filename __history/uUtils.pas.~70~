@@ -17,8 +17,14 @@ interface
     function ListBoxItemOf(AComponente: TFmxObject): TListBoxItem;
     procedure ExibirMensagemErro(ACampo: TStyledControl);
     procedure ClearListBox(AListBox: TListBox);
-    procedure SetLabelText(ALabel: TText; AString: String);
+    procedure SetLabelText(ALabel: TText; AText: String);
 implementation
+
+procedure SetLabelText(ALabel: TText; AText: String);
+begin
+  if Assigned(ALabel) then
+    ALabel.Text := AText;
+end;
 
 procedure ClearListBox(AListBox: TListBox);
 var
@@ -126,7 +132,7 @@ begin
     TxtError.TextSettings.FontColor := $FF952727;
   end;
 
-  TxtError.Text := 'Opa! Digite um valor válido...';
+  TxtError.Text := 'Opa! Insira um valor válido...';
   TxtError.Position.X := ACampo.Position.X;
   TxtError.Position.Y := ACampo.Position.Y + ACampo.Height + 5;
   TxtError.Height := 20;
