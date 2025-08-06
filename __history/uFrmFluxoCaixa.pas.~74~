@@ -1,0 +1,137 @@
+unit uFrmFluxoCaixa;
+
+interface
+
+uses
+  System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
+  FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.Objects,
+  FMX.Controls.Presentation, FMX.StdCtrls, uFrmSelecaoLancamento, FMX.Layouts,
+  FMX.DateTimeCtrls, FMX.ListBox, uLancamento, uLancamentoDAO, System.Generics.Collections,
+  uUtils, System.Rtti, FMX.Grid.Style, FMX.Grid, FMX.ScrollBox;
+
+type
+  TfrmFluxoCaixa = class(TForm)
+    txtFluxo: TText;
+    btnInserir: TSpeedButton;
+    rtInserir: TRectangle;
+    txtInserir: TText;
+    ltFiltros: TLayout;
+    ltTipo: TLayout;
+    txtTipo: TText;
+    rdReceitas: TRadioButton;
+    StyleBook1: TStyleBook;
+    rdDespesas: TRadioButton;
+    rdAmbos: TRadioButton;
+    ltPeriodo: TLayout;
+    txtInicio: TText;
+    dtInicio: TDateEdit;
+    lnInicio: TLine;
+    txtFim: TText;
+    dtFim: TDateEdit;
+    lnFim: TLine;
+    ltCategoria: TLayout;
+    txtCategoria: TText;
+    cmbCategoria: TComboBox;
+    lnCategoria: TLine;
+    grdLancamentos: TStringGrid;
+    clData: TStringColumn;
+    clEntidade: TStringColumn;
+    clDescricao: TStringColumn;
+    clObservacoes: TStringColumn;
+    clValor: TStringColumn;
+    procedure btnInserirClick(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+  private
+    Lancamentos: TObjectList<TLancamento>;
+    procedure CarregaListaLancamentos;
+    procedure PreencheLabelsItemLancamento(AItem: TListBoxItem; ALancamento: TLancamento);
+    procedure ResizeGridColumns;
+  public
+    { Public declarations }
+  end;
+
+var
+  frmFluxoCaixa: TfrmFluxoCaixa;
+
+implementation
+
+{$R *.fmx}
+{$R *.Windows.fmx MSWINDOWS}
+
+procedure TfrmFluxoCaixa.ResizeGridColumns;
+var
+  TotalWidth: Single;
+begin
+  TotalWidth := grdLancamentos.Width;
+
+  grdLancamentos.Columns[0].Width := TotalWidth * 0.10;
+  grdLancamentos.Columns[1].Width := TotalWidth * 0.15;
+  grdLancamentos.Columns[2].Width := TotalWidth * 0.35;
+  grdLancamentos.Columns[3].Width := TotalWidth * 0.30;
+  grdLancamentos.Columns[4].Width := TotalWidth * 0.10;
+end;
+
+procedure TfrmFluxoCaixa.PreencheLabelsItemLancamento(AItem: TListBoxItem; ALancamento: TLancamento);
+var
+   LabelData, LabelEntidade, LabelDescricao, LabelObs, LabelValor: TText;
+begin
+  // Aplica o estilo personalizado
+  AItem.StyleLookup :=  'itemLancamentoStyle';
+  AItem.Height := 25;
+
+  // Obtém os elementos visuais do estilo
+  LabelData := TText(AItem.FindStyleResource('datetext'));
+  LabelEntidade := TText(AItem.FindStyleResource('entitytext'));
+  LabelDescricao := TText(AItem.FindStyleResource('descriptiontext'));
+  LabelObs := TText(AItem.FindStyleResource('obstext'));
+  LabelValor := TText(AItem.FindStyleResource('positivevaluetext'));
+
+  // Atualiza os textos se os elementos forem encontrados
+  SetLabelText(LabelData, DateToStr(ALancamento.Data));
+  SetLabelText(LabelEntidade, ALancamento.Entidade);
+  SetLabelText(LabelDescricao, ALancamento.Descricao);
+  SetLabelText(LabelObs, ALancamento.Observacoes);
+  SetLabelText(LabelValor, FloatToStr(ALancamento.Valor));
+end;
+
+procedure TfrmFluxoCaixa.CarregaListaLancamentos;
+var
+  DAO: TLancamentoDAO;
+  Lista: TObjectList<TLancamento>;
+  Lancamento: TLancamento;
+begin
+  DAO := TLancamentoDAO.Create;
+
+  try
+    Lista := DAO.BuscarLancamentos;
+
+    if Lista <> nil then
+    try
+  grdLancamentos.RowCount := 2; // 1 para header + 1 linha de dados
+  grdLancamentos.Cells[0, 1] := '05/08/2025';
+  grdLancamentos.Cells[1, 1] := 'Cliente XYZ';
+  grdLancamentos.Cells[2, 1] := 'Pagamento';
+  grdLancamentos.Cells[3, 1] := 'Nenhuma';
+  grdLancamentos.Cells[4, 1] := 'R$ 150,00';
+    except
+      on E: Exception do
+        ShowMessage(E.Message);
+    end;
+  finally
+    DAO.Free;
+  end;
+end;
+
+procedure TfrmFluxoCaixa.FormShow(Sender: TObject);
+begin
+  Lancamentos := TObjectList<TLancamento>.Create(False);
+  ResizeGridColumns;
+  CarregaListaLancamentos;
+end;
+
+procedure TfrmFluxoCaixa.btnInserirClick(Sender: TObject);
+begin
+  frmSelecaoLancamento.ShowModal;
+end;
+
+end.

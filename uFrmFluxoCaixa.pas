@@ -42,7 +42,8 @@ type
     procedure btnInserirClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
   private
-    //procedure CarregaListaLancamentos;
+    Lancamentos: TObjectList<TLancamento>;
+    procedure CarregaListaLancamentos;
     procedure PreencheLabelsItemLancamento(AItem: TListBoxItem; ALancamento: TLancamento);
     procedure ResizeGridColumns;
   public
@@ -93,33 +94,27 @@ begin
   SetLabelText(LabelValor, FloatToStr(ALancamento.Valor));
 end;
 
-{ procedure TfrmFluxoCaixa.CarregaListaLancamentos;
+procedure TfrmFluxoCaixa.CarregaListaLancamentos;
 var
   DAO: TLancamentoDAO;
   Lista: TObjectList<TLancamento>;
   Lancamento: TLancamento;
-  Item: TListBoxItem;
 begin
-  // Limpa a ListBox e libera a memória
-  ClearListBox(lbLancamentos);
+  DAO := TLancamentoDAO.Create;
 
   try
-    DAO := TLancamentoDAO.Create;
-    // Busca todos os lançamentos no Banco de Dados e armazena numa lista
     Lista := DAO.BuscarLancamentos;
 
-    // Se houver algum objeto na lista...
     if Lista <> nil then
     try
       for Lancamento in Lista do
       begin
-        // Para cada lançamento, é criado um novo ListBoxItem
-        Item := TListBoxItem.Create(nil);
-        Item.Parent := lbLancamentos;
-        // Preenche os elementos visuais do item
-        PreencheLabelsItemLancamento(Item, Lancamento);
-        // Define o lançamento como conteúdo do item
-        Item.TagObject := Lancamento;
+        grdLancamentos.RowCount := grdLancamentos.RowCount + 1;
+        grdLancamentos.Cells[0, grdLancamentos.RowCount - 1] := DateToStr(Lancamento.Data);
+        grdLancamentos.Cells[1, grdLancamentos.RowCount - 1] := Lancamento.Entidade;
+        grdLancamentos.Cells[2, grdLancamentos.RowCount - 1] := Lancamento.Descricao;
+        grdLancamentos.Cells[3, grdLancamentos.RowCount - 1] := Lancamento.Observacoes;
+        grdLancamentos.Cells[4, grdLancamentos.RowCount - 1] := FormatFloat('R$ #,##0.00', Lancamento.Valor);
       end;
     except
       on E: Exception do
@@ -127,14 +122,14 @@ begin
     end;
   finally
     DAO.Free;
-    Lista.Free;
   end;
-end; }
+end;
 
 procedure TfrmFluxoCaixa.FormShow(Sender: TObject);
 begin
+  Lancamentos := TObjectList<TLancamento>.Create(False);
   ResizeGridColumns;
-  //CarregaListaLancamentos;
+  CarregaListaLancamentos;
 end;
 
 procedure TfrmFluxoCaixa.btnInserirClick(Sender: TObject);
