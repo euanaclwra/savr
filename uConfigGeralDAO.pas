@@ -37,10 +37,11 @@ begin
     begin
       Qry.Close;
       Qry.SQL.Text := 'INSERT INTO configuracao(valorsalario, flagparcelado, percentualadiantamento, diaadiantamento, diapagamentofinal, nomeusuario) ' +
-                'VALUES (:vsal, :fparc, :perad, :diaadiant, :diapag, :nome)';
+                'VALUES (:vrenda, :vsaldo, :fparc, :perad, :diaadiant, :diapag, :nome)';
 
       // Insere uma linha zerada
-      Qry.ParamByName('vsal').AsFloat := 0;
+      Qry.ParamByName('vrenda').AsFloat := 0;
+      Qry.ParamByName('vsaldo').AsFloat := 0;
       Qry.ParamByName('fparc').AsBoolean := False;
       Qry.ParamByName('perad').AsFloat := 0;
       Qry.ParamByName('diaadiant').AsInteger := 0;

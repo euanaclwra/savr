@@ -956,6 +956,7 @@ object frmSetup: TfrmSetup
         TabOrder = 0
         object ltSalarioSaldo: TLayout
           Align = Center
+          Opacity = 0.000000000000000000
           Margins.Bottom = 50.000000000000000000
           Size.Width = 300.000000000000000000
           Size.Height = 160.000000000000000000

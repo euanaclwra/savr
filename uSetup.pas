@@ -128,10 +128,15 @@ begin
     end;
     2:
     begin
-      // Página 2 - Salva o valor do salário
+      // Página 2 - Salva o valor do salário/saldo
       if not ValidarDados(edtValorSalario.Text, Moeda) then
       begin
         ExibirMensagemErro(edtValorSalario);
+        Exit;
+      end;
+      if not ValidarDados(edtValorSaldo.Text, Moeda) then
+      begin
+        ExibirMensagemErro(edtValorSaldo);
         Exit;
       end;
 
@@ -336,16 +341,18 @@ function TfrmSetup.SalvarInfoSalario: Boolean;
 var
  DAO: TConfigGeralDAO;
  ValorSalario: Double;
+ ValorSaldo: Double;
  FlagParcelado: Boolean;
-
 begin
   Result := False;
   ValorSalario := CurrencyToFloat(edtValorSalario.Text);
+  ValorSaldo:= CurrencyToFloat(edtValorSaldo.Text);
   FlagParcelado := ckbAdiantamento.IsChecked;
 
   DAO := TConfigGeralDAO.Create;
   try
     if DAO.AlterarConfiguracao('ValorSalario', ValorSalario)
+    and DAO.AlterarConfiguracao('ValorSaldo', ValorSaldo)
     and DAO.AlterarConfiguracao('FlagParcelado', BoolToInt(FlagParcelado))
     then
     begin

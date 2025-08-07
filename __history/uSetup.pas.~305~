@@ -7,7 +7,7 @@ uses
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.Objects,
   FMX.Ani, FMX.TabControl, FMX.Controls.Presentation, FMX.StdCtrls, FMX.Edit,
   uConfigGeralDAO, uAppGlobals, FMX.Styles.Objects, FMX.ComboEdit, FMX.Layouts,
-  FMX.ListBox, uEditMoeda, FMX.EditBox, FMX.SpinBox, uUtils, uMain;
+  FMX.ListBox, uEditMoeda, FMX.EditBox, FMX.SpinBox, uUtils, uMain, TypInfo;
 
 type
   TfrmSetup = class(TForm)
@@ -65,6 +65,7 @@ type
     txtValorSaldo: TText;
     edtValorSaldo: TEditMoeda;
     lnValorSaldo: TLine;
+    ltGeral: TLayout;
     procedure ExibirNomeUsuario;
     procedure ExibirLayoutSalario;
     procedure UpdateNavegacao;
@@ -127,10 +128,15 @@ begin
     end;
     2:
     begin
-      // Página 2 - Salva o valor do salário
+      // Página 2 - Salva o valor do salário/saldo
       if not ValidarDados(edtValorSalario.Text, Moeda) then
       begin
         ExibirMensagemErro(edtValorSalario);
+        Exit;
+      end;
+      if not ValidarDados(edtValorSaldo.Text, Moeda) then
+      begin
+        ExibirMensagemErro(edtValorSaldo);
         Exit;
       end;
 
@@ -260,7 +266,7 @@ end;
 
 procedure TfrmSetup.FormShow(Sender: TObject);
 begin
-  ShowMessage(FloatToStr(txtDados.Position.Y));
+  //ShowMessage('Pai de txtDados: ' + txtDados.Parent.ClassName);
 end;
 
 procedure TfrmSetup.btnVoltarClick(Sender: TObject);
@@ -335,16 +341,18 @@ function TfrmSetup.SalvarInfoSalario: Boolean;
 var
  DAO: TConfigGeralDAO;
  ValorSalario: Double;
+ ValorSaldo: Double;
  FlagParcelado: Boolean;
-
 begin
   Result := False;
   ValorSalario := CurrencyToFloat(edtValorSalario.Text);
+  ValorSaldo:= CurrencyToFloat(edtValorSaldo.Text);
   FlagParcelado := ckbAdiantamento.IsChecked;
 
   DAO := TConfigGeralDAO.Create;
   try
     if DAO.AlterarConfiguracao('ValorSalario', ValorSalario)
+    and DAO.AlterarConfiguracao('ValorSalario', ValorSaldo)
     and DAO.AlterarConfiguracao('FlagParcelado', BoolToInt(FlagParcelado))
     then
     begin
