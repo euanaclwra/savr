@@ -159,6 +159,7 @@ object frmFluxoCaixa: TfrmFluxoCaixa
       object rdAmbos: TRadioButton
         Align = Left
         StyledSettings = [Style]
+        IsChecked = True
         Margins.Top = 11.000000000000000000
         Position.X = 265.000000000000000000
         Position.Y = 11.000000000000000000
@@ -197,7 +198,8 @@ object frmFluxoCaixa: TfrmFluxoCaixa
         TextSettings.HorzAlign = Leading
       end
       object dtInicio: TDateEdit
-        Date = 45868.000000000000000000
+        Date = 45876.000000000000000000
+        TodayDefault = True
         Align = Left
         Position.X = 95.000000000000000000
         Size.Width = 100.000000000000000000
@@ -237,7 +239,8 @@ object frmFluxoCaixa: TfrmFluxoCaixa
         TextSettings.HorzAlign = Leading
       end
       object dtFim: TDateEdit
-        Date = 45868.000000000000000000
+        Date = 45876.000000000000000000
+        TodayDefault = True
         Align = Left
         Position.X = 255.000000000000000000
         Size.Width = 100.000000000000000000

@@ -73,22 +73,22 @@ inherited frmFluxoCaixa_Windows: TfrmFluxoCaixa_Windows
     inherited clData: TStringColumn
       HeaderSettings.TextSettings.Font.StyleExt = {00070000000000000004000000}
     end
-    inherited clDescricao: TStringColumn [1]
+    inherited clEntidade: TStringColumn
       HeaderSettings.TextSettings.Font.StyleExt = {00070000000000000004000000}
     end
-    inherited clObservacoes: TStringColumn [2]
+    inherited clDescricao: TStringColumn
       HeaderSettings.TextSettings.Font.StyleExt = {00070000000000000004000000}
     end
-    inherited clCategoria: TStringColumn [3]
+    inherited clObservacoes: TStringColumn
       HeaderSettings.TextSettings.Font.StyleExt = {00070000000000000004000000}
     end
-    inherited clValor: TStringColumn [4]
+    inherited clCategoria: TStringColumn
       HeaderSettings.TextSettings.Font.StyleExt = {00070000000000000004000000}
     end
-    inherited clTipo: TStringColumn [5]
+    inherited clValor: TStringColumn
       HeaderSettings.TextSettings.Font.StyleExt = {00070000000000000004000000}
     end
-    inherited clEntidade: TStringColumn [6]
+    inherited clTipo: TStringColumn
       HeaderSettings.TextSettings.Font.StyleExt = {00070000000000000004000000}
     end
   end

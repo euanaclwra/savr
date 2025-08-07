@@ -162,12 +162,17 @@ begin
         grdLancamentos.Cells[2, grdLancamentos.RowCount - 1] := Lancamento.Descricao;
         grdLancamentos.Cells[3, grdLancamentos.RowCount - 1] := Lancamento.Observacoes;
         grdLancamentos.Cells[4, grdLancamentos.RowCount - 1] := Lancamento.Categoria.Nome;
-        grdLancamentos.Cells[5, grdLancamentos.RowCount - 1] := FormatFloat('R$ #,##0.00', Lancamento.Valor);
 
         if Lancamento.Tipo = tcReceita then
+        begin
+          grdLancamentos.Cells[5, grdLancamentos.RowCount - 1] := FormatFloat('+#,##0.00', Lancamento.Valor);
           grdLancamentos.Cells[6, grdLancamentos.RowCount - 1] := '🟢'
+        end
         else
+        begin
+          grdLancamentos.Cells[5, grdLancamentos.RowCount - 1] := FormatFloat('-#,##0.00', Lancamento.Valor);
           grdLancamentos.Cells[6, grdLancamentos.RowCount - 1] := '🔴'
+        end;
       end;
     except
       on E: Exception do
