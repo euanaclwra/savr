@@ -45,6 +45,7 @@ type
     rtAplicarFiltros: TRectangle;
     txtAplicarFiltros: TText;
     ltAplicarFiltros: TLayout;
+    ltTitulo: TLayout;
     procedure btnInserirClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure btnAplicarFiltrosClick(Sender: TObject);

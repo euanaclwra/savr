@@ -11,6 +11,7 @@ type
     FDiaAdiantamento: Integer;
     FDiaPagamentoFinal: Integer;
     FNomeUsuario: String;
+    FValorSaldo: Double;
   public
     property ID: Integer read FID write FID;
     property ValorSalario: Double read FValorSalario write FValorSalario;
@@ -19,6 +20,7 @@ type
     property DiaAdiantamento: Integer read FDiaAdiantamento write FDiaAdiantamento;
     property DiaPagamentoFinal: Integer read FDiaPagamentoFinal write FDiaPagamentoFinal;
     property NomeUsuario: String read FNomeUsuario write FNomeUsuario;
+    property ValorSaldo: Double read FValorSaldo write FValorSaldo;
   end;
 
 implementation
