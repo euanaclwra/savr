@@ -948,10 +948,10 @@ object frmSetup: TfrmSetup
       ExplicitSize.cx = 8.000000000000000000
       ExplicitSize.cy = 8.000000000000000000
       object txtWelcomeName: TText
-        Align = VertCenter
-        Opacity = 0.000000000000000000
-        Margins.Bottom = 400.000000000000000000
-        Position.Y = 15.000000000000000000
+        Align = Top
+        Anchors = []
+        Margins.Top = 20.000000000000000000
+        Position.Y = 20.000000000000000000
         Size.Width = 760.000000000000000000
         Size.Height = 48.000000000000000000
         Size.PlatformDefault = False
@@ -969,10 +969,9 @@ object frmSetup: TfrmSetup
         end
       end
       object txtDados: TText
-        Align = VertCenter
-        Opacity = 0.000000000000000000
-        Margins.Bottom = 350.000000000000000000
-        Position.Y = 51.000000000000000000
+        Align = Top
+        Anchors = []
+        Position.Y = 68.000000000000000000
         Size.Width = 760.000000000000000000
         Size.Height = 25.000000000000000000
         Size.PlatformDefault = False
@@ -989,23 +988,114 @@ object frmSetup: TfrmSetup
           StopValue = 1.000000000000000000
         end
       end
-      object ltValorSalario: TLayout
+      object ltSalarioSaldo: TLayout
         Align = Center
-        Size.Width = 369.000000000000000000
-        Size.Height = 226.000000000000000000
+        Margins.Bottom = 50.000000000000000000
+        Size.Width = 300.000000000000000000
+        Size.Height = 160.000000000000000000
         Size.PlatformDefault = False
         TabOrder = 2
-        object txtValorSalario: TText
-          Align = Center
-          Margins.Bottom = 100.000000000000000000
-          Size.Width = 233.000000000000000000
-          Size.Height = 25.000000000000000000
+        object ltValorSalario: TLayout
+          Align = Top
+          Size.Width = 300.000000000000000000
+          Size.Height = 89.000000000000000000
           Size.PlatformDefault = False
-          Text = 'Qual o valor da sua renda fixa mensal?'
-          TextSettings.Font.Family = 'Montserrat'
-          TextSettings.Font.Size = 11.000000000000000000
-          TextSettings.FontColor = xFF34495E
-          TextSettings.HorzAlign = Leading
+          TabOrder = 3
+          object txtValorSalario: TText
+            Align = Top
+            Size.Width = 300.000000000000000000
+            Size.Height = 25.000000000000000000
+            Size.PlatformDefault = False
+            Text = 'Qual o valor da sua renda fixa mensal?'
+            TextSettings.Font.Family = 'Montserrat'
+            TextSettings.Font.Size = 11.000000000000000000
+            TextSettings.FontColor = xFF34495E
+            TextSettings.HorzAlign = Leading
+          end
+          object edtValorSalario: TEditMoeda
+            Touch.InteractiveGestures = [LongTap, DoubleTap]
+            Align = Top
+            TabOrder = 4
+            KeyboardType = NumberPad
+            FilterChar = '0123456789,.'
+            TextSettings.Font.Family = 'Montserrat'
+            TextSettings.Font.Size = 11.000000000000000000
+            TextSettings.FontColor = xFF34495E
+            Position.Y = 25.000000000000000000
+            Size.Width = 300.000000000000000000
+            Size.Height = 22.000000000000000000
+            Size.PlatformDefault = False
+            StyledSettings = [Style]
+            object lnValorSalario: TLine
+              Align = Bottom
+              LineType = Diagonal
+              Margins.Top = 22.000000000000000000
+              Position.Y = 21.000000000000000000
+              Size.Width = 300.000000000000000000
+              Size.Height = 1.000000000000000000
+              Size.PlatformDefault = False
+              Stroke.Color = xFF63C8C7
+            end
+          end
+          object ckbAdiantamento: TCheckBox
+            Align = Top
+            StyledSettings = [Style]
+            Margins.Top = 7.000000000000000000
+            Position.Y = 54.000000000000000000
+            Size.Width = 300.000000000000000000
+            Size.Height = 19.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 5
+            Text = 'Possui valor de adiantamento?'
+            TextSettings.Font.Family = 'Montserrat'
+            TextSettings.Font.Size = 11.000000000000000000
+            TextSettings.FontColor = xFF34495E
+          end
+        end
+        object ltValorSaldo: TLayout
+          Align = Top
+          Margins.Top = 20.000000000000000000
+          Position.Y = 109.000000000000000000
+          Size.Width = 300.000000000000000000
+          Size.Height = 52.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 2
+          object txtValorSaldo: TText
+            Align = Top
+            Size.Width = 300.000000000000000000
+            Size.Height = 25.000000000000000000
+            Size.PlatformDefault = False
+            Text = 'Qual '#233' o saldo da sua conta atualmente?'
+            TextSettings.Font.Family = 'Montserrat'
+            TextSettings.Font.Size = 11.000000000000000000
+            TextSettings.FontColor = xFF34495E
+            TextSettings.HorzAlign = Leading
+          end
+          object edtValorSaldo: TEditMoeda
+            Touch.InteractiveGestures = [LongTap, DoubleTap]
+            Align = Top
+            TabOrder = 4
+            KeyboardType = NumberPad
+            FilterChar = '0123456789,.'
+            TextSettings.Font.Family = 'Montserrat'
+            TextSettings.Font.Size = 11.000000000000000000
+            TextSettings.FontColor = xFF34495E
+            Position.Y = 25.000000000000000000
+            Size.Width = 300.000000000000000000
+            Size.Height = 22.000000000000000000
+            Size.PlatformDefault = False
+            StyledSettings = [Style]
+            object lnValorSaldo: TLine
+              Align = Bottom
+              LineType = Diagonal
+              Margins.Top = 22.000000000000000000
+              Position.Y = 21.000000000000000000
+              Size.Width = 300.000000000000000000
+              Size.Height = 1.000000000000000000
+              Size.PlatformDefault = False
+              Stroke.Color = xFF63C8C7
+            end
+          end
         end
         object fxLtValorSalario: TFloatAnimation
           Delay = 5.000000000000000000
@@ -1013,43 +1103,6 @@ object frmSetup: TfrmSetup
           PropertyName = 'Opacity'
           StartValue = 0.000000000000000000
           StopValue = 1.000000000000000000
-        end
-        object edtValorSalario: TEditMoeda
-          Touch.InteractiveGestures = [LongTap, DoubleTap]
-          Align = Center
-          TabOrder = 4
-          KeyboardType = NumberPad
-          FilterChar = '0123456789,.'
-          TextSettings.Font.Family = 'Montserrat'
-          TextSettings.Font.Size = 11.000000000000000000
-          TextSettings.FontColor = xFF34495E
-          Margins.Bottom = 50.000000000000000000
-          Size.Width = 233.000000000000000000
-          Size.Height = 22.000000000000000000
-          Size.PlatformDefault = False
-          StyledSettings = [Style]
-          object lnValorSalario: TLine
-            Align = Center
-            LineType = Diagonal
-            Margins.Top = 22.000000000000000000
-            Size.Width = 233.000000000000000000
-            Size.Height = 1.000000000000000000
-            Size.PlatformDefault = False
-            Stroke.Color = xFF63C8C7
-          end
-        end
-        object ckbAdiantamento: TCheckBox
-          Align = Center
-          StyledSettings = [Style]
-          Margins.Top = 70.000000000000000000
-          Size.Width = 193.000000000000000000
-          Size.Height = 19.000000000000000000
-          Size.PlatformDefault = False
-          TabOrder = 5
-          Text = 'Possui valor de adiantamento?'
-          TextSettings.Font.Family = 'Montserrat'
-          TextSettings.Font.Size = 11.000000000000000000
-          TextSettings.FontColor = xFF34495E
         end
       end
     end
@@ -1085,7 +1138,7 @@ object frmSetup: TfrmSetup
         Size.Width = 760.000000000000000000
         Size.Height = 478.000000000000000000
         Size.PlatformDefault = False
-        TabOrder = 9
+        TabOrder = 10
         object txDiaPagamentoPadrao: TText
           Align = Center
           Margins.Bottom = 25.000000000000000000
@@ -1112,6 +1165,7 @@ object frmSetup: TfrmSetup
           Size.Height = 25.000000000000000000
           Size.PlatformDefault = False
           StyledSettings = [Style]
+          OnChange = edtDiaPagamentoPadraoChange
           object lnDiaPagamentoPadrao: TLine
             Align = Center
             LineType = Diagonal
@@ -1143,6 +1197,7 @@ object frmSetup: TfrmSetup
           Size.Height = 25.000000000000000000
           Size.PlatformDefault = False
           StyledSettings = [Style]
+          OnChange = edtPctAdiantamentoChange
           object lnPctAdiantamento: TLine
             Align = Center
             LineType = Diagonal
@@ -1215,6 +1270,7 @@ object frmSetup: TfrmSetup
           Size.Height = 25.000000000000000000
           Size.PlatformDefault = False
           StyledSettings = [Style]
+          OnChange = edtDiaAdiantamentoChange
           object lnDiaAdiantamento: TLine
             Align = Center
             LineType = Diagonal
@@ -1239,6 +1295,7 @@ object frmSetup: TfrmSetup
           Size.Height = 25.000000000000000000
           Size.PlatformDefault = False
           StyledSettings = [Style]
+          OnChange = edtDiaPagamentoChange
           object lnDiaPagamento: TLine
             Align = Center
             LineType = Diagonal

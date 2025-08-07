@@ -7,7 +7,7 @@ uses
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.Objects,
   FMX.Ani, FMX.TabControl, FMX.Controls.Presentation, FMX.StdCtrls, FMX.Edit,
   uConfigGeralDAO, uAppGlobals, FMX.Styles.Objects, FMX.ComboEdit, FMX.Layouts,
-  FMX.ListBox, uEditMoeda, FMX.EditBox, FMX.SpinBox, uUtils, uMain;
+  FMX.ListBox, uEditMoeda, FMX.EditBox, FMX.SpinBox, uUtils, uMain, TypInfo;
 
 type
   TfrmSetup = class(TForm)
@@ -60,6 +60,12 @@ type
     lnDiaPagamento: TLine;
     edtDiaPagamentoPadrao: TEdit;
     lnDiaPagamentoPadrao: TLine;
+    ltSalarioSaldo: TLayout;
+    ltValorSaldo: TLayout;
+    txtValorSaldo: TText;
+    edtValorSaldo: TEditMoeda;
+    lnValorSaldo: TLine;
+    ltGeral: TLayout;
     procedure ExibirNomeUsuario;
     procedure ExibirLayoutSalario;
     procedure UpdateNavegacao;
@@ -74,6 +80,7 @@ type
     procedure edtDiaAdiantamentoChange(Sender: TObject);
     procedure edtDiaPagamentoChange(Sender: TObject);
     procedure edtPctAdiantamentoChange(Sender: TObject);
+    procedure FormShow(Sender: TObject);
   private
     function SalvarNomeUsuario: Boolean;
     function SalvarInfoSalario: Boolean;
@@ -250,6 +257,11 @@ var
   DAO: TConfigGeralDAO;
 begin
   tbcSetup.TabIndex := 0;
+end;
+
+procedure TfrmSetup.FormShow(Sender: TObject);
+begin
+  //ShowMessage('Pai de txtDados: ' + txtDados.Parent.ClassName);
 end;
 
 procedure TfrmSetup.btnVoltarClick(Sender: TObject);

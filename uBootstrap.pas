@@ -43,7 +43,7 @@ end;
 function TfrmBootstrap.GetFirstForm: TForm;
 begin
   // Inicia o form de Setup caso a aplicação não possua as configurações iniciais
-  if (AppConfig <> nil) and (AppConfig.NomeUsuario <> '') then
+  if (AppConfig <> nil) and (AppConfig.ValorSaldo > 0) then
     Result := frmMain
   else
     Result := frmSetup

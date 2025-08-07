@@ -10,7 +10,7 @@ uses
 type
   TfrmBootstrap = class(TForm)
     procedure FormShow(Sender: TObject);
-    function GetFirstForm(AConfig: String): TForm;
+    function GetFirstForm: TForm;
   private
     { Private declarations }
   public
@@ -25,18 +25,28 @@ implementation
 {$R *.fmx}
 
 procedure TfrmBootstrap.FormShow(Sender: TObject);
+var
+   Form: TForm;
 begin
-  if (AppConfig <> nil) and (AppConfig.NomeUsuario <> '') then
-    frmMain.Show
-  else
-    frmSetup.Show;
+  Form := GetFirstForm;
 
-    Hide;
+  // Define o form principal da aplicação
+  // Impede que a aplicação finalize ao fechar o primeiro form criado
+  try
+    Application.MainForm := Form;
+    Form.Show;
+  finally
+    Close;
+  end;
 end;
 
-function TfrmBootstrap.GetFirstForm(AConfig: string): TForm;
+function TfrmBootstrap.GetFirstForm: TForm;
 begin
-  //
+  // Inicia o form de Setup caso a aplicação não possua as configurações iniciais
+  if (AppConfig <> nil) and (AppConfig.NomeUsuario <> '') then
+    Result := frmMain
+  else
+    Result := frmSetup
 end;
 
 end.

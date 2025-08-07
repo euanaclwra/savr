@@ -7,7 +7,7 @@ uses
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.Objects,
   FMX.Ani, FMX.TabControl, FMX.Controls.Presentation, FMX.StdCtrls, FMX.Edit,
   uConfigGeralDAO, uAppGlobals, FMX.Styles.Objects, FMX.ComboEdit, FMX.Layouts,
-  FMX.ListBox, uEditMoeda, FMX.EditBox, FMX.SpinBox, uUtils, uMain;
+  FMX.ListBox, uEditMoeda, FMX.EditBox, FMX.SpinBox, uUtils, uMain, TypInfo;
 
 type
   TfrmSetup = class(TForm)
@@ -60,14 +60,11 @@ type
     lnDiaPagamento: TLine;
     edtDiaPagamentoPadrao: TEdit;
     lnDiaPagamentoPadrao: TLine;
-    function SalvarNomeUsuario: Boolean;
-    function SalvarInfoSalario: Boolean;
-    function ValidarDadosTab3(out CampoInvalido: TEdit): Boolean;
-    procedure SalvarInfoDatas;
-    procedure SalvarInfoDatasPadrao;
-    procedure SalvarInfoDatasParcelado;
-    procedure AvancarPagina;
-    procedure VoltarPagina;
+    ltSalarioSaldo: TLayout;
+    ltValorSaldo: TLayout;
+    txtValorSaldo: TText;
+    edtValorSaldo: TEditMoeda;
+    lnValorSaldo: TLine;
     procedure ExibirNomeUsuario;
     procedure ExibirLayoutSalario;
     procedure UpdateNavegacao;
@@ -76,8 +73,22 @@ type
     procedure btnVoltarClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FinalizarSetup;
+    procedure edtNameChange(Sender: TObject);
+    procedure edtValorSalarioChange(Sender: TObject);
+    procedure edtDiaPagamentoPadraoChange(Sender: TObject);
+    procedure edtDiaAdiantamentoChange(Sender: TObject);
+    procedure edtDiaPagamentoChange(Sender: TObject);
+    procedure edtPctAdiantamentoChange(Sender: TObject);
+    procedure FormShow(Sender: TObject);
   private
-    { Private declarations }
+    function SalvarNomeUsuario: Boolean;
+    function SalvarInfoSalario: Boolean;
+    function ValidarDadosTab3(out CampoInvalido: TEdit): Boolean;
+    procedure SalvarInfoDatas;
+    procedure SalvarInfoDatasPadrao;
+    procedure SalvarInfoDatasParcelado;
+    procedure AvancarPagina;
+    procedure VoltarPagina;
   public
     { Public declarations }
   end;
@@ -242,15 +253,51 @@ end;
 
 procedure TfrmSetup.FormCreate(Sender: TObject);
 var
-  DAO : TConfigGeralDAO;
+  DAO: TConfigGeralDAO;
 begin
   tbcSetup.TabIndex := 0;
+end;
+
+procedure TfrmSetup.FormShow(Sender: TObject);
+begin
+  ShowMessage('Pai de txtDados: ' + txtDados.Parent.Name);
+
 end;
 
 procedure TfrmSetup.btnVoltarClick(Sender: TObject);
 begin
   VoltarPagina;
   UpdateNavegacao;
+end;
+
+procedure TfrmSetup.edtDiaAdiantamentoChange(Sender: TObject);
+begin
+  OcultarMensagemErro(Sender);
+end;
+
+procedure TfrmSetup.edtDiaPagamentoChange(Sender: TObject);
+begin
+  OcultarMensagemErro(Sender);
+end;
+
+procedure TfrmSetup.edtDiaPagamentoPadraoChange(Sender: TObject);
+begin
+  OcultarMensagemErro(Sender);
+end;
+
+procedure TfrmSetup.edtNameChange(Sender: TObject);
+begin
+  OcultarMensagemErro(Sender);
+end;
+
+procedure TfrmSetup.edtPctAdiantamentoChange(Sender: TObject);
+begin
+  OcultarMensagemErro(Sender);
+end;
+
+procedure TfrmSetup.edtValorSalarioChange(Sender: TObject);
+begin
+  OcultarMensagemErro(Sender);
 end;
 
 procedure TfrmSetup.AvancarPagina;
